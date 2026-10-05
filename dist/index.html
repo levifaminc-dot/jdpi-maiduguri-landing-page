@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Justice Development and Peace Initiative, Maiduguri — building resilient communities, restoring dignity and advancing peace across Northeast Nigeria.">
+  <title>JDPI Maiduguri | Building Peace. Restoring Dignity.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b5c36'/%3E%3Cpath d='M17 34c10-1 17-7 22-18 4 11 2 22-7 29-6 5-15 3-15-11Z' fill='%23f4b23c'/%3E%3Cpath d='M21 39c8-3 14-9 18-17' fill='none' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    :root{--green:#0b6b3a;--green-dark:#063f2a;--navy:#0d263c;--cream:#f6f3eb;--gold:#e9ad42;--ink:#132338;--muted:#647182;--line:#dde2de;--white:#fff}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--ink);font-family:"DM Sans",sans-serif;background:var(--cream)}
+    a{color:inherit;text-decoration:none} img{display:block;max-width:100%} button{font:inherit}
+    .skip{position:absolute;left:-999px;top:0;background:#fff;padding:.8rem;z-index:100}.skip:focus{left:1rem;top:1rem}
+    .nav{height:84px;background:rgba(255,255,255,.96);display:flex;align-items:center;position:absolute;inset:0 0 auto;z-index:10;border-top:4px solid var(--green)}
+    .nav-inner{width:min(1180px,calc(100% - 40px));margin:auto;display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .brand{display:flex;align-items:center;gap:.8rem}.brand img{width:96px;height:auto}.brand-copy{font-size:.72rem;line-height:1.25;color:#3d4c57}.brand-copy strong{display:block;font-size:.84rem;color:var(--navy)}
+    .nav-links{display:flex;align-items:center;gap:1.7rem;font-weight:600;font-size:.9rem}.nav-links a:hover{color:var(--green)}
+    .mobile-menu{display:none;position:relative}.mobile-menu summary{list-style:none;width:44px;height:44px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;cursor:pointer;font-size:0}.mobile-menu summary::-webkit-details-marker{display:none}.mobile-menu summary:after{content:"☰";font-size:1.15rem;color:var(--navy)}.mobile-menu[open] summary:after{content:"×";font-size:1.6rem}.mobile-panel{position:absolute;right:0;top:54px;background:#fff;border-radius:14px;box-shadow:0 18px 50px rgba(8,35,43,.18);padding:.7rem;min-width:210px}.mobile-panel a{display:block;padding:.8rem 1rem;border-radius:8px;font-weight:700}.mobile-panel a:hover{background:#f2f6f2;color:var(--green)}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 1.5rem;border-radius:999px;border:1px solid transparent;background:var(--green);color:#fff;font-weight:700;letter-spacing:.01em;transition:.2s ease}.button:hover{background:#08542f;transform:translateY(-1px)}
+    .button.alt{background:transparent;border-color:rgba(255,255,255,.58)}.button.alt:hover{background:rgba(255,255,255,.12)}
+    .hero{min-height:800px;padding:155px 0 70px;position:relative;display:grid;align-items:end;background:linear-gradient(90deg,rgba(3,22,20,.92) 0%,rgba(5,31,34,.8) 46%,rgba(9,38,56,.26) 100%),url("assets/hero.avif") center/cover no-repeat;color:#fff;overflow:hidden}
+    .hero:after{content:"";position:absolute;inset:auto -7vw -28vw auto;width:55vw;height:55vw;border:1px solid rgba(255,255,255,.12);border-radius:50%}
+    .hero-inner{width:min(1180px,calc(100% - 40px));margin:auto;position:relative;z-index:1}.kicker{display:flex;align-items:center;gap:.7rem;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:#c8e5d4}.kicker:before{content:"";width:38px;height:2px;background:var(--gold)}
+    h1,h2{font-family:"Fraunces",serif;margin:0;line-height:.98;letter-spacing:-.035em}.hero h1{font-size:clamp(4rem,8.6vw,7.8rem);max-width:890px;margin:.8rem 0 1.3rem}.hero h1 span{color:#7ee1a4}
+    .hero-copy{font-size:clamp(1.1rem,2vw,1.28rem);line-height:1.65;max-width:680px;color:rgba(255,255,255,.84)}.actions{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:2rem}
+    .hero-meta{display:flex;gap:2.2rem;margin-top:4.5rem;color:rgba(255,255,255,.72);font-size:.85rem}.hero-meta strong{display:block;color:#fff;font-size:1rem;margin-bottom:.2rem}
+    .impact-ribbon{position:relative;z-index:2;width:min(1180px,calc(100% - 40px));margin:-44px auto 0;background:#fff;border-radius:18px;box-shadow:0 18px 60px rgba(9,35,40,.14);display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}
+    .stat{padding:1.6rem 1.8rem;border-right:1px solid var(--line)}.stat:last-child{border-right:0}.stat strong{display:block;color:var(--green);font-family:"Fraunces",serif;font-size:2.3rem;line-height:1}.stat span{display:block;color:#56636f;font-size:.8rem;margin-top:.45rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700}
+    .intro{padding:120px 0 90px}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.intro-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:7vw;align-items:center}
+    .photo-frame{position:relative}.photo-frame:before{content:"";position:absolute;left:-22px;top:-22px;width:46%;height:42%;background:var(--gold);border-radius:22px 0 0 0}.photo-frame img{position:relative;border-radius:22px;width:100%;height:500px;object-fit:cover;box-shadow:0 22px 54px rgba(8,36,33,.18)}
+    .eyebrow{color:var(--green);font-weight:800;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin:0 0 1rem}.intro h2{font-size:clamp(2.6rem,4.8vw,4.8rem);color:var(--navy)}.intro h2 em{font-style:normal;color:var(--green)}
+    .lead{font-size:1.1rem;line-height:1.75;color:#4d5c68}.values{display:grid;grid-template-columns:repeat(3,1fr);margin-top:2rem;border-top:1px solid var(--line)}.value{padding:1.3rem .9rem 0 0}.value strong{display:block;color:var(--navy);font-family:"Fraunces",serif;font-size:1.25rem}.value span{font-size:.84rem;color:var(--muted);line-height:1.5}
+    .section{padding:105px 0}.section-head{display:flex;justify-content:space-between;gap:2rem;align-items:end;margin-bottom:3rem}.section-head h2{font-size:clamp(2.8rem,5.1vw,5.3rem);color:var(--navy);max-width:760px}.section-head p{max-width:420px;line-height:1.65;color:var(--muted);margin:0}
+    .programmes{background:var(--navy);color:#fff;position:relative;overflow:hidden}.programmes:before{content:"";position:absolute;right:-130px;top:-180px;width:440px;height:440px;border:90px solid rgba(255,255,255,.025);border-radius:50%}.programmes .section-head h2{color:#fff}.programmes .section-head p{color:#aebdca}.programmes .eyebrow{color:#82dfa8}
+    .program-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:22px;overflow:hidden;position:relative}.program{background:var(--navy);padding:2.2rem;min-height:240px;display:flex;flex-direction:column}.program:hover{background:#123149}.program-index{font-family:"Fraunces",serif;color:#72d49a;font-size:1.2rem}.program h3{font-family:"Fraunces",serif;font-size:1.55rem;line-height:1.14;margin:auto 0 .65rem}.program p{color:#afbdc8;line-height:1.6;font-size:.94rem;margin:0}
+    .projects{background:#fff}.project-list{border-top:1px solid var(--line)}.project{display:grid;grid-template-columns:150px 1fr 180px;gap:2.2rem;align-items:center;padding:2rem 0;border-bottom:1px solid var(--line);transition:.2s}.project:hover{padding-left:1rem;background:linear-gradient(90deg,#f4f8f4,transparent)}.project-tag{color:var(--green);font-size:.75rem;letter-spacing:.13em;text-transform:uppercase;font-weight:800}.project h3{font-family:"Fraunces",serif;font-size:1.65rem;margin:0 0 .45rem;color:var(--navy)}.project p{margin:0;color:var(--muted);line-height:1.55}.progress-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:#65717a;font-weight:700}.track{height:7px;background:#e8ece9;border-radius:10px;margin-top:.65rem;overflow:hidden}.track i{display:block;height:100%;background:var(--green);border-radius:inherit}
+    .story{background:var(--cream)}.story-card{background:var(--green-dark);border-radius:28px;color:#fff;padding:clamp(2.2rem,6vw,5rem);display:grid;grid-template-columns:1.15fr .85fr;gap:6vw;align-items:center;position:relative;overflow:hidden}.story-card:after{content:"1971";position:absolute;right:-.03em;bottom:-.22em;font-family:"Fraunces",serif;font-size:clamp(8rem,20vw,17rem);color:rgba(255,255,255,.045)}.story-card h2{font-size:clamp(2.8rem,5vw,5rem);position:relative;z-index:1}.story-card p{font-size:1.12rem;line-height:1.75;color:#c5dbce;position:relative;z-index:1}.pill-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem;position:relative;z-index:1}.pill{border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:.65rem 1rem;font-size:.78rem;font-weight:700;color:#e4f2e9}
+    .partners{text-align:center;padding:70px 0;background:#fff}.partners .eyebrow{margin-bottom:2rem}.partner-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:1.3rem 3rem;color:#64707a;font-weight:800}.partner-row span{padding:.9rem 0}
+    .cta{padding:20px 0 90px;background:#fff}.cta-box{width:min(1180px,calc(100% - 40px));margin:auto;background:linear-gradient(110deg,var(--navy),#0d3b47);border-radius:28px;color:#fff;padding:clamp(2.4rem,6vw,5rem);display:flex;align-items:center;justify-content:space-between;gap:3rem;position:relative;overflow:hidden}.cta-box:after{content:"";position:absolute;right:-80px;bottom:-160px;width:380px;height:380px;border:60px solid rgba(126,225,164,.12);border-radius:50%}.cta-box h2{font-size:clamp(2.7rem,5vw,5rem);max-width:700px;position:relative;z-index:1}.cta-box p{color:#b9c9d5;line-height:1.6;max-width:600px}.cta-actions{display:flex;flex-direction:column;gap:.7rem;min-width:190px;position:relative;z-index:1}.cta-actions .button.alt{border-color:#7890a1}
+    footer{background:#071c2b;color:#fff;padding:70px 0 30px}.footer-grid{display:grid;grid-template-columns:1.3fr .65fr .65fr 1fr;gap:3rem}.footer-brand img{width:130px;background:#fff;border-radius:10px;padding:.5rem}.footer-brand p{max-width:330px;color:#9fb0bc;line-height:1.65}.footer-col h3{font-family:"Fraunces",serif;margin:0 0 1rem;font-size:1.25rem}.footer-col a,.footer-col p{display:block;color:#9fb0bc;margin:.65rem 0;line-height:1.55}.footer-col a:hover{color:#fff}.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:3rem;padding-top:1.4rem;display:flex;justify-content:space-between;gap:1rem;color:#7f929e;font-size:.8rem}
+    @media(max-width:850px){.nav-links{display:none}.mobile-menu{display:block}.brand-copy{display:none}.nav .button{display:none}.hero{min-height:720px}.hero-meta{gap:1.1rem;flex-wrap:wrap}.impact-ribbon{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--line)}.intro-grid{grid-template-columns:1fr}.photo-frame img{height:390px}.intro{padding-top:90px}.values{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:1rem}.program-grid{grid-template-columns:repeat(2,1fr)}.project{grid-template-columns:120px 1fr}.project-progress{grid-column:2}.story-card{grid-template-columns:1fr}.cta-box{display:block}.cta-actions{margin-top:2rem;max-width:280px}.footer-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:520px){.nav{height:72px}.hero{padding-top:125px}.hero h1{font-size:3.55rem}.hero-meta{display:none}.impact-ribbon{margin-top:-28px}.stat{padding:1.3rem 1rem}.stat strong{font-size:1.9rem}.button{width:100%}.nav .button{width:auto;min-height:42px;padding:0 1rem}.section{padding:78px 0}.program-grid{grid-template-columns:1fr}.program{min-height:205px}.project{grid-template-columns:1fr;gap:.65rem}.project-progress{grid-column:1}.story-card{border-radius:20px}.partner-row{display:grid;grid-template-columns:repeat(2,1fr);gap:.2rem 1rem}.cta-box{border-radius:20px}.footer-grid{grid-template-columns:1fr}.footer-bottom{display:block}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="JDPI Maiduguri home"><img src="assets/logo.avif" alt="JDPI Maiduguri"><span class="brand-copy"><strong>Justice Development and Peace Initiative</strong>Catholic Diocese of Maiduguri</span></a>
+      <nav class="nav-links" aria-label="Primary navigation"><a href="#about">About</a><a href="#programmes">Programmes</a><a href="#projects">Projects</a><a href="#impact">Impact</a></nav>
+      <details class="mobile-menu"><summary aria-label="Open navigation">Menu</summary><nav class="mobile-panel" aria-label="Mobile navigation"><a href="#about">About</a><a href="#programmes">Programmes</a><a href="#projects">Projects</a><a href="#impact">Impact</a><a href="https://jdpimaiduguri.org/give/">Donate</a></nav></details>
+      <a class="button" href="https://jdpimaiduguri.org/give/">Donate</a>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-inner">
+        <p class="kicker">People · Communities · Justice · Peace</p>
+        <h1>Building peace.<br><span>Restoring dignity.</span></h1>
+        <p class="hero-copy">Working alongside communities across Northeast Nigeria to strengthen resilience, advance justice and create pathways to a more dignified future.</p>
+        <div class="actions"><a class="button" href="#programmes">Explore our work</a><a class="button alt" href="#impact">See our impact</a></div>
+        <div class="hero-meta"><div><strong>Since 1971</strong>Faith-led service</div><div><strong>Borno · Adamawa · Yobe</strong>Local knowledge, lasting change</div></div>
+      </div>
+    </section>
+    <section class="impact-ribbon" aria-label="Impact at a glance" id="impact">
+      <div class="stat"><strong>91k+</strong><span>People reached</span></div><div class="stat"><strong>6k+</strong><span>Livelihoods supported</span></div><div class="stat"><strong>15</strong><span>WASH facilities built</span></div><div class="stat"><strong>2k+</strong><span>Peace ambassadors</span></div>
+    </section>
+    <section class="intro" id="about">
+      <div class="wrap intro-grid">
+        <div class="photo-frame"><img src="assets/community.avif" alt="A JDPI beneficiary holding livelihood support supplies"></div>
+        <div><p class="eyebrow">Who we are</p><h2>Rooted in faith.<br><em>Led by community.</em></h2><p class="lead">The Justice Development and Peace Initiative of the Catholic Diocese of Maiduguri has served poor and marginalised communities since 1971. Our work brings humanitarian support, peacebuilding and sustainable development together—responding to urgent needs while helping communities shape their own future.</p><div class="values"><div class="value"><strong>Justice</strong><span>Upholding rights and human dignity.</span></div><div class="value"><strong>Development</strong><span>Building resilient, sustainable lives.</span></div><div class="value"><strong>Peace</strong><span>Creating space for dialogue and healing.</span></div></div></div>
+      </div>
+    </section>
+    <section class="section programmes" id="programmes">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">What we do</p><h2>One mission.<br>Many pathways to dignity.</h2></div><p>Our programmes work together—meeting immediate needs, strengthening local systems and helping communities build lasting resilience.</p></div>
+        <div class="program-grid">
+          <article class="program"><span class="program-index">01</span><h3>Peacebuilding &amp; Social Cohesion</h3><p>Dialogue, mediation and reconciliation across conflict-divided communities.</p></article>
+          <article class="program"><span class="program-index">02</span><h3>Food Security &amp; Livelihoods</h3><p>Skills, agricultural support, market links and sustainable income for vulnerable households.</p></article>
+          <article class="program"><span class="program-index">03</span><h3>Water, Sanitation &amp; Hygiene</h3><p>Clean water systems, safe sanitation and practical hygiene support for remote communities.</p></article>
+          <article class="program"><span class="program-index">04</span><h3>Nutrition &amp; Protection</h3><p>Integrated support that protects children and families and improves community nutrition.</p></article>
+          <article class="program"><span class="program-index">05</span><h3>Mental Health &amp; Psychosocial Support</h3><p>Counselling, safe spaces and community-led care for people affected by conflict.</p></article>
+          <article class="program"><span class="program-index">06</span><h3>Governance &amp; Advocacy</h3><p>Civic participation, policy engagement and stronger local civil-society organisations.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section projects" id="projects">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Work on the ground</p><h2>Projects turning care into change.</h2></div><p>Focused initiatives across Northeast Nigeria pair local leadership with accountable delivery.</p></div>
+        <div class="project-list">
+          <a class="project" href="https://jdpimaiduguri.org/projects/"><span class="project-tag">Borno &amp; Adamawa<br>Peacebuilding</span><div><h3>Building Sustainable Peace in the Lake Chad Basin</h3><p>Dialogue, trauma healing and early-warning systems across 32 conflict-affected communities.</p></div><div class="project-progress"><span class="progress-label">Project progress · 74%</span><div class="track"><i style="width:74%"></i></div></div></a>
+          <a class="project" href="https://jdpimaiduguri.org/projects/"><span class="project-tag">Yobe<br>WASH</span><div><h3>Solar-Powered Clean Water &amp; Sanitation</h3><p>Solar boreholes and rehabilitated communal latrines bringing safer water to remote communities.</p></div><div class="project-progress"><span class="progress-label">Boreholes completed · 96%</span><div class="track"><i style="width:96%"></i></div></div></a>
+          <a class="project" href="https://jdpimaiduguri.org/projects/"><span class="project-tag">Borno<br>Livelihoods</span><div><h3>Smallholder Farmer Support &amp; Market Linkage</h3><p>Agricultural inputs and structured buyer connections helping farmers build reliable income.</p></div><div class="project-progress"><span class="progress-label">Farmers reached · 88%</span><div class="track"><i style="width:88%"></i></div></div></a>
+        </div>
+      </div>
+    </section>
+    <section class="section story">
+      <div class="wrap"><div class="story-card"><div><p class="eyebrow">Why JDPI</p><h2>Local presence.<br>Long-term commitment.</h2></div><div><p>JDPI began as the Social Welfare Apostolate in 1971. Today, the organisation combines faith, evidence and community leadership to address the connected realities of conflict, poverty and displacement.</p><div class="pill-row"><span class="pill">Community-led</span><span class="pill">Faith-based</span><span class="pill">Evidence-driven</span><span class="pill">Locally rooted</span></div></div></div></div>
+    </section>
+    <section class="partners" aria-label="Partners and donors"><div class="wrap"><p class="eyebrow">Trusted partnerships</p><div class="partner-row"><span>Caritas Germany</span><span>UNICEF</span><span>GIZ</span><span>FAO</span><span>Nigeria Humanitarian Fund</span><span>Caritas Nigeria</span></div></div></section>
+    <section class="cta" id="contact"><div class="cta-box"><div><p class="eyebrow">Stand with Northeast Nigeria</p><h2>Help communities build a more dignified future.</h2><p>Donate, partner or volunteer—every act of solidarity strengthens locally led work that reaches people where support matters most.</p></div><div class="cta-actions"><a class="button" href="https://jdpimaiduguri.org/give/">Donate now</a><a class="button alt" href="mailto:info@jdpimaiduguri.org">Partner with us</a></div></div></section>
+  </main>
+  <footer>
+    <div class="wrap"><div class="footer-grid"><div class="footer-brand"><img src="assets/logo.avif" alt="JDPI Maiduguri"><p>Dedicated to serving poor and marginalised communities across the Catholic Diocese of Maiduguri with compassion and professionalism.</p></div><div class="footer-col"><h3>Explore</h3><a href="#about">About JDPI</a><a href="#programmes">Programmes</a><a href="#projects">Projects</a><a href="#impact">Our impact</a></div><div class="footer-col"><h3>Get involved</h3><a href="https://jdpimaiduguri.org/give/">Donate</a><a href="mailto:info@jdpimaiduguri.org">Partner</a><a href="mailto:info@jdpimaiduguri.org">Volunteer</a></div><div class="footer-col"><h3>Contact</h3><p>St. Patrick’s Catholic Church, Jos Road, opposite State Secretariat, Maiduguri, Borno State.</p><a href="mailto:info@jdpimaiduguri.org">info@jdpimaiduguri.org</a><a href="tel:+2347039733933">+234 703 973 3933</a></div></div><div class="footer-bottom"><span>© 2026 Justice Development and Peace Initiative, Maiduguri.</span><span>Justice · Development · Peace</span></div></div>
+  </footer>
+</body>
+</html>
