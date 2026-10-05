@@ -1,13 +1,16 @@
 import {createClient} from '@sanity/client';
-import {mkdir,writeFile,readFile,access} from 'node:fs/promises';
+import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {RELEASE_QUERY} from '../src/lib/queries.ts';
+process.chdir(path.resolve(import.meta.dirname,'..'));
 
-const projectId=process.env.PUBLIC_SANITY_PROJECT_ID;
-const dataset=process.env.PUBLIC_SANITY_DATASET;
+const settings=JSON.parse(await readFile('config/sanity.json','utf8'));
+const projectId=process.env.PUBLIC_SANITY_PROJECT_ID||settings.projectId;
+const dataset=process.env.PUBLIC_SANITY_DATASET||settings.dataset;
 if(!projectId||!dataset)throw new Error('Provide PUBLIC_SANITY_PROJECT_ID and PUBLIC_SANITY_DATASET before taking a live snapshot.');
-const client=createClient({projectId,dataset,apiVersion:'2026-10-05',useCdn:false,perspective:'published',token:process.env.SANITY_API_READ_TOKEN||undefined});
+const token=process.env.SANITY_API_READ_TOKEN||process.env.SANITY_AUTH_TOKEN||undefined;
+const client=createClient({projectId,dataset,apiVersion:'2026-10-05',useCdn:false,perspective:'published',token});
 const {content:data,documents:editorialDocuments}=await client.fetch(RELEASE_QUERY);
 if(!data.settings||!data.home)throw new Error('Publish JDPI Site settings and Homepage before taking a snapshot.');
 const assetRefs=new Set();
@@ -27,10 +30,20 @@ for(const asset of assets){
   const ext=String(asset.extension||'bin').replace(/[^a-zA-Z0-9]/g,'');
   const local=`/assets/sanity/${asset._id}.${ext}`;
   const destination=path.join('public',local.slice(1));
-  try{await access(destination);}catch{const response=await fetch(url);if(!response.ok)throw new Error(`Asset export failed: ${response.status}`);await writeFile(destination,Buffer.from(await response.arrayBuffer()));}
-  const bytes=await readFile(destination);
-  if(asset.sha1hash&&createHash('sha1').update(bytes).digest('hex')!==asset.sha1hash)throw new Error(`Asset checksum failed: ${asset._id}`);
-  manifest.push({id:asset._id,originalUrl:asset.url,path:local,sha256:createHash('sha256').update(bytes).digest('hex')});
+  let bytes;
+  try{bytes=await readFile(destination);}catch(error){if(error.code!=='ENOENT')throw error;}
+  // Public image URLs can re-encode JPEGs. dlRaw + authenticated access returns exact originals.
+  if(!bytes||(token&&asset.sha1hash&&createHash('sha1').update(bytes).digest('hex')!==asset.sha1hash)){
+    if(token&&asset._type==='sanity.imageAsset')url.searchParams.set('dlRaw',asset.originalFilename||`original.${ext}`);
+    const response=await fetch(url,{headers:token?{Authorization:`Bearer ${token}`}:{},signal:AbortSignal.timeout(60000)});
+    if(!response.ok)throw new Error(`Asset export failed: ${response.status}`);
+    bytes=Buffer.from(await response.arrayBuffer());
+    const sha1=createHash('sha1').update(bytes).digest('hex');
+    if(token&&asset.sha1hash&&sha1!==asset.sha1hash)throw new Error(`Original asset checksum failed: ${asset._id}`);
+    await writeFile(destination,bytes);
+  }
+  const originalBytes=createHash('sha1').update(bytes).digest('hex')===asset.sha1hash;
+  manifest.push({id:asset._id,originalUrl:asset.url,path:local,originalBytes,sourceSha1:asset.sha1hash,sha256:createHash('sha256').update(bytes).digest('hex')});
   urlMap.set(asset.url,local);
 }
 function localise(value){if(Array.isArray(value))return value.map(localise);if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>[k,localise(v)]));if(typeof value==='string'&&urlMap.has(value))return urlMap.get(value);return value;}

@@ -2,10 +2,12 @@ import {defineConfig} from 'astro/config';
 import {loadEnv} from 'vite';
 import sanity from '@sanity/astro';
 import sitemap from '@astrojs/sitemap';
+import {readFileSync} from 'node:fs';
+const settings=JSON.parse(readFileSync(new URL('./config/sanity.json',import.meta.url),'utf8'));
 
 const env = {...loadEnv(process.env.NODE_ENV || 'development', process.cwd(), ''), ...process.env};
-const projectId = env.PUBLIC_SANITY_PROJECT_ID;
-const dataset = env.PUBLIC_SANITY_DATASET;
+const projectId = env.PUBLIC_SANITY_PROJECT_ID || settings.projectId;
+const dataset = env.PUBLIC_SANITY_DATASET || settings.dataset;
 const origin = env.PUBLIC_SITE_URL || 'https://jdpi-maiduguri-impact.ifexls.chatgpt.site';
 
 export default defineConfig({

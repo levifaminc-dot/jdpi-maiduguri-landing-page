@@ -1,12 +1,14 @@
 import {createClient} from '@sanity/client';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
+process.chdir(path.resolve(import.meta.dirname,'..'));
+const settings=JSON.parse(await readFile('config/sanity.json','utf8'));
 const seed=JSON.parse(await readFile('content/seed.json','utf8'));
 const write=process.argv.includes('--write');
 const counts=Object.fromEntries(['programmes','projects','stories','reports','partners'].map(type=>[type,seed[type].length]));
 console.log(JSON.stringify({mode:write?'import':'dry-run',counts,singletons:2,source:'committed Canva reference',existingDocuments:'preserved'},null,2));
 if(!write){console.log('No writes made. Review docs/MIGRATION.md, then run npm run content:import -- --write once the Sanity project is connected.');process.exit(0);}
-const projectId=process.env.PUBLIC_SANITY_PROJECT_ID,dataset=process.env.PUBLIC_SANITY_DATASET,token=process.env.SANITY_API_WRITE_TOKEN;
+const projectId=process.env.PUBLIC_SANITY_PROJECT_ID||settings.projectId,dataset=process.env.PUBLIC_SANITY_DATASET||settings.dataset,token=process.env.SANITY_API_WRITE_TOKEN||process.env.SANITY_AUTH_TOKEN;
 if(!projectId||!dataset||!token)throw new Error('Set the Sanity project, dataset and server-only write token before importing.');
 const client=createClient({projectId,dataset,token,apiVersion:'2026-10-05',useCdn:false,perspective:'published'});
 const imageCache=new Map();

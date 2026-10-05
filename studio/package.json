@@ -7,7 +7,7 @@
     "check": "tsc --noEmit",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
+    "typegen": "sanity schema extract --enforce-required-fields --force && sanity typegen generate"
   },
   "dependencies": {
     "sanity": "6.17.0",

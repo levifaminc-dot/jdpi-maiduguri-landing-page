@@ -38,7 +38,7 @@ The new project, programme and story links now resolve to real pages. Existing h
 6. Publish reviewed content, take a snapshot, run the build checks and inspect sample pages.
 7. Commit that snapshot and publish its exact build.
 
-No remote import has been performed until real project configuration exists. The current release can be built safely from the committed snapshot.
+On 5 October 2026 the initial import completed in project `j2wxo4uh`, dataset `production`: 24 ordinary documents and 2 singletons. Existing records were preserved. The editor is https://jdpi-maiduguri-editor.sanity.studio/. The current release builds from its committed published-content snapshot. Editorial review of contact details, figures, dates, image permissions and complete article text remains necessary.
 
 ## WordPress cutover
 

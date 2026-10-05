@@ -1,6 +1,7 @@
 ---
 import {getContent,safeExternalUrl} from '../../lib/content';
 import Layout from '../../layouts/SiteLayout.astro';
-const content=await getContent();const editor=safeExternalUrl(import.meta.env.PUBLIC_SANITY_STUDIO_URL);
+import settings from '../../../config/sanity.json';
+const content=await getContent();const editor=safeExternalUrl(import.meta.env.PUBLIC_SANITY_STUDIO_URL||settings.studioUrl);
 ---
 <Layout content={content} title={`Website editor | ${content.settings.shortName}`} noindex><section class="inner-page"><div class="shell"><p class="eyebrow">JDPI TEAM</p><h1>Website editor</h1>{editor ? <a class="btn" href={editor}>Open the editing dashboard</a> : <p class="intro">The editing dashboard is being connected. Please contact the website administrator for access.</p>}</div></section></Layout>

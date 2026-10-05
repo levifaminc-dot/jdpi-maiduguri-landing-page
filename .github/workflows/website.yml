@@ -4,6 +4,8 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '15 * * * *'
   repository_dispatch:
     types: [sanity-publish]
 permissions:
@@ -12,7 +14,25 @@ concurrency:
   group: jdpi-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  content-check:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - id: check
+        env:
+          PUBLIC_SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
+          PUBLIC_SANITY_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
+          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+        run: node scripts/check-content.mjs >> "$GITHUB_OUTPUT"
   build:
+    needs: [content-check]
+    if: always() && (github.event_name != 'schedule' || needs.content-check.outputs.changed == 'true')
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -32,7 +52,7 @@ jobs:
           cache: npm
       - run: npm ci --no-audit --no-fund
       - name: Snapshot approved published content
-        if: github.event_name == 'repository_dispatch'
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'schedule'
         env:
           SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
         run: npm run content:snapshot
@@ -44,7 +64,7 @@ jobs:
           SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
           SANITY_STUDIO_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
       - name: Commit the content used by this release
-        if: github.event_name == 'repository_dispatch'
+        if: github.event_name == 'repository_dispatch' || github.event_name == 'schedule'
         run: |
           git config user.name "JDPI Website Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

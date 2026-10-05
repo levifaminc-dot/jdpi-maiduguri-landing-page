@@ -2,7 +2,7 @@
 
 ## 1. Organisation ownership
 
-Sign in at https://www.sanity.io/manage using the account that should own the JDPI project. Create a project called **JDPI Maiduguri** and a dataset called **production**. Start on the Free plan while the nonprofit application is assessed. Keep at least two authorised organisation contacts able to administer the project.
+The existing **JDPI** project is `j2wxo4uh`, with dataset `production`. It is configured in `config/sanity.json`; do not create a duplicate. The account was created using Sanity email sign-in, not Google. Use `sanity login --provider sanity` for future setup authorization. Keep at least two authorised organisation contacts able to administer the project. Review the current Growth Trial before it ends; nonprofit-plan approval is still pending.
 
 The project ID is a public identifier, not a password. Copy the exact ID supplied by Sanity; do not use an example or placeholder ID for production.
 
@@ -14,7 +14,7 @@ Keep `CONTENT_SOURCE=snapshot` for releases. It builds the exact committed conte
 
 ## 3. Seed the existing page
 
-Read `MIGRATION.md` before importing. A server-only Editor token is needed for the one-time import. Add it to the local ignored `.env` as `SANITY_API_WRITE_TOKEN`; never put it in GitHub or a `PUBLIC_` variable. Generate schema types and deploy the Studio before importing.
+Read `MIGRATION.md` before importing. Prefer the already authorized official CLI session rather than creating another token: from `studio/`, run `sanity exec ../scripts/import-content.mjs --with-user-token -- --write`. The user token is passed only to the child process and is not committed. A server-only Editor token in the ignored `.env` can alternatively be used as `SANITY_API_WRITE_TOKEN`; never use a `PUBLIC_` variable. Generate schema types and deploy the Studio before importing.
 
 ```sh
 npm run typegen
@@ -35,6 +35,8 @@ Use `npx sanity documents validate` from `studio/` against the configured projec
 Invite designated staff through Sanity Manage. Give drafting staff the least privileged role that supports their work; use Contributor where the approved plan offers it. Give publication rights to the responsible communications lead. Verify available roles on the selected plan instead of assuming they are included.
 
 Set the real deployed Studio URL in `PUBLIC_SANITY_STUDIO_URL` and GitHub’s `SANITY_STUDIO_URL` repository variable. The public `/admin/` page then links to the authenticated editor. Add any Studio preview origin to the project’s CORS allowlist only if required; the current draft preview runs inside Studio and needs no public draft token.
+
+The deployed editor is https://jdpi-maiduguri-editor.sanity.studio/ and is recorded in the committed public configuration, so the environment override is optional. The initial 26 content records passed Sanity document validation; all 20 imported image originals are included in the Git backup with checksums.
 
 ## 5. Nonprofit plan
 

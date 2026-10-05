@@ -1,292 +1,384 @@
 {
-  "schemaVersion": 1,
-  "source": "canva-reference",
-  "settings": {
-    "organisationName": "Justice Development and Peace Initiative",
-    "shortName": "JDPI Maiduguri",
-    "diocese": "Catholic Diocese of Maiduguri",
-    "tagline": "Upholding the dignity of every human person.",
-    "email": "info@jdpi.org",
-    "phone": "+234 000 000 0000",
-    "address": "Maiduguri, Borno State",
-    "country": "Nigeria",
-    "donationUrl": "",
-    "socialLinks": [],
-    "seoTitle": "JDPI Maiduguri",
-    "seoDescription": "Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create pathways to a more dignified future."
-  },
   "home": {
+    "aboutImage": {
+      "alt": "Volunteers distributing aid at an outdoor donation center, promoting social impact and diversity",
+      "assetId": "image-b5df0cee260760d04bbc6d530630d892598f139e-1280x853-jpg",
+      "url": "/assets/sanity/image-b5df0cee260760d04bbc6d530630d892598f139e-1280x853-jpg.jpg"
+    },
+    "aboutIntro": "The Justice Development and Peace Initiative (JDPI) Maiduguri is the development and humanitarian organisation of the Catholic Diocese of Maiduguri, working with vulnerable communities across Borno, Adamawa and Yobe States. We accompany people and communities to build resilient lives, promote peace, uphold human dignity and create opportunities for a more just and peaceful society.",
+    "heroHighlight": "Human Person",
+    "heroImage": {
+      "alt": "Mother and child",
+      "assetId": "image-b42cdd841d1d166f7d5588ed1dcde449d8696bf5-1920x2880-jpg",
+      "url": "/assets/sanity/image-b42cdd841d1d166f7d5588ed1dcde449d8696bf5-1920x2880-jpg.jpg"
+    },
+    "heroIntro": "Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create pathways to a more dignified future.",
     "heroKicker": "PEOPLE   |   COMMUNITIES   |   JUSTICE   |   PEACE",
     "heroStatement": "Upholding the Dignity of Every",
-    "heroHighlight": "Human Person",
-    "heroIntro": "Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create pathways to a more dignified future.",
-    "heroImage": {
-      "url": "/assets/canva/hero.jpg",
-      "alt": "Mother and child"
-    },
-    "location": "Communities across Borno, Adamawa and Yobe",
-    "aboutIntro": "The Justice Development and Peace Initiative (JDPI) Maiduguri is the development and humanitarian organisation of the Catholic Diocese of Maiduguri, working with vulnerable communities across Borno, Adamawa and Yobe States. We accompany people and communities to build resilient lives, promote peace, uphold human dignity and create opportunities for a more just and peaceful society.",
-    "aboutImage": {
-      "url": "/assets/canva/about.jpg",
-      "alt": "Volunteers distributing aid at an outdoor donation center, promoting social impact and diversity"
-    },
-    "impactImage": {
-      "url": "/assets/canva/impact.jpg",
-      "alt": "Community members"
-    },
     "impactFacts": [
       {
         "_key": "fact-0",
-        "value": "250,000+",
-        "label": "People Reached"
+        "label": "People Reached",
+        "value": "250,000+"
       },
       {
         "_key": "fact-1",
-        "value": "500+",
-        "label": "Communities Supported"
+        "label": "Communities Supported",
+        "value": "500+"
       },
       {
         "_key": "fact-2",
-        "value": "30+",
-        "label": "Projects Implemented"
+        "label": "Projects Implemented",
+        "value": "30+"
       },
       {
         "_key": "fact-3",
-        "value": "3",
-        "label": "States Reached"
+        "label": "States Reached",
+        "value": "3"
       }
     ],
+    "impactImage": {
+      "alt": "Community members",
+      "assetId": "image-57ed1dca7d1b6716bf5d130cc69bdf5d52bc31ed-1920x1407-jpg",
+      "url": "/assets/sanity/image-57ed1dca7d1b6716bf5d130cc69bdf5d52bc31ed-1920x1407-jpg.jpg"
+    },
+    "location": "Communities across Borno, Adamawa and Yobe",
+    "partnersHeading": "Our Partners & Donors",
+    "partnersIntro": "Our work is made possible through trusted partnerships.",
     "programmeHeading": "Integrated programmes for resilient communities.",
     "projectsHeading": "Turning plans into lasting change.",
     "storiesHeading": "Voices from the field.",
-    "partnersHeading": "Our Partners & Donors",
-    "partnersIntro": "Our work is made possible through trusted partnerships.",
-    "supportIntro": "Your generosity helps us work alongside vulnerable communities to strengthen livelihoods, improve access to essential services, promote peace and restore dignity.",
     "supportImage": {
-      "url": "/assets/canva/donate.jpg",
-      "alt": "A group of African children smiling amidst lush nature"
-    }
+      "alt": "A group of African children smiling amidst lush nature",
+      "assetId": "image-1b89fdf943a5a316ebdb286034a4d09a2dd67ddc-1000x667-jpg",
+      "url": "/assets/sanity/image-1b89fdf943a5a316ebdb286034a4d09a2dd67ddc-1000x667-jpg.jpg"
+    },
+    "supportIntro": "Your generosity helps us work alongside vulnerable communities to strengthen livelihoods, improve access to essential services, promote peace and restore dignity."
   },
+  "partners": [
+    {
+      "logo": null,
+      "name": "German Cooperation / BMZ",
+      "sortOrder": 0,
+      "website": null
+    },
+    {
+      "logo": null,
+      "name": "Caritas Germany",
+      "sortOrder": 1,
+      "website": null
+    },
+    {
+      "logo": null,
+      "name": "KfW",
+      "sortOrder": 2,
+      "website": null
+    },
+    {
+      "logo": null,
+      "name": "ECHF",
+      "sortOrder": 3,
+      "website": null
+    },
+    {
+      "logo": null,
+      "name": "Catholic Relief Services",
+      "sortOrder": 4,
+      "website": null
+    },
+    {
+      "logo": null,
+      "name": "Nigeria Humanitarian Fund",
+      "sortOrder": 5,
+      "website": null
+    },
+    {
+      "logo": null,
+      "name": "UNICEF",
+      "sortOrder": 6,
+      "website": null
+    },
+    {
+      "logo": null,
+      "name": "IOM",
+      "sortOrder": 7,
+      "website": null
+    }
+  ],
   "programmes": [
     {
-      "title": "FOOD SECURITY & LIVELIHOODS",
+      "_id": "pd7BC9mehWAqIUtnYAvSh2",
+      "body": [],
+      "image": {
+        "alt": "African farmers harvesting wheat in a rural field in Makurdi, Nigeria",
+        "assetId": "image-d5fe5c00437d2709907f2ebac13c1ea3009304e9-800x533-jpg",
+        "url": "/assets/sanity/image-d5fe5c00437d2709907f2ebac13c1ea3009304e9-800x533-jpg.jpg"
+      },
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "food-security-and-livelihoods",
-      "summary": "Supporting resilient and sustainable livelihoods.",
-      "image": {
-        "url": "/assets/canva/programme-livelihoods.jpg",
-        "alt": "African farmers harvesting wheat in a rural field in Makurdi, Nigeria"
-      },
       "sortOrder": 0,
-      "body": []
+      "summary": "Supporting resilient and sustainable livelihoods.",
+      "title": "FOOD SECURITY & LIVELIHOODS"
     },
     {
-      "title": "NUTRITION",
+      "_id": "pd7BC9mehWAqIUtnYAvTRo",
+      "body": [],
+      "image": {
+        "alt": "Community nutrition activity",
+        "assetId": "image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg",
+        "url": "/assets/sanity/image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg.jpg"
+      },
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "nutrition",
-      "summary": "Improving nutrition for healthier communities.",
-      "image": {
-        "url": "/assets/canva/programme-nutrition.jpg",
-        "alt": "Community nutrition activity"
-      },
       "sortOrder": 1,
-      "body": []
+      "summary": "Improving nutrition for healthier communities.",
+      "title": "NUTRITION"
     },
     {
-      "title": "WATER, SANITATION & HYGIENE",
+      "_id": "pd7BC9mehWAqIUtnYAvTts",
+      "body": [],
+      "image": {
+        "alt": "A child gathers clean water from an outdoor tap",
+        "assetId": "image-26b85dc83800da2f89ffb88b58e6dd765c71ff44-800x1200-jpg",
+        "url": "/assets/sanity/image-26b85dc83800da2f89ffb88b58e6dd765c71ff44-800x1200-jpg.jpg"
+      },
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "water-sanitation-and-hygiene",
-      "summary": "Expanding access to clean water and safer communities.",
-      "image": {
-        "url": "/assets/canva/programme-wash.jpg",
-        "alt": "A child gathers clean water from an outdoor tap"
-      },
       "sortOrder": 2,
-      "body": []
+      "summary": "Expanding access to clean water and safer communities.",
+      "title": "WATER, SANITATION & HYGIENE"
     },
     {
-      "title": "PROTECTION",
+      "_id": "pd7BC9mehWAqIUtnYAvVYm",
+      "body": [],
+      "image": {
+        "alt": "A touching moment of family love and connection",
+        "assetId": "image-0a1093aeb3c34fce9a298b413693230a97f7311a-800x533-jpg",
+        "url": "/assets/sanity/image-0a1093aeb3c34fce9a298b413693230a97f7311a-800x533-jpg.jpg"
+      },
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "protection",
-      "summary": "Promoting safety, rights and well-being.",
-      "image": {
-        "url": "/assets/canva/programme-protection.jpg",
-        "alt": "A touching moment of family love and connection"
-      },
       "sortOrder": 3,
-      "body": []
+      "summary": "Promoting safety, rights and well-being.",
+      "title": "PROTECTION"
     },
     {
-      "title": "MENTAL HEALTH & PSYCHOSOCIAL SUPPORT",
+      "_id": "pd7BC9mehWAqIUtnYAvW0q",
+      "body": [],
+      "image": {
+        "alt": "A supportive therapy session",
+        "assetId": "image-09b1d1117cecfd4dc9a01952edf60cf8f954ffd6-800x533-jpg",
+        "url": "/assets/sanity/image-09b1d1117cecfd4dc9a01952edf60cf8f954ffd6-800x533-jpg.jpg"
+      },
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "mental-health-and-psychosocial-support",
-      "summary": "Supporting mental well-being and community resilience.",
-      "image": {
-        "url": "/assets/canva/programme-mhpss.jpg",
-        "alt": "A supportive therapy session"
-      },
       "sortOrder": 4,
-      "body": []
+      "summary": "Supporting mental well-being and community resilience.",
+      "title": "MENTAL HEALTH & PSYCHOSOCIAL SUPPORT"
     },
     {
-      "title": "PEACEBUILDING & SOCIAL COHESION",
+      "_id": "pd7BC9mehWAqIUtnYAvWXa",
+      "body": [],
+      "image": {
+        "alt": "A vibrant community meeting",
+        "assetId": "image-5be8e380d5a08d8ee29f62c2f400d6b45da31118-800x533-jpg",
+        "url": "/assets/sanity/image-5be8e380d5a08d8ee29f62c2f400d6b45da31118-800x533-jpg.jpg"
+      },
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "peacebuilding-and-social-cohesion",
-      "summary": "Strengthening social cohesion, peaceful coexistence and conflict resilience.",
-      "image": {
-        "url": "/assets/canva/programme-peace.jpg",
-        "alt": "A vibrant community meeting"
-      },
       "sortOrder": 5,
-      "body": []
+      "summary": "Strengthening social cohesion, peaceful coexistence and conflict resilience.",
+      "title": "PEACEBUILDING & SOCIAL COHESION"
     },
     {
-      "title": "ECONOMIC EMPOWERMENT",
-      "slug": "economic-empowerment",
-      "summary": "Creating opportunities for sustainable income and self-reliance.",
+      "_id": "pd7BC9mehWAqIUtnYAvX4K",
+      "body": [],
       "image": {
-        "url": "/assets/canva/programme-economic.jpg",
-        "alt": "A smiling African woman vendor at her outdoor market stall"
+        "alt": "A smiling African woman vendor at her outdoor market stall",
+        "assetId": "image-44e4a589aea2bb7591f37a1b2a7adef4e24f475c-800x533-jpg",
+        "url": "/assets/sanity/image-44e4a589aea2bb7591f37a1b2a7adef4e24f475c-800x533-jpg.jpg"
       },
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "economic-empowerment",
       "sortOrder": 6,
-      "body": []
+      "summary": "Creating opportunities for sustainable income and self-reliance.",
+      "title": "ECONOMIC EMPOWERMENT"
     }
   ],
   "projects": [
     {
-      "title": "BMZ Multisectoral Resilience Project",
+      "_id": "pd7BC9mehWAqIUtnYAvXRi",
+      "body": [],
+      "image": {
+        "alt": "African farmer in greenhouse holding a melon",
+        "assetId": "image-16894dacea0084fc16749493bf2b7517509de332-1000x666-jpg",
+        "url": "/assets/sanity/image-16894dacea0084fc16749493bf2b7517509de332-1000x666-jpg.jpg"
+      },
+      "location": null,
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "bmz-multisectoral-resilience-project",
+      "sortOrder": 0,
       "summary": "Strengthening the resilience of vulnerable households through integrated multisectoral support.",
-      "image": {
-        "url": "/assets/canva/project-bmz.jpg",
-        "alt": "African farmer in greenhouse holding a melon"
-      },
-      "sortOrder": 0,
-      "body": []
+      "title": "BMZ Multisectoral Resilience Project"
     },
     {
-      "title": "ECHF INTO-MAMI Project",
+      "_id": "pd7BC9mehWAqIUtnYAvYHA",
+      "body": [],
+      "image": {
+        "alt": "A mother carrying her child in a traditional wrap",
+        "assetId": "image-e09189b8cf14fbe6f98337208b1806bb631a1687-1000x1500-jpg",
+        "url": "/assets/sanity/image-e09189b8cf14fbe6f98337208b1806bb631a1687-1000x1500-jpg.jpg"
+      },
+      "location": null,
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "echf-into-mami-project",
+      "sortOrder": 1,
       "summary": "Improving nutrition and WaSH outcomes for mothers and children in conflict-affected communities.",
-      "image": {
-        "url": "/assets/canva/project-echf.jpg",
-        "alt": "A mother carrying her child in a traditional wrap"
-      },
-      "sortOrder": 1,
-      "body": []
+      "title": "ECHF INTO-MAMI Project"
     },
     {
-      "title": "NHF Integrated Nutrition & Protection",
+      "_id": "pd7BC9mehWAqIUtnYAvZi2",
+      "body": [],
+      "image": {
+        "alt": "African women seated with rice aid packages",
+        "assetId": "image-f3ca936e00c23988338afeedf205063904cd42be-1000x667-jpg",
+        "url": "/assets/sanity/image-f3ca936e00c23988338afeedf205063904cd42be-1000x667-jpg.jpg"
+      },
+      "location": null,
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "nhf-integrated-nutrition-and-protection",
+      "sortOrder": 2,
       "summary": "Supporting vulnerable communities through integrated nutrition and protection assistance.",
-      "image": {
-        "url": "/assets/canva/project-nhf.jpg",
-        "alt": "African women seated with rice aid packages"
-      },
-      "sortOrder": 2,
-      "body": []
+      "title": "NHF Integrated Nutrition & Protection"
     },
     {
-      "title": "ALLRight Project",
+      "_id": "y1w8dVIjCl03DcdWQ5app2",
+      "body": [],
+      "image": {
+        "alt": "Teacher reading to preschool children",
+        "assetId": "image-2ddec70dfd89f9c99bf020bbab6e6f73bb88f4ba-1000x667-jpg",
+        "url": "/assets/sanity/image-2ddec70dfd89f9c99bf020bbab6e6f73bb88f4ba-1000x667-jpg.jpg"
+      },
+      "location": null,
+      "seoDescription": null,
+      "seoTitle": null,
       "slug": "allright-project",
+      "sortOrder": 3,
       "summary": "Supporting children and communities through protection, education and resilience-focused engagement.",
-      "image": {
-        "url": "/assets/canva/project-allright.jpg",
-        "alt": "Teacher reading to preschool children"
-      },
-      "sortOrder": 3,
-      "body": []
-    }
-  ],
-  "stories": [
-    {
-      "title": "How Tom Brown Sessions Are Changing Lives in Wumu",
-      "slug": "how-tom-brown-sessions-are-changing-lives-in-wumu",
-      "category": "Stories",
-      "publishedAt": "2026-09-12T00:00:00.000Z",
-      "image": {
-        "url": "/assets/canva/story-tombrown.jpg",
-        "alt": "A young girl is fed a traditional meal"
-      },
-      "sortOrder": 0,
-      "body": []
-    },
-    {
-      "title": "Restoring Water Access in Kudzum Community",
-      "slug": "restoring-water-access-in-kudzum-community",
-      "category": "News",
-      "publishedAt": "2026-09-05T00:00:00.000Z",
-      "image": {
-        "url": "/assets/canva/story-water.jpg",
-        "alt": "Children gather around a water pump"
-      },
-      "sortOrder": 1,
-      "body": []
-    },
-    {
-      "title": "Football, Friendship and a Stronger Community",
-      "slug": "football-friendship-and-a-stronger-community",
-      "category": "Events",
-      "publishedAt": "2026-08-28T00:00:00.000Z",
-      "image": {
-        "url": "/assets/canva/story-football.jpg",
-        "alt": "Children enjoying a game of football"
-      },
-      "sortOrder": 2,
-      "body": []
-    },
-    {
-      "title": "Building Bridges Through Community Dialogue",
-      "slug": "building-bridges-through-community-dialogue",
-      "category": "Publications",
-      "publishedAt": "2026-08-15T00:00:00.000Z",
-      "image": {
-        "url": "/assets/canva/story-dialogue.jpg",
-        "alt": "A community meeting under a tree"
-      },
-      "sortOrder": 3,
-      "body": []
-    },
-    {
-      "title": "From Seeds to Sustainability in Michika",
-      "slug": "from-seeds-to-sustainability-in-michika",
-      "category": "Stories",
-      "publishedAt": "2026-08-02T00:00:00.000Z",
-      "image": {
-        "url": "/assets/canva/story-farmer.jpg",
-        "alt": "A farmer holds freshly harvested tomatoes"
-      },
-      "sortOrder": 4,
-      "body": []
+      "title": "ALLRight Project"
     }
   ],
   "reports": [],
-  "partners": [
+  "schemaVersion": 1,
+  "settings": {
+    "address": "Maiduguri, Borno State",
+    "country": "Nigeria",
+    "diocese": "Catholic Diocese of Maiduguri",
+    "donationUrl": "",
+    "email": "info@jdpi.org",
+    "organisationName": "Justice Development and Peace Initiative",
+    "phone": "+234 000 000 0000",
+    "seoDescription": "Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create pathways to a more dignified future.",
+    "seoTitle": "JDPI Maiduguri",
+    "shortName": "JDPI Maiduguri",
+    "socialLinks": [],
+    "tagline": "Upholding the dignity of every human person."
+  },
+  "stories": [
     {
-      "name": "German Cooperation / BMZ",
-      "sortOrder": 0
+      "_id": "pd7BC9mehWAqIUtnYAvdYa",
+      "body": [],
+      "category": "Stories",
+      "image": {
+        "alt": "A young girl is fed a traditional meal",
+        "assetId": "image-58f0370c35b87077388b3a06ab1ca45e6bbcbe38-800x1067-jpg",
+        "url": "/assets/sanity/image-58f0370c35b87077388b3a06ab1ca45e6bbcbe38-800x1067-jpg.jpg"
+      },
+      "publishedAt": "2026-09-12T00:00:00.000Z",
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "how-tom-brown-sessions-are-changing-lives-in-wumu",
+      "sortOrder": 0,
+      "summary": null,
+      "title": "How Tom Brown Sessions Are Changing Lives in Wumu"
     },
     {
-      "name": "Caritas Germany",
-      "sortOrder": 1
+      "_id": "y1w8dVIjCl03DcdWQ5aqEl",
+      "body": [],
+      "category": "News",
+      "image": {
+        "alt": "Children gather around a water pump",
+        "assetId": "image-89cee45f9e70015c33de766667c214d2d9bc72a3-800x533-jpg",
+        "url": "/assets/sanity/image-89cee45f9e70015c33de766667c214d2d9bc72a3-800x533-jpg.jpg"
+      },
+      "publishedAt": "2026-09-05T00:00:00.000Z",
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "restoring-water-access-in-kudzum-community",
+      "sortOrder": 1,
+      "summary": null,
+      "title": "Restoring Water Access in Kudzum Community"
     },
     {
-      "name": "KfW",
-      "sortOrder": 2
+      "_id": "pd7BC9mehWAqIUtnYAvfkE",
+      "body": [],
+      "category": "Events",
+      "image": {
+        "alt": "Children enjoying a game of football",
+        "assetId": "image-6bcea5010c63676d89924628b63eadeda7d4d897-800x1200-jpg",
+        "url": "/assets/sanity/image-6bcea5010c63676d89924628b63eadeda7d4d897-800x1200-jpg.jpg"
+      },
+      "publishedAt": "2026-08-28T00:00:00.000Z",
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "football-friendship-and-a-stronger-community",
+      "sortOrder": 2,
+      "summary": null,
+      "title": "Football, Friendship and a Stronger Community"
     },
     {
-      "name": "ECHF",
-      "sortOrder": 3
+      "_id": "pd7BC9mehWAqIUtnYAvh6Q",
+      "body": [],
+      "category": "Publications",
+      "image": {
+        "alt": "A community meeting under a tree",
+        "assetId": "image-df696b1b9e7793c2b086962259b71a4308a12af7-800x533-jpg",
+        "url": "/assets/sanity/image-df696b1b9e7793c2b086962259b71a4308a12af7-800x533-jpg.jpg"
+      },
+      "publishedAt": "2026-08-15T00:00:00.000Z",
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "building-bridges-through-community-dialogue",
+      "sortOrder": 3,
+      "summary": null,
+      "title": "Building Bridges Through Community Dialogue"
     },
     {
-      "name": "Catholic Relief Services",
-      "sortOrder": 4
-    },
-    {
-      "name": "Nigeria Humanitarian Fund",
-      "sortOrder": 5
-    },
-    {
-      "name": "UNICEF",
-      "sortOrder": 6
-    },
-    {
-      "name": "IOM",
-      "sortOrder": 7
+      "_id": "pd7BC9mehWAqIUtnYAvi5E",
+      "body": [],
+      "category": "Stories",
+      "image": {
+        "alt": "A farmer holds freshly harvested tomatoes",
+        "assetId": "image-bfcbd9e4627509a8dfa037e9b4fe25df1ecf0267-800x533-jpg",
+        "url": "/assets/sanity/image-bfcbd9e4627509a8dfa037e9b4fe25df1ecf0267-800x533-jpg.jpg"
+      },
+      "publishedAt": "2026-08-02T00:00:00.000Z",
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "from-seeds-to-sustainability-in-michika",
+      "sortOrder": 4,
+      "summary": null,
+      "title": "From Seeds to Sustainability in Michika"
     }
   ]
 }

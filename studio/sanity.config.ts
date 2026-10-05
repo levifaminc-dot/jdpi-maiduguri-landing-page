@@ -2,9 +2,10 @@ import {defineConfig} from 'sanity';
 import {structureTool} from 'sanity/structure';
 import {schemaTypes} from './schema-types';
 import {structure,defaultDocumentNode,singletonTypes} from './structure';
+import settings from '../config/sanity.json';
 
-const projectId=process.env.SANITY_STUDIO_PROJECT_ID;
-const dataset=process.env.SANITY_STUDIO_DATASET||'production';
+const projectId=process.env.SANITY_STUDIO_PROJECT_ID||settings.projectId;
+const dataset=process.env.SANITY_STUDIO_DATASET||settings.dataset;
 if(!projectId)throw new Error('Set SANITY_STUDIO_PROJECT_ID in studio/.env to connect JDPI’s Sanity project. See docs/SETUP.md.');
 export default defineConfig({
   name:'jdpi',title:'JDPI Maiduguri · Website editor',projectId,dataset,

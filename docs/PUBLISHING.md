@@ -6,16 +6,18 @@ Every implementation milestone is committed and pushed to `main` in the private 
 
 ## Approved Sanity updates
 
-Configure these GitHub repository variables after creating the real project:
+The committed public configuration already selects project `j2wxo4uh` and dataset `production`. Optional GitHub repository variables override it:
 
 - `SANITY_PROJECT_ID`: exact project ID
 - `SANITY_DATASET`: `production`
 - `SITE_URL`: current production origin
 - `SANITY_STUDIO_URL`: deployed Studio origin
 
-For a private dataset, add `SANITY_API_READ_TOKEN` as a GitHub Actions secret, using read-only access. Public datasets do not need this token. The snapshot uses Sanity’s published perspective and exports only the site’s editorial types and assets.
+For a private dataset, add `SANITY_API_READ_TOKEN` as a GitHub Actions secret, using read-only access. Public datasets do not need this token for content or image renditions. Exact original image-byte backups require authenticated `dlRaw` access; without it new images are backed up as their public CDN rendition. The asset manifest records `originalBytes` and a SHA-256 checksum, so these modes are never confused. Already backed-up originals are reused. See Sanity’s image parameters: https://www.sanity.io/docs/content-lake/image-urls . The snapshot exports only published website documents and referenced assets.
 
-Create a Sanity document webhook with create, update and delete enabled; drafts and version documents disabled. Destination:
+An hourly GitHub check compares published document revisions with the committed backup. Only changes trigger the full snapshot and build, keeping checks lightweight. GitHub schedules may run late; this is not instant publication. Drafts do not trigger a changed-content build. It runs at minute 15 of each hour (Africa/Lagos is UTC+1).
+
+For immediate builds, optionally create a Sanity document webhook with create, update and delete enabled; drafts and version documents disabled. Destination:
 
 ```text
 https://api.github.com/repos/levifaminc-dot/jdpi-maiduguri-landing-page/dispatches

@@ -2,6 +2,7 @@ import snapshot from '../../content/snapshot.json';
 import type {PortableTextBlock} from '@portabletext/types';
 import {createClient} from '@sanity/client';
 import {CONTENT_QUERY} from './queries';
+import settings from '../../config/sanity.json';
 
 export interface ContentImage {url: string; alt: string; assetId?: string}
 export interface ContentItem {
@@ -29,8 +30,8 @@ export function getContent(): Promise<SiteContent> {
 }
 async function loadContent(): Promise<SiteContent> {
   if (import.meta.env.CONTENT_SOURCE !== 'sanity') return snapshot as unknown as SiteContent;
-  const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
-  const dataset = import.meta.env.PUBLIC_SANITY_DATASET;
+  const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID || settings.projectId;
+  const dataset = import.meta.env.PUBLIC_SANITY_DATASET || settings.dataset;
   if (!projectId || !dataset) throw new Error('CONTENT_SOURCE=sanity requires the Sanity project ID and dataset.');
   const client = createClient({projectId, dataset, apiVersion:'2026-10-05', useCdn:false,
     perspective:'published', token:import.meta.env.SANITY_API_READ_TOKEN || undefined});
