@@ -6,10 +6,16 @@ Astro public website and a standalone Sanity Studio for the Justice Development 
 
 - Astro builds from `content/snapshot.json`, a committed copy of the Canva reference content.
 - Sanity schemas, draft content previews, asset import, exports, and the GitHub publishing trigger are implemented.
-- A real Sanity project must be connected before staff can edit remotely. No project or account is invented by this repository.
+- Sanity project `j2wxo4uh`, dataset `production`, is connected. The editor is hosted at https://jdpi-maiduguri-editor.sanity.studio/.
 - The donation page accepts the organisation’s approved HTTPS checkout link; until one is added it directs donors to contact JDPI.
 - GitHub Actions verifies and packages every code revision. Once the Sanity webhook is connected, published content is exported, committed and rebuilt automatically.
-- The existing Sites deployment is retained. GitHub produces a deployable release archive; unattended production deployment still needs a supported persistent hosting connection. A successful build is not a production deployment.
+- Vercel project `jdpi-maiduguri-landing-page` in the JDPI team is connected to the private GitHub repository. Pushes to `main` trigger production builds. The existing Sites deployment is retained separately.
+
+## Vercel deployment
+
+Use the Astro preset, repository root `./`, build command `npm run build`, and output directory `dist`. Keep `CONTENT_SOURCE=snapshot` so deployments use the published content recorded in Git. The existing GitHub content refresh workflow commits updated Sanity snapshots; Vercel deploys those commits through the same Git connection.
+
+Leave `PUBLIC_SITE_URL` unset on Vercel: canonical links, the sitemap, and robots.txt use `VERCEL_PROJECT_PRODUCTION_URL`. Set `PUBLIC_SITE_URL` only when an explicit domain override is required. Keep Vercel's access to system environment variables enabled. The Sanity editor is already deployed separately; do not add a duplicate Sanity project through the optional Vercel integration.
 
 ## Development
 

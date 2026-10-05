@@ -8,7 +8,8 @@ const settings=JSON.parse(readFileSync(new URL('./config/sanity.json',import.met
 const env = {...loadEnv(process.env.NODE_ENV || 'development', process.cwd(), ''), ...process.env};
 const projectId = env.PUBLIC_SANITY_PROJECT_ID || settings.projectId;
 const dataset = env.PUBLIC_SANITY_DATASET || settings.dataset;
-const origin = env.PUBLIC_SITE_URL || 'https://jdpi-maiduguri-impact.ifexls.chatgpt.site';
+const vercelOrigin = env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined;
+const origin = env.PUBLIC_SITE_URL || vercelOrigin || 'https://jdpi-maiduguri-impact.ifexls.chatgpt.site';
 
 export default defineConfig({
   site: origin,
