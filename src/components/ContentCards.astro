@@ -14,7 +14,7 @@ const tones=['green','yellow','blue','red','purple','teal','orange'];
     <h3>{item.title}</h3>
     {type==='projects' && item.location && <p class="mini-location">{item.location}</p>}
     {type!=='stories' && <p>{item.summary}</p>}
-    <a class={type==='programmes' ? 'arrow' : undefined} href={itemUrl(type,item.slug)} aria-label={`Read ${item.title}`}>{type==='programmes' ? '→' : type==='projects' ? 'VIEW PROJECT →' : 'READ MORE →'}</a>
+    <a class={type==='programmes' ? 'arrow' : undefined} href={itemUrl(type,item.slug)} aria-label={`Read ${item.title}`}>{type==='programmes' ? 'Explore programme' : type==='projects' ? 'View project' : 'Read story'}</a>
   </div>
 </article>)}
 </div>
