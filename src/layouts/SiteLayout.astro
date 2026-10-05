@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/landing-refinements.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type {SiteContent} from '../lib/content';
@@ -15,7 +16,7 @@ const canonical=new URL(Astro.url.pathname,Astro.site);
   <link rel="icon" href="/assets/logo.avif" type="image/avif"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-</head><body>
+</head><body class:list={{'home-refinement':home}}>
   <a class="skip" href="#main-content">Skip to content</a><Header settings={content.settings} home={home}/>
   <main id="main-content"><slot/></main><Footer content={content}/>
   <script>
