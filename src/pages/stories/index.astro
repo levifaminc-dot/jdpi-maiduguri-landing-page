@@ -1,0 +1,7 @@
+---
+import {getContent} from '../../lib/content';
+import Layout from '../../layouts/SiteLayout.astro';
+import ContentCards from '../../components/ContentCards.astro';
+const content=await getContent();
+---
+<Layout content={content} title={`Stories & Updates | ${content.settings.shortName}`}><section class="inner-page"><div class="shell"><p class="eyebrow">STORIES &amp; UPDATES</p><h1>{content.home.storiesHeading}</h1><div class="filters" role="group" aria-label="Filter stories">{['All','Stories','News','Events','Publications'].map((type,i)=><button class:list={['filter',{active:i===0}]} data-filter={type} aria-pressed={i===0}>{type}</button>)}</div><ContentCards items={content.stories} type="stories" carousel={false}/></div></section></Layout>

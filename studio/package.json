@@ -1,0 +1,20 @@
+{
+  "name": "jdpi-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev --host 127.0.0.1",
+    "check": "tsc --noEmit",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typegen": "sanity schema extract --enforce-required-fields && sanity typegen generate"
+  },
+  "dependencies": {
+    "sanity": "6.17.0",
+    "@sanity/icons": "^3.7.4",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {"@types/react": "^19.0.0", "typescript": "^5.9.3"}
+}

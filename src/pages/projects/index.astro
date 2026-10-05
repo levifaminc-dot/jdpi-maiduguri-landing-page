@@ -1,0 +1,7 @@
+---
+import {getContent} from '../../lib/content';
+import Layout from '../../layouts/SiteLayout.astro';
+import ContentCards from '../../components/ContentCards.astro';
+const content=await getContent();
+---
+<Layout content={content} title={`Projects | ${content.settings.shortName}`}><section class="inner-page"><div class="shell"><p class="eyebrow">OUR PROJECTS</p><h1>{content.home.projectsHeading}</h1><ContentCards items={content.projects} type="projects" carousel={false}/></div></section></Layout>

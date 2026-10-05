@@ -1,0 +1,7 @@
+---
+import {getContent} from '../../lib/content';
+import DetailPage from '../../components/DetailPage.astro';
+export async function getStaticPaths(){const content=await getContent();return content.projects.map(item=>({params:{slug:item.slug},props:{item,content}}));}
+const {item,content}=Astro.props;
+---
+<DetailPage item={item} content={content} type="projects"/>

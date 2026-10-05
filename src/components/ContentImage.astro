@@ -1,0 +1,11 @@
+---
+import type {ContentImage} from '../lib/content';
+interface Props {image?: ContentImage; class?: string; eager?: boolean}
+const {image, class:className, eager=false} = Astro.props;
+const remote = image?.url?.startsWith('https://cdn.sanity.io/');
+const source = (width:number) => `${image?.url}?auto=format&w=${width}&q=82`;
+---
+{image?.url && <img src={remote ? source(960) : image.url} alt={image.alt || ''} class={className}
+  loading={eager ? 'eager' : 'lazy'} decoding="async"
+  srcset={remote ? [400,800,1200].map(width=>`${source(width)} ${width}w`).join(', ') : undefined}
+  sizes={remote ? '(max-width: 780px) 90vw, 45vw' : undefined} />}

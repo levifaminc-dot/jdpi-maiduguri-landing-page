@@ -1,0 +1,8 @@
+---
+import {getContent,safeExternalUrl} from '../../lib/content';
+import Layout from '../../layouts/SiteLayout.astro';
+const content=await getContent();const checkout=safeExternalUrl(content.settings.donationUrl);
+---
+<Layout content={content} title={`Support our work | ${content.settings.shortName}`}><section class="inner-page"><div class="shell"><p class="eyebrow">YOUR SUPPORT CAN</p><h1>Make a Difference</h1><p class="intro">{content.home.supportIntro}</p>
+{checkout ? <div class="checkout-actions"><a class="btn" href={checkout} rel="noopener noreferrer">Continue to secure donation page</a><a class="text-link" href={`mailto:${content.settings.email}`}>Other ways to support</a></div> : <div class="notice"><p>Online donations are being arranged. To support JDPI today, please contact our team.</p><a class="text-link" href={`mailto:${content.settings.email}`}>{content.settings.email}</a></div>}
+</div></section></Layout>

@@ -1,0 +1,68 @@
+name: Website checks and release
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sanity-publish]
+permissions:
+  contents: read
+concurrency:
+  group: jdpi-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      PUBLIC_SANITY_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
+      PUBLIC_SANITY_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
+      PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://jdpi-maiduguri-impact.ifexls.chatgpt.site' }}
+      PUBLIC_SANITY_STUDIO_URL: ${{ vars.SANITY_STUDIO_URL }}
+      CONTENT_SOURCE: snapshot
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'repository_dispatch' && 'main' || github.ref }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Snapshot approved published content
+        if: github.event_name == 'repository_dispatch'
+        env:
+          SANITY_API_READ_TOKEN: ${{ secrets.SANITY_API_READ_TOKEN }}
+        run: npm run content:snapshot
+      - name: Verify the website
+        run: npm run verify
+      - name: Verify Studio schema and bundle
+        run: npm run studio:verify
+        env:
+          SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_PROJECT_ID }}
+          SANITY_STUDIO_DATASET: ${{ vars.SANITY_DATASET || 'production' }}
+      - name: Commit the content used by this release
+        if: github.event_name == 'repository_dispatch'
+        run: |
+          git config user.name "JDPI Website Bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/snapshot.json content/documents.ndjson content/assets.json public/assets/sanity
+          if ! git diff --cached --quiet; then
+            git commit -m "Snapshot published Sanity content"
+            git push origin HEAD:main
+          fi
+      - name: Package the verified release
+        run: |
+          mkdir -p dist/.openai
+          cp .openai/hosting.json dist/.openai/hosting.json
+          tar -czf jdpi-site.tar.gz dist
+          git rev-parse HEAD > release-commit.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jdpi-release-${{ github.run_number }}
+          path: |
+            jdpi-site.tar.gz
+            release-commit.txt
+          retention-days: 30

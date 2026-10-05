@@ -1,0 +1,20 @@
+---
+import type {ContentItem} from '../lib/content';
+import {itemUrl,formatDate} from '../lib/content';
+import ContentImage from './ContentImage.astro';
+interface Props {items: ContentItem[]; type: 'programmes'|'projects'|'stories'; carousel?: boolean}
+const {items,type,carousel=true}=Astro.props;
+const tones=['green','yellow','blue','red','purple','teal','orange'];
+---
+<div class={carousel ? 'carousel' : 'content-grid'} id={carousel ? `${type}-carousel` : undefined}>
+{items.map((item,i)=><article class={type==='programmes' ? 'carousel-card' : type==='projects' ? 'project-card' : 'story-card'} data-type={type==='stories' ? item.category : undefined}>
+  <ContentImage image={item.image}/>
+  <div class={type==='programmes' ? `card-panel c-${tones[i%tones.length]}` : type==='projects' ? 'project-body' : 'story-body'}>
+    {type==='stories' && <p class="story-date">{formatDate(item.publishedAt)}</p>}
+    <h3>{item.title}</h3>
+    {type==='projects' && item.location && <p class="mini-location">{item.location}</p>}
+    {type!=='stories' && <p>{item.summary}</p>}
+    <a class={type==='programmes' ? 'arrow' : undefined} href={itemUrl(type,item.slug)} aria-label={`Read ${item.title}`}>{type==='programmes' ? '→' : type==='projects' ? 'VIEW PROJECT →' : 'READ MORE →'}</a>
+  </div>
+</article>)}
+</div>
