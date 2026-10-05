@@ -3,11 +3,11 @@ import type {SiteContent} from '../lib/content';
 interface Props {settings: SiteContent['settings']; home?: boolean}
 const {settings, home=false}=Astro.props;
 const anchor=(id:string)=>home ? `#${id}` : `/#${id}`;
-const navigation=[['About us','who-we-are'],['Our work','what-we-do'],['Projects','projects'],['Stories','stories'],['Get involved','donate'],['Resources','resources']];
+const navigation=[['Home','hero'],['About Us','who-we-are'],['What We Do','what-we-do'],['Projects','projects'],['Our Impact','impact'],['Stories','stories'],['Resources','resources'],['Contact','contact']];
 ---
 <header class="site-nav" id="main-nav"><div class="nav-inner">
-  <a class="brand" href="/" aria-label={`${settings.shortName} home`}><img src="/assets/logo.avif" alt={settings.shortName}/><span class="brand-text"><strong>{settings.shortName}</strong><span>{settings.diocese}</span></span></a>
-  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=><a href={id==='resources' ? '/resources/' : anchor(id)}>{label}</a>)}<a class="mobile-donate" href="/donate/">Donate</a></nav>
-  <a class="donate-btn" href="/donate/">Donate</a>
+  <a class="brand" href="/" aria-label={`${settings.shortName} home`}><img src="/assets/logo.avif" alt={settings.shortName}/><span class="brand-text"><strong>{settings.organisationName}</strong><span>{settings.diocese}</span></span></a>
+  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=><a href={id==='resources' ? '/resources/' : anchor(id)}>{label}</a>)}</nav>
+  <a class="donate-btn" href="/donate/">DONATE NOW →</a>
   <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">☰</button>
 </div></header>

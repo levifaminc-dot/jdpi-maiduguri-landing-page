@@ -15,7 +15,7 @@ const canonical=new URL(Astro.url.pathname,Astro.site);
   <link rel="icon" href="/assets/logo.avif" type="image/avif"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-</head><body class:list={{'home-redesign':home}}>
+</head><body>
   <a class="skip" href="#main-content">Skip to content</a><Header settings={content.settings} home={home}/>
   <main id="main-content"><slot/></main><Footer content={content}/>
   <script>
@@ -26,14 +26,11 @@ const canonical=new URL(Astro.url.pathname,Astro.site);
     nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
     document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();menuButton?.focus();}});
     document.querySelectorAll<HTMLButtonElement>('[data-carousel]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.carousel;if(id)document.getElementById(id)?.scrollBy({left:Number(button.dataset.direction)*380,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}));
-    document.querySelectorAll<HTMLButtonElement>('.filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});button.classList.add('active');button.setAttribute('aria-pressed','true');const cards=Array.from(document.querySelectorAll<HTMLElement>('.story-card'));cards.forEach(card=>card.hidden=button.dataset.filter!=='All'&&card.dataset.type!==button.dataset.filter);const empty=document.querySelector<HTMLElement>('#stories-empty');if(empty)empty.hidden=cards.some(card=>!card.hidden);}));
+    document.querySelectorAll<HTMLButtonElement>('.filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});button.classList.add('active');button.setAttribute('aria-pressed','true');document.querySelectorAll<HTMLElement>('.story-card').forEach(card=>card.hidden=button.dataset.filter!=='All'&&card.dataset.type!==button.dataset.filter);}));
   </script>
 </body></html>
 <style is:global>
   [hidden]{display:none!important}a:focus-visible,button:focus-visible{outline:3px solid #e1b533;outline-offset:4px}
-  .footer-logo{width:72px;height:54px;object-fit:contain;flex-shrink:0;background:white;padding:6px;border-radius:5px}
-  .nav-links .mobile-donate{display:none}
-  @media(max-width:780px){.nav-links.open .mobile-donate{display:block;color:var(--green);font-weight:700}}
   .nav-links a{white-space:nowrap}.nav-inner{gap:20px}.brand{flex-shrink:0}.brand-text{max-width:230px}.donate-btn{flex-shrink:0}
   .inner-page{padding:145px 0 90px;min-height:60vh}.inner-page h1{font:700 clamp(2rem,5vw,3.2rem)/1.12 Montserrat,sans-serif;max-width:900px;margin:1rem 0 1.5rem}.inner-page .intro{font-size:1.15rem;color:var(--muted);max-width:780px;line-height:1.7}
   .content-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}.content-grid article{min-width:0;flex-basis:auto}.content-grid .carousel-card img{width:100%}

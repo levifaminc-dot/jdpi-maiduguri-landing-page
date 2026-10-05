@@ -3,16 +3,12 @@ import type {SiteContent} from '../lib/content';
 import {safeExternalUrl} from '../lib/content';
 interface Props {content: SiteContent}
 const {settings, programmes}=Astro.props.content;
-// Contact details from the original WordPress reference replace only the Canva placeholders.
-const email=settings.email==='info@jdpi.org' ? 'info@jdpimaiduguri.org' : settings.email;
-const phone=settings.phone.replace(/[^+\d]/g,'')==='+2340000000000' ? '+234 703 973 3933' : settings.phone;
-const address=settings.address==='Maiduguri, Borno State' ? 'St. Patrick’s Catholic Church, Jos Road, opposite State Secretariat, P.O. Box 58, Maiduguri, Borno State.' : settings.address;
 ---
 <footer id="contact"><div class="shell"><div class="footer-grid">
-  <div><div class="footer-brand-line"><img class="footer-logo" src="/assets/logo.avif" alt="JDPI Maiduguri"/><span class="footer-brand-name"><strong>{settings.organisationName}</strong><span>{settings.diocese}</span></span></div><p class="footer-tag">{settings.tagline}</p></div>
+  <div><div class="footer-brand-line"><span class="footer-mark">J</span><span class="footer-brand-name"><strong>{settings.organisationName}</strong><span>{settings.diocese}</span></span></div><p class="footer-tag">{settings.tagline}</p></div>
   <div class="footer-col"><h4>Quick Links</h4><a href="/">Home</a><a href="/#who-we-are">About Us</a><a href="/#what-we-do">What We Do</a><a href="/projects/">Projects</a><a href="/#impact">Our Impact</a><a href="/stories/">Stories &amp; Updates</a><a href="/resources/">Resources</a><a href="/#contact">Contact</a></div>
   <div class="footer-col"><h4>Programme Areas</h4>{programmes.map(p=><a href={`/programmes/${p.slug}/`}>{p.title}</a>)}</div>
-  <div class="footer-col"><h4>Contact Us</h4><p>{address}</p><p>{settings.country}</p><a href={`mailto:${email}`}>{email}</a><a href={`tel:${phone.replace(/[^+\d]/g,'')}`}>{phone}</a>
+  <div class="footer-col"><h4>Contact Us</h4><p>{settings.address}</p><p>{settings.country}</p><a href={`mailto:${settings.email}`}>{settings.email}</a><a href={`tel:${settings.phone.replace(/[^+\d]/g,'')}`}>{settings.phone}</a>
     {settings.socialLinks?.length>0 && <div class="socials">{settings.socialLinks.filter(link=>safeExternalUrl(link.url)).map(link=><a href={link.url} rel="noopener noreferrer" aria-label={link.label}>{link.label}</a>)}</div>}
   </div>
 </div><div class="footer-bottom"><span>© {new Date().getFullYear()} {settings.organisationName} (JDPI) Maiduguri. All rights reserved.</span><span class="footer-legal"><a href="/#contact">Privacy Policy</a><a href="/#contact">Terms of Use</a></span></div></div></footer>
