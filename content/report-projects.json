@@ -1,0 +1,81 @@
+{
+  "reportTitle": "JDPI Annual Report 2025",
+  "reportYear": 2025,
+  "projects": [
+    {
+      "slug": "bmz-multisectoral-resilience-project",
+      "reportPages": [17],
+      "image": {"url": "/assets/projects/bmz-greenhouse-monitoring.jpg", "alt": "A farmer and JDPI staff inspecting crops in a BMZ-supported community greenhouse"},
+      "impactFacts": [{"_key": "greenhouses-2025", "value": "20", "label": "Community greenhouses (2025)"}, {"_key": "households-2025", "value": "263", "label": "Households supported (2025)"}],
+      "appendParagraphs": ["The 2025 annual report highlights community greenhouses established through the BMZ-supported resilience project in Hong and Michika, Adamawa State. Twenty greenhouses supported 263 vulnerable households with opportunities for climate-smart production and stronger livelihoods.", "Source: JDPI Annual Report 2025, page 17. These figures describe the report's 2025 greenhouse intervention, not the project's lifetime reach."]
+    },
+    {
+      "slug": "echf-into-mami-project",
+      "image": {"url": "/assets/projects/echf-into-mami-closeout.jpg", "alt": "JDPI and partner representatives at the ECHF INTO-MAMI project closeout meeting"},
+      "appendParagraphs": ["JDPI's public project closeout update confirms that the ECHF-funded INTO-MAMI project, implemented with Catholic Relief Services, concluded its nutrition and water, sanitation and hygiene work in Jere and Magumeri LGAs. The photograph shows the closeout meeting."]
+    },
+    {
+      "slug": "allright-project",
+      "reportPages": [58],
+      "title": "ALLRight Project",
+      "summary": "Strengthening JDPI's local leadership, organisational systems, accountability and long-term sustainability with support from Catholic Relief Services.",
+      "status": "ongoing",
+      "location": "JDPI Maiduguri, Borno State",
+      "clearDates": true,
+      "projectProgrammes": [{"title": "Organisational strengthening", "slug": "organisational-strengthening"}],
+      "impactFacts": [],
+      "image": {"url": "/assets/projects/allright-resource-mobilisation.jpg", "alt": "JDPI staff and donors at the ALLRight resource mobilisation strategy rollout"},
+      "paragraphs": ["Advancing Local Leadership in the Right Way (ALLRight) is an organisational-strengthening project funded by Catholic Relief Services, with technical assistance from CRS. It supports JDPI's systems, leadership, accountability and sustainability so the organisation can deliver stronger community services.", "The 2025 report describes the rollout of JDPI's Resource Mobilisation Strategy, helping staff strengthen fundraising and diversify funding opportunities. It also records the development of a comprehensive monitoring, evaluation, accountability and learning (MEAL) policy and a five-day policy rollout training for staff.", "Source: JDPI Annual Report 2025, page 58. The report does not provide the project's start or end date."]
+    },
+    {
+      "slug": "echo-sahara-project",
+      "reportPages": [16, 27],
+      "title": "ECHO SAHaRA Project",
+      "summary": "Cash assistance and essential hygiene supplies helping vulnerable households meet immediate needs across Borno and Adamawa States.",
+      "status": "ongoing",
+      "location": "Borno & Adamawa States",
+      "projectProgrammes": [{"title": "Food Security & Livelihoods", "slug": "food-security-and-livelihoods"}, {"title": "Water, Sanitation & Hygiene", "slug": "water-sanitation-and-hygiene"}],
+      "impactFacts": [{"_key": "cash-2025", "value": "15,466", "label": "People receiving cash support (2025)"}, {"_key": "kits-2025", "value": "2,675", "label": "Cholera & hygiene kits (2025)"}],
+      "image": {"url": "/assets/projects/jdpi-hygiene-promotion.jpg", "alt": "A JDPI hygiene promotion session pictured in the 2025 annual report"},
+      "imageCaption": "Illustrative: JDPI hygiene promotion, 2025 report",
+      "paragraphs": ["The ECHO-funded SAHaRA project provided unrestricted cash assistance to 15,466 individuals across Borno and Adamawa States in 2025. This enabled households to access food and essential supplies according to their own priorities.", "The report also attributes 2,675 cholera and hygiene kits and menstrual hygiene kits for 1,115 people to the ECHO Sahara project. These interventions complemented hygiene awareness and cholera prevention work.", "Source: JDPI Annual Report 2025, pages 16 and 27. The accompanying photograph illustrates JDPI hygiene promotion from the report's WaSH section; its caption does not identify it as a SAHaRA-specific event. The report does not provide the project's start or end date."]
+    },
+    {
+      "slug": "we-sing-project",
+      "reportPages": [16, 31],
+      "title": "WE-SING Project",
+      "summary": "Supporting women's livelihoods and wellbeing through trade-specific start-up kits and individual psychosocial counselling in Borno State.",
+      "status": "ongoing",
+      "location": "Borno State",
+      "projectProgrammes": [{"title": "Economic Empowerment", "slug": "economic-empowerment"}, {"title": "Mental Health & Psychosocial Support", "slug": "mental-health-and-psychosocial-support"}],
+      "impactFacts": [{"_key": "startup-2025", "value": "100", "label": "Women receiving start-up kits (2025)"}, {"_key": "counselling-2025", "value": "30", "label": "Women receiving counselling (2025)"}],
+      "image": {"url": "/assets/projects/we-sing-startup-kits.jpg", "alt": "A woman receiving a livelihood start-up kit at a WE-SING project distribution"},
+      "paragraphs": ["Under WE-SING, 100 women in Borno State received livelihood start-up kits in 2025. Support was tailored to participants' chosen activities, including tailoring, petty trading and food processing, helping them establish or expand small enterprises.", "The annual report also records individual counselling for 30 women under WE-SING. Together, these livelihood and psychosocial activities support women's wellbeing, confidence and economic resilience.", "Source: JDPI Annual Report 2025, pages 16 and 31. The report does not provide the project's start or end date."]
+    },
+    {
+      "slug": "gffo-food-security-humanitarian-protection-lake-chad",
+      "reportPages": [52, 54],
+      "title": "GFFO Food Security and Humanitarian Protection for Victims of Lake Chad",
+      "summary": "Integrated food security and protection support, including child protection and psychosocial care for conflict-affected communities.",
+      "status": "ongoing",
+      "location": "Reported activity: Kaga, Borno State",
+      "projectProgrammes": [{"title": "Food Security & Livelihoods", "slug": "food-security-and-livelihoods"}, {"title": "Protection", "slug": "protection"}, {"title": "Mental Health & Psychosocial Support", "slug": "mental-health-and-psychosocial-support"}],
+      "impactFacts": [],
+      "image": {"url": "/assets/projects/gffo-family-support-redacted.jpg", "alt": "Family pictured in the GFFO project section, with identities obscured as in the annual report"},
+      "imageCaption": "Identities protected in the original report",
+      "paragraphs": ["The Food Security and Humanitarian Protection for Victims of Lake Chad project is funded by the German Federal Foreign Office (GFFO), through Caritas Germany, and implemented by JDPI Maiduguri in partnership with Caritas Nigeria.", "The 2025 annual report describes mental health and psychosocial support in Tsallake community, Kaga LGA, Borno State. It also highlights child protection work, caregiver engagement and learning-material support that helped a child return to school.", "Source: JDPI Annual Report 2025, pages 52 and 54. The report does not provide the project's start or end date."]
+    },
+    {
+      "slug": "strengthening-protection-gbv-response-madagali",
+      "reportPages": [55],
+      "title": "Strengthening Protection and GBV Response in Madagali",
+      "summary": "Vocational skills and livelihood start-up support helping young people reduce vulnerability and build more secure futures in Madagali.",
+      "status": "ongoing",
+      "location": "Madagali, Adamawa State",
+      "projectProgrammes": [{"title": "Protection", "slug": "protection"}, {"title": "Economic Empowerment", "slug": "economic-empowerment"}],
+      "impactFacts": [],
+      "image": {"url": "/assets/projects/madagali-livelihood-kit.jpg", "alt": "Livelihood start-up equipment distributed through the Madagali protection project's vocational skills component"},
+      "paragraphs": ["JDPI's Strengthening Protection and GBV Response in Madagali project includes vocational skills training and start-up support to expand livelihood opportunities for young people.", "The annual report illustrates this component through barbering training, practical business skills and an equipment kit containing a solar power station, clippers and other tools. Skills and start-up equipment help participants establish small businesses and strengthen their livelihoods.", "Source: JDPI Annual Report 2025, page 55. The report does not provide the project's start or end date."]
+    }
+  ]
+}

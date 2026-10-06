@@ -19,10 +19,6 @@ const templateDetails: Record<string, {
     status:'completed',startDate:'2025-11-01',endDate:'2026-05-31',location:'Madagali, Adamawa State',tags:['Nutrition','Protection'],
     facts:[{value:'4',label:'Communities'},{value:'900',label:'Birth registrations'}],
   },
-  'allright-project': {
-    status:'completed',startDate:'2023-06-01',endDate:'2026-08-31',location:'Hong & Michika, Adamawa State',tags:['IGA / VT','SILC'],
-    facts:[{value:'3,400',label:'People supported'},{value:'110',label:'SILC groups'}],
-  },
 };
 const programmeTags: Record<string,string> = {
   'food-security-and-livelihoods':'FSL','nutrition':'Nutrition','water-sanitation-and-hygiene':'WaSH','protection':'Protection',
@@ -35,7 +31,7 @@ export function directoryDetails(project:ContentItem){
   const endDate=project.endDate || fallback?.endDate;
   return {
     status:project.status || fallback?.status,location:project.location || fallback?.location,
-    dateLabel:startDate && endDate ? `${month(startDate)} – ${month(endDate)}` : startDate ? `From ${month(startDate)}` : endDate ? `Until ${month(endDate)}` : undefined,
+    dateLabel:startDate && endDate ? `${month(startDate)} – ${month(endDate)}` : startDate ? `From ${month(startDate)}` : endDate ? `Until ${month(endDate)}` : project.reportingYear ? `Reported in ${project.reportingYear}` : undefined,
     startTime:startDate ? Date.parse(startDate) : 0,
     tags:project.projectProgrammes ? project.projectProgrammes.filter(p=>p?.title).map(p=>programmeTags[p.slug] || p.title) : fallback?.tags || [],
     facts:project.impactFacts ?? fallback?.facts ?? [],

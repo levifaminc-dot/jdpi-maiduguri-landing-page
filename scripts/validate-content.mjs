@@ -1,5 +1,6 @@
 import {readFileSync,existsSync} from 'node:fs';
 import path from 'node:path';
+import {applyReportProjects} from '../src/lib/report-projects.ts';
 const file=process.argv[2]||'content/snapshot.json';
 const data=JSON.parse(readFileSync(file,'utf8'));
 export function validateContent(data){
@@ -34,4 +35,5 @@ export function validateContent(data){
   return data;
 }
 validateContent(data);
-console.log(`Content valid: ${data.programmes.length} programmes, ${data.projects.length} projects, ${data.stories.length} stories, ${data.reports.length} reports.`);
+const supplemented=validateContent(applyReportProjects(data));
+console.log(`Content valid: ${supplemented.programmes.length} programmes, ${supplemented.projects.length} projects, ${supplemented.stories.length} stories, ${supplemented.reports.length} reports.`);

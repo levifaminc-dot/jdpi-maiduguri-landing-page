@@ -35,6 +35,7 @@ const heroImage=content.projects.find(p=>p.slug==='bmz-multisectoral-resilience-
     <div class="project-results" id="project-results">
       {projects.map(({project,details},index)=><article class="directory-card" data-project-card data-status={details.status || 'unspecified'} data-title={project.title} data-search={[project.title,project.summary,details.location,...details.tags].join(' ').toLowerCase()} data-start={details.startTime} data-order={index} aria-labelledby={`project-${project.slug}`}>
         <div class="directory-photo"><ContentImage image={project.image}/>{details.status && <span class:list={['project-status',{'is-ongoing':details.status==='ongoing'}]}>{details.status==='completed' ? 'Completed' : 'Ongoing'}</span>}</div>
+        {project.imageCaption && <p class="directory-image-caption">{project.imageCaption}</p>}
         <div class="directory-body">
           <h2 id={`project-${project.slug}`}><a href={itemUrl('projects',project.slug)}>{project.title}</a></h2>
           <div class="project-meta">

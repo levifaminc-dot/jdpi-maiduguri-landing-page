@@ -39,6 +39,7 @@
 .directory-photo{display:block;position:relative;aspect-ratio:2.08;overflow:hidden;background:#e3eae4}
 .directory-photo img{width:100%;height:100%;object-fit:cover;object-position:center 42%;transition:transform .35s}
 .directory-card:hover .directory-photo img{transform:scale(1.025)}
+.directory-image-caption{margin:0;padding:7px 14px;font-size:.75rem;line-height:1.4;color:#4c5c52;background:#edf2ee}
 .project-status{position:absolute;top:14px;left:14px;background:#fff;color:var(--project-ink);padding:6px 10px;border-radius:4px;font-size:.75rem;font-weight:700;line-height:1.2;text-transform:uppercase;box-shadow:0 2px 8px #0001}
 .project-status.is-ongoing{background:#e6f5d7}
 .directory-body{padding:18px 22px 16px;flex:1;display:flex;flex-direction:column}

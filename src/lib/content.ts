@@ -3,6 +3,7 @@ import type {PortableTextBlock} from '@portabletext/types';
 import {createClient} from '@sanity/client';
 import {CONTENT_QUERY} from './queries';
 import settings from '../../config/sanity.json';
+import {applyReportProjects} from './report-projects';
 
 export interface ContentImage {url: string; alt: string; assetId?: string}
 export interface ContentItem {
@@ -12,6 +13,7 @@ export interface ContentItem {
   status?: 'ongoing'|'completed'; startDate?: string; endDate?: string;
   projectProgrammes?: {title:string; slug:string}[];
   impactFacts?: {_key:string; value:string; label:string}[];
+  reportingYear?: number; imageCaption?: string;
 }
 export interface SiteContent {
   schemaVersion: number;
@@ -32,7 +34,7 @@ export function getContent(): Promise<SiteContent> {
   return contentPromise ??= loadContent();
 }
 async function loadContent(): Promise<SiteContent> {
-  if (import.meta.env.CONTENT_SOURCE !== 'sanity') return snapshot as unknown as SiteContent;
+  if (import.meta.env.CONTENT_SOURCE !== 'sanity') return applyReportProjects(snapshot as unknown as SiteContent);
   const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID || settings.projectId;
   const dataset = import.meta.env.PUBLIC_SANITY_DATASET || settings.dataset;
   if (!projectId || !dataset) throw new Error('CONTENT_SOURCE=sanity requires the Sanity project ID and dataset.');
@@ -40,7 +42,7 @@ async function loadContent(): Promise<SiteContent> {
     perspective:'published', token:import.meta.env.SANITY_API_READ_TOKEN || undefined});
   const content = await client.fetch(CONTENT_QUERY);
   if (!content.settings || !content.home) throw new Error('Publish Site settings and Homepage in Sanity before building.');
-  return content as unknown as SiteContent;
+  return applyReportProjects(content as unknown as SiteContent);
 }
 export function itemUrl(type: 'programmes' | 'projects' | 'stories', slug: string) {
   return `/${type}/${encodeURIComponent(slug)}/`;
