@@ -12,6 +12,13 @@ for(const file of htmlFiles){
     if((html.match(/<h1\b/g)||[]).length!==1)errors.push(`${file}: must have exactly one main heading`);
     if(/href="#"/.test(html))errors.push(`${file}: placeholder link`);
     if(pageName.includes('/contact/')&&(!html.includes('href="mailto:')||!html.includes('href="tel:')))errors.push(`${file}: missing working contact channels`);
+    if(pageName.includes('/contact/')){
+      const config=JSON.parse(await readFile('config/contact.json','utf8'));
+      if(!html.includes(`action="https://formsubmit.co/${config.recipient}"`)||!html.includes('method="POST"'))errors.push(`${file}: missing configured form delivery`);
+      for(const id of ['contact-form','contact-name','contact-email','contact-topic','contact-message','contact-consent'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing contact form control ${id}`);
+      if(!html.includes('https://www.google.com/maps/embed?')||!html.includes('referrerpolicy="strict-origin-when-cross-origin"'))errors.push(`${file}: missing map widget`);
+      if(/name="_captcha"[^>]*value="false"/.test(html))errors.push(`${file}: contact form CAPTCHA must remain enabled`);
+    }
     if(pageName.includes('/impact/'))for(const fact of ['20,229','114','2025','Estimated','unique-person total'])if(!html.includes(fact))errors.push(`${file}: missing report context ${fact}`);
   }
   if(/^dist[\\/]resources[\\/]index\.html$/.test(file)){
