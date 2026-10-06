@@ -1,5 +1,7 @@
 import {readFile,readdir,access} from 'node:fs/promises';
 import path from 'node:path';
+const impactCoverage=JSON.parse(await readFile('src/data/impact-coverage.json','utf8'));
+const impactMaps=JSON.parse(await readFile('src/data/impact-maps.json','utf8'));
 async function files(dir){const entries=await readdir(dir,{withFileTypes:true});return(await Promise.all(entries.map(entry=>entry.isDirectory()?files(path.join(dir,entry.name)):path.join(dir,entry.name)))).flat();}
 const htmlFiles=(await files('dist')).filter(file=>file.endsWith('.html'));
 const errors=[];
@@ -20,6 +22,14 @@ for(const file of htmlFiles){
       if(/name="_captcha"[^>]*value="false"/.test(html))errors.push(`${file}: contact form CAPTCHA must remain enabled`);
     }
     if(pageName.includes('/impact/')){
+      if((html.match(/role="tab"/g)||[]).length!==9||(html.match(/role="tabpanel"/g)||[]).length!==9)errors.push(`${file}: must include six programme tabs and three state map tabs`);
+      for(const region of impactCoverage){
+        const map=impactMaps.states.find(state=>state.state===region.state);
+        if(!map||JSON.stringify(map.covered.map(area=>area.name))!==JSON.stringify(region.areas))errors.push(`${file}: map coverage differs from report-listed ${region.state} LGAs`);
+        if(!html.includes(`data-state-map="${region.state.toLowerCase()}"`))errors.push(`${file}: missing ${region.state} map panel`);
+        for(const name of region.areas)if(!html.includes(`aria-label="Show ${name} LGA on ${region.state} map"`))errors.push(`${file}: missing accessible ${region.state}/${name} hotspot`);
+      }
+      if(!html.includes('CC BY 4.0')||!html.includes('not individual project sites'))errors.push(`${file}: missing boundary attribution or coverage explanation`);
       for(const fact of ['20,229','114','2025','Estimated','unique-person total','263','100'])if(!html.includes(fact))errors.push(`${file}: missing report context ${fact}`);
       if(html.indexOf('id="stories-heading"')>html.indexOf('id="sectors-heading"'))errors.push(`${file}: community stories must lead programme results`);
       for(const id of ['growing-heading','women-heading','enterprise-heading'])if(!html.includes(`aria-labelledby="${id}"`))errors.push(`${file}: missing labelled community story ${id}`);

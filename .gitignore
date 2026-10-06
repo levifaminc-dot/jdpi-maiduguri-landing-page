@@ -11,4 +11,5 @@ studio/.sanity/
 !.env.example
 !studio/.env.example
 artifacts/
+work/map-source/
 *.tsbuildinfo

@@ -1,0 +1,16 @@
+---
+import {sectorImpact,impactYear} from '../lib/impact';
+import Icon from './ProjectIcon.astro';
+const icons=['food','nutrition','water','wellbeing','protection','peace'] as const;
+const labels=['Food & livelihoods','Nutrition','Water & hygiene','Mental health','Protection','Peacebuilding'];
+---
+<div class="ip-tabs" data-tabs>
+  <div class="ip-tablist" role="tablist" aria-label={`${impactYear} programme results`} aria-orientation="vertical">
+    {sectorImpact.map((sector,index)=><button type="button" role="tab" title={sector.title} id={`programme-tab-${index}`} aria-controls={`programme-panel-${index}`} aria-selected={index===0?'true':'false'} tabindex={index===0?0:-1} data-tab={index}><span class="ip-tab-icon"><Icon name={icons[index]}/></span><span>{labels[index]}</span></button>)}
+  </div>
+  <div class="ip-panels">{sectorImpact.map((sector,index)=><article class="ip-panel" id={`programme-panel-${index}`} role="tabpanel" aria-labelledby={`programme-tab-${index}`} tabindex="0" data-panel={index}>
+    <div class="ip-panel-title"><span class="ip-result-icon"><Icon name={icons[index]}/></span><div><p class="ie-eyebrow">{impactYear} PROGRAMME RESULTS</p><h3>{sector.title}</h3></div></div>
+    <dl><dt>{sector.label}</dt><dd>{sector.estimated && <span class="impact-estimate">Estimated </span>}{sector.value}</dd></dl>
+    <p class="ip-description">{sector.description}</p><div class="ip-panel-footer"><span>Annual Report {impactYear}, {sector.source.toLowerCase()}</span><a class="ie-link" href={`/programmes/${sector.slug}/`}>Explore programme <span class="sr-only">— {sector.title}</span></a></div>
+  </article>)}</div>
+</div>

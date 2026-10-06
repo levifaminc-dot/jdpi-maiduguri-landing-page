@@ -1,13 +1,16 @@
 ---
 import {getContent} from '../../lib/content';
-import {impactYear, impactOverview, sectorImpact, impactCoverage} from '../../lib/impact';
+import {impactYear, impactOverview} from '../../lib/impact';
 import {getProjectProfile} from '../../lib/project-profiles';
 import {getResourceLibrary} from '../../lib/resources';
 import Layout from '../../layouts/SiteLayout.astro';
 import ContentImage from '../../components/ContentImage.astro';
+import ImpactProgrammeTabs from '../../components/ImpactProgrammeTabs.astro';
+import ImpactCoverageMaps from '../../components/ImpactCoverageMaps.astro';
 import '../../styles/project-directory.css';
 import '../../styles/contact-impact.css';
 import '../../styles/impact-storytelling.css';
+import '../../styles/impact-interactions.css';
 
 const content = await getContent();
 const report = getResourceLibrary(content.reports).find(item => item.title === 'JDPI Annual Report 2025');
@@ -43,7 +46,7 @@ const image = (name:string, alt:string) => ({url:`/assets/projects/${name}.jpg`,
   </section>
 
   <section class="ie-stories project-shell" aria-labelledby="stories-heading">
-    <header class="ie-section-heading"><div><p class="ie-eyebrow">BEHIND THE NUMBERS</p><h2 id="stories-heading">This is what change looks like.</h2></div><p>Practical support. Community ambition.<br/>Stories from our {impactYear} annual report.</p></header>
+    <header class="ie-section-heading"><div><p class="ie-eyebrow">BEHIND THE NUMBERS</p><h2 id="stories-heading">This is what change looks like.</h2></div><p>Practical support. Community ambition.<br/>{' '}Stories from our {impactYear} annual report.</p></header>
 
     <article class="ie-story ie-growing" aria-labelledby="growing-heading">
       <div class="ie-story-visual">
@@ -65,19 +68,19 @@ const image = (name:string, alt:string) => ({url:`/assets/projects/${name}.jpg`,
   </section>
 
   <section class="ie-results" aria-labelledby="sectors-heading"><div class="project-shell">
-    <header class="ie-section-heading"><div><p class="ie-eyebrow">OUR {impactYear} RESULTS</p><h2 id="sectors-heading">Different needs.<br/>One commitment to dignity.</h2></div><p>From essential services to stronger livelihoods,<br/>our programmes respond to the whole community.</p></header>
-    <div class="impact-sector-grid">{sectorImpact.map((sector,index) => <article><div class="ie-sector-heading"><span aria-hidden="true">0{index + 1}</span><h3>{sector.title}</h3></div><dl><dt>{sector.label}</dt><dd>{sector.estimated && <span class="impact-estimate">Estimated </span>}{sector.value}</dd></dl><p>{sector.description}</p><div class="impact-sector-source"><span>Report, {sector.source.toLowerCase()}</span><a class="ie-link" href={`/programmes/${sector.slug}/`}>Explore programme <span class="sr-only">— {sector.title}</span></a></div></article>)}</div>
+    <header class="ie-section-heading"><div><p class="ie-eyebrow">OUR {impactYear} RESULTS</p><h2 id="sectors-heading">Different needs.<br/>One commitment to dignity.</h2></div><p>From essential services to stronger livelihoods,<br/>{' '}our programmes respond to the whole community.</p></header>
+    <ImpactProgrammeTabs/>
     <p class="impact-count-note"><strong>A note on these figures.</strong> Programme counts measure different services and may include people reached by more than one intervention. They are not added together as a unique-person total.</p>
   </div></section>
 
   <section class="ie-coverage project-shell" aria-labelledby="coverage-heading">
-    <header class="ie-section-heading"><div><p class="ie-eyebrow">CLOSE TO THE COMMUNITIES WE SERVE</p><h2 id="coverage-heading">Rooted in Northeast Nigeria.</h2></div><p>3 states · 20 local government areas<br/>114 communities in {impactYear}</p></header>
-    <div class="ie-state-grid">{impactCoverage.map(region => <article><h3>{region.state} <span>State</span></h3><p>{region.areas.length} local government areas</p><ul>{region.areas.map(area => <li>{area}</li>)}</ul></article>)}</div>
-    <p class="ie-source">Geographical coverage as listed in the Annual Report {impactYear}, page 12.</p>
+    <header class="ie-section-heading"><div><p class="ie-eyebrow">CLOSE TO THE COMMUNITIES WE SERVE</p><h2 id="coverage-heading">Rooted in Northeast Nigeria.</h2></div><p>3 states · 20 local government areas<br/>{' '}114 communities in {impactYear}</p></header>
+    <ImpactCoverageMaps/>
   </section>
 
   <section class="ie-accountability" aria-labelledby="accountability-heading"><div class="project-shell ie-report-grid">
     <div><p class="ie-eyebrow">THE WORK. THE STORIES. THE EVIDENCE.</p><h2 id="accountability-heading">Impact you can<br/><span>look into.</span></h2><p>These highlights are only part of the picture. Our {impactYear} annual report brings together programme results, community stories and financial reporting.</p><div class="ie-report-actions">{report && <a class="ie-button" href={report.fileUrl} target="_blank" rel="noopener noreferrer">Read the 2025 annual report <span class="sr-only">(opens in a new tab)</span></a>}<a class="ie-link" href="/resources/">All reports &amp; resources</a></div></div>
     <aside class="ie-report-note"><span class="ie-report-year">{impactYear}</span><p>JDPI MAIDUGURI<br/>ANNUAL REPORT</p><div><h3>Let’s build what comes next.</h3><p>Talk with our team about supporting community-led change.</p><a class="ie-link" href="/contact/">Contact our team</a></div></aside>
   </div></section>
+<script>import '../../scripts/impact-interactions';</script>
 </Layout>

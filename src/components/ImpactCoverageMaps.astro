@@ -1,0 +1,35 @@
+---
+import mapData from '../data/impact-maps.json';
+import {impactYear} from '../lib/impact';
+---
+<div class="im-tabs" data-tabs>
+  <div class="im-state-tabs" role="tablist" aria-label="State coverage maps">
+    {mapData.states.map((state,index)=><button type="button" role="tab" id={`state-tab-${state.id}`} aria-controls={`state-panel-${state.id}`} aria-selected={index===0?'true':'false'} tabindex={index===0?0:-1} data-tab={index}><span>{state.state}</span><small>{state.covered.length} LGAs in our report</small></button>)}
+  </div>
+  {mapData.states.map((state,index)=><div class="im-panel" role="tabpanel" id={`state-panel-${state.id}`} aria-labelledby={`state-tab-${state.id}`} data-panel={index} data-state-map={state.id}>
+    <div class="im-map">
+      <div class="im-map-head"><h3>{state.state} State</h3><span>North <span aria-hidden="true">↑</span></span></div>
+      <svg viewBox="0 0 640 540" role="group" aria-label={`${state.state} State map. Select a highlighted LGA to see its name.`}>
+        <title>{state.state} State: {state.covered.length} LGAs listed in JDPI’s {impactYear} report</title>
+        <g aria-hidden="true">{state.areas.map(area=><path d={area.path} class="im-other-area" fill-rule="evenodd"><title>{area.sourceName}</title></path>)}</g>
+        <path d={state.outline} class="im-state-outline" aria-hidden="true" fill-rule="evenodd"/>
+        {state.covered.map((area,areaIndex)=><path class:list={['im-area',{'is-active':areaIndex===0}]} data-lga={area.name} d={area.path} fill-rule="evenodd" aria-hidden="true"><title>{area.name} · Listed in {impactYear} coverage</title></path>)}
+        <g aria-hidden="true">{state.covered.map(area=>(area.point[0]!==area.labelPoint[0]||area.point[1]!==area.labelPoint[1]) && <><line class="im-leader" x1={area.point[0]} y1={area.point[1]} x2={area.labelPoint[0]} y2={area.labelPoint[1]}/><circle class="im-anchor" cx={area.point[0]} cy={area.point[1]} r="3"/></>)}</g>
+        {state.covered.map((area,areaIndex)=><g class:list={['im-covered',{'is-active':areaIndex===0}]} data-lga={area.name} role="button" aria-label={`Show ${area.name} LGA on ${state.state} map`} aria-pressed={areaIndex===0?'true':'false'} tabindex="0">
+          <title>{area.name==='MMC'?'Maiduguri Municipal Council (MMC)':area.name} · Listed in {impactYear} coverage</title>
+          <circle class="im-hotspot" cx={area.labelPoint[0]} cy={area.labelPoint[1]} r="13"/>
+          <text class="im-hotspot-number" x={area.labelPoint[0]} y={area.labelPoint[1]} dy=".35em" text-anchor="middle" aria-hidden="true">{area.number}</text>
+        </g>)}
+      </svg>
+      <div class="im-legend"><span><i class="im-legend-covered" aria-hidden="true"></i>Listed in JDPI’s {impactYear} coverage</span><span><i class="im-legend-other" aria-hidden="true"></i>Other LGAs</span></div>
+    </div>
+    <div class="im-detail">
+      <p class="ie-eyebrow">{impactYear} GEOGRAPHICAL COVERAGE</p><h3>{state.covered.length} local government areas</h3>
+      <p>Select a hotspot or an LGA below to explore the report’s coverage.</p>
+      <div class="im-lga-list" aria-label={`${state.state} report-listed LGAs`}>{state.covered.map((area,areaIndex)=><button type="button" class:list={[{'is-active':areaIndex===0}]} data-lga={area.name} aria-pressed={areaIndex===0?'true':'false'}><span>{area.number}</span>{area.name}</button>)}</div>
+      <div class="im-selection" aria-live="polite" aria-atomic="true"><p>SELECTED LOCAL GOVERNMENT AREA</p><h4 data-selected-lga>{state.covered[0].name==='MMC'?'Maiduguri Municipal Council (MMC)':state.covered[0].name}</h4><span>{state.state} State · Listed in the {impactYear} annual report</span></div>
+      <p class="im-map-note">Hotspots identify local government areas, not individual project sites. No LGA-level beneficiary totals are implied.</p>
+    </div>
+  </div>)}
+</div>
+<p class="im-attribution">Boundaries: <a href="https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM2/" target="_blank" rel="noopener noreferrer">GRID3 via geoBoundaries</a>, {mapData.source.year} · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Simplified for display. Coverage: JDPI Annual Report {impactYear}, page 12.</p>

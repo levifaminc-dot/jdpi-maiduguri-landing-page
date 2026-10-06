@@ -1,5 +1,5 @@
 ---
-interface Props {name:'calendar'|'location'|'search'|'arrow'}
+interface Props {name:'calendar'|'location'|'search'|'arrow'|'food'|'nutrition'|'water'|'wellbeing'|'protection'|'peace'}
 const {name}=Astro.props;
 ---
 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -7,4 +7,10 @@ const {name}=Astro.props;
   {name==='location' && <><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></>}
   {name==='search' && <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></>}
   {name==='arrow' && <path d="M4 12h16m-6-6 6 6-6 6"/>}
+  {name==='food' && <><path d="M12 21V9m0 6c-5 0-8-3-8-8 5 0 8 3 8 8Zm0-4c0-5 3-8 8-8 0 5-3 8-8 8Z"/></>}
+  {name==='nutrition' && <><path d="M12 7c-4-4-10 0-9 5 1 5 4 9 7 9 1 0 2-1 2-1s1 1 2 1c3 0 6-4 7-9 1-5-5-9-9-5Zm0 0V3m0 0c3-1 5 0 5 2"/></>}
+  {name==='water' && <><path d="M12 2S4 10 4 15a8 8 0 0 0 16 0c0-5-8-13-8-13Z"/><path d="M8 15a4 4 0 0 0 4 4"/></>}
+  {name==='wellbeing' && <><path d="M12 21 4 13C-2 7 5 0 12 7c7-7 14 0 8 6Z"/><path d="M5 12h4l2-3 2 6 2-3h4"/></>}
+  {name==='protection' && <><path d="m12 2 8 4v6c0 5-8 10-8 10S4 17 4 12V6Z"/><path d="m8 12 3 3 5-6"/></>}
+  {name==='peace' && <><circle cx="12" cy="12" r="9"/><path d="M12 3v18m0-9-6 6m6-6 6 6"/></>}
 </svg>
