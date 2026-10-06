@@ -9,6 +9,9 @@ export interface ContentItem {
   _id?: string; title: string; slug: string; summary?: string; image?: ContentImage;
   body: PortableTextBlock[]; sortOrder?: number; publishedAt?: string; category?: string;
   location?: string; fileUrl?: string; seoTitle?: string; seoDescription?: string;
+  status?: 'ongoing'|'completed'; startDate?: string; endDate?: string;
+  projectProgrammes?: {title:string; slug:string}[];
+  impactFacts?: {_key:string; value:string; label:string}[];
 }
 export interface SiteContent {
   schemaVersion: number;

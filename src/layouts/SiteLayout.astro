@@ -4,8 +4,8 @@ import '../styles/landing-refinements.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import type {SiteContent} from '../lib/content';
-interface Props {content:SiteContent; title?:string; description?:string; home?:boolean; noindex?:boolean}
-const {content,title=content.settings.seoTitle,description=content.settings.seoDescription,home=false,noindex=false}=Astro.props;
+interface Props {content:SiteContent; title?:string; description?:string; home?:boolean; noindex?:boolean; pageClass?:string}
+const {content,title=content.settings.seoTitle,description=content.settings.seoDescription,home=false,noindex=false,pageClass=''}=Astro.props;
 const canonical=new URL(Astro.url.pathname,Astro.site);
 ---
 <!doctype html><html lang="en"><head>
@@ -16,7 +16,7 @@ const canonical=new URL(Astro.url.pathname,Astro.site);
   <link rel="icon" href="/assets/logo.avif" type="image/avif"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-</head><body class:list={{'home-refinement':home}}>
+</head><body class:list={[pageClass,{'home-refinement':home}]}>
   <a class="skip" href="#main-content">Skip to content</a><Header settings={content.settings} home={home}/>
   <main id="main-content"><slot/></main><Footer content={content}/>
   <script>

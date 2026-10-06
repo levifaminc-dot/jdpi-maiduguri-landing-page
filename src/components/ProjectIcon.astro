@@ -1,0 +1,10 @@
+---
+interface Props {name:'calendar'|'location'|'search'|'arrow'}
+const {name}=Astro.props;
+---
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {name==='calendar' && <><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M4 11h16m-11 4h2m3 0h2m-7 3h2"/></>}
+  {name==='location' && <><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></>}
+  {name==='search' && <><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></>}
+  {name==='arrow' && <path d="M4 12h16m-6-6 6 6-6 6"/>}
+</svg>

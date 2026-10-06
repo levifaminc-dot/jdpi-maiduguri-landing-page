@@ -1,7 +1,91 @@
 ---
-import {getContent} from '../../lib/content';
+import {getContent,itemUrl} from '../../lib/content';
+import {directoryDetails,tagTone} from '../../lib/project-directory';
 import Layout from '../../layouts/SiteLayout.astro';
-import ContentCards from '../../components/ContentCards.astro';
+import ContentImage from '../../components/ContentImage.astro';
+import Icon from '../../components/ProjectIcon.astro';
+import '../../styles/project-directory.css';
 const content=await getContent();
+const projects=content.projects.map(project=>({project,details:directoryDetails(project)}));
+const heroImage=content.projects.find(p=>p.slug==='bmz-multisectoral-resilience-project')?.image || content.home.impactImage;
 ---
-<Layout content={content} title={`Projects | ${content.settings.shortName}`}><section class="inner-page"><div class="shell"><p class="eyebrow">OUR PROJECTS</p><h1>{content.home.projectsHeading}</h1><ContentCards items={content.projects} type="projects" carousel={false}/></div></section></Layout>
+<Layout content={content} title={`Our Projects | ${content.settings.shortName}`} description="Explore JDPI Maiduguri’s humanitarian and development projects supporting communities across Northeast Nigeria." pageClass="projects-page">
+  <section class="project-hero" aria-labelledby="projects-heading">
+    <ContentImage image={heroImage} class="project-hero-image" eager/>
+    <div class="project-shell project-hero-content">
+      <nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Projects</span></nav>
+      <p class="project-eyebrow">OUR PROJECTS</p>
+      <h1 id="projects-heading">From response<br/>to <span>resilience.</span></h1>
+      <p class="project-hero-intro">Our projects support vulnerable people and communities across Northeast Nigeria through integrated, community-centred and sustainable interventions.</p>
+    </div>
+  </section>
+  <section class="project-directory project-shell" aria-label="Explore our projects" data-project-directory>
+    <div class="project-toolbar" hidden data-project-controls>
+      <div class="project-filters" role="group" aria-label="Filter projects by status">
+        <button type="button" class="project-filter is-active" data-project-filter="all" aria-pressed="true" aria-controls="project-results">All Projects</button>
+        <button type="button" class="project-filter" data-project-filter="ongoing" aria-pressed="false" aria-controls="project-results">Ongoing</button>
+        <button type="button" class="project-filter" data-project-filter="completed" aria-pressed="false" aria-controls="project-results">Completed</button>
+      </div>
+      <div class="project-search-sort">
+        <label class="project-search"><span class="sr-only">Search projects</span><input type="search" placeholder="Search projects…" data-project-search aria-controls="project-results"/><Icon name="search"/></label>
+        <label class="project-sort"><span class="sr-only">Sort projects</span><select data-project-sort aria-controls="project-results"><option value="featured">Sort by</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="az">Name: A–Z</option></select></label>
+      </div>
+    </div>
+    <p class="sr-only" aria-live="polite" aria-atomic="true" data-project-count>{projects.length} projects</p>
+    <div class="project-results" id="project-results">
+      {projects.map(({project,details},index)=><article class="directory-card" data-project-card data-status={details.status || 'unspecified'} data-title={project.title} data-search={[project.title,project.summary,details.location,...details.tags].join(' ').toLowerCase()} data-start={details.startTime} data-order={index} aria-labelledby={`project-${project.slug}`}>
+        <div class="directory-photo"><ContentImage image={project.image}/>{details.status && <span class:list={['project-status',{'is-ongoing':details.status==='ongoing'}]}>{details.status==='completed' ? 'Completed' : 'Ongoing'}</span>}</div>
+        <div class="directory-body">
+          <h2 id={`project-${project.slug}`}><a href={itemUrl('projects',project.slug)}>{project.title}</a></h2>
+          <div class="project-meta">
+            {details.dateLabel && <p><Icon name="calendar"/><span>{details.dateLabel}</span></p>}
+            {details.location && <p><Icon name="location"/><span>{details.location}</span></p>}
+          </div>
+          {project.summary && <p class="directory-summary">{project.summary}</p>}
+          {details.tags.length>0 && <ul class="project-tags" aria-label="Programme areas">{details.tags.map(tag=><li class={`tag-${tagTone(tag)}`}>{tag}</li>)}</ul>}
+        </div>
+        <div class="directory-bottom">
+          {details.facts.length>0 && <dl class="project-facts">{details.facts.map(fact=><div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
+          <a class="project-view" href={itemUrl('projects',project.slug)} aria-label={`View ${project.title}`}>VIEW PROJECT <Icon name="arrow"/></a>
+        </div>
+      </article>)}
+    </div>
+    <div class="project-empty" hidden data-project-empty><Icon name="search"/><h2>No projects found</h2><p>Try a different search or view all projects.</p><button type="button" data-project-reset>View all projects</button></div>
+  </section>
+  <section class="project-impact-banner" aria-labelledby="project-impact-heading">
+    <ContentImage image={content.home.supportImage} class="project-impact-image"/>
+    <div class="project-shell"><div class="project-impact-copy"><h2 id="project-impact-heading">Real people. <span>Lasting change.</span></h2><p>Discover how our projects are supporting communities across Northeast Nigeria.</p><a class="project-impact-link" href="/#impact">VIEW OUR IMPACT <Icon name="arrow"/></a></div></div>
+  </section>
+</Layout>
+<script>
+  const directory=document.querySelector<HTMLElement>('[data-project-directory]');
+  if(directory){
+    const controls=directory.querySelector<HTMLElement>('[data-project-controls]');
+    const search=directory.querySelector<HTMLInputElement>('[data-project-search]');
+    const sort=directory.querySelector<HTMLSelectElement>('[data-project-sort]');
+    const buttons=[...directory.querySelectorAll<HTMLButtonElement>('[data-project-filter]')];
+    const cards=[...directory.querySelectorAll<HTMLElement>('[data-project-card]')];
+    const results=directory.querySelector<HTMLElement>('#project-results');
+    const count=directory.querySelector<HTMLElement>('[data-project-count]');
+    const empty=directory.querySelector<HTMLElement>('[data-project-empty]');
+    let status='all';
+    function update(){
+      const query=(search?.value || '').trim().toLowerCase();
+      const ordered=[...cards].sort((a,b)=>{
+        if(sort?.value==='az')return (a.dataset.title || '').localeCompare(b.dataset.title || '','en');
+        if(sort?.value==='newest')return Number(b.dataset.start)-Number(a.dataset.start) || Number(a.dataset.order)-Number(b.dataset.order);
+        if(sort?.value==='oldest')return Number(a.dataset.start)-Number(b.dataset.start) || Number(a.dataset.order)-Number(b.dataset.order);
+        return Number(a.dataset.order)-Number(b.dataset.order);
+      });
+      let visible=0;
+      ordered.forEach(card=>{card.hidden=(status!=='all' && card.dataset.status!==status) || !(card.dataset.search || '').includes(query);if(!card.hidden)visible++;results?.append(card);});
+      if(count)count.textContent=`${visible} ${visible===1 ? 'project' : 'projects'} found`;
+      if(empty)empty.hidden=visible!==0;
+      buttons.forEach(button=>{const active=button.dataset.projectFilter===status;button.classList.toggle('is-active',active);button.setAttribute('aria-pressed',String(active));});
+    }
+    buttons.forEach(button=>button.addEventListener('click',()=>{status=button.dataset.projectFilter || 'all';update();}));
+    search?.addEventListener('input',update);sort?.addEventListener('change',update);
+    directory.querySelector('[data-project-reset]')?.addEventListener('click',()=>{status='all';if(search)search.value='';if(sort)sort.value='featured';update();buttons[0]?.focus();});
+    if(controls)controls.hidden=false;
+  }
+</script>

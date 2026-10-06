@@ -111,6 +111,13 @@ export type Story = {
   publishedAt: string;
 };
 
+export type ProgrammeReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "programme";
+};
+
 export type Project = {
   _id: string;
   _type: "project";
@@ -144,6 +151,20 @@ export type Project = {
   seoDescription?: string;
   sourceKey?: string;
   location?: string;
+  status?: "ongoing" | "completed";
+  startDate?: string;
+  endDate?: string;
+  projectProgrammes?: Array<
+    {
+      _key: string;
+    } & ProgrammeReference
+  >;
+  impactFacts?: Array<{
+    value: string;
+    label: string;
+    _type: "projectImpactFact";
+    _key: string;
+  }>;
 };
 
 export type Programme = {
@@ -356,6 +377,7 @@ export type AllSanitySchemaTypes =
   | Report
   | Slug
   | Story
+  | ProgrammeReference
   | Project
   | Programme
   | HomePage
@@ -373,7 +395,7 @@ export type AllSanitySchemaTypes =
 
 // Source: ../src/lib/queries.ts
 // Variable: CONTENT_QUERY
-// Query: {  "schemaVersion": 1,  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}
+// Query: {  "schemaVersion": 1,  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}
 export type CONTENT_QUERY_RESULT = {
   schemaVersion: 1;
   settings:
@@ -457,7 +479,11 @@ export type CONTENT_QUERY_RESULT = {
         partnersHeading: null;
         partnersIntro: null;
         supportIntro: null;
-        impactFacts: null;
+        impactFacts: Array<{
+          _key: string;
+          value: string;
+          label: string;
+        }> | null;
         heroImage: null;
         aboutImage: null;
         impactImage: null;
@@ -559,6 +585,18 @@ export type CONTENT_QUERY_RESULT = {
       _key: string;
     }> | null;
     location: string | null;
+    status: "completed" | "ongoing" | null;
+    startDate: string | null;
+    endDate: string | null;
+    projectProgrammes: Array<{
+      title: string;
+      slug: string;
+    }> | null;
+    impactFacts: Array<{
+      _key: string;
+      value: string;
+      label: string;
+    }> | null;
     sortOrder: number | null;
     seoTitle: string | null;
     seoDescription: string | null;
@@ -734,6 +772,20 @@ export type EXPORT_QUERY_RESULT = Array<
       seoDescription?: string;
       sourceKey?: string;
       location?: string;
+      status?: "completed" | "ongoing";
+      startDate?: string;
+      endDate?: string;
+      projectProgrammes?: Array<
+        {
+          _key: string;
+        } & ProgrammeReference
+      >;
+      impactFacts?: Array<{
+        value: string;
+        label: string;
+        _type: "projectImpactFact";
+        _key: string;
+      }>;
     }
   | {
       _id: string;
@@ -815,7 +867,7 @@ export type EXPORT_QUERY_RESULT = Array<
 
 // Source: ../src/lib/queries.ts
 // Variable: RELEASE_QUERY
-// Query: {"content": {  "schemaVersion": 1,  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)}
+// Query: {"content": {  "schemaVersion": 1,  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)}
 export type RELEASE_QUERY_RESULT = {
   content: {
     schemaVersion: 1;
@@ -900,7 +952,11 @@ export type RELEASE_QUERY_RESULT = {
           partnersHeading: null;
           partnersIntro: null;
           supportIntro: null;
-          impactFacts: null;
+          impactFacts: Array<{
+            _key: string;
+            value: string;
+            label: string;
+          }> | null;
           heroImage: null;
           aboutImage: null;
           impactImage: null;
@@ -1002,6 +1058,18 @@ export type RELEASE_QUERY_RESULT = {
         _key: string;
       }> | null;
       location: string | null;
+      status: "completed" | "ongoing" | null;
+      startDate: string | null;
+      endDate: string | null;
+      projectProgrammes: Array<{
+        title: string;
+        slug: string;
+      }> | null;
+      impactFacts: Array<{
+        _key: string;
+        value: string;
+        label: string;
+      }> | null;
       sortOrder: number | null;
       seoTitle: string | null;
       seoDescription: string | null;
@@ -1173,6 +1241,20 @@ export type RELEASE_QUERY_RESULT = {
         seoDescription?: string;
         sourceKey?: string;
         location?: string;
+        status?: "completed" | "ongoing";
+        startDate?: string;
+        endDate?: string;
+        projectProgrammes?: Array<
+          {
+            _key: string;
+          } & ProgrammeReference
+        >;
+        impactFacts?: Array<{
+          value: string;
+          label: string;
+          _type: "projectImpactFact";
+          _key: string;
+        }>;
       }
     | {
         _id: string;
@@ -1256,9 +1338,9 @@ export type RELEASE_QUERY_RESULT = {
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '{\n  "schemaVersion": 1,\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}': CONTENT_QUERY_RESULT;
+    '{\n  "schemaVersion": 1,\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}': CONTENT_QUERY_RESULT;
     '*[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)': EXPORT_QUERY_RESULT;
-    '{"content": {\n  "schemaVersion": 1,\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)}': RELEASE_QUERY_RESULT;
+    '{"content": {\n  "schemaVersion": 1,\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)}': RELEASE_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

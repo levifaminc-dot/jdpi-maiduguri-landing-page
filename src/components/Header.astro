@@ -7,7 +7,7 @@ const navigation=[['Home','hero'],['About Us','who-we-are'],['What We Do','what-
 ---
 <header class="site-nav" id="main-nav"><div class="nav-inner">
   <a class="brand" href="/" aria-label={`${settings.shortName} home`}><img src="/assets/logo.avif" alt={settings.shortName}/><span class="brand-text"><strong>{settings.organisationName}</strong><span>{settings.diocese}</span></span></a>
-  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=><a href={id==='resources' ? '/resources/' : anchor(id)}>{label}</a>)}</nav>
+  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=><a href={id==='resources' ? '/resources/' : id==='projects' ? '/projects/' : anchor(id)} aria-current={id==='projects' && Astro.url.pathname.startsWith('/projects/') ? 'page' : undefined}>{label}</a>)}</nav>
   <a class="donate-btn" href="/donate/">DONATE NOW</a>
   <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">☰</button>
 </div></header>
