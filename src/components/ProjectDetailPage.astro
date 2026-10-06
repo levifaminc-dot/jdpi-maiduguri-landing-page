@@ -1,0 +1,89 @@
+---
+import type {ContentItem,SiteContent} from '../lib/content';
+import {safeExternalUrl} from '../lib/content';
+import {directoryDetails} from '../lib/project-directory';
+import {getProjectProfile} from '../lib/project-profiles';
+import Layout from '../layouts/SiteLayout.astro';
+import ContentImage from './ContentImage.astro';
+import Icon from './ProjectIcon.astro';
+import '../styles/project-directory.css';
+import '../styles/project-detail.css';
+interface Props {item:ContentItem; content:SiteContent}
+const {item,content}=Astro.props;
+const details=directoryDetails(item);
+const profile=getProjectProfile(item);
+const facts=profile.facts ?? details.facts;
+const sections=[['overview','Overview'],['context','Context'],['what-we-did','What We Did'],['results','Results'],['stories','Stories'],['gallery','Gallery'],['resources','Resources']];
+const overviewImage=profile.overviewImage || item.image;
+---
+<Layout content={content} title={`${item.seoTitle||item.title} | ${content.settings.shortName}`} description={item.seoDescription||item.summary||content.settings.seoDescription} pageClass="projects-page project-detail-page">
+  <section class="project-detail-hero" aria-labelledby="project-title">
+    <ContentImage image={item.image} class="project-detail-hero-image" eager/>
+    <div class="project-shell project-detail-hero-content">
+      <nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/projects/">Projects</a><span aria-hidden="true">/</span><span aria-current="page">{item.title}</span></nav>
+      <div class="project-detail-label"><p class="project-eyebrow">OUR PROJECTS</p>{details.status && <span class:list={['detail-status',{'is-ongoing':details.status==='ongoing'}]}>{details.status==='completed' ? 'Completed' : 'Ongoing'}</span>}</div>
+      <h1 id="project-title">{item.title}</h1>
+      {details.location && <p class="project-detail-location"><Icon name="location"/>{details.location}</p>}
+      {profile.photoNote && <p class="project-detail-photo-note">{profile.photoNote}</p>}
+    </div>
+  </section>
+  <nav class="project-section-nav" aria-label="Project sections"><div class="project-shell">{sections.map(([id,label])=><a href={`#${id}`} data-project-section-link aria-current={id==='overview'?'location':undefined}>{label}</a>)}</div></nav>
+  <div class="project-detail-content project-shell">
+    <section id="overview" class="project-detail-section" aria-labelledby="glance-heading" data-project-section>
+      <h2 id="glance-heading">Project at a Glance</h2>
+      <div class="project-overview-grid">
+        <div>
+          <dl class="project-glance">
+            <div><dt>Duration</dt><dd>{details.hasDuration ? details.dateLabel : item.reportingYear ? 'Dates not stated in the 2025 report' : 'Dates not provided'}</dd></div>
+            <div><dt>Donor</dt><dd>{profile.donor}</dd></div>
+            <div><dt>Location</dt><dd>{details.location || 'Not provided'}</dd></div>
+            <div><dt>Sectors</dt><dd>{details.tags.length ? details.tags.join(', ') : 'Not provided'}</dd></div>
+          </dl>
+          {profile.partners && <p class="project-partners"><strong>Partners</strong> {profile.partners}</p>}
+          <h2 class="project-overview-heading">Project Overview</h2>
+          <div class="project-detail-prose">{profile.overview.map(paragraph=><p>{paragraph}</p>)}</div>
+        </div>
+        <figure class="project-overview-photo"><ContentImage image={overviewImage}/><figcaption>{profile.overviewCaption || profile.photoNote || item.imageCaption || 'JDPI project photograph'}</figcaption></figure>
+      </div>
+    </section>
+    <section id="results" class="project-detail-section project-results-section" aria-labelledby="results-heading" data-project-section>
+      <div class="project-detail-section-head"><h2 id="results-heading">Key Results</h2>{item.reportingYear && <p class="project-period">2025 REPORT HIGHLIGHTS</p>}</div>
+      {facts.length>0 && <dl class="project-result-strip" style={`--result-columns:${Math.min(facts.length,4)}`}>{facts.map(fact=><div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
+      <p class="project-result-note">{profile.resultsIntro}</p>
+      {profile.outcomes?.length && <ul class="project-outcomes">{profile.outcomes.map(outcome=><li>{outcome}</li>)}</ul>}
+    </section>
+    <section id="context" class="project-detail-section project-context-section" aria-labelledby="context-heading" data-project-section><p class="project-section-kicker">WHY THIS WORK MATTERS</p><h2 id="context-heading">The Context</h2><p>{profile.context}</p></section>
+    <section id="what-we-did" class="project-detail-section" aria-labelledby="activities-heading" data-project-section>
+      <h2 id="activities-heading">What We Did</h2>
+      {profile.activities.length ? <ol class="project-activities">{profile.activities.map((activity,index)=><li><span aria-hidden="true">{String(index+1).padStart(2,'0')}</span><div><h3>{activity.title}</h3><p>{activity.text}</p></div></li>)}</ol> : <p class="project-missing">Detailed project activities have not yet been supplied.</p>}
+    </section>
+    <section id="stories" class="project-detail-section" aria-labelledby="stories-heading" data-project-section>
+      <div class="project-detail-section-head"><h2 id="stories-heading">Stories &amp; Learning</h2><p class="project-section-kicker">BEYOND THE NUMBERS</p></div>
+      {profile.stories.length ? <div class="project-story-grid">{profile.stories.map(story=><article><h3>{story.title}</h3><p>{story.text}</p><p class="project-story-source">{story.source}</p></article>)}</div> : <p class="project-missing">{profile.storyNote}</p>}
+    </section>
+    <section id="gallery" class="project-detail-section" aria-labelledby="gallery-heading" data-project-section>
+      <h2 id="gallery-heading">Project Gallery</h2>
+      {profile.gallery.length ? <div class:list={['project-photo-grid',{'is-single':profile.gallery.length===1}]}>{profile.gallery.map(photo=><figure><ContentImage image={photo.image}/><figcaption>{photo.caption}</figcaption></figure>)}</div> : <p class="project-missing">Project-specific gallery photographs have not yet been confirmed. The banner image is illustrative.</p>}
+    </section>
+    <section id="resources" class="project-detail-section project-resources-section" aria-labelledby="resources-heading" data-project-section>
+      <h2 id="resources-heading">Resources &amp; Sources</h2>
+      <div class="project-source-list">{profile.sources.map(source=><article><p class="project-section-kicker">PROJECT DOCUMENTATION</p><h3>{source.title}</h3><p>{source.detail}</p>{safeExternalUrl(source.url) && <a class="project-text-link" href={safeExternalUrl(source.url)} target="_blank" rel="noopener noreferrer">View source <span class="sr-only">(opens in a new tab)</span></a>}</article>)}</div>
+      <p class="project-resource-contact">For approved project documents and further information, <a href={`mailto:${content.settings.email}?subject=${encodeURIComponent(`Project information: ${item.title}`)}`}>contact JDPI</a> or visit our <a href="/resources/">resources page</a>.</p>
+      {profile.reviewNote && <aside class="project-review-note" aria-label="Project information under review">{profile.reviewNote}</aside>}
+    </section>
+    <div class="project-detail-return"><a href="/projects/">View all projects</a></div>
+  </div>
+</Layout>
+<script>
+  const links=[...document.querySelectorAll<HTMLAnchorElement>('[data-project-section-link]')];
+  const sections=[...document.querySelectorAll<HTMLElement>('[data-project-section]')];
+  function updateProjectNavigation(){
+    const offset=matchMedia('(max-width:780px)').matches?146:164;
+    const current=[...sections].reverse().find(section=>section.getBoundingClientRect().top<=offset) || sections[0];
+    for(const link of links){if(link.hash===`#${current?.id}`)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');}
+  }
+  document.addEventListener('scroll',updateProjectNavigation,{passive:true});
+  window.addEventListener('hashchange',updateProjectNavigation);
+  window.addEventListener('resize',updateProjectNavigation);
+  updateProjectNavigation();
+</script>

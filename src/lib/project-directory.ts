@@ -31,6 +31,7 @@ export function directoryDetails(project:ContentItem){
   const endDate=project.endDate || fallback?.endDate;
   return {
     status:project.status || fallback?.status,location:project.location || fallback?.location,
+    hasDuration:Boolean(startDate || endDate),
     dateLabel:startDate && endDate ? `${month(startDate)} – ${month(endDate)}` : startDate ? `From ${month(startDate)}` : endDate ? `Until ${month(endDate)}` : project.reportingYear ? `Reported in ${project.reportingYear}` : undefined,
     startTime:startDate ? Date.parse(startDate) : 0,
     tags:project.projectProgrammes ? project.projectProgrammes.filter(p=>p?.title).map(p=>programmeTags[p.slug] || p.title) : fallback?.tags || [],

@@ -5,6 +5,13 @@ const htmlFiles=(await files('dist')).filter(file=>file.endsWith('.html'));
 const errors=[];
 for(const file of htmlFiles){
   const html=await readFile(file,'utf8');
+  if(/^dist[\\/]projects[\\/][^\\/]+[\\/]index\.html$/.test(file)){
+    for(const section of ['overview','context','what-we-did','results','stories','gallery','resources']){
+      if(!html.includes(`id="${section}"`))errors.push(`${file}: missing project detail section ${section}`);
+      if(!html.includes(`href="#${section}"`))errors.push(`${file}: missing section navigation ${section}`);
+    }
+    if((html.match(/<h1\b/g)||[]).length!==1)errors.push(`${file}: project detail must have exactly one main heading`);
+  }
   for(const m of html.matchAll(/(?:href|src)="([^"]+)"/g)){
     const url=m[1].split('#')[0].split('?')[0];
     if(!url||!url.startsWith('/')||url.startsWith('//'))continue;
