@@ -5,6 +5,12 @@ const htmlFiles=(await files('dist')).filter(file=>file.endsWith('.html'));
 const errors=[];
 for(const file of htmlFiles){
   const html=await readFile(file,'utf8');
+  if(/^dist[\\/]resources[\\/]index\.html$/.test(file)){
+    for(const id of ['resources-heading','library-heading','resource-list','media-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing resource section ${id}`);
+    if((html.match(/<h1\b/g)||[]).length!==1)errors.push(`${file}: resources must have exactly one main heading`);
+    if(!html.includes('data-resource-filter=')||!html.includes('data-resource-category='))errors.push(`${file}: missing document filtering`);
+    if(/href="#"/.test(html))errors.push(`${file}: placeholder resource link`);
+  }
   if(/^dist[\\/]projects[\\/][^\\/]+[\\/]index\.html$/.test(file)){
     for(const section of ['overview','context','what-we-did','results','stories','gallery','resources']){
       if(!html.includes(`id="${section}"`))errors.push(`${file}: missing project detail section ${section}`);
