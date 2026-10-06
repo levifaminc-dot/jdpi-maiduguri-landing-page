@@ -3,11 +3,12 @@ import type {SiteContent} from '../lib/content';
 interface Props {settings: SiteContent['settings']; home?: boolean}
 const {settings, home=false}=Astro.props;
 const anchor=(id:string)=>home ? `#${id}` : `/#${id}`;
+const routes:Record<string,string>={projects:'/projects/',resources:'/resources/',impact:'/impact/',contact:'/contact/'};
 const navigation=[['Home','hero'],['About Us','who-we-are'],['What We Do','what-we-do'],['Projects','projects'],['Our Impact','impact'],['Stories','stories'],['Resources','resources'],['Contact','contact']];
 ---
 <header class="site-nav" id="main-nav"><div class="nav-inner">
   <a class="brand" href="/" aria-label={`${settings.shortName} home`}><img src="/assets/logo.avif" alt={settings.shortName}/><span class="brand-text"><strong>{settings.organisationName}</strong><span>{settings.diocese}</span></span></a>
-  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=><a href={id==='resources' ? '/resources/' : id==='projects' ? '/projects/' : anchor(id)} aria-current={(id==='projects' && Astro.url.pathname.startsWith('/projects/')) || (id==='resources' && Astro.url.pathname.startsWith('/resources/')) ? 'page' : undefined}>{label}</a>)}</nav>
+  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=><a href={routes[id] || anchor(id)} aria-current={routes[id] && Astro.url.pathname.startsWith(routes[id]) ? 'page' : undefined}>{label}</a>)}</nav>
   <a class="donate-btn" href="/donate/">DONATE NOW</a>
   <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">☰</button>
 </div></header>

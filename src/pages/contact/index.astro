@@ -1,0 +1,32 @@
+---
+import {getContent,safeExternalUrl} from '../../lib/content';
+import Layout from '../../layouts/SiteLayout.astro';
+import Icon from '../../components/ProjectIcon.astro';
+import '../../styles/project-directory.css';
+import '../../styles/contact-impact.css';
+const content=await getContent();
+const {settings}=content;
+const emailFor=(subject:string)=>`mailto:${settings.email}?subject=${encodeURIComponent(subject)}`;
+const enquiries=[
+  {title:'General enquiries',description:'Questions about JDPI, our programmes or our work in Northeast Nigeria.',subject:'General enquiry'},
+  {title:'Partnerships & support',description:'Explore collaboration, institutional partnerships or ways to support our work.',subject:'Partnership and support enquiry'},
+  {title:'Media & publications',description:'Request reports, approved brand assets or information for media coverage.',subject:'Media and publication enquiry'},
+];
+const socials=settings.socialLinks.filter(link=>safeExternalUrl(link.url));
+---
+<Layout content={content} title={`Contact Us | ${settings.shortName}`} description="Contact JDPI Maiduguri by email or phone, find our office address, and enquire about programmes, partnerships and publications." pageClass="projects-page contact-page">
+  <div class="project-shell contact-content">
+    <nav class="ci-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Contact</span></nav>
+    <section class="contact-intro" aria-labelledby="contact-heading">
+      <div><p class="ci-eyebrow">CONTACT JDPI</p><h1 id="contact-heading">Let’s start a<br/><span>conversation.</span></h1><p class="ci-lead">Connect with our team about our programmes, partnerships and work with communities across Northeast Nigeria.</p><p class="contact-diocese">{settings.organisationName}<br/>{settings.diocese}</p></div>
+      <div class="contact-channels">
+        <article><p class="ci-eyebrow">EMAIL OUR TEAM</p><h2><a href={`mailto:${settings.email}`}>{settings.email}</a></h2><p>For programme information, general enquiries and requests.</p></article>
+        <article><p class="ci-eyebrow">CALL US</p><h2><a href={`tel:${settings.phone.replace(/[^+\d]/g,'')}`}>{settings.phone}</a></h2><p>Speak with the JDPI Maiduguri team.</p></article>
+      </div>
+    </section>
+    <section class="contact-enquiries ci-section" aria-labelledby="enquiry-heading"><div class="ci-section-head"><h2 id="enquiry-heading">How can we help?</h2><p>Choose an enquiry to open an email to our team.</p></div><div class="contact-enquiry-grid">{enquiries.map(enquiry=><article><h3>{enquiry.title}</h3><p>{enquiry.description}</p><a class="ci-text-link" href={emailFor(enquiry.subject)}>Email us <span class="sr-only">about {enquiry.title.toLowerCase()}</span></a></article>)}</div></section>
+    <section class="contact-office" aria-labelledby="office-heading"><div><p class="ci-eyebrow">FIND US IN MAIDUGURI</p><h2 id="office-heading">Our office</h2><p>Contact our team before visiting to arrange a meeting.</p></div><div class="contact-address"><Icon name="location"/><div><address>{settings.address}<br/>{settings.country}</address><a class="ci-text-link" href={emailFor('Arrange a visit to JDPI Maiduguri')}>Arrange a visit</a></div></div></section>
+    {socials.length>0 && <section class="contact-social ci-section" aria-labelledby="social-heading"><h2 id="social-heading">Connect with JDPI</h2><div>{socials.map(link=><a class="ci-text-link" href={link.url} target="_blank" rel="noopener noreferrer">{link.label}<span class="sr-only"> (opens in a new tab)</span></a>)}</div></section>}
+    <div class="contact-related"><p>Looking for information about our work?</p><a href="/projects/">Explore projects</a><a href="/resources/">Reports &amp; resources</a></div>
+  </div>
+</Layout>

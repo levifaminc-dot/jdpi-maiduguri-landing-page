@@ -5,6 +5,15 @@ const htmlFiles=(await files('dist')).filter(file=>file.endsWith('.html'));
 const errors=[];
 for(const file of htmlFiles){
   const html=await readFile(file,'utf8');
+  const pageName=file.replaceAll('\\','/');
+  if(pageName==='dist/contact/index.html'||pageName==='dist/impact/index.html'){
+    const sections=pageName.includes('/contact/')?['contact-heading','enquiry-heading','office-heading']:['impact-heading','overview-heading','sectors-heading','coverage-heading','stories-heading','accountability-heading'];
+    for(const id of sections)if(!html.includes(`id="${id}"`))errors.push(`${file}: missing section ${id}`);
+    if((html.match(/<h1\b/g)||[]).length!==1)errors.push(`${file}: must have exactly one main heading`);
+    if(/href="#"/.test(html))errors.push(`${file}: placeholder link`);
+    if(pageName.includes('/contact/')&&(!html.includes('href="mailto:')||!html.includes('href="tel:')))errors.push(`${file}: missing working contact channels`);
+    if(pageName.includes('/impact/'))for(const fact of ['20,229','114','2025','Estimated','unique-person total'])if(!html.includes(fact))errors.push(`${file}: missing report context ${fact}`);
+  }
   if(/^dist[\\/]resources[\\/]index\.html$/.test(file)){
     for(const id of ['resources-heading','library-heading','resource-list','media-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing resource section ${id}`);
     if((html.match(/<h1\b/g)||[]).length!==1)errors.push(`${file}: resources must have exactly one main heading`);
@@ -26,6 +35,6 @@ for(const file of htmlFiles){
   }
   if(/SANITY_API_(?:READ|WRITE)_TOKEN|ghp_[A-Za-z0-9]+/.test(html))errors.push(`${file}: possible credential in build output.`);
 }
-for(const file of ['dist/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
+for(const file of ['dist/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
 if(errors.length)throw new Error(errors.join('\n'));
 console.log(`Verified ${htmlFiles.length} HTML pages: local links and assets resolve; required routes and metadata files exist.`);
