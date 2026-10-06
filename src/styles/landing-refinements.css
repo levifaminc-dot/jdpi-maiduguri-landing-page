@@ -42,11 +42,6 @@
 .home-refinement .partner-group{display:flex;gap:44px;padding-right:44px;flex-shrink:0}
 .home-refinement .partner{flex:0 0 200px;width:200px;height:136px;min-width:0;border:0;border-radius:0;background:transparent;padding:12px;font:600 1rem/1.5 Montserrat,sans-serif;color:#454b48;align-content:center;gap:12px}
 .home-refinement .partner img{height:76px;max-width:190px;object-fit:contain}
-.home-refinement .partner-caption{font:500 .875rem/1.35 "Open Sans",sans-serif;color:var(--muted)}
-.home-refinement .partner-motion-control{margin-top:20px;border:1px solid #cbd4ce;border-radius:999px;background:#fff;color:var(--green);padding:9px 18px;font-size:.875rem;cursor:pointer}
-.home-refinement .partner-motion-control:hover{background:#edf6ef}
-.home-refinement .partner-motion-control:disabled{color:var(--muted);cursor:default}
-.home-refinement .partner-carousel[data-paused="true"] .partner-track,
 .home-refinement .partner-window:hover .partner-track,
 .home-refinement .partner-window:focus-within .partner-track{animation-play-state:paused}
 @keyframes partners-left-to-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
