@@ -1,0 +1,37 @@
+---
+import type {SiteContent} from '../lib/content';
+import ContentImage from './ContentImage.astro';
+interface Props {partners:SiteContent['partners']; logos:Record<string,string>}
+const {partners,logos}=Astro.props;
+---
+<div class="partner-carousel" role="region" aria-label="Partners and donors" aria-roledescription="carousel" data-paused="false">
+  <div class="partner-window" id="partner-logo-window" tabindex="0" aria-label="Partner logos. Focus to pause movement.">
+    <div class="partner-track">
+      {[false,true].map(duplicate=><div class="partner-group" aria-hidden={duplicate ? 'true' : undefined}>
+        {partners.map(partner=><div class="partner" aria-label={duplicate ? undefined : partner.name}>
+          {partner.logo?.url ? <ContentImage image={{...partner.logo,alt:duplicate ? '' : partner.name}}/> : logos[partner.name] ? <><img src={logos[partner.name]} alt={duplicate ? '' : partner.name} width="227" height="100" loading="lazy"/><span class="partner-caption">{partner.name}</span></> : <span>{partner.name}</span>}
+        </div>)}
+      </div>)}
+    </div>
+  </div>
+  <button class="partner-motion-control" type="button" aria-controls="partner-logo-window" hidden>Pause animation</button>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('.partner-carousel').forEach(carousel=>{
+    const control=carousel.querySelector<HTMLButtonElement>('.partner-motion-control');
+    const preference=matchMedia('(prefers-reduced-motion: reduce)');
+    if(!control)return;
+    control.hidden=false;
+    function syncControl(){
+      if(!control)return;
+      control.disabled=preference.matches;
+      control.textContent=preference.matches ? 'Motion reduced' : carousel.dataset.paused==='true' ? 'Resume animation' : 'Pause animation';
+    }
+    control.addEventListener('click',()=>{
+      carousel.dataset.paused=String(carousel.dataset.paused!=='true');
+      syncControl();
+    });
+    preference.addEventListener('change',syncControl);
+    syncControl();
+  });
+</script>
