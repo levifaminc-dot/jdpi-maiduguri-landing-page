@@ -36,8 +36,9 @@
 .home-refinement .story-body a,.home-refinement .filter{font-size:.875rem}
 .home-refinement .story-date{font-size:.8125rem}
 .home-refinement .partner-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;overflow:visible;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-.home-refinement .partner{height:128px;min-width:0;border-radius:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;padding:24px;font:600 1rem/1.5 Montserrat,sans-serif;color:#454b48}
-.home-refinement .partner img{height:80px;max-width:190px;object-fit:contain}
+.home-refinement .partner{height:154px;min-width:0;border-radius:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;padding:20px;font:600 1rem/1.5 Montserrat,sans-serif;color:#454b48;align-content:center;gap:12px}
+.home-refinement .partner img{height:76px;max-width:190px;object-fit:contain}
+.home-refinement .partner-caption{font:500 .875rem/1.35 "Open Sans",sans-serif;color:var(--muted)}
 .home-refinement .support-copy{padding:3rem 2rem 3rem 3rem}
 .home-refinement .support-copy p{color:#e4eee8;font-size:1rem;line-height:1.7}
 .home-refinement .support-actions{flex-wrap:wrap;gap:14px}
@@ -82,6 +83,6 @@
   .home-refinement .heritage-label strong{font-size:1.1rem}
   .home-refinement .heritage-label span{font-size:.8125rem}
   .home-refinement .values-grid{grid-template-columns:1fr;margin-top:32px;gap:24px}
-  .home-refinement .partner{height:110px;padding:16px;font-size:.875rem}
-  .home-refinement .partner img{height:70px}
+  .home-refinement .partner{height:145px;padding:16px;font-size:.875rem}
+  .home-refinement .partner img{height:64px}
 }

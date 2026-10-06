@@ -1,0 +1,33 @@
+{
+  "reviewedOn": "2026-10-06",
+  "purpose": "Authentic partner marks for the local landing-page preview; images are stored locally without recolouring, tracing or distortion.",
+  "logos": [
+    {
+      "partner": "German Cooperation / BMZ",
+      "file": "/assets/partners/bmz.jpg",
+      "sourcePage": "https://health.bmz.de/",
+      "sourceAsset": "https://health.bmz.de/wp-content/uploads/astra-advanced-hook/bmz_logo_EN.jpg",
+      "note": "Official English BMZ ministry logo, not a GIZ logo or a recreated German Cooperation mark."
+    },
+    {
+      "partner": "Catholic Relief Services",
+      "file": "/assets/partners/crs.png",
+      "sourcePage": "https://www.crs.org/",
+      "sourceAsset": "https://www.crs.org/sites/default/files/2025/07/14/crs_logo-blue_0.png"
+    },
+    {
+      "partner": "IOM",
+      "file": "/assets/partners/iom.svg",
+      "sourcePage": "https://iom-p-we-webapp-ger-rfg-002.azurewebsites.net/en/medias/es5/",
+      "sourceAsset": "https://iom-p-we-webapp-ger-rfg-002.azurewebsites.net/images/iom-logo.svg",
+      "note": "Original blue English IOM visibility logo from IOM's media site."
+    }
+  ],
+  "existingLogos": "Caritas Germany, KfW, Nigeria Humanitarian Fund and UNICEF retain the authentic assets from JDPI's original website, documented in reference-assets.json.",
+  "echf": {
+    "status": "Awaiting JDPI identity confirmation and approved brand asset; retain text rather than inventing a separate logo.",
+    "likelyIdentity": "CRS Emergency Child Health Fund",
+    "evidence": "https://www.crs.org/our-work/program-areas/health-social-services",
+    "note": "CRS names the fund on its official website, but the acronym-to-project mapping and a standalone logo were not directly verified. Do not substitute ECHO or an unrelated charity."
+  }
+}
