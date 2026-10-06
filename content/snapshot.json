@@ -57,7 +57,11 @@
   },
   "partners": [
     {
-      "logo": null,
+      "logo": {
+        "alt": "giz",
+        "assetId": "image-96e722b0ecb918da5ffa67cf3cdedfd20aba8bb9-735x446-jpg",
+        "url": "/assets/sanity/image-96e722b0ecb918da5ffa67cf3cdedfd20aba8bb9-735x446-jpg.jpg"
+      },
       "name": "German Cooperation / BMZ",
       "sortOrder": 0,
       "website": null
@@ -69,7 +73,11 @@
       "website": null
     },
     {
-      "logo": null,
+      "logo": {
+        "alt": "kfw",
+        "assetId": "image-b8fe8747e038a116b16a54a970d9af8c5fd15a59-400x180-jpg",
+        "url": "/assets/sanity/image-b8fe8747e038a116b16a54a970d9af8c5fd15a59-400x180-jpg.jpg"
+      },
       "name": "KfW",
       "sortOrder": 2,
       "website": null
@@ -81,25 +89,41 @@
       "website": null
     },
     {
-      "logo": null,
+      "logo": {
+        "alt": "crs",
+        "assetId": "image-f32cf24c14fe0508a8f13f2a9af1190b89196784-617x403-webp",
+        "url": "/assets/sanity/image-f32cf24c14fe0508a8f13f2a9af1190b89196784-617x403-webp.webp"
+      },
       "name": "Catholic Relief Services",
       "sortOrder": 4,
       "website": null
     },
     {
-      "logo": null,
+      "logo": {
+        "alt": "NHF- Nigerian Humanitarian Fund",
+        "assetId": "image-028e95b0f7f52d0fb11366a037dedc58785cae49-977x309-png",
+        "url": "/assets/sanity/image-028e95b0f7f52d0fb11366a037dedc58785cae49-977x309-png.png"
+      },
       "name": "Nigeria Humanitarian Fund",
       "sortOrder": 5,
       "website": null
     },
     {
-      "logo": null,
+      "logo": {
+        "alt": "unicef",
+        "assetId": "image-30e4ccb03fd89bb9445bc72a27009cd5fe43387d-458x110-png",
+        "url": "/assets/sanity/image-30e4ccb03fd89bb9445bc72a27009cd5fe43387d-458x110-png.png"
+      },
       "name": "UNICEF",
       "sortOrder": 6,
       "website": null
     },
     {
-      "logo": null,
+      "logo": {
+        "alt": "IOM",
+        "assetId": "image-484cc9d481be7812d88d6bf75474122bb38611c5-975x650-jpg",
+        "url": "/assets/sanity/image-484cc9d481be7812d88d6bf75474122bb38611c5-975x650-jpg.jpg"
+      },
       "name": "IOM",
       "sortOrder": 7,
       "website": null
@@ -281,13 +305,13 @@
   "reports": [],
   "schemaVersion": 1,
   "settings": {
-    "address": "Maiduguri, Borno State",
+    "address": "St. Patrick’s Catholic Church, Jos Road. Opposite State Secretariat, P.O.Box 58, Maiduguri, Borno State.",
     "country": "Nigeria",
     "diocese": "Catholic Diocese of Maiduguri",
     "donationUrl": "",
-    "email": "info@jdpi.org",
+    "email": "info@jdpimaiduguri.org",
     "organisationName": "Justice Development and Peace Initiative",
-    "phone": "+234 000 000 0000",
+    "phone": "+2347039733933",
     "seoDescription": "Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create pathways to a more dignified future.",
     "seoTitle": "JDPI Maiduguri",
     "shortName": "JDPI Maiduguri",
