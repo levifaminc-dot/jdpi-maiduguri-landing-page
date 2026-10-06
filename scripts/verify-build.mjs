@@ -19,7 +19,13 @@ for(const file of htmlFiles){
       if(!html.includes('https://www.google.com/maps/embed?')||!html.includes('referrerpolicy="strict-origin-when-cross-origin"'))errors.push(`${file}: missing map widget`);
       if(/name="_captcha"[^>]*value="false"/.test(html))errors.push(`${file}: contact form CAPTCHA must remain enabled`);
     }
-    if(pageName.includes('/impact/'))for(const fact of ['20,229','114','2025','Estimated','unique-person total'])if(!html.includes(fact))errors.push(`${file}: missing report context ${fact}`);
+    if(pageName.includes('/impact/')){
+      for(const fact of ['20,229','114','2025','Estimated','unique-person total','263','100'])if(!html.includes(fact))errors.push(`${file}: missing report context ${fact}`);
+      if(html.indexOf('id="stories-heading"')>html.indexOf('id="sectors-heading"'))errors.push(`${file}: community stories must lead programme results`);
+      for(const id of ['growing-heading','women-heading','enterprise-heading'])if(!html.includes(`aria-labelledby="${id}"`))errors.push(`${file}: missing labelled community story ${id}`);
+      for(const asset of ['bmz-greenhouse-monitoring','bmz-greenhouse-crops','bmz-greenhouse-harvest','we-sing-startup-kits'])if(!html.includes(`/assets/projects/${asset}.jpg`))errors.push(`${file}: missing report photograph ${asset}`);
+      for(const id of ['stories-heading','sectors-heading','coverage-heading','accountability-heading'])if(!html.includes(`href="#${id}"`))errors.push(`${file}: missing impact section navigation ${id}`);
+    }
   }
   if(/^dist[\\/]resources[\\/]index\.html$/.test(file)){
     for(const id of ['resources-heading','library-heading','resource-list','media-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing resource section ${id}`);

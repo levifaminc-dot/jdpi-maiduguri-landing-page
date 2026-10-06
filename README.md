@@ -10,6 +10,7 @@ Astro public website and a standalone Sanity Studio for the Justice Development 
 - The donation page accepts the organisation’s approved HTTPS checkout link; until one is added it directs donors to contact JDPI.
 - GitHub Actions verifies and packages every code revision. Once the Sanity webhook is connected, published content is exported, committed and rebuilt automatically.
 - Vercel project `jdpi-maiduguri-landing-page` in the JDPI team is connected to the private GitHub repository. Pushes to `main` trigger production builds. The existing Sites deployment is retained separately.
+- The story-led `/impact/` page uses approved annual-report photographs, project-profile narratives and curated 2025 results from `src/lib/impact.ts`. These dedicated report highlights are distinct from the homepage’s CMS impact fields. When updating the reporting year, review dates, units, photo captions and source pages together; do not sum programme counts as unique people reached or attribute a photographed person to a separate case story.
 
 ## Vercel deployment
 
