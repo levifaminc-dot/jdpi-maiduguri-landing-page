@@ -1,0 +1,5 @@
+/* WordPress brand pairing: Montserrat display type and DM Sans reading text. */
+h1,h2,h3,h4,h5,h6{font-family:Montserrat,sans-serif}
+/* Preserve page-specific sizing and spacing; only strengthen display headings. */
+body main :is(.hero,.inner-page,.ie-hero,.project-hero,.project-detail-hero,.resource-intro,.contact-intro,.contact-page-heading) h1{font-weight:900}
+body main :is(.who-copy,.section-head,.split-head,.partners,.support-copy,.ie-section-heading,.ie-accountability) h2,body main .impact h2{font-weight:900}

@@ -27,7 +27,7 @@
 .project-filter.is-active{border-bottom-color:var(--project-green);color:var(--project-green);font-weight:700}
 .project-search-sort{display:flex;gap:16px;align-items:center}
 .project-search{position:relative;display:block}
-.project-search input,.project-sort select{font:400 .875rem/1.4 'Open Sans',sans-serif;color:#4b534e;border:1px solid #dce3df;border-radius:5px;height:44px;background:#fff}
+.project-search input,.project-sort select{font:400 .875rem/1.4 'DM Sans',sans-serif;color:#4b534e;border:1px solid #dce3df;border-radius:5px;height:44px;background:#fff}
 .project-search input{width:250px;padding:10px 44px 10px 14px}
 .project-search>svg{position:absolute;right:14px;top:12px;width:20px;height:20px;color:var(--project-green);pointer-events:none}
 .project-sort select{max-width:180px;padding:10px 32px 10px 14px;cursor:pointer}

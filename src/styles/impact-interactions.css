@@ -45,7 +45,7 @@
 .im-hotspot{fill:#fff;stroke:#006d3b;stroke-width:2;vector-effect:non-scaling-stroke}
 .im-leader{stroke:#063f2d;stroke-width:1.2;vector-effect:non-scaling-stroke;pointer-events:none}
 .im-anchor{fill:#063f2d;stroke:#fff;stroke-width:1;vector-effect:non-scaling-stroke}
-.im-hotspot-number{font:700 14px 'Open Sans',sans-serif;fill:#063f2d;pointer-events:none}
+.im-hotspot-number{font:700 14px 'DM Sans',sans-serif;fill:#063f2d;pointer-events:none}
 .im-covered:focus-visible .im-hotspot{stroke:#956800;stroke-width:4}
 .im-covered.is-active .im-hotspot{fill:#063f2d;stroke:#fff}
 .im-covered.is-active .im-hotspot-number{fill:#fff}
