@@ -4,7 +4,7 @@ import {safeExternalUrl} from '../lib/content';
 import ProjectIcon from './ProjectIcon.astro';
 interface Props {content: SiteContent}
 const {settings, programmes}=Astro.props.content;
-const quickLinks=[['About Us','/#who-we-are'],['Projects','/projects/'],['Our Impact','/impact/'],['Stories & Updates','/stories/']];
+const quickLinks=[['About Us','/about/'],['Projects','/projects/'],['Our Impact','/impact/'],['Stories & Updates','/stories/']];
 const footerProgrammes=programmes.slice(0,3);
 const configuredSocials=(settings.socialLinks || []).filter(link=>safeExternalUrl(link.url));
 // This fallback is JDPI's official page supplied by the organisation.

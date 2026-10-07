@@ -13,6 +13,15 @@ for(const file of htmlFiles){
   if(!html.includes('family=DM+Sans:wght@400;500;600;700')||!html.includes('family=Montserrat:wght@400;500;600;700;800;900'))errors.push(`${file}: missing WordPress font pairing and display weights`);
   if(html.includes('family=Open+Sans'))errors.push(`${file}: legacy body font is still requested`);
   const pageName=file.replaceAll('\\','/');
+  if(pageName==='dist/about/index.html'){
+    for(const id of ['about-heading','who-heading','story-heading','guides-heading','identity-heading','where-heading','approach-heading','leadership-heading','accountability-heading','cta-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing About section ${id}`);
+    if((html.match(/<h1\b/g)||[]).length!==1)errors.push(`${file}: About must have exactly one main heading`);
+    if(/href="#"/.test(html))errors.push(`${file}: placeholder About link`);
+    if(!html.includes('href="/about/" aria-current="page"'))errors.push(`${file}: missing current About navigation`);
+    for(const fact of ['1971','1988','2015','2025 Annual Report','Maiduguri','Mubi','Potiskum','CC BY 4.0'])if(!html.includes(fact))errors.push(`${file}: missing verified About context ${fact}`);
+    for(const person of ['oliver-dashe-doeme','vincent-okoye','adowuyi-farindo','chioma-onuoha'])if(!html.includes(`/assets/about/${person}.jpg`))errors.push(`${file}: missing report-labelled leadership portrait ${person}`);
+    for(const state of ['Yobe','Borno','Adamawa'])if(!html.includes(`<text`)||!html.includes(`>${state}</text>`))errors.push(`${file}: missing state label ${state}`);
+  }
   if(pageName==='dist/contact/index.html'||pageName==='dist/impact/index.html'){
     const sections=pageName.includes('/contact/')?['contact-heading','enquiry-heading','office-heading']:['impact-heading','overview-heading','sectors-heading','coverage-heading','stories-heading','accountability-heading'];
     for(const id of sections)if(!html.includes(`id="${id}"`))errors.push(`${file}: missing section ${id}`);
@@ -63,6 +72,6 @@ for(const file of htmlFiles){
   }
   if(/SANITY_API_(?:READ|WRITE)_TOKEN|ghp_[A-Za-z0-9]+/.test(html))errors.push(`${file}: possible credential in build output.`);
 }
-for(const file of ['dist/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
+for(const file of ['dist/index.html','dist/about/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
 if(errors.length)throw new Error(errors.join('\n'));
 console.log(`Verified ${htmlFiles.length} HTML pages: local links and assets resolve; required routes and metadata files exist.`);
