@@ -14,7 +14,11 @@ for(const file of htmlFiles){
   if(html.includes('family=Open+Sans'))errors.push(`${file}: legacy body font is still requested`);
   const pageName=file.replaceAll('\\','/');
   if(pageName==='dist/about/index.html'){
-    for(const id of ['about-heading','who-heading','story-heading','guides-heading','identity-heading','where-heading','approach-heading','leadership-heading','accountability-heading','cta-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing About section ${id}`);
+    for(const id of ['about-heading','who-heading','story-heading','guides-heading','identity-heading','where-heading','approach-heading','leadership-heading','accountability-heading','partnership-heading','cta-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing About section ${id}`);
+    const sectionNav=html.match(/<nav\b[^>]*class="ab-section-nav"[\s\S]*?<\/nav>/)?.[0];
+    if(!sectionNav||!sectionNav.includes('aria-label="About page sections"')||(sectionNav.match(/<a\b/g)||[]).length!==10)errors.push(`${file}: must have ten accessible About section links`);
+    for(const id of ['who-heading','story-heading','guides-heading','identity-heading','where-heading','approach-heading','leadership-heading','accountability-heading','partnership-heading','cta-heading'])if(!sectionNav?.includes(`href="#${id}"`))errors.push(`${file}: missing About section link ${id}`);
+    if(html.indexOf('class="ab-section-nav"')<html.indexOf('class="ab-hero"')||html.indexOf('class="ab-section-nav"')>html.indexOf('aria-labelledby="who-heading"'))errors.push(`${file}: About section navigation must follow the hero`);
     if((html.match(/<h1\b/g)||[]).length!==1)errors.push(`${file}: About must have exactly one main heading`);
     if(/href="#"/.test(html))errors.push(`${file}: placeholder About link`);
     if(!html.includes('href="/about/" aria-current="page"'))errors.push(`${file}: missing current About navigation`);

@@ -4,6 +4,10 @@ Reference: the organisation's supplied IMG_2718.PNG. Route: `/about/`.
 The page follows its photo hero, introduction, history, mission/vision, values,
 identity, coverage, approach, leadership, accountability, partnerships and CTA layout.
 Existing shared header/footer and WordPress font pairing are preserved.
+Ten native section links below the hero form a sticky horizontal menu. The active
+section is highlighted during scrolling; the menu scrolls sideways on smaller
+screens. All sections remain visible, links work without JavaScript, and headings
+have offsets for both the fixed header and sticky menu.
 
 ## Verified content
 

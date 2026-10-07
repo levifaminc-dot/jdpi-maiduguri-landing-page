@@ -10,6 +10,12 @@ import '../../styles/about.css';
 const content=await getContent();
 const report=getResourceLibrary(content.reports).find(item=>item.title==='JDPI Annual Report 2025');
 const reportPage=(page:number)=>`${report?.fileUrl || '/resources/'}#page=${page}`;
+const sectionLinks=[
+  ['Who We Are','who-heading'],['Our Story','story-heading'],['Mission & Values','guides-heading'],
+  ['Our Identity','identity-heading'],['Where We Work','where-heading'],['Our Approach','approach-heading'],
+  ['Leadership','leadership-heading'],['Accountability','accountability-heading'],
+  ['Partnerships','partnership-heading'],['Our Work','cta-heading'],
+];
 const accountability=[
   {title:'Safeguarding',text:'Protecting dignity, safety and wellbeing.',url:reportPage(59)},
   {title:'Community accountability',text:'Listening, learning and responding.',url:reportPage(58)},
@@ -22,6 +28,8 @@ const accountability=[
     <img class="ab-hero-image" src="/assets/about/peace-conference.jpg" alt="Community members and partners gathered at JDPI’s 2025 peace conference" width="796" height="358" fetchpriority="high"/>
     <div class="ab-shell ab-hero-copy"><p class="ab-kicker">ABOUT JDPI</p><h1 id="about-heading">Rooted in service.<br/><span>Committed to<br class="ab-mobile-break"/> human dignity.</span></h1><p>Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create a more dignified future.</p><nav class="ab-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">About Us</span></nav></div>
   </section>
+
+  <nav class="ab-section-nav" aria-label="About page sections"><div class="ab-shell">{sectionLinks.map(([label,id],index)=><a href={`#${id}`} aria-current={index===0?'location':undefined}>{label}</a>)}</div></nav>
 
   <section class="ab-section ab-shell ab-who" aria-labelledby="who-heading"><div><p class="ab-kicker">WHO WE ARE</p><h2 id="who-heading">Local roots.<br/>A shared purpose.</h2><p>Justice Development and Peace Initiative in Maiduguri Diocese (JDPI Maiduguri) is the faith-based, non-profit humanitarian and development organisation of the Catholic Diocese of Maiduguri.</p><p>Across Borno, Adamawa and Yobe, we work with people affected by conflict, displacement and poverty—meeting immediate needs while supporting recovery, resilience and peaceful coexistence.</p><p>We accompany communities, working with local structures, government institutions, civil society and development partners to address both urgent needs and the causes of vulnerability.</p><strong class="ab-promise">Upholding the dignity of every human person.</strong></div><figure class="ab-who-photo"><img src="/assets/about/community-dialogue.jpg" alt="Community members participating in an outdoor dialogue session under a tree" width="395" height="216" loading="lazy"/><figcaption>Community dialogue · JDPI Annual Report 2025</figcaption><div class="ab-photo-note"><strong>Since 1971</strong><span>A commitment to service.</span></div></figure></section>
 
@@ -39,7 +47,8 @@ const accountability=[
 
   <section class="ab-accountability ab-section" aria-labelledby="accountability-heading"><div class="ab-shell"><p class="ab-kicker">RESPONSIBILITY &amp; TRUST</p><h2 id="accountability-heading">Our commitment to accountability.</h2><p class="ab-section-intro">Responsible, transparent programming protects the dignity, rights and safety of the people and communities we work with.</p><div class="ab-accountability-links">{accountability.map(item=><a href={item.url} target={item.url.startsWith('https:')?'_blank':undefined} rel={item.url.startsWith('https:')?'noopener noreferrer':undefined}><div><h3>{item.title}</h3><p>{item.text}</p></div><Icon name="arrow"/>{item.url.startsWith('https:') && <span class="ab-sr-only">(opens the annual report in a new tab)</span>}</a>)}</div><p class="ab-feedback-note">For general feedback, use our contact page. Please do not submit confidential case details through the website form.</p></div></section>
 
-  <section class="ab-partnership ab-shell"><div><p class="ab-kicker">WORKING TOGETHER</p><h2>Stronger through partnership.</h2><p>Our work is strengthened by communities, Church structures, government institutions, civil society, humanitarian actors and development partners.</p></div><a class="ab-button" href="/#resources">Our partners <Icon name="arrow"/></a></section>
+  <section class="ab-partnership ab-shell" aria-labelledby="partnership-heading"><div><p class="ab-kicker">WORKING TOGETHER</p><h2 id="partnership-heading">Stronger through partnership.</h2><p>Our work is strengthened by communities, Church structures, government institutions, civil society, humanitarian actors and development partners.</p></div><a class="ab-button" href="/#resources">Our partners <Icon name="arrow"/></a></section>
 
   <section class="ab-cta" aria-labelledby="cta-heading"><img src="/assets/about/peace-conference.jpg" alt="Participants coming together at the JDPI peace conference" width="796" height="358" loading="lazy"/><div><p class="ab-kicker">TOGETHER, WE GO FURTHER</p><h2 id="cta-heading">Together, dignity<br/>becomes action.</h2><p>Discover how we are working alongside communities across Northeast Nigeria.</p><div class="ab-cta-actions"><a class="ab-button ab-button-light" href="/projects/">Explore our work <Icon name="arrow"/></a><a class="ab-button ab-button-outline" href="/impact/">View our impact <Icon name="arrow"/></a></div></div></section>
+  <script>import '../../scripts/about-navigation';</script>
 </Layout>
