@@ -7,6 +7,9 @@ const htmlFiles=(await files('dist')).filter(file=>file.endsWith('.html'));
 const errors=[];
 for(const file of htmlFiles){
   const html=await readFile(file,'utf8');
+  const footer=html.match(/<footer\b[^>]*class="jdpi-footer"[\s\S]*?<\/footer>/)?.[0];
+  if(!footer||!footer.includes('class="jf-logo"')||!footer.includes('src="/assets/logo.avif"'))errors.push(`${file}: missing branded footer and JDPI logo`);
+  if(footer && (!footer.includes('aria-labelledby="footer-explore-heading"')||!footer.includes('aria-labelledby="footer-programmes-heading"')||!footer.includes('href="/contact/"')||!footer.includes('href="mailto:')||!footer.includes('href="tel:')))errors.push(`${file}: missing accessible footer navigation or working contact links`);
   if(!html.includes('family=DM+Sans:wght@400;500;600;700')||!html.includes('family=Montserrat:wght@400;500;600;700;800;900'))errors.push(`${file}: missing WordPress font pairing and display weights`);
   if(html.includes('family=Open+Sans'))errors.push(`${file}: legacy body font is still requested`);
   const pageName=file.replaceAll('\\','/');
