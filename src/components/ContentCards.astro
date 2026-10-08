@@ -1,6 +1,7 @@
 ---
 import type {ContentItem} from '../lib/content';
 import {itemUrl,formatDate} from '../lib/content';
+import {programmeImage} from '../lib/programmes';
 import ContentImage from './ContentImage.astro';
 interface Props {items: ContentItem[]; type: 'programmes'|'projects'|'stories'; carousel?: boolean; focusLabels?: Record<string,string>}
 const {items,type,carousel=true,focusLabels={}}=Astro.props;
@@ -8,7 +9,7 @@ const tones=['green','yellow','blue','red','purple','teal','orange'];
 ---
 <div class={carousel ? 'carousel' : 'content-grid'} id={carousel ? `${type}-carousel` : undefined}>
 {items.map((item,i)=><article class={type==='programmes' ? 'carousel-card' : type==='projects' ? 'project-card' : 'story-card'} data-type={type==='stories' ? item.category : undefined}>
-  <ContentImage image={item.image}/>
+  <ContentImage image={type==='programmes'?programmeImage(item):item.image}/>
   <div class={type==='programmes' ? `card-panel c-${tones[i%tones.length]}` : type==='projects' ? 'project-body' : 'story-body'}>
     {type==='stories' && <p class="story-date">{formatDate(item.publishedAt)}</p>}
     {type==='projects' && focusLabels[item.slug] && <span class="project-focus">{focusLabels[item.slug]}</span>}

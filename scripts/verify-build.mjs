@@ -27,6 +27,7 @@ for(const file of htmlFiles){
   if(['dist/team/index.html','dist/where-we-work/index.html'].includes(pageName)&&((html.match(/<h1\b/g)||[]).length!==1||/href="#"/.test(html)))errors.push(`${file}: invalid page heading or placeholder link`);
   const primary=html.match(/<nav\b[^>]*id="nav-links"[\s\S]*?<\/nav>/)?.[0];
   if(!primary?.includes('id="submenu-stories"')||!primary.includes('aria-controls="submenu-stories"')||!primary.includes('href="/resources/"'))errors.push(`${file}: missing Resources submenu under Stories`);
+  if(!primary?.includes('href="/programmes/"'))errors.push(`${file}: What We Do must link to the programme directory`);
   for(const url of ['https://www.facebook.com/p/JDPI-Maiduguri-100081401777454/','https://www.instagram.com/jdpimaiduguri/','https://x.com/jdpimaiduguri','https://www.linkedin.com/company/jdpimaiduguri/'])if(!footer?.includes(url))errors.push(`${file}: missing verified footer social ${url}`);
   if(pageName==='dist/where-we-work/index.html'){
     if((html.match(/data-lga-activity=/g)||[]).length!==20)errors.push(`${file}: must explain all twenty LGAs`);
@@ -38,6 +39,20 @@ for(const file of htmlFiles){
     for(const person of [...team.board,...team.management])if(!html.includes(person.name)||!html.includes(`/assets/team/${person.image}.jpg`))errors.push(`${file}: missing report-listed team member ${person.name}`);
     for(const id of ['team-heading','board-heading','management-heading','people-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing team section ${id}`);
     if(!html.includes('As listed in the 2025 Annual Report')||html.includes('Zion Japhet'))errors.push(`${file}: invalid team roster context`);
+  }
+  if(pageName==='dist/programmes/index.html'){
+    if((html.match(/<h1\b/g)||[]).length!==1||/href="#"/.test(html))errors.push(`${file}: invalid programme page heading or placeholder link`);
+    if((html.match(/data-programme=/g)||[]).length!==snapshot.programmes.length)errors.push(`${file}: programme catalogue must follow the CMS snapshot`);
+    for(const programme of snapshot.programmes){
+      for(const target of [`data-programme="${programme.slug}"`,`href="#programme-${programme.slug}"`,`href="/programmes/${programme.slug}/"`])if(!html.includes(target))errors.push(`${file}: missing CMS programme or navigation ${target}`);
+      if(programme.summary&&!html.includes(programme.summary.replaceAll('&','&amp;')))errors.push(`${file}: missing CMS summary for ${programme.slug}`);
+    }
+    for(const id of ['programmes-heading','areas-heading','approach-heading','action-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing programme section ${id}`);
+    for(const context of ['not live totals','unique-person total','2025 Annual Report','href="/where-we-work/"','href="/impact/"','href="/projects/"'])if(!html.includes(context))errors.push(`${file}: missing programme context or route ${context}`);
+    if(!html.includes('href="/programmes/" aria-current="page"')||!html.includes('aria-label="Programme areas"'))errors.push(`${file}: missing accessible current navigation or area links`);
+    if(snapshot.programmes.some(programme=>programme.slug==='water-sanitation-and-hygiene')&&!html.includes('2025 REPORTED RESULT · ESTIMATED'))errors.push(`${file}: safe-water reach must be labelled estimated`);
+    if(snapshot.programmes.some(programme=>programme.slug==='mental-health-and-psychosocial-support')&&!html.includes('not a count of people receiving individual counselling'))errors.push(`${file}: messaging reach must not imply individual counselling`);
+    if(html.includes('image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg'))errors.push(`${file}: unrelated Nutrition placeholder must not appear`);
   }
   if(pageName==='dist/stories/index.html'){
     for(const id of ['updates-heading','updates-library-heading','updates-search','updates-count','updates-list'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing updates section/control ${id}`);
@@ -109,6 +124,6 @@ for(const file of htmlFiles){
   }
   if(/SANITY_API_(?:READ|WRITE)_TOKEN|ghp_[A-Za-z0-9]+/.test(html))errors.push(`${file}: possible credential in build output.`);
 }
-for(const file of ['dist/index.html','dist/about/index.html','dist/team/index.html','dist/where-we-work/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
+for(const file of ['dist/index.html','dist/about/index.html','dist/team/index.html','dist/where-we-work/index.html','dist/programmes/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
 if(errors.length)throw new Error(errors.join('\n'));
 console.log(`Verified ${htmlFiles.length} HTML pages: local links and assets resolve; required routes and metadata files exist.`);

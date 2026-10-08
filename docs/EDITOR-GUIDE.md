@@ -16,6 +16,8 @@ Open the deployed Sanity Studio or use the website’s `/admin/` link, then sign
 
 For new programme, project or story pages, click **Generate** beside **Page address**. Use lowercase words separated by hyphens. Keep an existing page address stable so shared links continue to work.
 
+The **What We Do** page at `/programmes/` lists published Programmes in their display order, using their titles, introductions and images. Full content appears on the individual programme page. Projects with an explicit programme reference can appear as related projects. The 2025 result highlights are report-backed website content, separate from editable CMS introductions; review them with the website maintainer when updating the reporting year. The original Nutrition winter-landscape placeholder is replaced by the report’s nutrition-project close-out photo; uploading a different image in Sanity replaces this fallback.
+
 ## Review and publish
 
 1. Write or update the content. Sanity saves it as a draft.

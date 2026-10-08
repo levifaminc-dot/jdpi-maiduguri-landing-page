@@ -28,7 +28,7 @@ const socials=[...configuredSocials,...reportSocials.filter(link=>!configuredSoc
       </nav>
       <nav class="jf-column" aria-labelledby="footer-programmes-heading">
         <h2 id="footer-programmes-heading">Our programmes</h2>
-        <ul>{footerProgrammes.map(p=><li><a href={`/programmes/${p.slug}/`}>{p.title.toLowerCase().replace(/(^|[\s&])\S/g,letter=>letter.toUpperCase())}</a></li>)}<li><a href="/#what-we-do">All programmes <span aria-hidden="true">→</span></a></li></ul>
+        <ul>{footerProgrammes.map(p=><li><a href={`/programmes/${p.slug}/`}>{p.title.toLowerCase().replace(/(^|[\s&])\S/g,letter=>letter.toUpperCase())}</a></li>)}<li><a href="/programmes/">All programmes <span aria-hidden="true">→</span></a></li></ul>
       </nav>
       <div class="jf-column jf-contact">
         <h2>Get in touch</h2>

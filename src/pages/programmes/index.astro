@@ -1,0 +1,62 @@
+---
+import {getContent} from '../../lib/content';
+import {sectorImpact,impactYear} from '../../lib/impact';
+import {programmeImage} from '../../lib/programmes';
+import Layout from '../../layouts/SiteLayout.astro';
+import ContentImage from '../../components/ContentImage.astro';
+import ProjectIcon from '../../components/ProjectIcon.astro';
+import '../../styles/project-directory.css';
+import '../../styles/programmes.css';
+const content=await getContent();
+const icons:Record<string,'food'|'nutrition'|'water'|'protection'|'wellbeing'|'peace'|'income'>={
+  'food-security-and-livelihoods':'food',nutrition:'nutrition','water-sanitation-and-hygiene':'water',
+  protection:'protection','mental-health-and-psychosocial-support':'wellbeing',
+  'peacebuilding-and-social-cohesion':'peace','economic-empowerment':'income',
+};
+const shortLabels:Record<string,string>={
+  'food-security-and-livelihoods':'Food & livelihoods',nutrition:'Nutrition',
+  'water-sanitation-and-hygiene':'Water & hygiene',protection:'Protection',
+  'mental-health-and-psychosocial-support':'Mental well-being',
+  'peacebuilding-and-social-cohesion':'Peacebuilding','economic-empowerment':'Economic empowerment',
+};
+const displayTitle=(title:string)=>title===title.toUpperCase()?title.toLowerCase().replace(/(^|[\s&])\S/g,letter=>letter.toUpperCase()):title;
+const programmes=content.programmes.map(item=>({
+  ...item,image:programmeImage(item),displayTitle:displayTitle(item.title),icon:icons[item.slug]||'food',
+  shortLabel:shortLabels[item.slug]||displayTitle(item.title),
+  result:sectorImpact.find(result=>result.slug===item.slug),
+  projects:content.projects.filter(project=>project.projectProgrammes?.some(programme=>programme.slug===item.slug)),
+}));
+---
+<Layout content={content} title={`Our Programmes | ${content.settings.shortName}`} description="Explore JDPI’s integrated programmes in food security, nutrition, water and hygiene, protection, mental well-being, peacebuilding and economic empowerment across Northeast Nigeria." pageClass="projects-page programmes-page">
+  <section class="pg-hero" aria-labelledby="programmes-heading">
+    <img class="pg-hero-image" src="/assets/projects/bmz-greenhouse-monitoring.jpg" alt="A JDPI team member inspecting crops in a BMZ-supported greenhouse" fetchpriority="high"/>
+    <div class="project-shell pg-hero-copy">
+      <nav class="pg-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>What We Do</span></nav>
+      <p class="pg-eyebrow">OUR PROGRAMMES</p>
+      <h1 id="programmes-heading">Different needs.<br/><span>One shared dignity.</span></h1>
+      <p>From meeting urgent needs to strengthening lasting resilience, we work alongside communities across Northeast Nigeria.</p>
+      <a class="pg-button pg-button-light" href="#programme-areas">Explore our programmes <ProjectIcon name="arrow"/></a>
+    </div>
+    <p class="pg-photo-note">BMZ project · JDPI Annual Report 2025</p>
+  </section>
+  <nav class="pg-section-nav" aria-label="Programme areas"><div class="project-shell">{programmes.map(programme=><a href={`#programme-${programme.slug}`}><ProjectIcon name={programme.icon}/>{programme.shortLabel}</a>)}</div></nav>
+  <section class="pg-directory project-shell" id="programme-areas" aria-labelledby="areas-heading">
+    <div class="pg-section-head"><div><p class="pg-eyebrow">WHAT WE DO</p><h2 id="areas-heading">Integrated programmes.<br/>Stronger communities.</h2></div><p>People’s needs are connected. Our programmes bring humanitarian assistance, development and peacebuilding together, with dignity at the centre.</p></div>
+    <div class="pg-grid">{programmes.map((programme,index)=><article class:list={['pg-card',`pg-${programme.icon}`,{'pg-card-wide':index===programmes.length-1&&programmes.length%3===1}]} id={`programme-${programme.slug}`} data-programme={programme.slug}>
+      <a class="pg-card-photo" href={`/programmes/${programme.slug}/`} aria-label={`Explore ${programme.displayTitle}`}><ContentImage image={programme.image}/><span class="pg-card-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span></a>
+      <div class="pg-card-body">
+        <div class="pg-card-heading"><span class="pg-icon"><ProjectIcon name={programme.icon}/></span><h3><a href={`/programmes/${programme.slug}/`}>{programme.displayTitle}</a></h3></div>
+        {programme.summary&&<p class="pg-summary">{programme.summary}</p>}
+        {programme.result&&<div class="pg-result"><p class="pg-result-year">{impactYear} REPORTED RESULT{programme.result.estimated?' · ESTIMATED':''}</p><strong>{programme.result.value}</strong><span>{programme.result.label}</span><p>{programme.result.description}</p><small>Annual Report {impactYear} · {programme.result.source}</small></div>}
+        {programme.projects.length>0&&<div class="pg-project-links"><p>RELATED PROJECTS</p><ul>{programme.projects.slice(0,2).map(project=><li><a href={`/projects/${project.slug}/`}>{project.title} <span aria-hidden="true">↗</span></a></li>)}</ul></div>}
+        <a class="pg-card-link" href={`/programmes/${programme.slug}/`}>Explore programme <ProjectIcon name="arrow"/><span class="sr-only"> — {programme.displayTitle}</span></a>
+      </div>
+    </article>)}</div>
+    <p class="pg-report-note">Results are from the {impactYear} Annual Report, not live totals. Programme figures use different measures and may overlap; they must not be added as a unique-person total. <a href="/impact/#sectors-heading">See the full results and reporting context <span aria-hidden="true">→</span></a></p>
+  </section>
+  <section class="pg-approach" aria-labelledby="approach-heading"><div class="project-shell pg-approach-grid">
+    <figure><img src="/assets/about/community-dialogue.jpg" alt="Community members participating in a JDPI dialogue session" loading="lazy"/><figcaption>Community dialogue · JDPI Annual Report 2025</figcaption></figure>
+    <div><p class="pg-eyebrow">OUR APPROACH</p><h2 id="approach-heading">Working with communities.<br/><span>Not simply for them.</span></h2><p>Our work is rooted in listening, participation and local knowledge. We connect support across programme areas so communities can meet today’s needs and shape tomorrow’s possibilities.</p><div class="pg-principles"><div><ProjectIcon name="location"/><h3>Locally rooted</h3><p>Working across Borno, Adamawa and Yobe.</p></div><div><ProjectIcon name="protection"/><h3>Dignity first</h3><p>Promoting safety, inclusion and the rights of every person.</p></div></div><a class="pg-button" href="/where-we-work/">See where we work <ProjectIcon name="arrow"/></a></div>
+  </div></section>
+  <section class="pg-cta" aria-labelledby="action-heading"><div class="project-shell"><div><p class="pg-eyebrow">FROM PROGRAMMES TO PROGRESS</p><h2 id="action-heading">See the work.<br/><span>Meet the change.</span></h2><p>Discover our projects, explore reported results, or talk to us about working together.</p></div><div class="pg-actions"><a class="pg-button pg-button-light" href="/projects/">Explore our projects <ProjectIcon name="arrow"/></a><a class="pg-button pg-button-outline" href="/impact/">View our impact <ProjectIcon name="arrow"/></a><a class="pg-contact-link" href="/contact/">Partner with JDPI <span aria-hidden="true">↗</span></a></div></div></section>
+</Layout>

@@ -6,7 +6,7 @@ import Layout from '../layouts/SiteLayout.astro';
 import ContentImage from './ContentImage.astro';
 interface Props {item:ContentItem; content:SiteContent; type:'programmes'|'projects'|'stories'}
 const {item,content,type}=Astro.props;
-const back=type==='programmes' ? '/#what-we-do' : `/${type}/`;
+const back=`/${type}/`;
 ---
 <Layout content={content} title={`${item.seoTitle||item.title} | ${content.settings.shortName}`} description={item.seoDescription||item.summary||content.settings.seoDescription}>
   <section class="inner-page"><div class="shell"><a class="back-link" href={back}>Back to {type}</a><h1>{item.title}</h1>

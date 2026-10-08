@@ -3,7 +3,7 @@ import type {SiteContent} from '../lib/content';
 interface Props {settings: SiteContent['settings']; home?: boolean}
 const {settings, home=false}=Astro.props;
 const anchor=(id:string)=>home ? `#${id}` : `/#${id}`;
-const routes:Record<string,string>={'who-we-are':'/about/',projects:'/projects/',stories:'/stories/',resources:'/resources/',impact:'/impact/',contact:'/contact/'};
+const routes:Record<string,string>={'who-we-are':'/about/','what-we-do':'/programmes/',projects:'/projects/',stories:'/stories/',resources:'/resources/',impact:'/impact/',contact:'/contact/'};
 const navigation=[['Home','hero'],['About Us','who-we-are'],['What We Do','what-we-do'],['Projects','projects'],['Our Impact','impact'],['Stories','stories'],['Contact','contact']];
 const submenus:Record<string,{label:string;url:string}[]>={
   'who-we-are':[{label:'Our Team',url:'/team/'}],
