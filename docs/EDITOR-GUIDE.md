@@ -10,7 +10,7 @@ Open the deployed Sanity Studio or use the website’s `/admin/` link, then sign
 | Homepage & impact figures | Opening statement and images, introduction, verified impact figures, section headings, support text |
 | Programmes | Programme title, introduction, image, full content and display order |
 | Projects | Project title, location, introduction, full content and image |
-| Stories & updates | Story, news, event or publication; date, title, image and full article |
+| Stories & updates | Field story, blog post, news, event or publication; date, title, image and full article |
 | Reports & publications | PDF upload, publication date, title and description |
 | Partners & donors | Name, logo, website and display order |
 
@@ -22,7 +22,8 @@ For new programme, project or story pages, click **Generate** beside **Page addr
 2. Describe each meaningful image in **Image description**. Check image consent and credits.
 3. Open **Draft preview** to check the draft’s text and image. This is a content preview; use **Open the published website** to see the current live layout.
 4. Ask the designated publisher to check accuracy, dates, impact figures, contact details and image permissions.
-5. The authorised publisher clicks **Publish**. Once the webhook is connected, GitHub snapshots and rebuilds the release. Confirm production deployment before telling others that the change is live.
+5. The authorised publisher clicks **Publish**. The scheduled GitHub check detects published changes, snapshots them into Git and lets the connected Vercel project rebuild. GitHub schedules may be delayed; this is not instant publication.
+6. To sync without waiting, open [Website checks and release](https://github.com/levifaminc-dot/jdpi-maiduguri-landing-page/actions/workflows/website.yml), click **Run workflow**, keep **Sync published Sanity content and release it** checked and select `main`. This requires repository access. Wait for the successful run and confirm the current production deployment in Vercel.
 
 Publishing in Sanity is the approval event. Draft edits do not trigger a release. Do not paste identifying beneficiary details, case records, private phone numbers or payment credentials into public articles.
 
@@ -30,7 +31,7 @@ Publishing in Sanity is the approval event. Draft edits do not trigger a release
 
 The donation destination is a link. Paste the full approved HTTPS URL in Site settings; no payment keys are needed. Leaving it blank keeps the contact-based support page.
 
-Upload actual report PDFs to **Reports & publications**. Do not create a report entry without its file. The website shows a contact message until the first report is published.
+Upload actual report PDFs to **Reports & publications**. Do not create a report entry without its file. They appear in the resource library and the Stories & Updates hub after content sync. Field stories and blog posts get their own website detail pages; choose their Update type, generate Page address, add the date, full article, optional introduction and image, then publish.
 
 ## Before launch
 

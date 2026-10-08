@@ -25,8 +25,8 @@ export function getUpdates(stories:ContentItem[],reports:ContentItem[]):UpdateRe
   }));
   for(const report of getResourceLibrary(reports))updates.push({
     key:`document-${report.fileUrl}`,title:report.title,summary:report.summary,
-    category:report.category==='Publications'?'publications':'reports',
-    label:report.category==='Annual reports'?'Annual report':report.category==='Financial reports'?'Financial report':'Publication',
+    category:report.category==='Publications'&&!/\breport\b/i.test(report.title)?'publications':'reports',
+    label:report.category==='Annual reports'?'Annual report':report.category==='Financial reports'?'Financial report':/\breport\b/i.test(report.title)?'Report':'Publication',
     url:report.fileUrl,year:report.year,document:true,
   });
   // A reporting year is not represented as an invented publication date.

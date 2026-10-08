@@ -1,6 +1,6 @@
 # Stories & Updates
 
-Local preview at `/stories/`. The header now opens this route rather than the home
+Published route `/stories/`. The header now opens this route rather than the home
 carousel. Six horizontal filter buttons: All updates, Field stories, Blog posts,
 News & events, Reports and Publications. Search combines with the category filter;
 counts are announced, empty categories are honest, and Reset restores all items.
@@ -8,7 +8,8 @@ Without JavaScript all content and links remain available and controls stay hidd
 
 Existing story categories and detail URLs are preserved. `Blogs` is an additive
 Sanity category, with a friendly Blog post label. No production documents were
-modified. Deploy the updated Studio before editors use the new category.
+modified. The updated Studio exposes the Blog post category. Use the publishing
+workflow in `docs/EDITOR-GUIDE.md` to sync approved articles to the public website.
 The homepage shows a Blog posts button when a blog post is available.
 Reports reuse `getResourceLibrary`, including its safe URLs and deduplication;
 the Reports tab opens the existing annual and financial PDFs. Other PDF publications

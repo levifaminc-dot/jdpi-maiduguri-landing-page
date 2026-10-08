@@ -46,11 +46,11 @@ The workflow exports the published content and original asset bytes, verifies th
 
 ## Current production host
 
-The current Site remains hosted at its existing URL and owner-only audience. Sites requires pushing the exact source commit before saving and deploying its build archive. The connector gives short-lived source credentials; they should not be stored as CI secrets or treated as permanent deployment credentials.
+Production is now [Vercel](https://jdpi-maiduguri-landing-page.vercel.app/), connected to the private GitHub repository's `main` branch. New source and content-snapshot commits trigger Vercel builds. Verify the Vercel deployment is Ready and the changed public page is visible; a green GitHub check alone is not proof of publication.
 
-This repository therefore automates **snapshot → Git commit → verified build artifact**. Production publication is performed through the Sites workflow with fresh authorised credentials. Do not represent a green GitHub build as a live deployment.
+The content path is **Sanity Publish → scheduled/manual snapshot → verified Git commit → connected Vercel build**. Scheduled checks request an hourly run, but GitHub can delay them. No instant publish webhook is configured or promised by this repository. Immediate unattended syncing would require an explicitly authorised webhook credential/setup; do not add broad GitHub or Vercel credentials for convenience.
 
-For immediate unattended publication after every approved CMS update, a supported persistent deployment connection must be selected and configured. That is a hosting integration decision, not solved by adding an arbitrary URL or copying an expired token. Until connected, the verified artifact is ready for publication through the existing Site workflow.
+For an on-demand sync with existing repository access, open **Actions → Website checks and release → Run workflow**, choose `main` and leave **Sync published Sanity content and release it** checked. Unlike the former manual workflow, this fetches current published content before verification. Drafts remain excluded. Check both the workflow and Vercel before announcing the content is live.
 
 ## Releasing a content snapshot manually
 
@@ -62,4 +62,4 @@ git commit -m "Snapshot approved JDPI content"
 git push origin main
 ```
 
-Then publish the build from that same commit through the authorised Site workflow. Keep the source commit and deployment version together in the release record.
+The connected Vercel project then deploys that commit. Keep the source commit and successful deployment together in the release record. The existing recovery tag remains unchanged.
