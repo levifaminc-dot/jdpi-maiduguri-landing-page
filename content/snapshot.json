@@ -240,64 +240,84 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvXRi",
       "body": [],
+      "endDate": null,
       "image": {
         "alt": "African farmer in greenhouse holding a melon",
         "assetId": "image-16894dacea0084fc16749493bf2b7517509de332-1000x666-jpg",
         "url": "/assets/sanity/image-16894dacea0084fc16749493bf2b7517509de332-1000x666-jpg.jpg"
       },
+      "impactFacts": null,
       "location": null,
+      "projectProgrammes": null,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "bmz-multisectoral-resilience-project",
       "sortOrder": 0,
+      "startDate": null,
+      "status": null,
       "summary": "Strengthening the resilience of vulnerable households through integrated multisectoral support.",
       "title": "BMZ Multisectoral Resilience Project"
     },
     {
       "_id": "pd7BC9mehWAqIUtnYAvYHA",
       "body": [],
+      "endDate": null,
       "image": {
         "alt": "A mother carrying her child in a traditional wrap",
         "assetId": "image-e09189b8cf14fbe6f98337208b1806bb631a1687-1000x1500-jpg",
         "url": "/assets/sanity/image-e09189b8cf14fbe6f98337208b1806bb631a1687-1000x1500-jpg.jpg"
       },
+      "impactFacts": null,
       "location": null,
+      "projectProgrammes": null,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "echf-into-mami-project",
       "sortOrder": 1,
+      "startDate": null,
+      "status": null,
       "summary": "Improving nutrition and WaSH outcomes for mothers and children in conflict-affected communities.",
       "title": "ECHF INTO-MAMI Project"
     },
     {
       "_id": "pd7BC9mehWAqIUtnYAvZi2",
       "body": [],
+      "endDate": null,
       "image": {
         "alt": "African women seated with rice aid packages",
         "assetId": "image-f3ca936e00c23988338afeedf205063904cd42be-1000x667-jpg",
         "url": "/assets/sanity/image-f3ca936e00c23988338afeedf205063904cd42be-1000x667-jpg.jpg"
       },
+      "impactFacts": null,
       "location": null,
+      "projectProgrammes": null,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "nhf-integrated-nutrition-and-protection",
       "sortOrder": 2,
+      "startDate": null,
+      "status": null,
       "summary": "Supporting vulnerable communities through integrated nutrition and protection assistance.",
       "title": "NHF Integrated Nutrition & Protection"
     },
     {
       "_id": "y1w8dVIjCl03DcdWQ5app2",
       "body": [],
+      "endDate": null,
       "image": {
         "alt": "Teacher reading to preschool children",
         "assetId": "image-2ddec70dfd89f9c99bf020bbab6e6f73bb88f4ba-1000x667-jpg",
         "url": "/assets/sanity/image-2ddec70dfd89f9c99bf020bbab6e6f73bb88f4ba-1000x667-jpg.jpg"
       },
+      "impactFacts": null,
       "location": null,
+      "projectProgrammes": null,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "allright-project",
       "sortOrder": 3,
+      "startDate": null,
+      "status": null,
       "summary": "Supporting children and communities through protection, education and resilience-focused engagement.",
       "title": "ALLRight Project"
     }
