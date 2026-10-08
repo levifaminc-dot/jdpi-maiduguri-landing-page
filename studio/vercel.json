@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "sanity",
+  "installCommand": "cd .. && npm ci",
+  "buildCommand": "cd .. && npm run studio:build",
+  "outputDirectory": "dist",
+  "rewrites": [{"source": "/(.*)", "destination": "/index.html"}],
+  "headers": [{"source": "/(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]}]
+}

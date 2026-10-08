@@ -20,6 +20,6 @@ export function DraftPreview({document}:Props){
     {doc.aboutIntro ? <><h2>Who we are</h2><p>{String(doc.aboutIntro)}</p></> : null}
     {body.map((block,index)=><p key={index}>{block.children?.map(span=>span.text||'').join('')}</p>)}
     <hr/><p style={{fontSize:14}}>This preview shows the current draft text and image. Publish only after checking accuracy and image permissions. The website updates after its release workflow completes.</p>
-    <a href={process.env.SANITY_STUDIO_SITE_URL||'https://jdpi-maiduguri-impact.ifexls.chatgpt.site'} target="_blank" rel="noreferrer" style={{color:'#08783e'}}>Open the published website</a>
+    <a href={process.env.SANITY_STUDIO_SITE_URL||'https://jdpi-maiduguri-landing-page.vercel.app'} target="_blank" rel="noreferrer" style={{color:'#08783e'}}>Open the published website</a>
   </div>;
 }

@@ -41,6 +41,7 @@ Code and release snapshots are committed to the private GitHub repository. Edito
 
 - [Account and project setup](docs/SETUP.md)
 - [Staff editing guide](docs/EDITOR-GUIDE.md)
+- [Standalone Studio hosting and subdomain](docs/STUDIO-HOSTING.md)
 - [Publishing and GitHub webhook](docs/PUBLISHING.md)
 - [Migration scope and quality review](docs/MIGRATION.md)
 - [Recovery and maintenance](docs/MAINTENANCE.md)
