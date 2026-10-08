@@ -44,5 +44,6 @@ Code and release snapshots are committed to the private GitHub repository. Edito
 - [Publishing and GitHub webhook](docs/PUBLISHING.md)
 - [Migration scope and quality review](docs/MIGRATION.md)
 - [Recovery and maintenance](docs/MAINTENANCE.md)
+- [Donation page and checkout activation](docs/donations-page.md)
 
 Do not store payment credentials, API tokens, beneficiary records or case files in this repository or this marketing CMS.

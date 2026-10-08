@@ -18,7 +18,7 @@
     "studio:verify": "node --env-file-if-exists=studio/.env scripts/verify-studio.mjs",
     "studio:deploy": "npm run deploy --workspace studio",
     "typegen": "npm run typegen --workspace studio",
-    "verify": "npm run content:validate && node scripts/verify-report-projects.mjs && node scripts/verify-stories.mjs && node scripts/verify-programmes.mjs && npm run check && npm run build && node scripts/verify-build.mjs"
+    "verify": "npm run content:validate && node scripts/verify-report-projects.mjs && node scripts/verify-stories.mjs && node scripts/verify-programmes.mjs && node scripts/verify-donations.mjs && npm run check && npm run build && node scripts/verify-build.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",

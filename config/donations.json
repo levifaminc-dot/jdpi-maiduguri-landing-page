@@ -1,0 +1,4 @@
+{
+  "paystack": {"oneTimeUrl": "", "monthlyUrl": ""},
+  "flutterwave": {"oneTimeUrl": "", "monthlyUrl": ""}
+}

@@ -124,6 +124,14 @@ for(const file of htmlFiles){
       for(const id of ['stories-heading','sectors-heading','coverage-heading','accountability-heading'])if(!html.includes(`href="#${id}"`))errors.push(`${file}: missing impact section navigation ${id}`);
     }
   }
+  if(pageName==='dist/donate/index.html'){
+    for(const id of ['donate-heading','giving-heading','purpose-heading','evidence-heading','other-ways','faq-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing donation section ${id}`);
+    if((html.match(/<h1\b/g)||[]).length!==1||/href="#"/.test(html))errors.push(`${file}: invalid donation heading or placeholder link`);
+    for(const provider of ['paystack','flutterwave'])if(!html.includes(`name="donation-gateway" value="${provider}"`))errors.push(`${file}: missing donation provider ${provider}`);
+    for(const text of ['Give once','Monthly','No card or bank details','does not create a subscription','not fixed-price','does not promise tax deductibility','<noscript>'])if(!html.includes(text))errors.push(`${file}: missing donor explanation ${text}`);
+    if(!html.includes('data-donation-status')||!html.includes('aria-live="polite"'))errors.push(`${file}: missing accessible donation status`);
+    if(/name="(?:card|card_number|cvv|account_number)"/.test(html))errors.push(`${file}: payment details must not be collected here`);
+  }
   if(pageName==='dist/contact/thanks/index.html'&&(!html.includes('noindex,follow')||!html.includes('24 hours')||!html.includes('not an inbox delivery receipt')))errors.push(`${file}: incomplete or misleading confirmation page`);
   if(pageName==='dist/contact/privacy/index.html'){
     for(const text of ['30 days','not a promise','not a confidential safeguarding','https://formsubmit.co/privacy.pdf'])if(!html.includes(text))errors.push(`${file}: missing contact privacy explanation ${text}`);
