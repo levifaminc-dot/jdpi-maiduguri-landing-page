@@ -26,7 +26,7 @@ const canonical=new URL(Astro.url.pathname,Astro.site);
     function closeMenu(){nav?.classList.remove('open');menuButton?.setAttribute('aria-expanded','false');menuButton?.setAttribute('aria-label','Open navigation');if(menuButton)menuButton.textContent='☰';document.body.classList.remove('menu-open');}
     menuButton?.addEventListener('click',()=>{const open=nav?.classList.toggle('open')||false;menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Close navigation':'Open navigation');menuButton.textContent=open?'×':'☰';document.body.classList.toggle('menu-open',open);});
     nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-    document.addEventListener('keydown',event=>{if(event.key==='Escape'){closeMenu();menuButton?.focus();}});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav?.classList.contains('open')){closeMenu();menuButton?.focus();}});
     document.querySelectorAll<HTMLButtonElement>('[data-carousel]').forEach(button=>button.addEventListener('click',()=>{const id=button.dataset.carousel;if(id)document.getElementById(id)?.scrollBy({left:Number(button.dataset.direction)*380,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}));
     document.querySelectorAll<HTMLButtonElement>('.filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false');});button.classList.add('active');button.setAttribute('aria-pressed','true');document.querySelectorAll<HTMLElement>('.story-card').forEach(card=>card.hidden=button.dataset.filter!=='All'&&card.dataset.type!==button.dataset.filter);}));
   </script>

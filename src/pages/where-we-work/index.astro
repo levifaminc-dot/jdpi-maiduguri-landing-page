@@ -1,0 +1,23 @@
+---
+import {getContent} from '../../lib/content';
+import {getResourceLibrary} from '../../lib/resources';
+import Layout from '../../layouts/SiteLayout.astro';
+import ImpactCoverageMaps from '../../components/ImpactCoverageMaps.astro';
+import Icon from '../../components/ProjectIcon.astro';
+import '../../styles/project-directory.css';
+import '../../styles/impact-interactions.css';
+import '../../styles/people-places.css';
+const content=await getContent();
+const report=getResourceLibrary(content.reports).find(item=>item.title==='JDPI Annual Report 2025');
+---
+<Layout content={content} title={`Where We Work | ${content.settings.shortName}`} description="Explore JDPI’s report-listed LGAs in Borno, Adamawa and Yobe, with interactive maps and locally documented activities." pageClass="projects-page people-place-page where-work-page">
+  <section class="pp-hero" aria-labelledby="where-work-heading">
+    <div class="pp-hero-copy"><nav class="pp-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/impact/">Our Impact</a><span>/</span><span aria-current="page">Where We Work</span></nav><p class="pp-kicker">WHERE WE WORK</p><h1 id="where-work-heading">Local roots.<br/><span>Closer to communities.</span></h1><p>Across Borno, Adamawa and Yobe, we work alongside communities to protect dignity and strengthen resilience.</p><a class="pp-button pp-light" href="#coverage-heading">Explore our locations <Icon name="arrow"/></a></div>
+    <figure><img src="/assets/about/community-dialogue.jpg" alt="Community members taking part in an outdoor dialogue session" width="1200" height="656" fetchpriority="high"/><figcaption>Community dialogue · JDPI Annual Report 2025, page 39</figcaption></figure>
+  </section>
+  <div class="pp-footprint project-shell"><p><strong>Our 2025 footprint</strong><span>January–December · Annual Report, pages 10–12</span></p><dl><div><dt>States</dt><dd>3</dd></div><div><dt>Local government areas</dt><dd>20</dd></div><div><dt>Communities</dt><dd>114</dd></div></dl></div>
+  <section class="pp-section project-shell" aria-labelledby="coverage-heading"><header class="pp-heading"><div><p class="pp-kicker">EXPLORE THE BAY STATES</p><h2 id="coverage-heading">Every place has a story.</h2></div><p>Select a state, then an LGA hotspot to see the work documented there.</p></header><p class="pp-report-note">This map reflects the <strong>2025 reporting period</strong>, not a live directory of active projects. Local activities are shown where the report or JDPI’s project records identify the LGA; coverage-only locations are clearly labelled.</p><ImpactCoverageMaps showActivities reportUrl={report?.fileUrl} projectSlugs={content.projects.map(project=>project.slug)}/></section>
+  <section class="pp-office-band" aria-labelledby="bases-heading"><div class="project-shell"><header class="pp-heading"><div><p class="pp-kicker">PRESENT IN THE NORTHEAST</p><h2 id="bases-heading">Our office bases.</h2></div><a class="pp-text-link" href="/contact/#office-heading">Contact and directions →</a></header><div class="pp-office-grid">{[['Maiduguri','Borno State','Headquarters'],['Mubi','Adamawa State','Office base'],['Potiskum','Yobe State','Office base']].map(([town,state,type])=><article><Icon name="location"/><div><small>{type}</small><h3>{town}</h3><p>{state}</p></div></article>)}</div><p class="pp-source">Office bases: Annual Report 2025, pages 2, 60 and 64. Office bases and project locations are different.</p></div></section>
+  <section class="pp-cta project-shell"><div><p class="pp-kicker">LOCAL KNOWLEDGE. SHARED COMMITMENT.</p><h2>Work alongside us.</h2><p>For current activities in a particular community, partnerships or programme enquiries, contact the JDPI team.</p></div><a class="pp-button" href="/contact/">Get in touch <Icon name="arrow"/></a></section>
+</Layout>
+<script>import '../../scripts/impact-interactions';</script>

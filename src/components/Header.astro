@@ -4,15 +4,48 @@ interface Props {settings: SiteContent['settings']; home?: boolean}
 const {settings, home=false}=Astro.props;
 const anchor=(id:string)=>home ? `#${id}` : `/#${id}`;
 const routes:Record<string,string>={'who-we-are':'/about/',projects:'/projects/',stories:'/stories/',resources:'/resources/',impact:'/impact/',contact:'/contact/'};
-const navigation=[['Home','hero'],['About Us','who-we-are'],['What We Do','what-we-do'],['Projects','projects'],['Our Impact','impact'],['Stories','stories'],['Resources','resources'],['Contact','contact']];
+const navigation=[['Home','hero'],['About Us','who-we-are'],['What We Do','what-we-do'],['Projects','projects'],['Our Impact','impact'],['Stories','stories'],['Contact','contact']];
+const submenus:Record<string,{label:string;url:string}[]>={
+  'who-we-are':[{label:'Our Team',url:'/team/'}],
+  impact:[{label:'Where We Work',url:'/where-we-work/'}],
+  stories:[{label:'Resources',url:'/resources/'}],
+};
 ---
 <header class="site-nav" id="main-nav"><div class="nav-inner">
   <a class="brand" href="/" aria-label={`${settings.shortName} home`}><img src="/assets/logo.avif" alt={settings.shortName}/><span class="brand-text"><strong>{settings.organisationName}</strong><span>{settings.diocese}</span></span></a>
-  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=><a href={routes[id] || anchor(id)} aria-current={routes[id] && Astro.url.pathname.startsWith(routes[id]) ? 'page' : undefined}>{label}</a>)}</nav>
+  <nav class="nav-links" id="nav-links" aria-label="Primary navigation">{navigation.map(([label,id])=>submenus[id] ? <div class="nav-group" data-nav-group data-open="false"><div class="nav-parent"><a href={routes[id]} aria-current={Astro.url.pathname.startsWith(routes[id])?'page':undefined} class:list={[{'nav-ancestor':submenus[id].some(item=>Astro.url.pathname.startsWith(item.url))}]}>{label}</a><button type="button" class="nav-sub-toggle" aria-label={`Show ${label} submenu`} aria-controls={`submenu-${id}`} aria-expanded="false"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></button></div><div class="nav-submenu" id={`submenu-${id}`} aria-label={`${label} submenu`}>{submenus[id].map(item=><a href={item.url} aria-current={Astro.url.pathname.startsWith(item.url)?'page':undefined}>{item.label}</a>)}</div></div> : <a href={routes[id] || anchor(id)} aria-current={routes[id] && Astro.url.pathname.startsWith(routes[id]) ? 'page' : undefined}>{label}</a>)}</nav>
   <a class="donate-btn" href="/donate/">DONATE NOW</a>
   <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation" aria-controls="nav-links" aria-expanded="false">☰</button>
 </div></header>
+<script>
+  const groups=Array.from(document.querySelectorAll<HTMLElement>('[data-nav-group]'));
+  groups.forEach(group=>{
+    group.classList.add('is-enhanced');
+    const toggle=group.querySelector<HTMLButtonElement>('.nav-sub-toggle');
+    const setOpen=(open:boolean)=>{group.dataset.open=String(open);toggle?.setAttribute('aria-expanded',String(open));};
+    group.addEventListener('mouseenter',()=>{if(matchMedia('(hover:hover) and (min-width:901px)').matches)setOpen(true);});
+    group.addEventListener('mouseleave',()=>{if(!group.contains(document.activeElement))setOpen(false);});
+    toggle?.addEventListener('click',()=>{const open=group.dataset.open!=='true';groups.forEach(other=>{other.dataset.open='false';other.querySelector('.nav-sub-toggle')?.setAttribute('aria-expanded','false');});setOpen(open);});
+    group.addEventListener('focusout',event=>{if(!group.contains(event.relatedTarget as Node))setOpen(false);});
+    group.addEventListener('keydown',event=>{if(event.key==='Escape'&&group.dataset.open==='true'){event.preventDefault();event.stopPropagation();setOpen(false);toggle?.focus();}if(event.key==='ArrowDown'&&event.target===toggle){event.preventDefault();setOpen(true);group.querySelector<HTMLAnchorElement>('.nav-submenu a')?.focus();}});
+    group.querySelectorAll('.nav-submenu a').forEach(link=>link.addEventListener('click',()=>setOpen(false)));
+    document.addEventListener('click',event=>{if(!group.contains(event.target as Node))setOpen(false);});
+  });
+</script>
 <style is:global>
+  #main-nav .nav-group{position:relative}
+  #main-nav .nav-parent{display:flex;align-items:center;gap:6px}
+  #main-nav .nav-sub-toggle{border:0;background:transparent;color:var(--green);padding:0;display:grid;place-items:center;width:22px;min-height:44px;cursor:pointer}
+  #main-nav .nav-sub-toggle svg{width:16px;height:16px;transition:transform .2s}
+  #main-nav .nav-group[data-open="true"] .nav-sub-toggle svg{transform:rotate(180deg)}
+  #main-nav .nav-submenu{display:none;position:absolute;top:100%;left:-16px;min-width:200px;background:#fff;padding:8px;border:1px solid var(--line);border-top:3px solid var(--green);box-shadow:0 12px 28px #00352618;border-radius:0 0 5px 5px}
+  #main-nav .nav-group[data-open="true"] .nav-submenu{display:block}
+  #main-nav .nav-group:not(.is-enhanced):focus-within .nav-submenu{display:block}
+  #main-nav .nav-submenu a{display:block!important;padding:12px!important;font-size:.8125rem;min-height:44px;border:0!important;border-radius:3px}
+  #main-nav .nav-submenu a::before,#main-nav .nav-submenu a::after{content:none!important}
+  #main-nav .nav-submenu a:hover,#main-nav .nav-submenu a[aria-current="page"]{background:#edf5ed}
+  #main-nav .nav-ancestor{color:var(--green);font-weight:700}
+  @media(max-width:900px){#main-nav .nav-links.open .nav-group{width:100%}#main-nav .nav-links.open .nav-parent{width:100%}#main-nav .nav-links.open .nav-parent>a{flex:1}#main-nav .nav-links.open .nav-sub-toggle{width:44px;min-height:54px;flex-shrink:0}#main-nav .nav-links.open .nav-submenu{position:static;width:100%;box-shadow:none;border:0;background:#f3f7f1;padding:6px 14px;margin-bottom:8px}#main-nav .nav-links.open .nav-submenu a{font-size:.9375rem}}
   /* WordPress-inspired corner frames without changing navigation spacing. */
   #main-nav .nav-links:not(.open) a{position:relative;display:inline-flex;align-items:center;min-height:44px;transition:color .4s}
   #main-nav .nav-links:not(.open) a::before,

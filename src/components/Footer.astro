@@ -2,13 +2,15 @@
 import type {SiteContent} from '../lib/content';
 import {safeExternalUrl} from '../lib/content';
 import ProjectIcon from './ProjectIcon.astro';
+import {reportSocials} from '../data/socials';
 interface Props {content: SiteContent}
 const {settings, programmes}=Astro.props.content;
 const quickLinks=[['About Us','/about/'],['Projects','/projects/'],['Our Impact','/impact/'],['Stories & Updates','/stories/']];
 const footerProgrammes=programmes.slice(0,3);
 const configuredSocials=(settings.socialLinks || []).filter(link=>safeExternalUrl(link.url));
-// This fallback is JDPI's official page supplied by the organisation.
-const socials=configuredSocials.length ? configuredSocials : [{label:'Facebook',url:'https://www.facebook.com/p/JDPI-Maiduguri-100081401777454/'}];
+// Keep editor-configured destinations while adding report-verified platforms.
+const platform=(url:string)=>new URL(url).hostname.replace(/^www\./,'').replace('twitter.com','x.com');
+const socials=[...configuredSocials,...reportSocials.filter(link=>!configuredSocials.some(configured=>platform(configured.url)===platform(link.url)))];
 ---
 <footer id="contact" class="jdpi-footer">
   <div class="jf-shell">
@@ -36,9 +38,12 @@ const socials=configuredSocials.length ? configuredSocials : [{label:'Facebook',
           <a class="jf-contact-line" href={`tel:${settings.phone.replace(/[^+\d]/g,'')}`}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 3 3 5-2 2c2 3 4 5 7 7l2-2 5 3c-1 3-3 4-6 3C9 19 5 15 3 9c-1-3 0-5 3-6Z"/></svg><span>{settings.phone}</span></a>
         </address>
         <a class="jf-contact-link" href="/contact/">Send us a message <ProjectIcon name="arrow"/></a>
-        <div class="jf-socials" aria-label="JDPI social media">{socials.map(link=><a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} — opens in a new tab`}>
+        <div class="jf-socials" aria-label="JDPI social media">{socials.map(link=><a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} — opens in a new tab`} title={link.label}>
           {link.label.toLowerCase().includes('facebook') && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .3-2 2-2h2V1.5A22 22 0 0 0 15 1c-3 0-5 2-5 5v3H7v4h3v8Z"/></svg>}
-          <span>{link.label}</span>
+          {platform(link.url)==='instagram.com' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>}
+          {platform(link.url)==='x.com' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 3h4l12 18h-4L4 3ZM20 3 4 21"/></svg>}
+          {platform(link.url)==='linkedin.com' && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 8h4v13H4V8ZM6 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM11 8h4v2c1-2 6-3 6 3v8h-4v-7c0-3-2-3-2 0v7h-4V8Z"/></svg>}
+          <span class="jf-social-label">{link.label}</span>
         </a>)}</div>
       </div>
     </div>
@@ -68,8 +73,9 @@ const socials=configuredSocials.length ? configuredSocials : [{label:'Facebook',
   .jf-contact-line svg{width:19px;height:19px;flex-shrink:0;margin-top:4px;color:#a8d7b7}
   .jf-contact-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:8px;font-size:.9375rem;font-weight:600;color:#fff}
   .jf-socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-  .jf-socials a{display:inline-flex;align-items:center;gap:8px;min-height:44px;border:1px solid #55836a;border-radius:4px;padding:9px 12px;font-size:.875rem;color:#d1e4d8}
-  .jf-socials svg{width:16px;height:16px}
+  .jf-socials a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #55836a;border-radius:4px;padding:10px;font-size:.875rem;color:#d1e4d8}
+  .jf-socials svg{width:19px;height:19px}
+  .jf-socials a:has(svg) .jf-social-label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .jf-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;border-top:1px solid #426d56;padding:12px 0;color:#c5dbcd;font-size:.875rem;line-height:1.6}
   .jf-bottom p{margin:0}
   .jf-bottom>div{display:flex;gap:24px;flex-wrap:wrap}

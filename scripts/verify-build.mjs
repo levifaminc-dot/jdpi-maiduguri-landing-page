@@ -2,6 +2,17 @@ import {readFile,readdir,access} from 'node:fs/promises';
 import path from 'node:path';
 const impactCoverage=JSON.parse(await readFile('src/data/impact-coverage.json','utf8'));
 const impactMaps=JSON.parse(await readFile('src/data/impact-maps.json','utf8'));
+const team=JSON.parse(await readFile('src/data/team.json','utf8'));
+const activities=JSON.parse(await readFile('src/data/lga-activities.json','utf8'));
+const snapshot=JSON.parse(await readFile('content/snapshot.json','utf8'));
+const reportProjects=JSON.parse(await readFile('content/report-projects.json','utf8'));
+const projectSlugs=new Set([...snapshot.projects,...reportProjects.projects].map(project=>project.slug));
+if(team.board.length!==5||team.management.length!==11)throw new Error('The report roster must contain five trustees and eleven management members.');
+for(const record of activities){
+  if(!impactCoverage.some(region=>region.state===record.state&&region.areas.includes(record.lga)))throw new Error(`Activity location outside report coverage: ${record.state}/${record.lga}`);
+  if(record.activities.some(activity=>!activity.source))throw new Error(`Missing LGA activity source: ${record.lga}`);
+  for(const activity of record.activities)if(activity.project&&!projectSlugs.has(activity.project))throw new Error(`Invalid activity project: ${activity.project}`);
+}
 async function files(dir){const entries=await readdir(dir,{withFileTypes:true});return(await Promise.all(entries.map(entry=>entry.isDirectory()?files(path.join(dir,entry.name)):path.join(dir,entry.name)))).flat();}
 const htmlFiles=(await files('dist')).filter(file=>file.endsWith('.html'));
 const errors=[];
@@ -13,6 +24,21 @@ for(const file of htmlFiles){
   if(!html.includes('family=DM+Sans:wght@400;500;600;700')||!html.includes('family=Montserrat:wght@400;500;600;700;800;900'))errors.push(`${file}: missing WordPress font pairing and display weights`);
   if(html.includes('family=Open+Sans'))errors.push(`${file}: legacy body font is still requested`);
   const pageName=file.replaceAll('\\','/');
+  if(['dist/team/index.html','dist/where-we-work/index.html'].includes(pageName)&&((html.match(/<h1\b/g)||[]).length!==1||/href="#"/.test(html)))errors.push(`${file}: invalid page heading or placeholder link`);
+  const primary=html.match(/<nav\b[^>]*id="nav-links"[\s\S]*?<\/nav>/)?.[0];
+  if(!primary?.includes('id="submenu-stories"')||!primary.includes('aria-controls="submenu-stories"')||!primary.includes('href="/resources/"'))errors.push(`${file}: missing Resources submenu under Stories`);
+  for(const url of ['https://www.facebook.com/p/JDPI-Maiduguri-100081401777454/','https://www.instagram.com/jdpimaiduguri/','https://x.com/jdpimaiduguri','https://www.linkedin.com/company/jdpimaiduguri/'])if(!footer?.includes(url))errors.push(`${file}: missing verified footer social ${url}`);
+  if(pageName==='dist/where-we-work/index.html'){
+    if((html.match(/data-lga-activity=/g)||[]).length!==20)errors.push(`${file}: must explain all twenty LGAs`);
+    if((html.match(/role="tab"/g)||[]).length!==3)errors.push(`${file}: missing state tabs`);
+    for(const region of impactCoverage)for(const name of region.areas)if(!html.includes(`data-lga-activity="${name}"`))errors.push(`${file}: missing activity panel ${region.state}/${name}`);
+    for(const text of ['2025 reporting period','does not itemise activities','CC BY 4.0','114'])if(!html.includes(text))errors.push(`${file}: missing location context ${text}`);
+  }
+  if(pageName==='dist/team/index.html'){
+    for(const person of [...team.board,...team.management])if(!html.includes(person.name)||!html.includes(`/assets/team/${person.image}.jpg`))errors.push(`${file}: missing report-listed team member ${person.name}`);
+    for(const id of ['team-heading','board-heading','management-heading','people-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing team section ${id}`);
+    if(!html.includes('As listed in the 2025 Annual Report')||html.includes('Zion Japhet'))errors.push(`${file}: invalid team roster context`);
+  }
   if(pageName==='dist/stories/index.html'){
     for(const id of ['updates-heading','updates-library-heading','updates-search','updates-count','updates-list'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing updates section/control ${id}`);
     for(const category of ['all','field','blog','news','reports','publications'])if(!html.includes(`data-update-filter="${category}"`))errors.push(`${file}: missing updates filter ${category}`);
@@ -83,6 +109,6 @@ for(const file of htmlFiles){
   }
   if(/SANITY_API_(?:READ|WRITE)_TOKEN|ghp_[A-Za-z0-9]+/.test(html))errors.push(`${file}: possible credential in build output.`);
 }
-for(const file of ['dist/index.html','dist/about/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
+for(const file of ['dist/index.html','dist/about/index.html','dist/team/index.html','dist/where-we-work/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
 if(errors.length)throw new Error(errors.join('\n'));
 console.log(`Verified ${htmlFiles.length} HTML pages: local links and assets resolve; required routes and metadata files exist.`);

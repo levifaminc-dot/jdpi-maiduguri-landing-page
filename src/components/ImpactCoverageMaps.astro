@@ -1,6 +1,10 @@
 ---
 import mapData from '../data/impact-maps.json';
 import {impactYear} from '../lib/impact';
+import lgaActivities from '../data/lga-activities.json';
+interface Props {showActivities?:boolean; reportUrl?:string; projectSlugs?:string[]}
+const {showActivities=false,reportUrl='/resources/',projectSlugs=[]}=Astro.props;
+const initialLga=(state:typeof mapData.states[number])=>showActivities ? state.covered.find(area=>lgaActivities.some(item=>item.state===state.state&&item.lga===area.name))?.name || state.covered[0].name : state.covered[0].name;
 ---
 <div class="im-tabs" data-tabs>
   <div class="im-state-tabs" role="tablist" aria-label="State coverage maps">
@@ -13,9 +17,9 @@ import {impactYear} from '../lib/impact';
         <title>{state.state} State: {state.covered.length} LGAs listed in JDPI’s {impactYear} report</title>
         <g aria-hidden="true">{state.areas.map(area=><path d={area.path} class="im-other-area" fill-rule="evenodd"><title>{area.sourceName}</title></path>)}</g>
         <path d={state.outline} class="im-state-outline" aria-hidden="true" fill-rule="evenodd"/>
-        {state.covered.map((area,areaIndex)=><path class:list={['im-area',{'is-active':areaIndex===0}]} data-lga={area.name} d={area.path} fill-rule="evenodd" aria-hidden="true"><title>{area.name} · Listed in {impactYear} coverage</title></path>)}
+        {state.covered.map(area=><path class:list={['im-area',{'is-active':area.name===initialLga(state)}]} data-lga={area.name} d={area.path} fill-rule="evenodd" aria-hidden="true"><title>{area.name} · Listed in {impactYear} coverage</title></path>)}
         <g aria-hidden="true">{state.covered.map(area=>(area.point[0]!==area.labelPoint[0]||area.point[1]!==area.labelPoint[1]) && <><line class="im-leader" x1={area.point[0]} y1={area.point[1]} x2={area.labelPoint[0]} y2={area.labelPoint[1]}/><circle class="im-anchor" cx={area.point[0]} cy={area.point[1]} r="3"/></>)}</g>
-        {state.covered.map((area,areaIndex)=><g class:list={['im-covered',{'is-active':areaIndex===0}]} data-lga={area.name} role="button" aria-label={`Show ${area.name} LGA on ${state.state} map`} aria-pressed={areaIndex===0?'true':'false'} tabindex="0">
+        {state.covered.map(area=><g class:list={['im-covered',{'is-active':area.name===initialLga(state)}]} data-lga={area.name} role="button" aria-label={`Show ${area.name} LGA on ${state.state} map`} aria-pressed={area.name===initialLga(state)?'true':'false'} tabindex="0">
           <title>{area.name==='MMC'?'Maiduguri Municipal Council (MMC)':area.name} · Listed in {impactYear} coverage</title>
           <circle class="im-hotspot" cx={area.labelPoint[0]} cy={area.labelPoint[1]} r="13"/>
           <text class="im-hotspot-number" x={area.labelPoint[0]} y={area.labelPoint[1]} dy=".35em" text-anchor="middle" aria-hidden="true">{area.number}</text>
@@ -26,8 +30,15 @@ import {impactYear} from '../lib/impact';
     <div class="im-detail">
       <p class="ie-eyebrow">{impactYear} GEOGRAPHICAL COVERAGE</p><h3>{state.covered.length} local government areas</h3>
       <p>Select a hotspot or an LGA below to explore the report’s coverage.</p>
-      <div class="im-lga-list" aria-label={`${state.state} report-listed LGAs`}>{state.covered.map((area,areaIndex)=><button type="button" class:list={[{'is-active':areaIndex===0}]} data-lga={area.name} aria-pressed={areaIndex===0?'true':'false'}><span>{area.number}</span>{area.name}</button>)}</div>
-      <div class="im-selection" aria-live="polite" aria-atomic="true"><p>SELECTED LOCAL GOVERNMENT AREA</p><h4 data-selected-lga>{state.covered[0].name==='MMC'?'Maiduguri Municipal Council (MMC)':state.covered[0].name}</h4><span>{state.state} State · Listed in the {impactYear} annual report</span></div>
+      <div class="im-lga-list" aria-label={`${state.state} report-listed LGAs`}>{state.covered.map(area=><button type="button" class:list={[{'is-active':area.name===initialLga(state)}]} data-lga={area.name} aria-pressed={area.name===initialLga(state)?'true':'false'}><span>{area.number}</span>{area.name}</button>)}</div>
+      <div class="im-selection" aria-live="polite" aria-atomic="true"><p>SELECTED LOCAL GOVERNMENT AREA</p><h4 data-selected-lga>{initialLga(state)==='MMC'?'Maiduguri Municipal Council (MMC)':initialLga(state)}</h4><span>{state.state} State · Listed in the {impactYear} annual report</span></div>
+      {showActivities && <div class="ww-activities" aria-live="polite" aria-atomic="true">{state.covered.map(area=>{
+        const record=lgaActivities.find(item=>item.state===state.state&&item.lga===area.name);
+        return <section data-lga-activity={area.name} aria-label={`Reported work in ${area.name}`}>
+          <h4>Our work in {area.name}</h4>
+          {record ? record.activities.map(activity=><article><h5>{activity.title}</h5><p>{activity.text}</p><small>{'page' in activity ? <a href={`${reportUrl}#page=${activity.page}`} target="_blank" rel="noopener noreferrer">{activity.source} ↗</a> : activity.source}</small>{activity.project&&projectSlugs.includes(activity.project)&&<a class="pp-text-link" href={`/projects/${activity.project}/`}>Explore the project →</a>}</article>) : <><p>Listed in JDPI’s 2025 geographical coverage. The report describes integrated humanitarian, recovery and resilience work across the BAY states, but does not itemise activities for this LGA.</p><small>Annual Report 2025, page 12</small><a class="pp-text-link" href="/contact/">Ask our team about local activities →</a></>}
+        </section>;
+      })}</div>}
       <p class="im-map-note">Hotspots identify local government areas, not individual project sites. No LGA-level beneficiary totals are implied.</p>
     </div>
   </div>)}

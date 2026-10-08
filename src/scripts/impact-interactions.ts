@@ -25,9 +25,12 @@ document.querySelectorAll<HTMLElement>('[data-state-map]').forEach(map=>{
       if(control.matches('button,[role="button"]'))control.setAttribute('aria-pressed',String(active));
     });
     const label=map.querySelector<HTMLElement>('[data-selected-lga]');if(label)label.textContent=name==='MMC'?'Maiduguri Municipal Council (MMC)':name;
+    map.querySelectorAll<HTMLElement>('[data-lga-activity]').forEach(panel=>panel.hidden=panel.dataset.lgaActivity!==name);
   }
   controls.forEach(control=>{
     control.addEventListener('click',()=>{if(control.dataset.lga)select(control.dataset.lga);});
     if(control.tagName.toLowerCase()!=='button')control.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();if(control.dataset.lga)select(control.dataset.lga);}});
   });
+  const initial=map.querySelector<HTMLElement>('.im-lga-list .is-active')?.dataset.lga;
+  if(initial)select(initial);
 });

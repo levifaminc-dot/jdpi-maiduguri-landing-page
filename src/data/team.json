@@ -1,0 +1,23 @@
+{
+  "year": 2025,
+  "board": [
+    {"name":"Most Rev. Dr. Oliver Dashe Doeme","role":"Chairman, Board of Trustees","detail":"Bishop of Maiduguri Diocese","image":"oliver-dashe-doeme"},
+    {"name":"Most Rev. Dr. John Bogna Bakeni","role":"Secretary, Board of Trustees","detail":"Auxiliary Bishop of Maiduguri Diocese","image":"john-bogna-bakeni"},
+    {"name":"Lady Jemimah Abdulateef","role":"Member, Board of Trustees","detail":"","image":"jemimah-abdulateef"},
+    {"name":"Mr. Elias Dawa","role":"Member, Board of Trustees","detail":"","image":"elias-dawa"},
+    {"name":"Barr. (Mrs) Habiba Gana","role":"Member, Board of Trustees","detail":"","image":"habiba-gana"}
+  ],
+  "management": [
+    {"name":"Rev. Fr. Vincent Okoye","role":"Executive Director","image":"vincent-okoye"},
+    {"name":"Rev. Fr. Alphonsus Afina","role":"Deputy Executive Director","image":"alphonsus-afina"},
+    {"name":"Rev. Fr. Joseph F. Bature","role":"Director / MHPSS Advisor","image":"joseph-bature"},
+    {"name":"Adowuyi Farindo","role":"Head of Programmes","image":"adowuyi-farindo"},
+    {"name":"Chioma Onuoha","role":"HR / Admin Lead","image":"chioma-onuoha"},
+    {"name":"Christopher Ani","role":"Finance Manager","image":"christopher-ani"},
+    {"name":"Ueiju Simon","role":"MEAL Manager","image":"ueiju-simon"},
+    {"name":"Gabriel Audu","role":"Potiskum Office Base Lead","image":"gabriel-audu"},
+    {"name":"Thomas Patrick","role":"Mubi Office Base Lead","image":"thomas-patrick"},
+    {"name":"Jagila Ali Hamman","role":"Safeguarding Lead","image":"jagila-ali-hamman"},
+    {"name":"Monica Peter Zadva","role":"Agriculture Specialist","image":"monica-peter-zadva"}
+  ]
+}
