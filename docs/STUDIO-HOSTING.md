@@ -14,7 +14,7 @@ The public Astro website and the standalone Sanity editor use separate Vercel pr
 
 ## Domain and authentication
 
-The intended branded editor address is `studio.jdpimaiduguri.org`. Add only that subdomain to the editor project, then configure the exact CNAME supplied by Vercel at JDPI's DNS provider. Do not change apex, `www`, MX, SPF, DKIM or DMARC records. Leave WordPress and email services alone.
+The branded editor address is `studio.jdpimaiduguri.org`. Only that subdomain is attached to the editor project, with the exact CNAME supplied by Vercel configured at JDPI's existing DNS provider. Do not change apex, `www`, MX, SPF, DKIM or DMARC records. Leave WordPress and email services alone.
 
 Add only the exact production editor origin(s) to Sanity CORS, with credentials enabled for staff sign-in. Never allow `https://*.vercel.app` with credentials. Use the existing email-based Sanity account, not a new Google account. An origin does not grant project membership: staff must still have an invited account and appropriate role.
 
@@ -24,7 +24,7 @@ Register the external Studio with the existing authorized CLI session:
 SANITY_STUDIO_HOSTING=vercel npx sanity deploy --external --url https://jdpi-maiduguri-studio.vercel.app --schema-required --yes
 ```
 
-Set the returned external application ID in `SANITY_STUDIO_EXTERNAL_APP_ID` for the editor build and future registrations, not the hosted fallback ID. On Windows PowerShell set the environment variable separately. When the custom domain is verified, register the same external application at the branded URL and update the public `/admin/` link. Do not switch `/admin/` to a domain before it works.
+The external application ID `mhisrwfkf55grftl7a3c1gyu` is recorded in the CLI's self-hosted configuration; `SANITY_STUDIO_EXTERNAL_APP_ID` can override it. This is not the hosted fallback ID. On Windows PowerShell set the environment variable separately. When the custom domain is verified, register the same external application at the branded URL and update the public `/admin/` link. Do not switch `/admin/` to a domain before it works.
 
 ## Publishing and checks
 
@@ -33,3 +33,9 @@ Editor hosting does not change the publishing workflow: Sanity Publish → sched
 Before declaring ready, verify the Studio build, exact CORS origins, the production sign-in page, a signed-in document list, and a direct `/structure/story` reload. Check the noindex header and static assets. Verify the DNS and HTTPS configuration separately before claiming the branded subdomain is active.
 
 References: [Sanity hosting](https://www.sanity.io/docs/studio/deployment), [Sanity CORS](https://www.sanity.io/docs/content-lake/cors), [Vercel custom domains](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
+
+## Deployment record — 8 October 2026
+
+Vercel successfully deployed the Studio from Git. External Studio registration and 1/1 schema deployment succeeded using the already-authorized CLI session. The exact production and branded origins were added to Sanity with credentials; no wildcard origin, user, role or new credential was added. The Vercel `/structure/story` route returned HTTP 200 with the Studio shell and `X-Robots-Tag: noindex, nofollow`. Email/password sign-in was selected, not Google. The branded editor opens under the existing account over HTTPS. No content was edited or published as a test.
+
+The domain owner added the **CNAME** name **studio**, target **b38f0e6a6f573f7b.vercel-dns-017.com**, at Namecheap. DNS resolution matches that target, and the browser opens the Studio securely on the branded hostname. No DNS records were changed by the agent. The public `/admin/` link now targets the branded editor; both fallback hosts remain available.

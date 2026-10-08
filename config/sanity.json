@@ -1,5 +1,7 @@
 {
   "projectId": "j2wxo4uh",
   "dataset": "production",
-  "studioUrl": "https://jdpi-maiduguri-editor.sanity.studio/"
+  "studioUrl": "https://studio.jdpimaiduguri.org/",
+  "vercelStudioUrl": "https://jdpi-maiduguri-studio.vercel.app/",
+  "fallbackStudioUrl": "https://jdpi-maiduguri-editor.sanity.studio/"
 }

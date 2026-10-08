@@ -36,7 +36,7 @@ Invite designated staff through Sanity Manage. Give drafting staff the least pri
 
 Set the real deployed Studio URL in `PUBLIC_SANITY_STUDIO_URL` and GitHub’s `SANITY_STUDIO_URL` repository variable. The public `/admin/` page then links to the authenticated editor. Add any Studio preview origin to the project’s CORS allowlist only if required; the current draft preview runs inside Studio and needs no public draft token.
 
-The deployed editor is https://jdpi-maiduguri-editor.sanity.studio/ and is recorded in the committed public configuration, so the environment override is optional. The initial 26 content records passed Sanity document validation; all 20 imported image originals are included in the Git backup with checksums.
+The primary editor is https://studio.jdpimaiduguri.org/ and is recorded in the committed public configuration, so the environment override is optional. The direct https://jdpi-maiduguri-studio.vercel.app/ and existing https://jdpi-maiduguri-editor.sanity.studio/ remain fallbacks; see [Studio hosting](STUDIO-HOSTING.md). The initial 26 content records passed Sanity document validation; all 20 imported image originals are included in the Git backup with checksums.
 
 ## 5. Nonprofit plan
 

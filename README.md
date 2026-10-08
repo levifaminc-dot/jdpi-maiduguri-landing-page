@@ -6,7 +6,7 @@ Astro public website and a standalone Sanity Studio for the Justice Development 
 
 - Astro builds from `content/snapshot.json`, a committed copy of the Canva reference content.
 - Sanity schemas, draft content previews, asset import, exports, and the GitHub publishing trigger are implemented.
-- Sanity project `j2wxo4uh`, dataset `production`, is connected. The editor is hosted at https://jdpi-maiduguri-editor.sanity.studio/.
+- Sanity project `j2wxo4uh`, dataset `production`, is connected. The standalone editor is hosted on Vercel at https://studio.jdpimaiduguri.org/. The direct https://jdpi-maiduguri-studio.vercel.app/ address and former https://jdpi-maiduguri-editor.sanity.studio/ remain fallbacks.
 - The donation page accepts the organisation’s approved HTTPS checkout link; until one is added it directs donors to contact JDPI.
 - GitHub Actions verifies and packages every code revision. Once the Sanity webhook is connected, published content is exported, committed and rebuilt automatically.
 - Vercel project `jdpi-maiduguri-landing-page` in the JDPI team is connected to the private GitHub repository. Pushes to `main` trigger production builds. The existing Sites deployment is retained separately.
