@@ -29,18 +29,26 @@ Files stay in the tab. Audience labels are illustrative, not access permissions.
 The preview role switch is not authentication or a production security boundary.
 Do not enter real staff information, HR documents or safeguarding case material.
 
-The Microsoft button is disabled intentionally. The organisation tenant ID and
-requested initial admin have been supplied locally but are not credentials and
-do not connect an account or grant access. No app registration, client secret,
-database, private Blob store, authentication callback or real membership API is
-implemented or provisioned in this iteration. Adding environment values alone
-will NOT activate them. No real user has been invited or admitted.
+Microsoft OIDC sign-in is now implemented with Better Auth's verified generic
+Entra provider. A separate single-tenant app, **JDPI Staff Workspace**, has been
+registered with client ID `80ceea92-5a36-4e3e-a73b-51742b72ce35`. The local Web
+callback is `http://localhost:4330/api/auth/callback/microsoft`. A credential must
+be entered privately into ignored `.env.local` before sign-in activates. See
+[Microsoft setup](MICROSOFT-SETUP.md). The browser test reached Microsoft and
+personal consent completed, but token exchange returned AADSTS7000215. The secret
+Value must be corrected before an authenticated session can be verified.
+
+This is an identity-only connection, NOT a production staff backend. No database,
+private Blob store or real membership API is connected. After verified sign-in,
+`/workspace` shows a setup/admission notice, not private content. No real user is
+invited, admitted, or made an admin. The proposed bootstrap-admin email does not
+grant permissions. Demo state remains isolated and fictional.
 
 `/preview` and `/api/preview-assets/*` require development mode, a loopback Host
 and no Vercel environment. They return 404 in production, even if a role or
-preview query parameter is supplied. `/workspace` redirects to the sign-in page
-until authentication is implemented. Production builds therefore expose only an
-unconnected sign-in/setup screen, not the demo portal. No push/deploy this turn.
+preview query parameter is supplied. `/workspace` redirects unauthenticated users
+to sign-in and checks the verified identity server-side. Production builds expose
+only identity/setup screens, not the demo portal. No push/deploy this turn.
 
 ## Hosting plan
 
@@ -56,12 +64,12 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
 
 ## Connection and release checklist - still to implement
 
-- Register a single-tenant web application in JDPI's Entra tenant with approved
-  permissions and callback URLs. Ask for confirmation before consequential access
-  grants/admin consent. Enter the client secret only in protected local/Vercel
-  settings; never put credentials in Git, browser-public variables or chat.
-- Verify issuer, tenant, audience, state/nonce and token validity using a maintained
-  OIDC library. Match users by immutable tenant ID + object ID, not just email.
+- Local registration and OIDC implementation are complete; actual Microsoft
+  sign-in still needs a private credential and an end-to-end test. Add the approved
+  production callback and secret via protected settings before deployment. Ask
+  before consequential access grants/admin consent; never put secrets in Git/chat.
+- Signature, issuer, tenant, audience, expiry, state/nonce and PKCE are enforced.
+  Only identity scopes are requested. Identity is tenant ID + object ID, not email.
 - Microsoft sign-in is identity proof only. Every server action must check an
   ACTIVE database membership. Do not auto-admit based on email domain. Deny all
   membership changes except for ACTIVE ADMINS loaded from trusted server state.
@@ -79,15 +87,15 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
   validation, malware scanning/quarantine, tenant/audience metadata and permission-
   checked reads. Preview/download must share the same authorisation path. Never
   expose a public blob URL or use a public third-party document viewer.
-- Avoid public/private-data caching. Tighten CSP with nonces when real auth is
-  connected; protect preview deployments as well as production.
+- Private no-store headers and script-nonce CSP are implemented. Protect preview
+  deployments as well as production before any staff data services are connected.
 - Test active/pending/suspended users, admin/staff actions, role revocation, direct
   file access, guessed IDs, cross-tenant sign-in, session handling, load and backups.
 - Real accounts, documents, invitation tokens and database dumps must never be
   committed. Keep environment placeholders only. Deploy after review and explicit
   approval; don't publish the local demo as a substitute for a private portal.
 
-## Local verification - 8 October 2026
+## Previous foundation verification - before Microsoft integration
 
 - TypeScript check and both preview-policy unit tests passed.
 - Next.js production build passed; the unchanged public Astro site also built

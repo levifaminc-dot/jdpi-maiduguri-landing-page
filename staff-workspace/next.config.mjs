@@ -3,6 +3,11 @@ import {fileURLToPath} from 'node:url';
 const root = path.dirname(fileURLToPath(import.meta.url));
 export default {
   poweredByHeader: false,
+  // Preserve the absolute localhost auth redirect. Default normalization treats
+  // 127.0.0.1 and localhost as equivalent, creating a relative redirect loop.
+  skipProxyUrlNormalize: true,
+  // OAuth callback query strings include short-lived credentials; don't log URLs.
+  logging:{incomingRequests:false},
   outputFileTracingRoot: path.resolve(root, '..'),
   turbopack: {root: path.resolve(root, '..')},
   async headers() {
@@ -12,7 +17,6 @@ export default {
       {key: 'X-Frame-Options', value: 'DENY'},
       {key: 'Referrer-Policy', value: 'no-referrer'},
       {key: 'Cache-Control', value: 'private, no-store'},
-      {key: 'Content-Security-Policy', value: `default-src 'self'; script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'development' ? " 'unsafe-eval'" : ''}; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'`},
     ]}];
   },
 };
