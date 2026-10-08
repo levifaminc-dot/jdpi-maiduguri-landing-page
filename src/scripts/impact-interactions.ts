@@ -19,6 +19,7 @@ document.querySelectorAll<HTMLElement>('[data-tabs]').forEach(group=>{
 
 document.querySelectorAll<HTMLElement>('[data-state-map]').forEach(map=>{
   const controls=Array.from(map.querySelectorAll<HTMLElement>('[data-lga]'));
+  const picker=map.querySelector<HTMLSelectElement>('[data-lga-select]');
   function select(name:string){
     controls.forEach(control=>{
       const active=control.dataset.lga===name;control.classList.toggle('is-active',active);
@@ -26,11 +27,14 @@ document.querySelectorAll<HTMLElement>('[data-state-map]').forEach(map=>{
     });
     const label=map.querySelector<HTMLElement>('[data-selected-lga]');if(label)label.textContent=name==='MMC'?'Maiduguri Municipal Council (MMC)':name;
     map.querySelectorAll<HTMLElement>('[data-lga-activity]').forEach(panel=>panel.hidden=panel.dataset.lgaActivity!==name);
+    if(picker)picker.value=name;
   }
   controls.forEach(control=>{
     control.addEventListener('click',()=>{if(control.dataset.lga)select(control.dataset.lga);});
     if(control.tagName.toLowerCase()!=='button')control.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();if(control.dataset.lga)select(control.dataset.lga);}});
   });
+  picker?.addEventListener('change',()=>select(picker.value));
+  map.querySelector('[data-lga-picker]')?.removeAttribute('hidden');
   const initial=map.querySelector<HTMLElement>('.im-lga-list .is-active')?.dataset.lga;
   if(initial)select(initial);
 });

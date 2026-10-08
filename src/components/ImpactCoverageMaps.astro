@@ -29,9 +29,12 @@ const initialLga=(state:typeof mapData.states[number])=>showActivities ? state.c
     </div>
     <div class="im-detail">
       <p class="ie-eyebrow">{impactYear} GEOGRAPHICAL COVERAGE</p><h3>{state.covered.length} local government areas</h3>
-      <p>Select a hotspot or an LGA below to explore the report’s coverage.</p>
+      <p>Choose a local government area below, or select a hotspot on the map.</p>
+      <div class="im-lga-picker" data-lga-picker hidden><label for={`lga-picker-${state.id}`}>Choose an LGA in {state.state}</label><select id={`lga-picker-${state.id}`} data-lga-select aria-controls={`lga-summary-${state.id}`}>
+        {state.covered.map(area=><option value={area.name} selected={area.name===initialLga(state)}>{area.name==='MMC'?'Maiduguri Municipal Council (MMC)':area.name}</option>)}
+      </select></div>
       <div class="im-lga-list" aria-label={`${state.state} report-listed LGAs`}>{state.covered.map(area=><button type="button" class:list={[{'is-active':area.name===initialLga(state)}]} data-lga={area.name} aria-pressed={area.name===initialLga(state)?'true':'false'}><span>{area.number}</span>{area.name}</button>)}</div>
-      <div class="im-selection" aria-live="polite" aria-atomic="true"><p>SELECTED LOCAL GOVERNMENT AREA</p><h4 data-selected-lga>{initialLga(state)==='MMC'?'Maiduguri Municipal Council (MMC)':initialLga(state)}</h4><span>{state.state} State · Listed in the {impactYear} annual report</span></div>
+      <div id={`lga-summary-${state.id}`}><div class="im-selection" aria-live="polite" aria-atomic="true"><p>SELECTED LOCAL GOVERNMENT AREA</p><h4 data-selected-lga>{initialLga(state)==='MMC'?'Maiduguri Municipal Council (MMC)':initialLga(state)}</h4><span>{state.state} State · Listed in the {impactYear} annual report</span></div>
       {showActivities && <div class="ww-activities" aria-live="polite" aria-atomic="true">{state.covered.map(area=>{
         const record=lgaActivities.find(item=>item.state===state.state&&item.lga===area.name);
         return <section data-lga-activity={area.name} aria-label={`Reported work in ${area.name}`}>
@@ -39,7 +42,7 @@ const initialLga=(state:typeof mapData.states[number])=>showActivities ? state.c
           {record ? record.activities.map(activity=><article><h5>{activity.title}</h5><p>{activity.text}</p><small>{'page' in activity ? <a href={`${reportUrl}#page=${activity.page}`} target="_blank" rel="noopener noreferrer">{activity.source} ↗</a> : activity.source}</small>{activity.project&&projectSlugs.includes(activity.project)&&<a class="pp-text-link" href={`/projects/${activity.project}/`}>Explore the project →</a>}</article>) : <><p>Listed in JDPI’s 2025 geographical coverage. The report describes integrated humanitarian, recovery and resilience work across the BAY states, but does not itemise activities for this LGA.</p><small>Annual Report 2025, page 12</small><a class="pp-text-link" href="/contact/">Ask our team about local activities →</a></>}
         </section>;
       })}</div>}
-      <p class="im-map-note">Hotspots identify local government areas, not individual project sites. No LGA-level beneficiary totals are implied.</p>
+      </div><p class="im-map-note">Hotspots identify local government areas, not individual project sites. No LGA-level beneficiary totals are implied.</p>
     </div>
   </div>)}
 </div>

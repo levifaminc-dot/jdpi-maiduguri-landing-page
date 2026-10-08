@@ -16,11 +16,12 @@ const categories:Record<string,{category:UpdateCategory;label:string}>={
   News:{category:'news',label:'News'},Events:{category:'news',label:'Event'},
   Publications:{category:'publications',label:'Publication'},
 };
+export const storyCategory=(category?:string)=>categories[category||'']||{category:'news' as const,label:'Update'};
 // Preserve existing CMS categories; documents reuse the deduplicated resource library.
 export function getUpdates(stories:ContentItem[],reports:ContentItem[]):UpdateRecord[]{
   const updates:UpdateRecord[]=stories.map(story=>({
     key:`story-${story.slug}`,title:story.title,summary:story.summary||undefined,
-    image:story.image,...(categories[story.category||'']||{category:'news' as const,label:'Update'}),
+    image:story.image,...storyCategory(story.category),
     url:`/stories/${encodeURIComponent(story.slug)}/`,publishedAt:story.publishedAt,document:false,
   }));
   for(const report of getResourceLibrary(reports))updates.push({

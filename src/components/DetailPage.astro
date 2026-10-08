@@ -9,7 +9,7 @@ const {item,content,type}=Astro.props;
 const back=`/${type}/`;
 ---
 <Layout content={content} title={`${item.seoTitle||item.title} | ${content.settings.shortName}`} description={item.seoDescription||item.summary||content.settings.seoDescription}>
-  <section class="inner-page"><div class="shell"><a class="back-link" href={back}>Back to {type}</a><h1>{item.title}</h1>
+  <section class="inner-page"><div class="shell"><a class="back-link" href={back}>Back to {type==='stories'?'stories & updates':type}</a><h1>{item.title}</h1>
     {item.publishedAt && <p class="story-date">{formatDate(item.publishedAt)}</p>}{item.location && <p>{item.location}</p>}
     {item.summary && <p class="intro">{item.summary}</p>}<ContentImage image={item.image} class="detail-image" eager/>
     {item.imageCaption && <p>{item.imageCaption}</p>}

@@ -10,9 +10,10 @@ const content=await getContent();
 const {settings}=content;
 const socials=settings.socialLinks.filter(link=>safeExternalUrl(link.url));
 const formEndpoint=`https://formsubmit.co/${contactConfig.recipient}`;
+const confirmationUrl=new URL('/contact/thanks/',Astro.url.origin).href;
 const emailFor=(subject:string)=>`mailto:${settings.email}?subject=${encodeURIComponent(subject)}`;
 ---
-<Layout content={content} title={`Contact Us | ${settings.shortName}`} description="Send JDPI Maiduguri a message, contact our team by email or phone, and find directions to our office landmark." pageClass="projects-page contact-page">
+<Layout content={content} title={`Contact Us | ${settings.shortName}`} description="Send JDPI Maiduguri a message, get a response within 24 hours, and find directions to our Maiduguri office." pageClass="projects-page contact-page">
   <div class="project-shell contact-content modern-contact">
     <nav class="ci-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Contact</span></nav>
     <header class="contact-page-heading"><p class="ci-eyebrow">CONTACT JDPI</p><h1 id="contact-heading">Get in <span>touch.</span></h1><p>Have a question, a partnership idea or something to share? We’d like to hear from you.</p></header>
@@ -27,10 +28,11 @@ const emailFor=(subject:string)=>`mailto:${settings.email}?subject=${encodeURICo
         <div class="contact-panel-bottom"><p>{settings.diocese}</p><p>{settings.tagline}</p>{socials.length>0 && <div class="contact-panel-socials">{socials.map(link=><a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>)}</div>}</div>
       </aside>
       <section class="contact-form-panel" aria-labelledby="enquiry-heading">
-        <div class="contact-form-heading"><h2 id="enquiry-heading">Send us a message</h2><p>Fields marked <span aria-hidden="true">*</span> are required.</p></div>
+        <div class="contact-form-heading"><h2 id="enquiry-heading">Send us a message</h2><p class="contact-response-time">We respond to general enquiries within 24 hours.</p><p>Fields marked <span aria-hidden="true">*</span> are required.</p></div>
         <form id="contact-form" action={formEndpoint} method="POST" aria-describedby="contact-data-note">
           <input type="hidden" name="_subject" value="JDPI website — new contact enquiry"/>
           <input type="hidden" name="_template" value="table"/>
+          <input type="hidden" name="_next" value={confirmationUrl}/>
           <input type="hidden" name="source" value="JDPI Maiduguri website contact form"/>
           <div class="contact-honeypot" aria-hidden="true"><label for="contact-website">Leave this field empty</label><input id="contact-website" name="_honey" type="text" tabindex="-1" autocomplete="off"/></div>
           <div class="contact-field-grid">
@@ -42,13 +44,14 @@ const emailFor=(subject:string)=>`mailto:${settings.email}?subject=${encodeURICo
           <div class="contact-field contact-message"><label for="contact-message">Your message <span aria-hidden="true">*</span></label><textarea id="contact-message" name="message" rows="5" placeholder="How can we help?" required minlength="10" maxlength="5000" aria-describedby="contact-message-note"></textarea><p id="contact-message-note">Please do not include confidential case details, financial information or other sensitive personal data.</p></div>
           <label class="contact-consent" for="contact-consent"><input id="contact-consent" name="consent" value="I agree to processing my details to respond to this enquiry" type="checkbox" required/><span>I agree to my details being used to respond to this enquiry.</span></label>
           <div class="contact-form-submit"><button class="ci-primary" type="submit">Send message</button><p id="contact-form-status" role="status" aria-live="polite">You may be asked to complete a security check.</p></div>
-          <p id="contact-data-note" class="contact-data-note">This form uses <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit</a> to send your enquiry to JDPI. FormSubmit retains submissions for 30 days. Prefer email? <a href={`mailto:${settings.email}`}>Contact us directly</a>.</p>
+          <p id="contact-data-note" class="contact-data-note">FormSubmit processes your details and forwards your enquiry to JDPI. After its security check, you’ll return to our confirmation page. <a href="/contact/privacy/">How we handle your enquiry</a>. Prefer email? <a href={`mailto:${settings.email}`}>Contact us directly</a>.</p>
         </form>
       </section>
     </div>
+    <aside class="contact-safe-route" aria-labelledby="safe-route-heading"><div><p class="ci-eyebrow">THE RIGHT CHANNEL</p><h2 id="safe-route-heading">Safeguarding or confidential complaints?</h2><p>This form is for general enquiries—not confidential case reporting or emergencies. Please do not send names of affected people, case details or sensitive documents here.</p><p>A dedicated safeguarding reporting channel will be added when confirmed by JDPI. For now, call our team to ask which channel to use, without sharing case details.</p></div><a class="ci-text-link" href={`tel:${settings.phone.replace(/[^+\d]/g,'')}`}>Ask for the appropriate channel →</a></aside>
     <section class="contact-map-section" aria-labelledby="office-heading">
-      <div class="contact-map-copy"><p class="ci-eyebrow">FIND US IN MAIDUGURI</p><h2 id="office-heading">Plan your visit.</h2><p>Our published office address is at St. Patrick’s Catholic Church, opposite the State Secretariat.</p><p class="contact-map-note">The map shows St. Patrick’s Cathedral as an address landmark, not a verified JDPI office entrance. Please contact our team to confirm the entrance before travelling.</p><div class="contact-map-actions"><a class="ci-primary" href={contactConfig.directionsUrl} target="_blank" rel="noopener noreferrer">Get directions <span class="sr-only">to the St. Patrick’s landmark (opens Google Maps)</span></a><a class="ci-text-link" href={emailFor('Arrange a visit to JDPI Maiduguri')}>Arrange a visit</a></div></div>
-      <div class="contact-map-frame"><iframe src={contactConfig.mapEmbedUrl} title="Google Maps: St. Patrick’s Cathedral, Maiduguri — address landmark" width="700" height="380" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+      <div class="contact-map-copy"><p class="ci-eyebrow">FIND US IN MAIDUGURI</p><h2 id="office-heading">Plan your visit.</h2><p>{settings.address}</p><p class="contact-map-note">JDPI has confirmed this map location for our Maiduguri office at St. Patrick’s Catholic Church. Contact us to arrange your visit.</p><div class="contact-map-actions"><a class="ci-primary" href={contactConfig.directionsUrl} target="_blank" rel="noopener noreferrer">Get directions <span class="sr-only">to the JDPI office at St. Patrick’s (opens Google Maps)</span></a><a class="ci-text-link" href={emailFor('Arrange a visit to JDPI Maiduguri')}>Arrange a visit</a></div></div>
+      <div class="contact-map-frame"><iframe src={contactConfig.mapEmbedUrl} title="Google Maps: JDPI Maiduguri office at St. Patrick’s Catholic Church" width="700" height="380" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
     </section>
   </div>
 </Layout>

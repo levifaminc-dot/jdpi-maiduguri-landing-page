@@ -9,7 +9,7 @@ const env = {...loadEnv(process.env.NODE_ENV || 'development', process.cwd(), ''
 const projectId = env.PUBLIC_SANITY_PROJECT_ID || settings.projectId;
 const dataset = env.PUBLIC_SANITY_DATASET || settings.dataset;
 const vercelOrigin = env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}` : undefined;
-const origin = env.PUBLIC_SITE_URL || vercelOrigin || 'https://jdpi-maiduguri-impact.ifexls.chatgpt.site';
+const origin = env.PUBLIC_SITE_URL || vercelOrigin || 'https://jdpi-maiduguri-landing-page.vercel.app';
 
 export default defineConfig({
   site: origin,

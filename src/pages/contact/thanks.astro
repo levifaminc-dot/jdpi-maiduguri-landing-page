@@ -1,0 +1,17 @@
+---
+import {getContent} from '../../lib/content';
+import Layout from '../../layouts/SiteLayout.astro';
+import '../../styles/project-directory.css';
+import '../../styles/contact-impact.css';
+import '../../styles/contact-form.css';
+const content=await getContent();
+---
+<Layout content={content} title={`Thank you | ${content.settings.shortName}`} description="What happens after you send JDPI a general enquiry." noindex pageClass="projects-page contact-page">
+  <section class="project-shell contact-followup" aria-labelledby="thanks-heading">
+    <span class="contact-confirm-icon" aria-hidden="true">✓</span><p class="ci-eyebrow">YOUR ENQUIRY MATTERS</p><h1 id="thanks-heading">Thank you for<br/><span>getting in touch.</span></h1>
+    <p class="contact-followup-intro">If you completed the submission check, your enquiry has been submitted through FormSubmit for forwarding to JDPI.</p>
+    <div class="contact-next-grid"><article><h2>What happens next?</h2><p>We respond to general enquiries within <strong>24 hours</strong>, using the email address you provided.</p></article><article><h2>Need to follow up?</h2><p>Call <a href={`tel:${content.settings.phone.replace(/[^+\d]/g,'')}`}>{content.settings.phone}</a> or email <a href={`mailto:${content.settings.email}`}>{content.settings.email}</a>. Please do not include confidential case details.</p></article></div>
+    <p class="contact-followup-note">This page is not an inbox delivery receipt. If you did not complete the security check, return to the contact form to finish sending your enquiry.</p>
+    <div class="contact-followup-actions"><a class="ci-primary" href="/">Back to home →</a><a class="ci-text-link" href="/contact/">Return to contact</a><a class="ci-text-link" href="/contact/privacy/">Contact privacy</a></div>
+  </section>
+</Layout>

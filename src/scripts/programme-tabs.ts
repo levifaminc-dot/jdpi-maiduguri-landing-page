@@ -4,6 +4,7 @@ document.querySelectorAll<HTMLElement>('[data-programme-tabs]').forEach(group=>{
   const panels=Array.from(group.querySelectorAll<HTMLElement>('[data-programme]'));
   if(!tabs.length||tabs.length!==panels.length)return;
   const tablist=group.querySelector<HTMLElement>('[data-programme-tablist]');
+  const picker=group.querySelector<HTMLSelectElement>('[data-programme-select]');
   tablist?.setAttribute('role','tablist');
   tablist?.setAttribute('aria-label','Choose a programme');
   tablist?.setAttribute('aria-orientation','horizontal');
@@ -15,6 +16,7 @@ document.querySelectorAll<HTMLElement>('[data-programme-tabs]').forEach(group=>{
     group.querySelectorAll<HTMLDialogElement>('dialog[open]').forEach(dialog=>dialog.close());
     tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;});
     panels.forEach((panel,i)=>panel.hidden=i!==index);
+    if(picker)picker.value=tabs[index].dataset.programmeTab||'';
     if(focus)tabs[index].focus();
     if(updateAddress)history.replaceState(null,'',tabs[index].getAttribute('href')!);
   }
@@ -27,6 +29,11 @@ document.querySelectorAll<HTMLElement>('[data-programme-tabs]').forEach(group=>{
       if(event.key===' '){event.preventDefault();select(index,false,true);}
     });
   });
+  picker?.addEventListener('change',()=>{
+    const index=tabs.findIndex(tab=>tab.dataset.programmeTab===picker.value);
+    if(index>=0)select(index,false,true);
+  });
+  group.querySelector('[data-programme-picker]')?.removeAttribute('hidden');
   window.addEventListener('hashchange',()=>{const index=addressIndex();if(index>=0)select(index);});
   select(Math.max(0,addressIndex()));group.classList.add('is-enhanced');
 });

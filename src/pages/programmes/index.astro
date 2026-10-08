@@ -35,7 +35,7 @@ const programmes=content.programmes.map(item=>({
   <section class="pg-hero" aria-labelledby="programmes-heading">
     <img class="pg-hero-image" src="/assets/projects/bmz-greenhouse-monitoring.jpg" alt="A JDPI team member inspecting crops in a BMZ-supported greenhouse" fetchpriority="high"/>
     <div class="project-shell pg-hero-copy">
-      <nav class="pg-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>What We Do</span></nav>
+      <nav class="pg-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Programmes</span></nav>
       <p class="pg-eyebrow">OUR PROGRAMMES</p>
       <h1 id="programmes-heading">Different needs.<br/><span>One shared dignity.</span></h1>
       <p>From meeting urgent needs to strengthening lasting resilience, we work alongside communities across Northeast Nigeria.</p>
@@ -44,7 +44,7 @@ const programmes=content.programmes.map(item=>({
     <p class="pg-photo-note">BMZ project · JDPI Annual Report 2025</p>
   </section>
   <div data-programme-tabs>
-  <nav class="pg-section-nav" aria-label="Programme areas"><div class="project-shell" data-programme-tablist>{programmes.map(programme=><a id={`programme-tab-${programme.slug}`} href={`#programme-${programme.slug}`} data-programme-tab={programme.slug}><ProjectIcon name={programme.icon}/>{programme.shortLabel}</a>)}</div></nav>
+  <nav class="pg-section-nav" aria-label="Programme areas"><div class="project-shell pg-mobile-picker" data-programme-picker hidden><label for="programme-picker">Choose a programme</label><select id="programme-picker" data-programme-select aria-controls="programme-areas">{programmes.map(programme=><option value={programme.slug}>{programme.displayTitle}</option>)}</select></div><div class="project-shell" data-programme-tablist>{programmes.map(programme=><a id={`programme-tab-${programme.slug}`} href={`#programme-${programme.slug}`} data-programme-tab={programme.slug}><ProjectIcon name={programme.icon}/>{programme.shortLabel}</a>)}</div></nav>
   <section class="pg-directory project-shell" id="programme-areas" aria-labelledby="areas-heading">
     <div class="pg-section-head"><div><p class="pg-eyebrow">WHAT WE DO</p><h2 id="areas-heading">Integrated programmes.<br/>Stronger communities.</h2></div><p>People’s needs are connected. Our programmes bring humanitarian assistance, development and peacebuilding together, with dignity at the centre.</p></div>
     <div class="pg-panels">{programmes.map((programme,index)=>{

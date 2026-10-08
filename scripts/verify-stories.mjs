@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {getUpdates,updateFilters} from '../src/lib/stories.ts';
+import {getUpdates,updateFilters,storyCategory} from '../src/lib/stories.ts';
 import {getResourceLibrary} from '../src/lib/resources.ts';
 const content=JSON.parse(await readFile('content/snapshot.json','utf8'));
 const updates=getUpdates(content.stories,content.reports);
@@ -11,6 +11,11 @@ assert.equal(updates.filter(item=>item.document).length,getResourceLibrary(conte
 assert(updates.filter(item=>item.document).every(item=>!item.publishedAt));
 const blog={title:'Test blog',slug:'test-blog',body:[],category:'Blogs',publishedAt:'2026-10-08T00:00:00Z'};
 assert.equal(getUpdates([blog],[])[0].category,'blog');
+assert.equal(storyCategory('Events').category,'news');
+assert.equal(storyCategory('News').category,'news');
+assert.equal(storyCategory('Stories').category,'field');
+assert.equal(storyCategory('Publications').category,'publications');
+assert.equal(storyCategory('unknown').category,'news');
 const duplicate={title:'JDPI Annual Report 2025',slug:'annual-report-2025',body:[],fileUrl:updates.find(item=>item.label==='Annual report').url};
 assert.equal(getUpdates([], [duplicate]).filter(item=>item.category==='reports').length,4);
 const extra={title:'New general report',slug:'new-general-report',body:[],fileUrl:'https://jdpimaiduguri.org/new-general-report.pdf',publishedAt:'2026-10-08'};

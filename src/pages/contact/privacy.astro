@@ -1,0 +1,20 @@
+---
+import {getContent} from '../../lib/content';
+import Layout from '../../layouts/SiteLayout.astro';
+import '../../styles/project-directory.css';
+import '../../styles/contact-impact.css';
+import '../../styles/contact-form.css';
+const content=await getContent();
+---
+<Layout content={content} title={`Contact privacy | ${content.settings.shortName}`} description="Understand what the JDPI contact form collects, where enquiries go and how to ask questions about your submitted details." pageClass="projects-page contact-page">
+  <article class="project-shell contact-followup contact-privacy" aria-labelledby="privacy-heading">
+    <nav class="ci-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/contact/">Contact</a><span aria-hidden="true">/</span><span>Contact privacy</span></nav>
+    <p class="ci-eyebrow">GENERAL ENQUIRIES</p><h1 id="privacy-heading">How we handle<br/><span>your enquiry.</span></h1><p class="contact-followup-intro">This notice explains the website’s general-enquiry form. It is not a confidential safeguarding reporting service.</p>
+    <section><h2>What you share</h2><p>The form asks for your name, email address, enquiry topic, message and consent to use those details to respond. Your organisation is optional. No documents or payment details are requested.</p></section>
+    <section><h2>Where your message goes</h2><p><a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a> processes the submission, including its security check, and forwards it to JDPI’s configured enquiry inbox. JDPI uses the details you provide to handle and respond to your enquiry. Your message is not published on this website.</p><p>FormSubmit’s <a href="https://formsubmit.co/documentation" target="_blank" rel="noopener noreferrer">documentation</a> states that its submission archive retains messages for 30 days. That is the provider’s archive period, not a promise that email copies in JDPI’s inbox are deleted after 30 days. Read <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener noreferrer">FormSubmit’s privacy information (PDF)</a>.</p></section>
+    <section><h2>Questions about your details</h2><p>For questions about an enquiry, JDPI’s retention arrangements, or to request correction or removal of details you submitted, email <a href={`mailto:${content.settings.email}`}>{content.settings.email}</a>. JDPI will assess your request; this page does not promise automatic deletion.</p><p>You can also contact JDPI directly by phone or email instead of using this form.</p></section>
+    <section><h2>Please keep sensitive information out</h2><p>Do not include confidential case details, names of affected people, financial information or sensitive documents. For safeguarding or confidential complaints, <a href="/contact/#safe-route-heading">ask for the appropriate reporting channel</a> without sending case details through the website form or a general email.</p></section>
+    <section><h2>Office directions</h2><p>The contact page embeds a map from Google. Loading or opening that map connects to Google’s service; see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s privacy information</a>.</p></section>
+    <a class="ci-primary" href="/contact/">Back to contact →</a>
+  </article>
+</Layout>

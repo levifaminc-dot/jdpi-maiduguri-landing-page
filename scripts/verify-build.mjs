@@ -27,11 +27,19 @@ for(const file of htmlFiles){
   if(['dist/team/index.html','dist/where-we-work/index.html'].includes(pageName)&&((html.match(/<h1\b/g)||[]).length!==1||/href="#"/.test(html)))errors.push(`${file}: invalid page heading or placeholder link`);
   const primary=html.match(/<nav\b[^>]*id="nav-links"[\s\S]*?<\/nav>/)?.[0];
   if(!primary?.includes('id="submenu-stories"')||!primary.includes('aria-controls="submenu-stories"')||!primary.includes('href="/resources/"'))errors.push(`${file}: missing Resources submenu under Stories`);
-  if(!primary?.includes('href="/programmes/"'))errors.push(`${file}: What We Do must link to the programme directory`);
+  if(!primary?.includes('href="/programmes/"')||!/>Programmes<\/a>/.test(primary)||!/>Stories &amp; Updates<\/a>/.test(primary))errors.push(`${file}: primary navigation must use consistent Programmes and Stories & Updates labels`);
+  if(!footer?.includes('href="/contact/privacy/"'))errors.push(`${file}: missing contact privacy link`);
+  if(pageName==='dist/index.html'){
+    const cardCategories=[...html.matchAll(/class="story-card"[^>]*data-type="([^"]+)"/g)].map(match=>match[1]);
+    for(const category of new Set(['all',...cardCategories]))if(!html.includes(`data-filter="${category}"`))errors.push(`${file}: missing consistent homepage story filter ${category}`);
+    for(const category of cardCategories)if(!['field','blog','news','publications'].includes(category))errors.push(`${file}: unsupported homepage story category ${category}`);
+    if(html.includes('data-filter="Events"')||html.includes('data-filter="Stories"'))errors.push(`${file}: legacy story filter categories`);
+  }
   for(const url of ['https://www.facebook.com/p/JDPI-Maiduguri-100081401777454/','https://www.instagram.com/jdpimaiduguri/','https://x.com/jdpimaiduguri','https://www.linkedin.com/company/jdpimaiduguri/'])if(!footer?.includes(url))errors.push(`${file}: missing verified footer social ${url}`);
   if(pageName==='dist/where-we-work/index.html'){
     if((html.match(/data-lga-activity=/g)||[]).length!==20)errors.push(`${file}: must explain all twenty LGAs`);
     if((html.match(/role="tab"/g)||[]).length!==3)errors.push(`${file}: missing state tabs`);
+    if((html.match(/<select\b[^>]*data-lga-select/g)||[]).length!==3)errors.push(`${file}: missing mobile LGA selectors`);
     for(const region of impactCoverage)for(const name of region.areas)if(!html.includes(`data-lga-activity="${name}"`))errors.push(`${file}: missing activity panel ${region.state}/${name}`);
     for(const text of ['2025 reporting period','does not itemise activities','CC BY 4.0','114'])if(!html.includes(text))errors.push(`${file}: missing location context ${text}`);
   }
@@ -54,6 +62,7 @@ for(const file of htmlFiles){
     if(snapshot.programmes.some(programme=>programme.slug==='mental-health-and-psychosocial-support')&&!html.includes('not a count of people receiving individual counselling'))errors.push(`${file}: messaging reach must not imply individual counselling`);
     if(html.includes('image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg'))errors.push(`${file}: unrelated Nutrition placeholder must not appear`);
     if((html.match(/data-programme-tab=/g)||[]).length!==snapshot.programmes.length||!html.includes('data-programme-tablist')||html.includes('class="pg-grid"'))errors.push(`${file}: missing single-panel programme tab controls`);
+    if(!html.includes('id="programme-picker"')||!html.includes('data-programme-select'))errors.push(`${file}: missing mobile programme selector`);
     if((html.match(/class="pg-interventions"/g)||[]).length!==snapshot.programmes.length||(html.match(/class="pg-locations"/g)||[]).length!==snapshot.programmes.length)errors.push(`${file}: every programme needs interventions and documented location details`);
     const reachSummaries=(html.match(/class="pg-result pg-result-summary"/g)||[]).length+(html.match(/Verified reach information is awaiting confirmation\./g)||[]).length;
     if((html.match(/<details\b[^>]*\bdata-programme-details\b/g)||[]).length!==snapshot.programmes.length||reachSummaries!==snapshot.programmes.length)errors.push(`${file}: each programme must have a compact reach summary and More details disclosure`);
@@ -95,6 +104,9 @@ for(const file of htmlFiles){
       for(const id of ['contact-form','contact-name','contact-email','contact-topic','contact-message','contact-consent'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing contact form control ${id}`);
       if(!html.includes('https://www.google.com/maps/embed?')||!html.includes('referrerpolicy="strict-origin-when-cross-origin"'))errors.push(`${file}: missing map widget`);
       if(/name="_captcha"[^>]*value="false"/.test(html))errors.push(`${file}: contact form CAPTCHA must remain enabled`);
+      if(!/name="_next"[^>]*value="https?:\/\/[^\"]+\/contact\/thanks\/"/.test(html))errors.push(`${file}: missing absolute branded confirmation destination`);
+      for(const text of ['within 24 hours','JDPI has confirmed this map location','id="safe-route-heading"','href="/contact/privacy/"'])if(!html.includes(text))errors.push(`${file}: missing approved contact UX context ${text}`);
+      if(html.includes('not a verified JDPI office entrance'))errors.push(`${file}: outdated unconfirmed office-map wording`);
     }
     if(pageName.includes('/impact/')){
       if((html.match(/role="tab"/g)||[]).length!==9||(html.match(/role="tabpanel"/g)||[]).length!==9)errors.push(`${file}: must include six programme tabs and three state map tabs`);
@@ -111,6 +123,10 @@ for(const file of htmlFiles){
       for(const asset of ['bmz-greenhouse-monitoring','bmz-greenhouse-crops','bmz-greenhouse-harvest','we-sing-startup-kits'])if(!html.includes(`/assets/projects/${asset}.jpg`))errors.push(`${file}: missing report photograph ${asset}`);
       for(const id of ['stories-heading','sectors-heading','coverage-heading','accountability-heading'])if(!html.includes(`href="#${id}"`))errors.push(`${file}: missing impact section navigation ${id}`);
     }
+  }
+  if(pageName==='dist/contact/thanks/index.html'&&(!html.includes('noindex,follow')||!html.includes('24 hours')||!html.includes('not an inbox delivery receipt')))errors.push(`${file}: incomplete or misleading confirmation page`);
+  if(pageName==='dist/contact/privacy/index.html'){
+    for(const text of ['30 days','not a promise','not a confidential safeguarding','https://formsubmit.co/privacy.pdf'])if(!html.includes(text))errors.push(`${file}: missing contact privacy explanation ${text}`);
   }
   if(/^dist[\\/]resources[\\/]index\.html$/.test(file)){
     for(const id of ['resources-heading','library-heading','resource-list','media-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing resource section ${id}`);
@@ -133,6 +149,6 @@ for(const file of htmlFiles){
   }
   if(/SANITY_API_(?:READ|WRITE)_TOKEN|ghp_[A-Za-z0-9]+/.test(html))errors.push(`${file}: possible credential in build output.`);
 }
-for(const file of ['dist/index.html','dist/about/index.html','dist/team/index.html','dist/where-we-work/index.html','dist/programmes/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
+for(const file of ['dist/index.html','dist/about/index.html','dist/team/index.html','dist/where-we-work/index.html','dist/programmes/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/contact/thanks/index.html','dist/contact/privacy/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
 if(errors.length)throw new Error(errors.join('\n'));
 console.log(`Verified ${htmlFiles.length} HTML pages: local links and assets resolve; required routes and metadata files exist.`);
