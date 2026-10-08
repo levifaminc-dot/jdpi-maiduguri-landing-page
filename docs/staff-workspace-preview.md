@@ -1,6 +1,10 @@
 # JDPI staff workspace — local design prototype
 
-Run `npm run staff:preview` from the repository root, then open
+This document describes the first vanilla preview, saved at commit `2a25235`.
+The user subsequently selected Vercel. See `staff-workspace/README.md` for the
+current Next.js preview and production-connection checklist.
+
+Run `npm run staff:legacy-preview` from the repository root, then open
 http://127.0.0.1:4330/. The separate preview uses built-in Node APIs and requires
 no new dependencies. The public Astro build and Sanity Studio are unchanged.
 

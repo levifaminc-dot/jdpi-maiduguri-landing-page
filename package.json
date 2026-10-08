@@ -6,8 +6,10 @@
   "workspaces": ["studio"],
   "engines": {"node": ">=22.12.0"},
   "scripts": {
-    "staff:preview": "node scripts/preview-staff.mjs",
-    "staff:check": "node scripts/verify-staff-preview.mjs",
+    "staff:preview": "npm --prefix staff-workspace run dev",
+    "staff:check": "npm --prefix staff-workspace run check && npm --prefix staff-workspace test",
+    "staff:build": "npm --prefix staff-workspace run build",
+    "staff:legacy-preview": "node scripts/preview-staff.mjs",
     "dev": "astro dev --host 127.0.0.1 --port 4321",
     "check": "astro check && npm run check --workspace studio",
     "build": "astro build",

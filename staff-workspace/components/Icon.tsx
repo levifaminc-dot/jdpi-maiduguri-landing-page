@@ -1,0 +1,21 @@
+const paths:Record<string,string> = {
+  dashboard:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  megaphone:'<path d="m4 10 13-5v14L4 14Z"/><path d="M4 10H2v4h2m3 1 1 6h3l-1-5M20 8l2-1m-2 5h2m-2 4 2 1"/>',
+  folder:'<path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
+  users:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m2 4a6 6 0 0 1 3 5v2"/>',
+  shield:'<path d="m12 2 9 4v6c0 6-9 10-9 10S3 18 3 12V6Z"/><path d="m8 12 3 3 5-6"/>',
+  leaf:'<path d="M20 3C8 2 1 8 5 16c4 8 15 3 15-13ZM4 21 15 10"/>',
+  search:'<circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',
+  comment:'<path d="M21 11a9 9 0 0 1-9 9H4l-2 2v-8a9 9 0 1 1 19-3Z"/>',
+  heart:'<path d="M12 21 3.5 12.5a5 5 0 0 1 7-7L12 7l1.5-1.5a5 5 0 0 1 7 7Z"/>',
+  bookmark:'<path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4Z"/>',
+  pin:'<path d="m9 3 6 0-1 6 4 4v2H6v-2l4-4Zm3 12v7"/>',
+  location:'<path d="M19 10c0 5-7 12-7 12S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/>',
+  upload:'<path d="M12 16V3m-5 5 5-5 5 5M4 16v5h16v-5"/>',
+  download:'<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/>',
+  refresh:'<path d="M20 8a8 8 0 1 0 0 8m0-13v5h-5"/>',
+};
+export default function Icon({name}:{name:string}) {return <svg viewBox="0 0 24 24" aria-hidden="true" dangerouslySetInnerHTML={{__html:paths[name] || paths.info}}/>;}

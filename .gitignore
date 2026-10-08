@@ -13,3 +13,10 @@ studio/.sanity/
 artifacts/
 work/map-source/
 *.tsbuildinfo
+.npm-cache/
+.next/
+staff-workspace/.vercel/
+staff-workspace/public/pdf.worker.min.mjs
+staff-workspace/public/pdf-standard-fonts/
+output/pdf/staff-sample-check-*.png
+!staff-workspace/.env.example

@@ -1,0 +1,2 @@
+# Preserve document bytes on Windows and Linux; PDF offsets must not change.
+*.pdf binary
