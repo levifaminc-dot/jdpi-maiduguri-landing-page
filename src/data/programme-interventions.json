@@ -1,0 +1,61 @@
+{
+  "food-security-and-livelihoods": {
+    "projectSlugs":["bmz-multisectoral-resilience-project","echo-sahara-project","gffo-food-security-humanitarian-protection-lake-chad"],
+    "interventions": ["Climate-smart greenhouse farming, irrigation equipment, seeds and farmer training.", "Cash assistance that enables households to meet food and essential needs.", "Livelihood recovery, small-business support and savings-group participation."],
+    "source": "Annual Report 2025, pages 16–17, 45, 47 and 49",
+    "locations": [
+      {"label":"Hong & Michika · Adamawa", "detail":"BMZ greenhouse farming; irrigation and farmer training are also documented in Kwatau, Hong.","source":"Annual Report 2025, pages 17 and 45"},
+      {"label":"Borno & Adamawa", "detail":"ECHO SAHaRA cash assistance. The available project summary does not name its individual LGAs.","source":"Annual Report 2025, page 16"}
+    ]
+  },
+  "nutrition": {
+    "projectSlugs":["echf-into-mami-project"],
+    "interventions": ["Nutrition screening, growth monitoring and referral to appropriate care.", "Caregiver nutrition counselling and community education.", "Integrated support for mothers and infants through the INTO-MAMI nutrition and WaSH project."],
+    "source": "Annual Report 2025, pages 6, 11 and 53; JDPI INTO-MAMI project brief and close-out update",
+    "locations": [
+      {"label":"Magumeri · Borno", "detail":"Screening, referral, growth monitoring and caregiver counselling are documented in the report.","source":"Annual Report 2025, page 53"},
+      {"label":"Jere & Magumeri · Borno", "detail":"Locations of the completed INTO-MAMI project; this is project coverage, not a 2025-only reach breakdown.","source":"JDPI INTO-MAMI project brief and public close-out update"}
+    ]
+  },
+  "water-sanitation-and-hygiene": {
+    "projectSlugs":["bmz-multisectoral-resilience-project","echf-into-mami-project","echo-sahara-project"],
+    "interventions": ["Construction and rehabilitation of boreholes to improve safe-water access.", "Community hygiene promotion and cholera-prevention supplies.", "Integrated nutrition and community water-service support through INTO-MAMI."],
+    "source": "Annual Report 2025, pages 6, 11, 27 and 51; JDPI INTO-MAMI project brief",
+    "locations": [
+      {"label":"Hong · Adamawa", "detail":"A solar-powered borehole in Kilamada reduced reliance on river water.","source":"Annual Report 2025, page 51"},
+      {"label":"Jere & Magumeri · Borno", "detail":"Community water services under the completed INTO-MAMI project; not a 2025-only reach breakdown.","source":"JDPI INTO-MAMI project brief and public close-out update"}
+    ]
+  },
+  "protection": {
+    "interventions": ["Awareness activities sharing information on safety, dignity, rights and support services.", "Child protection, caregiver engagement and learning-material support.", "Vocational training and start-up support within the Madagali protection and GBV-response project."],
+    "source": "Annual Report 2025, pages 6, 11 and 54–55",
+    "locations": [
+      {"label":"Madagali · Adamawa", "detail":"Barbering training and livelihood equipment are documented in Dar community.","source":"Annual Report 2025, page 55"}
+    ],
+    "locationNote":"The report also describes GFFO child-protection work without a verified LGA assignment in the available summary; no location is inferred here."
+  },
+  "mental-health-and-psychosocial-support": {
+    "interventions": ["Mental-health and psychosocial awareness messages.", "Individual counselling for women through WE-SING.", "Counselling and appropriate medical support for a conflict-affected child under the GFFO project."],
+    "source": "Annual Report 2025, pages 6, 11, 31 and 52",
+    "locations": [
+      {"label":"Kaga · Borno", "detail":"The report documents psychosocial support in Tsallake community through GFFO.","source":"Annual Report 2025, page 52"},
+      {"label":"Borno State", "detail":"WE-SING counselling for women; individual LGAs are not named in the available project summary.","source":"Annual Report 2025, page 31"}
+    ]
+  },
+  "peacebuilding-and-social-cohesion": {
+    "interventions": ["Community-led mechanisms for resolving conflicts.", "Dialogue and reconciliation to strengthen peaceful coexistence.", "Strengthening social cohesion and community conflict resilience."],
+    "source": "Annual Report 2025, page 11; published JDPI programme introduction",
+    "locations": [],
+    "locationNote":"Programme-specific LGAs are not confirmed in the verified data used for this page. Our coverage map shows organisation-wide locations, not a peacebuilding-only footprint."
+  },
+  "economic-empowerment": {
+    "projectSlugs":["we-sing-project","strengthening-protection-gbv-response-madagali","bmz-multisectoral-resilience-project"],
+    "interventions": ["Trade-specific start-up kits for tailoring, petty trading and food processing through WE-SING.", "Vocational and practical business training, including barbering in Madagali.", "Livelihood recovery grants, restarting small businesses and savings-group participation in Michika."],
+    "source": "Annual Report 2025, pages 16, 47, 49 and 55",
+    "locations": [
+      {"label":"Borno State", "detail":"WE-SING start-up support for women. The available summary does not name individual LGAs.","source":"Annual Report 2025, page 16"},
+      {"label":"Madagali & Michika · Adamawa", "detail":"Dar, Madagali: vocational training and start-up equipment. Michika: livelihood recovery and savings.","source":"Annual Report 2025, pages 47, 49 and 55"}
+    ],
+    "projectReach": {"value":"100", "label":"Women receiving start-up kits", "description":"WE-SING project result in Borno State, reported for 2025. This is not a total for all economic-empowerment activities.", "source":"Page 16", "project":"we-sing-project"}
+  }
+}

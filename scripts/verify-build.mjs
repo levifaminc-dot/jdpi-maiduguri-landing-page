@@ -50,9 +50,12 @@ for(const file of htmlFiles){
     for(const id of ['programmes-heading','areas-heading','approach-heading','action-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing programme section ${id}`);
     for(const context of ['not live totals','unique-person total','2025 Annual Report','href="/where-we-work/"','href="/impact/"','href="/projects/"'])if(!html.includes(context))errors.push(`${file}: missing programme context or route ${context}`);
     if(!html.includes('href="/programmes/" aria-current="page"')||!html.includes('aria-label="Programme areas"'))errors.push(`${file}: missing accessible current navigation or area links`);
-    if(snapshot.programmes.some(programme=>programme.slug==='water-sanitation-and-hygiene')&&!html.includes('2025 REPORTED RESULT · ESTIMATED'))errors.push(`${file}: safe-water reach must be labelled estimated`);
+    if(snapshot.programmes.some(programme=>programme.slug==='water-sanitation-and-hygiene')&&!html.includes('2025 REPORTED REACH / RESULT · ESTIMATED'))errors.push(`${file}: safe-water reach must be labelled estimated`);
     if(snapshot.programmes.some(programme=>programme.slug==='mental-health-and-psychosocial-support')&&!html.includes('not a count of people receiving individual counselling'))errors.push(`${file}: messaging reach must not imply individual counselling`);
     if(html.includes('image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg'))errors.push(`${file}: unrelated Nutrition placeholder must not appear`);
+    if((html.match(/data-programme-tab=/g)||[]).length!==snapshot.programmes.length||!html.includes('data-programme-tablist')||html.includes('class="pg-grid"'))errors.push(`${file}: missing single-panel programme tab controls`);
+    if((html.match(/class="pg-interventions"/g)||[]).length!==snapshot.programmes.length||(html.match(/class="pg-locations"/g)||[]).length!==snapshot.programmes.length)errors.push(`${file}: every programme needs interventions and documented location details`);
+    if(!html.includes('not a complete programme footprint')||!html.includes('not a total for all economic-empowerment activities'))errors.push(`${file}: missing coverage or project-reach qualification`);
   }
   if(pageName==='dist/stories/index.html'){
     for(const id of ['updates-heading','updates-library-heading','updates-search','updates-count','updates-list'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing updates section/control ${id}`);
