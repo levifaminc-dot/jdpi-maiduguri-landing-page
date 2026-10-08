@@ -76,10 +76,15 @@ encrypted-session identity persistence, state/cookie checks, sign-out, and
 rejection of wrong tenant/issuer/audience/nonce, expired tokens and bad signatures.
 Unconfigured sign-in returns 503; blocked profile mutation returns 404. The local
 screen correctly keeps sign-in disabled before the Microsoft credential is saved.
-The real browser flow reaches Microsoft and personal consent completed. Microsoft
-rejected token exchange with `AADSTS7000215` (invalid client secret). The tenant
-administrator must correct the private secret **Value**, then repeat sign-in and
-local sign-out. No real authenticated workspace session has been verified yet.
+The real Microsoft browser flow passed on 8 October 2026 after the administrator
+corrected the private client-secret **Value**. Personal consent remains limited
+to the approved test account. The callback reached `/workspace` with verified
+JDPI identity, and the encrypted session persisted after a browser refresh.
+Application sign-out returned to the sign-in page; navigating directly to
+`/workspace` afterwards redirected back to sign-in. No membership or role was
+granted, and private staff content remained locked. Earlier attempts returned
+`AADSTS7000215` because an invalid credential was configured; that local setup
+blocker is now resolved. The secret remains in ignored `.env.local`, not Git.
 Isolated mock-OIDC tests use fictional identities/tokens, not a real login.
 Only numeric Microsoft error codes are logged; provider messages/token data are
 discarded. Development request-URL logging is disabled to avoid callback codes

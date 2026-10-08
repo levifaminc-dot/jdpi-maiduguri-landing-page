@@ -34,9 +34,10 @@ Entra provider. A separate single-tenant app, **JDPI Staff Workspace**, has been
 registered with client ID `80ceea92-5a36-4e3e-a73b-51742b72ce35`. The local Web
 callback is `http://localhost:4330/api/auth/callback/microsoft`. A credential must
 be entered privately into ignored `.env.local` before sign-in activates. See
-[Microsoft setup](MICROSOFT-SETUP.md). The browser test reached Microsoft and
-personal consent completed, but token exchange returned AADSTS7000215. The secret
-Value must be corrected before an authenticated session can be verified.
+[Microsoft setup](MICROSOFT-SETUP.md). Real Microsoft sign-in was verified locally
+on 8 October 2026 after the private secret Value was corrected. The identity
+session survived a refresh; sign-out cleared access, and a direct `/workspace`
+visit then redirected to sign-in. Personal consent only; no tenant-wide grant.
 
 This is an identity-only connection, NOT a production staff backend. No database,
 private Blob store or real membership API is connected. After verified sign-in,
@@ -64,8 +65,8 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
 
 ## Connection and release checklist - still to implement
 
-- Local registration and OIDC implementation are complete; actual Microsoft
-  sign-in still needs a private credential and an end-to-end test. Add the approved
+- Local registration, OIDC implementation and real local sign-in/sign-out tests
+  are complete. Add the approved
   production callback and secret via protected settings before deployment. Ask
   before consequential access grants/admin consent; never put secrets in Git/chat.
 - Signature, issuer, tenant, audience, expiry, state/nonce and PKCE are enforced.
