@@ -12,6 +12,7 @@ document.querySelectorAll<HTMLElement>('[data-programme-tabs]').forEach(group=>{
     panels[index].setAttribute('role','tabpanel');panels[index].setAttribute('aria-labelledby',tab.id);panels[index].tabIndex=0;
   });
   function select(index:number,focus=false,updateAddress=false){
+    group.querySelectorAll<HTMLDialogElement>('dialog[open]').forEach(dialog=>dialog.close());
     tabs.forEach((tab,i)=>{tab.setAttribute('aria-selected',String(i===index));tab.tabIndex=i===index?0:-1;});
     panels.forEach((panel,i)=>panel.hidden=i!==index);
     if(focus)tabs[index].focus();

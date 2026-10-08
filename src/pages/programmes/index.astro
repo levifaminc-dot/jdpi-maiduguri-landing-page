@@ -1,5 +1,6 @@
 ---
 import {getContent} from '../../lib/content';
+import {PortableText} from 'astro-portabletext';
 import {sectorImpact,impactYear} from '../../lib/impact';
 import {programmeImage} from '../../lib/programmes';
 import interventionData from '../../data/programme-interventions.json';
@@ -49,18 +50,28 @@ const programmes=content.programmes.map(item=>({
     <div class="pg-panels">{programmes.map((programme,index)=>{
       const reach=programme.result||programme.details?.projectReach;
       return <article class:list={['pg-card',`pg-${programme.icon}`]} id={`programme-${programme.slug}`} data-programme={programme.slug} aria-labelledby={`programme-heading-${programme.slug}`}>
-      <div class="pg-card-title"><div class="pg-card-heading"><span class="pg-icon"><ProjectIcon name={programme.icon}/></span><h3 id={`programme-heading-${programme.slug}`}><a href={`/programmes/${programme.slug}/`}>{programme.displayTitle}</a></h3></div>{programme.summary&&<p class="pg-summary">{programme.summary}</p>}</div>
-      <div class="pg-card-visual"><a class="pg-card-photo" href={`/programmes/${programme.slug}/`} aria-label={`Explore ${programme.displayTitle}`}><ContentImage image={programme.image}/><span class="pg-card-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span></a>
-        {reach?<div class="pg-result"><p class="pg-result-year">{impactYear} REPORTED {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span><p>{reach.description}</p><small>Annual Report {impactYear} · {reach.source}</small>{programme.details?.projectReach&&<a class="pg-reach-link" href={`/projects/${programme.details.projectReach.project}/`}>View the WE-SING project <span aria-hidden="true">→</span></a>}</div>:<div class="pg-result"><p class="pg-result-year">REACH</p><p>A verified programme-wide reach figure is not available in this summary.</p></div>}
-      </div>
+      <div class="pg-card-title"><div class="pg-card-heading"><span class="pg-icon"><ProjectIcon name={programme.icon}/></span><h3 id={`programme-heading-${programme.slug}`}>{programme.displayTitle}</h3></div>{programme.summary&&<p class="pg-summary">{programme.summary}</p>}</div>
+      <div class="pg-card-visual"><div class="pg-card-photo"><ContentImage image={programme.image}/><span class="pg-card-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span></div></div>
       <div class="pg-card-body">
-        <section class="pg-interventions" aria-labelledby={`interventions-${programme.slug}`}><h4 id={`interventions-${programme.slug}`}>Our interventions</h4>{programme.details?<><ul>{programme.details.interventions.map(text=><li>{text}</li>)}</ul><p class="pg-detail-source">{programme.details.source}</p></>:<p>Detailed intervention information is awaiting confirmation. <a href="/contact/">Contact our team</a>.</p>}</section>
-        <section class="pg-locations" aria-labelledby={`locations-${programme.slug}`}><div class="pg-location-heading"><h4 id={`locations-${programme.slug}`}>Documented locations</h4><a href="/where-we-work/">View coverage map <span aria-hidden="true">↗</span></a></div>{programme.details?.locations.length>0&&<ul>{programme.details.locations.map(location=><li><span class="pg-location-label"><ProjectIcon name="location"/>{location.label}</span><p>{location.detail}</p><small>{location.source}</small></li>)}</ul>}{programme.details?.locationNote&&<p class="pg-location-note">{programme.details.locationNote}</p>}{!programme.details&&<p class="pg-location-note">Programme-specific locations are awaiting confirmation.</p>}</section>
+        {reach?<div class="pg-result pg-result-summary"><p class="pg-result-year">{impactYear} REPORTED {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span>{programme.details?.projectReach&&<small>WE-SING project only · not a programme-wide total</small>}</div>:<p class="pg-summary">Verified reach information is awaiting confirmation.</p>}
+        <details class="pg-more" data-programme-details data-programme-tone={`pg-${programme.icon}`} data-dialog-id={`programme-dialog-${programme.slug}`}>
+          <summary class="pg-button">More details <ProjectIcon name="arrow"/></summary>
+          <div class="pg-detail-content">
+          <header class="pg-modal-header"><div><p class="pg-eyebrow">PROGRAMME DETAILS</p><h2 id={`programme-dialog-heading-${programme.slug}`} tabindex="-1">{programme.displayTitle}</h2></div><button type="button" class="pg-modal-close" data-close-programme-dialog aria-label="Close programme details" hidden><span aria-hidden="true">×</span></button></header>
+          <div class="pg-modal-body">
+          {programme.summary&&<p class="pg-modal-intro">{programme.summary}</p>}
+          {reach&&<div class="pg-result"><p class="pg-result-year">{impactYear} REPORTED {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span><p>{reach.description}</p><small>Annual Report {impactYear} · {reach.source}</small>{programme.details?.projectReach&&<a class="pg-reach-link" href={`/projects/${programme.details.projectReach.project}/`}>View the WE-SING project <span aria-hidden="true">→</span></a>}</div>}
+          {programme.body?.length>0&&<div class="prose pg-modal-overview"><PortableText value={programme.body}/></div>}
+        <section class="pg-interventions" aria-labelledby={`interventions-${programme.slug}`}><h3 id={`interventions-${programme.slug}`}>Our interventions</h3>{programme.details?<><ul>{programme.details.interventions.map(text=><li>{text}</li>)}</ul><p class="pg-detail-source">{programme.details.source}</p></>:<p>Detailed intervention information is awaiting confirmation. <a href="/contact/">Contact our team</a>.</p>}</section>
+        <section class="pg-locations" aria-labelledby={`locations-${programme.slug}`}><div class="pg-location-heading"><h3 id={`locations-${programme.slug}`}>Documented locations</h3><a href="/where-we-work/">View coverage map <span aria-hidden="true">↗</span></a></div>{programme.details?.locations.length>0&&<ul>{programme.details.locations.map(location=><li><span class="pg-location-label"><ProjectIcon name="location"/>{location.label}</span><p>{location.detail}</p><small>{location.source}</small></li>)}</ul>}{programme.details?.locationNote&&<p class="pg-location-note">{programme.details.locationNote}</p>}{!programme.details&&<p class="pg-location-note">Programme-specific locations are awaiting confirmation.</p>}</section>
         {programme.projects.length>0&&<div class="pg-project-links"><p>RELATED PROJECTS</p><ul>{programme.projects.map(project=><li><a href={`/projects/${project.slug}/`}>{project.title} <span aria-hidden="true">↗</span></a></li>)}</ul></div>}
         <a class="pg-card-link" href={`/programmes/${programme.slug}/`}>Explore programme <ProjectIcon name="arrow"/><span class="sr-only"> — {programme.displayTitle}</span></a>
+          <p class="pg-report-note">Results are from the {impactYear} Annual Report, not live totals. Measures may overlap and must not be added as a unique-person total. Documented locations are examples, not a complete programme footprint; completed-project examples are labelled.</p>
+          </div></div>
+        </details>
       </div>
     </article>})}</div>
-    <p class="pg-report-note">Results are from the {impactYear} Annual Report, not live totals. Programme figures use different measures and may overlap; they must not be added as a unique-person total. Documented locations are examples, not a complete programme footprint; completed-project examples are labelled. <a href="/impact/#sectors-heading">See the full results and reporting context <span aria-hidden="true">→</span></a></p>
+    <p class="pg-report-note">{impactYear} reported results · measures vary and may overlap. <a href="/impact/#sectors-heading">View reporting context <span aria-hidden="true">→</span></a></p>
   </section>
   </div>
   <section class="pg-approach" aria-labelledby="approach-heading"><div class="project-shell pg-approach-grid">
@@ -68,5 +79,5 @@ const programmes=content.programmes.map(item=>({
     <div><p class="pg-eyebrow">OUR APPROACH</p><h2 id="approach-heading">Working with communities.<br/><span>Not simply for them.</span></h2><p>Our work is rooted in listening, participation and local knowledge. We connect support across programme areas so communities can meet today’s needs and shape tomorrow’s possibilities.</p><div class="pg-principles"><div><ProjectIcon name="location"/><h3>Locally rooted</h3><p>Working across Borno, Adamawa and Yobe.</p></div><div><ProjectIcon name="protection"/><h3>Dignity first</h3><p>Promoting safety, inclusion and the rights of every person.</p></div></div><a class="pg-button" href="/where-we-work/">See where we work <ProjectIcon name="arrow"/></a></div>
   </div></section>
   <section class="pg-cta" aria-labelledby="action-heading"><div class="project-shell"><div><p class="pg-eyebrow">FROM PROGRAMMES TO PROGRESS</p><h2 id="action-heading">See the work.<br/><span>Meet the change.</span></h2><p>Discover our projects, explore reported results, or talk to us about working together.</p></div><div class="pg-actions"><a class="pg-button pg-button-light" href="/projects/">Explore our projects <ProjectIcon name="arrow"/></a><a class="pg-button pg-button-outline" href="/impact/">View our impact <ProjectIcon name="arrow"/></a><a class="pg-contact-link" href="/contact/">Partner with JDPI <span aria-hidden="true">↗</span></a></div></div></section>
-  <script>import '../../scripts/programme-tabs';</script>
+  <script>import '../../scripts/programme-tabs';import '../../scripts/programme-dialogs';</script>
 </Layout>

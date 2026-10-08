@@ -55,6 +55,12 @@ for(const file of htmlFiles){
     if(html.includes('image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg'))errors.push(`${file}: unrelated Nutrition placeholder must not appear`);
     if((html.match(/data-programme-tab=/g)||[]).length!==snapshot.programmes.length||!html.includes('data-programme-tablist')||html.includes('class="pg-grid"'))errors.push(`${file}: missing single-panel programme tab controls`);
     if((html.match(/class="pg-interventions"/g)||[]).length!==snapshot.programmes.length||(html.match(/class="pg-locations"/g)||[]).length!==snapshot.programmes.length)errors.push(`${file}: every programme needs interventions and documented location details`);
+    const reachSummaries=(html.match(/class="pg-result pg-result-summary"/g)||[]).length+(html.match(/Verified reach information is awaiting confirmation\./g)||[]).length;
+    if((html.match(/<details\b[^>]*\bdata-programme-details\b/g)||[]).length!==snapshot.programmes.length||reachSummaries!==snapshot.programmes.length)errors.push(`${file}: each programme must have a compact reach summary and More details disclosure`);
+    for(const programme of snapshot.programmes){
+      const disclosure=html.match(new RegExp(`<details[^>]*data-dialog-id="programme-dialog-${programme.slug}"[\\s\\S]*?<\\/details>`))?.[0];
+      if(!disclosure?.includes('More details')||!disclosure.includes(`id="programme-dialog-heading-${programme.slug}"`)||!disclosure.includes('data-close-programme-dialog')||!disclosure.includes('class="pg-interventions"')||!disclosure.includes('class="pg-locations"'))errors.push(`${file}: programme details must be available inside the popup/fallback ${programme.slug}`);
+    }
     if(!html.includes('not a complete programme footprint')||!html.includes('not a total for all economic-empowerment activities'))errors.push(`${file}: missing coverage or project-reach qualification`);
   }
   if(pageName==='dist/stories/index.html'){
