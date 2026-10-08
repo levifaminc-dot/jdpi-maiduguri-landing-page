@@ -587,6 +587,10 @@
             },
             {
               "type": "string",
+              "value": "Blogs"
+            },
+            {
+              "type": "string",
               "value": "News"
             },
             {

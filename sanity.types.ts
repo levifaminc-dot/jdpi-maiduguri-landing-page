@@ -107,7 +107,7 @@ export type Story = {
   seoTitle?: string;
   seoDescription?: string;
   sourceKey?: string;
-  category: "Stories" | "News" | "Events" | "Publications";
+  category: "Stories" | "Blogs" | "News" | "Events" | "Publications";
   publishedAt: string;
 };
 
@@ -629,7 +629,7 @@ export type CONTENT_QUERY_RESULT = {
       _type: "block";
       _key: string;
     }> | null;
-    category: "Events" | "News" | "Publications" | "Stories";
+    category: "Blogs" | "Events" | "News" | "Publications" | "Stories";
     publishedAt: string;
     sortOrder: number | null;
     seoTitle: string | null;
@@ -860,7 +860,7 @@ export type EXPORT_QUERY_RESULT = Array<
       seoTitle?: string;
       seoDescription?: string;
       sourceKey?: string;
-      category: "Events" | "News" | "Publications" | "Stories";
+      category: "Blogs" | "Events" | "News" | "Publications" | "Stories";
       publishedAt: string;
     }
 >;
@@ -1102,7 +1102,7 @@ export type RELEASE_QUERY_RESULT = {
         _type: "block";
         _key: string;
       }> | null;
-      category: "Events" | "News" | "Publications" | "Stories";
+      category: "Blogs" | "Events" | "News" | "Publications" | "Stories";
       publishedAt: string;
       sortOrder: number | null;
       seoTitle: string | null;
@@ -1329,7 +1329,7 @@ export type RELEASE_QUERY_RESULT = {
         seoTitle?: string;
         seoDescription?: string;
         sourceKey?: string;
-        category: "Events" | "News" | "Publications" | "Stories";
+        category: "Blogs" | "Events" | "News" | "Publications" | "Stories";
         publishedAt: string;
       }
   >;

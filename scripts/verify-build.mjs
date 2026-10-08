@@ -13,6 +13,13 @@ for(const file of htmlFiles){
   if(!html.includes('family=DM+Sans:wght@400;500;600;700')||!html.includes('family=Montserrat:wght@400;500;600;700;800;900'))errors.push(`${file}: missing WordPress font pairing and display weights`);
   if(html.includes('family=Open+Sans'))errors.push(`${file}: legacy body font is still requested`);
   const pageName=file.replaceAll('\\','/');
+  if(pageName==='dist/stories/index.html'){
+    for(const id of ['updates-heading','updates-library-heading','updates-search','updates-count','updates-list'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing updates section/control ${id}`);
+    for(const category of ['all','field','blog','news','reports','publications'])if(!html.includes(`data-update-filter="${category}"`))errors.push(`${file}: missing updates filter ${category}`);
+    if(!html.includes('href="/stories/" aria-current="page"')||!html.includes('role="status"')||!html.includes('data-updates-empty'))errors.push(`${file}: missing current navigation or accessible filter feedback`);
+    if((html.match(/<h1\b/g)||[]).length!==1||/href="#"/.test(html))errors.push(`${file}: invalid main heading or placeholder link`);
+    for(const title of ['JDPI Annual Report 2025','JDPI Financial Report 2025','JDPI Financial Report 2024','JDPI Financial Report 2023'])if(!html.includes(title))errors.push(`${file}: missing resource-library document ${title}`);
+  }
   if(pageName==='dist/about/index.html'){
     for(const id of ['about-heading','who-heading','story-heading','guides-heading','identity-heading','where-heading','approach-heading','leadership-heading','accountability-heading','partnership-heading','cta-heading'])if(!html.includes(`id="${id}"`))errors.push(`${file}: missing About section ${id}`);
     const sectionNav=html.match(/<nav\b[^>]*class="ab-section-nav"[\s\S]*?<\/nav>/)?.[0];
