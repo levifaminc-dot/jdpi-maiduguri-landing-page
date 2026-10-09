@@ -118,9 +118,9 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
 
 ## Connection and release checklist - still to implement
 
-- Local registration, OIDC implementation and real local sign-in/sign-out tests
-  are complete. Add the approved
-  production callback and secret via protected settings before deployment. Ask
+- Local registration, OIDC implementation and local sign-in/sign-out tests
+  are complete. The approved production callback and protected configuration
+  are connected, and the owner confirmed production sign-in. Ask
   before consequential access grants/admin consent; never put secrets in Git/chat.
 - Signature, issuer, tenant, audience, expiry, state/nonce and PKCE are enforced.
   Only identity scopes are requested. Identity is tenant ID + object ID, not email.

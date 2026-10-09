@@ -37,9 +37,21 @@ locally only; no new production secrets or services are needed.
   ownership, draft isolation, moderation, revocation, validation and SQL limits.
 - Final production build passes. The additive Neon migration committed and
   verified the runtime's effective grants without changing membership records.
-  `scripts/check-announcements.mjs` provides a counts-only runtime smoke check;
-  load the ignored runtime environment locally, never the owner URL on Vercel.
-  Live verification must still be completed; do not infer it from a push.
+  The counts-only TLS runtime smoke check passed: zero announcements/comments
+  and one existing member. Load the ignored runtime environment locally for
+  `scripts/check-announcements.mjs`, never the owner URL on Vercel.
+- Application commit `b85f8cd59278c07436532fc8e3aa1229cfe2d87c` was pushed only
+  to `staff-workspace-backup`. Vercel deployment
+  `48CiLZKjCvDRQfZxjmZ9A1j3SQv8` is Ready and assigned to the staff custom domain.
+- Existing admin Microsoft sign-in, the refreshed dashboard, live empty feed,
+  draft filter and composer controls were checked. Desktop and 390px mobile
+  layouts were visually inspected, with no document-level horizontal overflow.
+- Cookie-free announcement-page requests redirect (307), its API denies access
+  (401), cross-origin writes are rejected (403), and the fictional preview is
+  unavailable in production (404). Responses retain private/no-store headers.
+- No production announcement/comment was posted for testing. Writing, ownership,
+  moderation and suspension were tested with fictional PostgreSQL fixtures.
+  The owner should publish the first real update as the content-workflow pilot.
 
 ## Verified foundation — 9 October 2026
 
