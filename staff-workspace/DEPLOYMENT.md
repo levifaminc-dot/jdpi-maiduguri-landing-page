@@ -63,6 +63,34 @@ root website, `www`, `studio`, MX, SPF, DKIM or DMARC records for this setup.
    logout, unauthenticated requests and a user-approved restricted pilot.
    Do not automatically admit staff or run the first-admin bootstrap again.
 
+### Completed protected setup — 9 October 2026
+
+The owner separately approved the production callback and limited runtime role.
+Microsoft now lists both the original local Web callback and the approved staff
+domain callback. No API scopes or tenant-wide consent were changed.
+
+`jdpi_workspace_runtime` was created through the direct operator connection, not
+Neon's console role-creation shortcut. It remains **NOLOGIN**, without a password,
+until the owner completes the credential handoff. Effective database privileges
+were checked, including inherited/PUBLIC privileges. It has no administrative
+attributes, role memberships or object ownership; no permanent-schema creation,
+migration access, member deletion, or audit update/delete/truncate is permitted.
+Membership insertion excludes role assignment; member identity keys are not
+updateable. Audits allow append-only specified columns. Local fixture tests also
+exercise the required row-lock grants. A real runtime login remains untested.
+
+Provisioning initially rolled back when the operator was not permitted to
+impersonate the new role. No operator membership was widened to bypass that:
+effective permissions were verified without impersonation, and only the later
+successful transaction committed the role and its explicit grants. No staff
+records or existing PUBLIC/database-owner privileges were changed.
+
+Operator tool: `scripts/provision-runtime-role.mjs`; running without flags is
+plan-only. `--apply` needs explicit owner approval and refuses to overwrite an
+existing role. `--check` verifies current privileges without changing them.
+Neither generates, logs or uploads a password. Do not run these operator tools
+in deployment builds or through a public route.
+
 ## Release limits
 
 The team was on Vercel Hobby when this unconnected foundation was deployed.
