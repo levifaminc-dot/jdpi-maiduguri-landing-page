@@ -111,6 +111,15 @@ have exercised its verifier; activation still awaits the owner handoff.
 Never paste that private file, password, verifier or connection URL into chat,
 Git or a screenshot. `DATABASE_MIGRATION_URL` must never be uploaded to Vercel.
 
+The owner subsequently reported completion, but read-only verification found
+the role still NOLOGIN and `.env.runtime.local` absent. A Windows console test
+reproduced `setRawMode EPERM` when closing the confirmation reader and reopening
+a hidden password reader. The helper now keeps one protected console reader for
+all three prompts. A Windows terminal test completed both fictional hidden
+entries without printing them, and a stream test checks single raw-mode ownership
+and no secret echo. Safe progress/stage messages were added. Activation remains
+an owner handoff; no password was set by these diagnostic tests.
+
 ## Release limits
 
 The team was on Vercel Hobby when this unconnected foundation was deployed.
