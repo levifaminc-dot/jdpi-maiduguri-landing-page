@@ -16,11 +16,14 @@ connections use TLS with a verified server certificate. The two prepared
 migrations were applied successfully on 9 October. Microsoft sign-in now uses
 durable Neon-backed sessions in the local application.
 
-No membership request, admission or admin grant has been created. Tayo's verified
-identity is stored, but staff content remains locked pending admission. A browser
-safety check rejected submitting an access request without separate user approval;
-the action was not retried or performed through another route. First-admin setup
-still needs explicit approval. No Git push or Vercel staff deployment occurred.
+After separate explicit approval on 9 October, Tayo's verified account submitted
+an access request and received the first-admin grant through the operator-only
+bootstrap script. The approved Microsoft object ID is
+`0f996396-15f5-45d7-a453-0082eca90653` in the configured JDPI tenant. The database
+contains one member, ACTIVE ADMIN, and one operator grant audit record. No other
+staff were invited, admitted or granted roles. The previous session was revoked;
+a fresh Microsoft sign-in opened the real People & access administration panel.
+No Git push or Vercel staff deployment occurred.
 The local setup uses the generated owner role; replace runtime access with a
 least-privilege role before deploying or releasing the workspace.
 
@@ -53,8 +56,11 @@ The original fictional preview remains isolated from real membership.
 
 ## First administrator: separate explicit approval required
 
-The planned first administrator is tayo@jdpimaiduguri.org. That email is NOT an
-authorisation rule. Nothing auto-promotes the first login or a matching address.
+The first administrator is now tayo@jdpimaiduguri.org, after explicit approval and
+immutable Microsoft identity verification. That email is NOT an authorisation
+rule. Nothing auto-promotes the first login or a matching address. Bootstrap has
+completed and will refuse subsequent grants; use authenticated admin role
+management for any separately approved additional administrator.
 
 After connection, the intended administrator must sign in and request admission.
 Verify the immutable tenant/user object ID against the approved Microsoft user.
@@ -129,8 +135,12 @@ both migrations were verified on hosted Neon and the 15 tests passed again.
 Live Microsoft sign-in created one verified identity and one durable session;
 provider token columns remained empty. Browser refresh retained the session.
 Sign-out removed it (zero active sessions) and direct workspace navigation
-redirected to sign-in. Membership and audit counts remained zero. Hosted
-membership mutation, concurrent-admin, load and restore tests remain pending.
+redirected to sign-in. Membership and audit counts remained zero until explicit
+first-admin approval. The approved pending request and first-admin grant were then
+verified on hosted Neon. Bootstrap revoked the old session (zero active sessions);
+browser refresh redirected to sign-in, and a fresh Microsoft login showed Tayo as
+Admin with the People & access panel and both audit events. Hosted multi-user
+membership mutations, concurrent-admin, load and restore tests remain pending.
 
 `pg_stat_ssl` through the pooled connection describes Neon's internal backend
 link, not the application's TLS link to the pooler. Verification used the pg
