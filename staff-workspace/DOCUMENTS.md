@@ -73,7 +73,7 @@ without checking their metadata and explicit approval.
 
 ## Testing and remaining rollout gates
 
-51 automated tests pass, including actual PDF parser workers and operations under
+52 automated tests pass, including actual PDF parser workers and operations under
 the limited PostgreSQL runtime role. Tests cover pending/suspended/wrong-tenant
 denial, immediate publication, ownership, admin moderation, optimistic conflicts,
 idempotence, integrity, quota limits and suspension during upload. Tests use only
@@ -82,11 +82,22 @@ fictional identities and memory-local files, not staff data.
 On 9 October 2026, the operator verified the app-only token can read the exact
 selected site and library using `npm run storage:verify`. That command is
 read-only: it neither enumerates document contents nor uploads a file. Graph
-Explorer's temporary personal FullControl setup consent was revoked afterward;
+Explorer's temporary personal FullControl setup consent has also been revoked;
 the existing administrator-approved basic profile scopes were left unchanged.
 Automated SharePoint tests use mocked responses, not proof of a hosted upload.
 Live upload/preview/download verification remains a separate fictional-file
 test, followed by recoverable archive and confirmation of Vercel release status.
+
+The first hosted fictional upload failed at upload-session creation (Microsoft
+HTTP 400, malformed request). A read-only check returned 404 for that exact test
+filename, and the metadata correctly remained FAILED rather than being published.
+The corrected request resolves the library root item and supplies only the
+explicit `fail` conflict setting, with the filename in the URL; this site's API
+rejects a redundant `item.name`. A temporary session-only probe succeeded without
+transmitting PDF bytes. Completed upload sessions can return 200 or 201, as
+documented by Microsoft; both are accepted after checking file metadata. The
+first failed reservation remains retained, counted against the pilot allowance,
+and visible only in the uploader's My uploads. No file deletion was attempted.
 
 Before use for confidential case/HR documents or organisation-wide rollout:
 

@@ -69,6 +69,9 @@ export async function uploadDocument(pool,identity,metadata,bytes,storage,valida
       await audit(db,identity,'shared',row.id);return dto({...row,uploader_name:actor.name},actor,identity);
     });
   } catch(error) {
+    // Fixed diagnostic fields only. Never log provider bodies, file paths,
+    // titles, signed URLs, tokens, credentials or arbitrary exception messages.
+    if(['resolve-library-root','create-upload-session','validate-transfer-host','transfer-pdf','verify-upload-result'].includes(error?.stage))console.error('JDPI private document diagnostic:',error.stage,Number.isInteger(error.status)?error.status:'no-http-status');
     // Only finalize this actor's reservation. Never delete a stored file: a failed
     // COMMIT acknowledgement could have published it successfully already.
     try{await transaction(pool,db=>db.query("UPDATE workspace_document SET status='FAILED',updated_at=now(),version=version+1 WHERE id=$1 AND tenant_id=$2 AND uploader_object_id=$3 AND status='UPLOADING'",[metadata.id,identity.tenantId,identity.objectId]));}catch{}

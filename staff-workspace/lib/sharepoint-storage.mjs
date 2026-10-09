@@ -5,6 +5,11 @@ import {boundedBytes} from './private-bytes.mjs';
 
 const graph='https://graph.microsoft.com/v1.0';
 const safeError=()=>new Error('Private SharePoint storage is temporarily unavailable.');
+function stagedError(cause,stage) {
+  const error=safeError();error.stage=stage;
+  if(Number.isInteger(cause?.status))error.status=cause.status;
+  return error;
+}
 // Never put signed transfer URLs, bearer tokens or provider error bodies in logs.
 function transferUrl(value) {
   try {
@@ -62,26 +67,37 @@ export function sharepointStorage(env=process.env,fetcher=fetch,now=Date.now) {
         stage='target-verification';
         if(site.id!==target.siteId || site.webUrl!==`https://${target.hostname}/sites/JDPIStaffDocuments` || library.id!==target.driveId || library.driveType!=='documentLibrary' || new URL(library.webUrl).hostname!==target.hostname)throw safeError();
         return true;
-      }catch(cause){const error=safeError();error.stage=stage;if(Number.isInteger(cause?.status))error.status=cause.status;throw error;}
+      }catch(cause){throw stagedError(cause,stage);}
     },
     async put(pathname,bytes,ref=reference()) {
       validReference(ref);const name=fileName(pathname);
       if(!(bytes instanceof Uint8Array) || bytes.length<16 || bytes.length>PDF_MAX_BYTES)throw safeError();
       const signal=AbortSignal.timeout(30000);
+      let stage='resolve-library-root';
+      try {
+      const root=await smallJson(await request(`${drive}/root?$select=id`,{},signal));
+      if(typeof root.id!=='string' || !/^[A-Za-z0-9_-]{10,200}$/.test(root.id))throw safeError();
+      stage='create-upload-session';
       // Explicit fail-on-conflict upload session: never replace an existing file.
-      const session=await smallJson(await request(`${drive}/root:/${name}:/createUploadSession`,{
+      const session=await smallJson(await request(`${drive}/items/${encodeURIComponent(root.id)}:/${name}:/createUploadSession`,{
         method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({item:{name,'@microsoft.graph.conflictBehavior':'fail'}}),
+        body:JSON.stringify({item:{'@microsoft.graph.conflictBehavior':'fail'}}),
       },signal));
+      stage='validate-transfer-host';
       const uploadUrl=transferUrl(session.uploadUrl);
       const expiry=Date.parse(session.expirationDateTime);
       if(!Number.isFinite(expiry) || expiry<=now())throw safeError();
       // The signed URL stays server-side. Do NOT forward Graph authorization.
+      stage='transfer-pdf';
       const response=await fetcher(uploadUrl,{method:'PUT',redirect:'error',cache:'no-store',signal,
         headers:{'Content-Type':'application/pdf','Content-Length':String(bytes.length),'Content-Range':`bytes 0-${bytes.length-1}/${bytes.length}`},body:bytes});
-      if(response.status!==201)throw safeError();
+      // Microsoft documents both 200 and 201 on session completion. Conflict
+      // protection is the explicit fail setting, not the response status alone.
+      if(![200,201].includes(response.status)){const error=safeError();error.status=response.status;throw error;}
+      stage='verify-upload-result';
       const item=await smallJson(response);
       if(item.name!==name || item.size!==bytes.length || !item.file || item.parentReference?.driveId!==target.driveId)throw safeError();
+      }catch(cause){throw stagedError(cause,stage);}
     },
     async read(pathname,ref=reference()) {
       validReference(ref);const name=fileName(pathname),signal=AbortSignal.timeout(25000);
@@ -90,7 +106,8 @@ export function sharepointStorage(env=process.env,fetcher=fetch,now=Date.now) {
         const downloadUrl=transferUrl(response.headers.get('location'));
         response=await fetcher(downloadUrl,{method:'GET',redirect:'error',cache:'no-store',signal});
       }
-      if(response.status!==200 || Number(response.headers.get('content-length'))>PDF_MAX_BYTES)throw safeError();
+      if(response.status!==200){const error=safeError();error.status=response.status;throw error;}
+      if(Number(response.headers.get('content-length'))>PDF_MAX_BYTES)throw safeError();
       return boundedBytes(response.body,PDF_MAX_BYTES);
     },
   };

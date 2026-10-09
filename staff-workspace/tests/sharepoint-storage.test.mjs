@@ -9,6 +9,7 @@ const path=`staff-pdfs/${target.tenantId}/${id}.pdf`;
 const bytes=new Uint8Array(Buffer.from('%PDF-1.7\nFictional fixture\n%%EOF'));
 const json=(body,status=200)=>Response.json(body,{status});
 const token=()=>json({access_token:'fictional-token',token_type:'Bearer',expires_in:3600});
+const root=()=>json({id:'01FICTIONALROOT00000000'});
 const uploadUrl=`https://${target.hostname}/_api/v2.0/drive/upload?fictional=fixture-only`;
 const session=()=>json({uploadUrl,expirationDateTime:new Date(Date.now()+3600000).toISOString()});
 const item=()=>json({id:'fictional-item',name:`${id}.pdf`,size:bytes.length,file:{mimeType:'application/pdf'},parentReference:{driveId:target.driveId}},201);
@@ -25,38 +26,51 @@ test('SharePoint configuration is bound to the approved tenant and app; referenc
 });
 
 test('upload uses fail-on-conflict and signed server-side transfer without forwarding the bearer token',async()=>{
-  const calls=[];const replies=[token(),session(),item()];
+  const calls=[];const replies=[token(),root(),session(),item()];
   const storage=sharepointStorage(env,async(url,options)=>{calls.push({url,options});return replies.shift();});
   await storage.put(path,bytes);
-  assert.equal(calls.length,3);
+  assert.equal(calls.length,4);
   assert.equal(new URL(calls[0].url).hostname,'login.microsoftonline.com');
   assert.equal(calls[0].options.body.get('scope'),'https://graph.microsoft.com/.default');
-  const create=calls[1];assert.equal(new URL(create.url).hostname,'graph.microsoft.com');
+  const create=calls[2];assert.equal(new URL(create.url).hostname,'graph.microsoft.com');
   assert.equal(create.options.method,'POST');assert.equal(JSON.parse(create.options.body).item['@microsoft.graph.conflictBehavior'],'fail');
+  assert.equal(JSON.parse(create.options.body).item.name,undefined);
+  assert.match(create.url,/\/items\/01FICTIONALROOT00000000:\/00000000-0000-4000-8000-000000000100\.pdf:\/createUploadSession$/);
   assert.equal(create.options.headers.Authorization,'Bearer fictional-token');
-  assert.equal(calls[2].url,uploadUrl);assert.equal(calls[2].options.headers.Authorization,undefined);
-  assert.equal(calls[2].options.redirect,'error');assert.equal(calls[2].options.headers['Content-Range'],`bytes 0-${bytes.length-1}/${bytes.length}`);
+  assert.equal(calls[3].url,uploadUrl);assert.equal(calls[3].options.headers.Authorization,undefined);
+  assert.equal(calls[3].options.redirect,'error');assert.equal(calls[3].options.headers['Content-Range'],`bytes 0-${bytes.length-1}/${bytes.length}`);
 });
 
 test('conflict, throttling and uncertain commit responses never overwrite, retry or delete files',async()=>{
   for(const status of [409,429,500]) {
     let calls=0;
-    const storage=sharepointStorage(env,async()=>{calls++;return calls===1?token():json({error:'provider-private-detail'},status);});
+    const storage=sharepointStorage(env,async()=>{calls++;return calls===1?token():calls===2?root():json({error:'provider-private-detail'},status);});
     await assert.rejects(storage.put(path,bytes),error=>!error.message.includes('provider-private-detail'));
-    assert.equal(calls,2);
+    assert.equal(calls,3);
   }
-  let calls=0;const replies=[token(),session(),json({error:'private-commit-detail'},500)];
+  let calls=0;const replies=[token(),root(),session(),json({error:'private-commit-detail'},500)];
   const storage=sharepointStorage(env,async(_url,options)=>{calls++;assert.notEqual(options.method,'DELETE');return replies.shift();});
-  await assert.rejects(storage.put(path,bytes));assert.equal(calls,3);
+  await assert.rejects(storage.put(path,bytes));assert.equal(calls,4);
 });
 
 test('signed transfer URLs reject foreign hosts, credentials, ports, HTTP and additional redirects',async()=>{
   for(const url of ['https://attacker.invalid/file','https://jdpcmaiduguri.sharepoint.com.attacker.invalid/file','http://jdpcmaiduguri.sharepoint.com/file','https://name:password@jdpcmaiduguri.sharepoint.com/file','https://jdpcmaiduguri.sharepoint.com:444/file','https://jdpcmaiduguri.sharepoint.com/file#fragment']) {
-    let calls=0;const storage=sharepointStorage(env,async()=>{calls++;return calls===1?token():json({uploadUrl:url,expirationDateTime:new Date(Date.now()+3600000).toISOString()});});
-    await assert.rejects(storage.put(path,bytes));assert.equal(calls,2);
+    let calls=0;const storage=sharepointStorage(env,async()=>{calls++;return calls===1?token():calls===2?root():json({uploadUrl:url,expirationDateTime:new Date(Date.now()+3600000).toISOString()});});
+    await assert.rejects(storage.put(path,bytes));assert.equal(calls,3);
   }
   let calls=0;const replies=[token(),new Response(null,{status:302,headers:{location:'https://attacker.invalid/file'}})];
   await assert.rejects(sharepointStorage(env,async()=>{calls++;return replies.shift();}).read(path));assert.equal(calls,2);
+});
+
+test('documented 200 completion is accepted; a forged root or mismatched file result is not published',async()=>{
+  const completed=item();const data=await completed.json();
+  const replies=[token(),root(),session(),json(data,200)];
+  await sharepointStorage(env,async()=>replies.shift()).put(path,bytes);
+  let calls=0;
+  const forged=sharepointStorage(env,async()=>{calls++;return calls===1?token():json({id:'../../another-site'});});
+  await assert.rejects(forged.put(path,bytes));assert.equal(calls,2);
+  const mismatch=[token(),root(),session(),json({...data,name:'wrong.pdf'},201)];
+  await assert.rejects(sharepointStorage(env,async()=>mismatch.shift()).put(path,bytes),{stage:'verify-upload-result'});
 });
 
 test('private downloads keep signed URLs server-side, never forward credentials and enforce the size bound',async()=>{
