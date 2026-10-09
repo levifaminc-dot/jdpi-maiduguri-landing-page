@@ -85,8 +85,18 @@ read-only: it neither enumerates document contents nor uploads a file. Graph
 Explorer's temporary personal FullControl setup consent has also been revoked;
 the existing administrator-approved basic profile scopes were left unchanged.
 Automated SharePoint tests use mocked responses, not proof of a hosted upload.
-Live upload/preview/download verification remains a separate fictional-file
-test, followed by recoverable archive and confirmation of Vercel release status.
+Live verification subsequently passed on the Production release `2cfc530`
+(Vercel deployment `6AVdaR7csGjrE5Uj4Beiz8siTV97`, Ready). Production uses
+SharePoint for new uploads. The approved fictional two-page sample uploaded
+through the workspace, both pages rendered, and its downloaded bytes matched
+the original. The legacy Blob sample also previewed and downloaded unchanged.
+Both file endpoints returned 401 to unauthenticated requests.
+
+After the owner completed the browser confirmation, read-only verification
+confirmed sample `fdd89c0c-e6b2-46b7-b4e9-eb824d9139f1` is ARCHIVED. The live
+staff library no longer contains it; the Archive view displays the recoverable
+record. Its stored bytes still match the recorded checksum. No real documents
+were altered and no file was deleted.
 
 The first hosted fictional upload failed at upload-session creation (Microsoft
 HTTP 400, malformed request). A read-only check returned 404 for that exact test

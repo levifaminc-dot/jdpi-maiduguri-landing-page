@@ -286,3 +286,27 @@ and Ready status. Keep public website releases separate. GitHub contains source
 and guides only, not staff data or secret recovery. Reuse the existing Neon
 database and Entra app when restoring; do not duplicate them or re-bootstrap an
 administrator.
+
+## SharePoint PDF pilot verified — 9 October 2026
+
+This later release supersedes the earlier unconnected-document status above.
+Production deployment `6AVdaR7csGjrE5Uj4Beiz8siTV97` is Ready at
+`https://staff.jdpimaiduguri.org`, using source commit `2cfc530` from
+`staff-workspace-backup`. New PDFs use the selected JDPI Staff Documents
+SharePoint site; legacy Blob documents remain readable without migration.
+Migration 004 and the limited runtime's immutable storage-routing grants were
+verified. Temporary Graph Explorer personal setup consent was revoked.
+
+The approved fictional two-page PDF passed hosted upload, both-page preview,
+download and byte-integrity checks. The owner confirmed the native archive
+popup; database status ARCHIVED and the live Archive view were then verified.
+The sample's stored bytes remain intact for recovery. The initial failed test
+reservation is retained privately in My uploads; no real documents were changed.
+Unauthenticated access to both SharePoint and legacy Blob file endpoints was
+denied. The 52 automated tests and production build passed for the implementation.
+
+This is a general-resource pilot, not approval for confidential HR/case records
+or proof of 210-user readiness. Antivirus, independent backup/recovery,
+multi-account/concurrency testing and plan/budget approval remain gates; see
+`DOCUMENTS.md`. No paid upgrade, broad site permission or new staff admission
+was performed.
