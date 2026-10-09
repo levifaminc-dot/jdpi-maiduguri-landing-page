@@ -10,10 +10,19 @@ left off; no paid upgrade was selected. Free-plan compute/network limits can
 suspend service and storage limits can block writes; they do not incur automatic
 paid overages. Capacity must be measured before release to all 210 staff.
 
-Private connection URLs still need to be saved locally. No remote migration or
-real membership grant has been executed, and the application is not connected.
-Microsoft sign-in remains available locally. Without DATABASE_URL, staff content
-is locked and the screen explains that membership setup is pending.
+The user saved the pooled runtime and direct migration URLs privately in ignored
+`.env.local`. Both refer to `jdpi_staff` on the same Neon endpoint; both client
+connections use TLS with a verified server certificate. The two prepared
+migrations were applied successfully on 9 October. Microsoft sign-in now uses
+durable Neon-backed sessions in the local application.
+
+No membership request, admission or admin grant has been created. Tayo's verified
+identity is stored, but staff content remains locked pending admission. A browser
+safety check rejected submitting an access request without separate user approval;
+the action was not retried or performed through another route. First-admin setup
+still needs explicit approval. No Git push or Vercel staff deployment occurred.
+The local setup uses the generated owner role; replace runtime access with a
+least-privilege role before deploying or releasing the workspace.
 
 Prepared code includes durable database authentication, access requests,
 admin-only admission/invitations/role changes/suspension/restoration, audit events,
@@ -115,9 +124,18 @@ revocation. These do not replace a live Neon integration/concurrency test.
 On 9 October, all 15 automated tests and the production build passed. The Windows
 sandbox denied Next's generated pg dependency junction; running the same build
 and loopback preview with the required OS permission resolved that environment
-issue without changing authentication or TLS protections. No hosted application
-schema or staff-record writes occurred. The empty Neon project was provisioned
-after these tests; live integration testing remains pending.
+issue without changing authentication or TLS protections. After provisioning,
+both migrations were verified on hosted Neon and the 15 tests passed again.
+Live Microsoft sign-in created one verified identity and one durable session;
+provider token columns remained empty. Browser refresh retained the session.
+Sign-out removed it (zero active sessions) and direct workspace navigation
+redirected to sign-in. Membership and audit counts remained zero. Hosted
+membership mutation, concurrent-admin, load and restore tests remain pending.
+
+`pg_stat_ssl` through the pooled connection describes Neon's internal backend
+link, not the application's TLS link to the pooler. Verification used the pg
+client's live TLS socket: `encrypted=true`, `authorized=true` on both URLs;
+certificate checking was never disabled.
 
 References:
 - https://better-auth.com/docs/adapters/postgresql
