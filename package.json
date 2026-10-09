@@ -9,6 +9,7 @@
     "dev": "astro dev --host 127.0.0.1 --port 4321",
     "check": "astro check && npm run check --workspace studio",
     "test:counts": "node --experimental-strip-types --test scripts/count-up.test.mjs",
+    "test:security": "node --experimental-strip-types --test scripts/security.test.mjs",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
     "content:snapshot": "node --env-file-if-exists=.env scripts/snapshot-content.mjs",
@@ -19,7 +20,7 @@
     "studio:verify": "node --env-file-if-exists=studio/.env scripts/verify-studio.mjs",
     "studio:deploy": "npm run deploy --workspace studio",
     "typegen": "npm run typegen --workspace studio",
-    "verify": "npm run test:counts && npm run content:validate && node scripts/verify-report-projects.mjs && node scripts/verify-stories.mjs && node scripts/verify-programmes.mjs && node scripts/verify-donations.mjs && npm run check && npm run build && node scripts/verify-build.mjs"
+    "verify": "npm run test:security && npm run test:counts && npm run content:validate && node scripts/verify-report-projects.mjs && node scripts/verify-stories.mjs && node scripts/verify-programmes.mjs && node scripts/verify-donations.mjs && npm run check && npm run build && node scripts/verify-build.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
@@ -30,5 +31,9 @@
     "astro-portabletext": "1.0.1",
     "groq": "6.17.0"
   },
-  "devDependencies": {"@astrojs/check": "0.9.10", "typescript": "^5.9.3", "@types/node": "^24.0.0"}
+  "devDependencies": {"@astrojs/check": "0.9.10", "typescript": "^5.9.3", "@types/node": "^24.0.0"},
+  "overrides": {
+    "@vercel/frameworks": {"smol-toml":"1.9.1", "js-yaml":"3.15.2"},
+    "typeid-js": {"uuid":"11.1.1"}
+  }
 }

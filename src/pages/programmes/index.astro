@@ -1,6 +1,7 @@
 ---
 import {getContent} from '../../lib/content';
 import {PortableText} from 'astro-portabletext';
+import EditorialLink from '../../components/EditorialLink.astro';
 import {sectorImpact,impactYear} from '../../lib/impact';
 import {programmeImage} from '../../lib/programmes';
 import interventionData from '../../data/programme-interventions.json';
@@ -61,7 +62,7 @@ const programmes=content.programmes.map(item=>({
           <div class="pg-modal-body">
           {programme.summary&&<p class="pg-modal-intro">{programme.summary}</p>}
           {reach&&<div class="pg-result"><p class="pg-result-year">{impactYear} REPORTED {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span><p>{reach.description}</p><small>Annual Report {impactYear} · {reach.source}</small>{programme.details?.projectReach&&<a class="pg-reach-link" href={`/projects/${programme.details.projectReach.project}/`}>View the WE-SING project <span aria-hidden="true">→</span></a>}</div>}
-          {programme.body?.length>0&&<div class="prose pg-modal-overview"><PortableText value={programme.body}/></div>}
+          {programme.body?.length>0&&<div class="prose pg-modal-overview"><PortableText value={programme.body} components={{mark:{link:EditorialLink}}}/></div>}
         <section class="pg-interventions" aria-labelledby={`interventions-${programme.slug}`}><h3 id={`interventions-${programme.slug}`}>Our interventions</h3>{programme.details?<><ul>{programme.details.interventions.map(text=><li>{text}</li>)}</ul><p class="pg-detail-source">{programme.details.source}</p></>:<p>Detailed intervention information is awaiting confirmation. <a href="/contact/">Contact our team</a>.</p>}</section>
         <section class="pg-locations" aria-labelledby={`locations-${programme.slug}`}><div class="pg-location-heading"><h3 id={`locations-${programme.slug}`}>Documented locations</h3><a href="/where-we-work/">View coverage map <span aria-hidden="true">↗</span></a></div>{programme.details?.locations.length>0&&<ul>{programme.details.locations.map(location=><li><span class="pg-location-label"><ProjectIcon name="location"/>{location.label}</span><p>{location.detail}</p><small>{location.source}</small></li>)}</ul>}{programme.details?.locationNote&&<p class="pg-location-note">{programme.details.locationNote}</p>}{!programme.details&&<p class="pg-location-note">Programme-specific locations are awaiting confirmation.</p>}</section>
         {programme.projects.length>0&&<div class="pg-project-links"><p>RELATED PROJECTS</p><ul>{programme.projects.map(project=><li><a href={`/projects/${project.slug}/`}>{project.title} <span aria-hidden="true">↗</span></a></li>)}</ul></div>}

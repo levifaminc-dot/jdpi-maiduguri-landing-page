@@ -10,7 +10,7 @@
     "typegen": "sanity schema extract --enforce-required-fields --force && sanity typegen generate"
   },
   "dependencies": {
-    "sanity": "6.17.0",
+    "sanity": "6.18.0",
     "@sanity/icons": "^3.7.4",
     "react": "19.3.0",
     "react-dom": "19.3.0",

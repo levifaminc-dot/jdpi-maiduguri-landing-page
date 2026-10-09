@@ -14,6 +14,12 @@ const origin = env.PUBLIC_SITE_URL || vercelOrigin || 'https://jdpi-maiduguri-la
 export default defineConfig({
   site: origin,
   output: 'static',
+  security:{csp:{
+    // Astro hashes each page's own inline scripts. No unsafe-inline/eval for JS.
+    scriptDirective:{resources:["'self'"]},
+    styleDirective:{resources:["'self'","'unsafe-inline'",'https://fonts.googleapis.com']},
+    directives:["default-src 'self'","img-src 'self' data: https://cdn.sanity.io","font-src 'self' https://fonts.gstatic.com","connect-src 'self'","frame-src https://www.google.com","object-src 'none'","base-uri 'none'","form-action 'self' https://formsubmit.co"],
+  }},
   integrations: [
     sitemap(),
     ...(projectId && dataset ? [sanity({projectId, dataset, apiVersion: '2026-10-05', useCdn: false})] : []),

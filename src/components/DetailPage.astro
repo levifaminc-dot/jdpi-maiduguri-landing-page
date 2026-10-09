@@ -4,6 +4,7 @@ import type {ContentItem,SiteContent} from '../lib/content';
 import {formatDate} from '../lib/content';
 import Layout from '../layouts/SiteLayout.astro';
 import ContentImage from './ContentImage.astro';
+import EditorialLink from './EditorialLink.astro';
 interface Props {item:ContentItem; content:SiteContent; type:'programmes'|'projects'|'stories'}
 const {item,content,type}=Astro.props;
 const back=`/${type}/`;
@@ -13,6 +14,6 @@ const back=`/${type}/`;
     {item.publishedAt && <p class="story-date">{formatDate(item.publishedAt)}</p>}{item.location && <p>{item.location}</p>}
     {item.summary && <p class="intro">{item.summary}</p>}<ContentImage image={item.image} class="detail-image" eager/>
     {item.imageCaption && <p>{item.imageCaption}</p>}
-    {item.body?.length>0 ? <div class="prose"><PortableText value={item.body}/></div> : <p class="intro">For more information about this {type==='stories'?'update':type.slice(0,-1)}, <a class="text-link" href={`mailto:${content.settings.email}`}>contact JDPI</a>.</p>}
+    {item.body?.length>0 ? <div class="prose"><PortableText value={item.body} components={{mark:{link:EditorialLink}}}/></div> : <p class="intro">For more information about this {type==='stories'?'update':type.slice(0,-1)}, <a class="text-link" href={`mailto:${content.settings.email}`}>contact JDPI</a>.</p>}
   </div></section>
 </Layout>

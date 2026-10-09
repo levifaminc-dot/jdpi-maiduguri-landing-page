@@ -1,0 +1,6 @@
+---
+import {editorialUrl} from '../lib/editorial-url';
+interface Props {node:{markDef?:{href?:unknown}}}
+const href=editorialUrl(Astro.props.node.markDef?.href);
+---
+{href ? <a href={href} rel="noopener noreferrer"><slot/></a> : <span><slot/></span>}
