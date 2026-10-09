@@ -1,5 +1,29 @@
 # Staff workspace deployment record
 
+## Deployment trigger cleanup and pilot scope — 9 October 2026
+
+The staff Vercel project's Preview environment Branch Tracking was disabled,
+saved and verified after refreshing the settings page. Automatic Production
+deployments remain tied to `staff-workspace-backup`; the Root Directory remains
+`staff-workspace`. Website/Studio deployment settings, DNS, authentication,
+permissions and secrets were not changed. Manual previews remain possible, but
+must not receive production credentials without a separately approved setup.
+
+Cause of the earlier failed GitHub check: automatic staff Preview deployment
+`RZx6BJo5vh9eCz2H4wShSqcAPfK9` tried public-site branch `main` at `af86366`,
+which has no `staff-workspace` directory. This did not replace the successful
+Production release `2019707` / `9miHpVpnC6wJiVB5JHR7NikkeTRX`. Historical failed
+checks remain historical; do not change the Root Directory or merge the two
+application branches merely to make those checks green.
+
+The owner has chosen an approximately one-month staff pilot before adding
+features. Malware scanning is deferred, not represented as implemented.
+Existing structural PDF validation and access controls stay enabled; pilot
+uploads are limited to ordinary non-confidential resources. Sensitive case,
+HR, financial and safeguarding records are outside the pilot. The legacy
+WordPress installation is outside this review; preserve the public report
+downloads while keeping the application deployment separate.
+
 ## Private PDF library — prepared 9 October 2026
 
 All approved staff may share immediately, as explicitly confirmed by the owner.
