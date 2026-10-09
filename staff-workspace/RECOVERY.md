@@ -37,11 +37,13 @@ Vercel staff deployment now tracks this branch; see `DEPLOYMENT.md`.
 - Secrets: keep approved credentials in an organisation-controlled password
   manager or secure deployment settings, not this repository. No secret backup
   is created by pushing this branch.
-- Documents: real private document storage is not connected yet; future files
-  require their own retention and recovery process.
+- Documents: files live in a separate PRIVATE Vercel Blob store, not Git or
+  Neon. Metadata lives in Neon. Restore both together and preserve the existing
+  store; never substitute a public store. Independent file retention and tested
+  backup/recovery remain required. See DOCUMENTS.md for the store and limits.
 
 Do not deploy with the generated Neon owner role. Set up least-privilege runtime
 credentials before release. Announcements/comments now have a durable backend;
-private documents and staff profiles still require backend implementation. A separate staff repository is
+private documents now have a backend, while staff profiles still need one. A separate staff repository is
 optional for future independent access/deployment; it is not required for this
 code backup.

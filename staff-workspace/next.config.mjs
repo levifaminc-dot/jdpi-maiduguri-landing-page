@@ -9,6 +9,7 @@ export default {
   // OAuth callback query strings include short-lived credentials; don't log URLs.
   logging:{incomingRequests:false},
   outputFileTracingRoot: path.resolve(root, '..'),
+  outputFileTracingIncludes:{'/api/documents':['./lib/pdf-validation-worker.mjs','./node_modules/pdf-lib/package.json','./node_modules/pdf-lib/cjs/**/*','./node_modules/@pdf-lib/**/*','./node_modules/pako/**/*','./node_modules/tslib/**/*']},
   turbopack: {root: path.resolve(root, '..')},
   async headers() {
     return [{source: '/:path*', headers: [

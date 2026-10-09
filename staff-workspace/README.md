@@ -48,13 +48,21 @@ activity. Dedicated pages are available at:
   bypass moderation. Published open discussions accept comments from all ACTIVE
   staff. Authors can remove their own comments; admins can remove any comment.
   Removal hides the body from the page/API while preserving the database record.
+- `/workspace/documents`: folders, text search, own-upload/archive views and
+  permission-checked PDF preview/download. All ACTIVE staff share immediately.
+  Uploaders can archive/restore their own files; administrators moderate any file.
+  Admin-moderated archives cannot be restored by the uploader. Files are limited
+  to 3 MiB / 200 pages, with an 800 MiB conservative workspace reservation cap.
+  This first release is for general resources only: no confidential case or HR
+  files. Structural PDF checks are NOT antivirus scanning. See DOCUMENTS.md.
 
 Administration pages independently check fresh database-active administrator status;
 navigation visibility is not the authorization boundary. The membership API
 also rechecks authorization inside the SQL transaction. Announcement operations
 recheck ACTIVE membership and ownership under the shared access-control lock.
-Private document storage and directory profiles remain **not connected** and are
-labelled accordingly. No real staff invitations
+The document backend is implemented; upload controls fail closed unless a PRIVATE
+Vercel Blob store is connected. Directory profiles remain **not connected** and
+are labelled accordingly. No real staff invitations
 or access changes were made while testing the redesign.
 
 The interface uses labelled controls, visible keyboard focus, a skip link,
@@ -85,7 +93,7 @@ session survived a refresh; sign-out cleared access, and a direct `/workspace`
 visit then redirected to sign-in. Personal consent only; no tenant-wide grant.
 
 The connection began as identity-only and has since gained durable sessions and
-membership. Private Blob storage is still not connected.
+membership. Document files require the separately approved private Blob connection.
 Nonmembers remain locked until admin approval. The proposed bootstrap-admin
 email never grants permissions. Demo state remains isolated and fictional.
 
@@ -140,11 +148,12 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
 - All admitted staff can publish/comment. Server ownership/moderation checks,
   same-origin writes, bounded JSON/text, shared throttling, optimistic versions,
   duplicate request IDs and plain-text rendering are implemented and tested.
-  Upload permissions/storage still require a separate implementation.
-- Private document uploads need server permission checks, size/type/signature
-  validation, malware scanning/quarantine, tenant/audience metadata and permission-
-  checked reads. Preview/download must share the same authorisation path. Never
-  expose a public blob URL or use a public third-party document viewer.
+  Document upload permissions and private storage are now implemented separately.
+- Document size/signature checks, bounded parsing, tenant/ownership checks,
+  integrity verification and authenticated reads are implemented. Malware
+  scanning, confidential audiences and a tested storage recovery process remain
+  release gates for sensitive files and wider rollout. Never expose a public blob
+  URL or use a public third-party document viewer.
 - Private no-store headers and script-nonce CSP are implemented. Protect preview
   deployments as well as production before any staff data services are connected.
 - Test active/pending/suspended users, admin/staff actions, role revocation, direct

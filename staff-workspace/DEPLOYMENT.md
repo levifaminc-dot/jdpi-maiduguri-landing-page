@@ -1,5 +1,27 @@
 # Staff workspace deployment record
 
+## Private PDF library — prepared 9 October 2026
+
+All approved staff may share immediately, as explicitly confirmed by the owner.
+The private Blob store `jdpi-staff-private-pdfs` / `store_m1upHAs8pdfFS05i` is in
+Frankfurt on JDPI's existing Hobby plan. Its connection lists only the staff
+project and Production. No paid plan/trial, public exposure or Preview/Development
+credentials were enabled. The token is sensitive and managed by Vercel; its
+value was never revealed or copied. The public website and Studio are unchanged.
+
+44 fixture tests, TypeScript and the production build pass. The isolated PDF
+worker and dependencies are explicitly traced without environment files. The
+additive document migration committed successfully. The TLS limited-role read-only
+smoke check passed: zero documents, zero reserved bytes and one existing member.
+No staff records, passwords or previous permissions were changed. A live upload
+is not implied by these fixture tests.
+
+This release is limited to general staff resources (3 MiB / 200 pages), with
+preview-first UX, folders/search, author/admin archive moderation, authenticated
+file access, integrity checks and quota reservations. Structural PDF validation
+is not antivirus scanning. Confidential case/HR documents and a 210-staff rollout
+require the scanning, retention, backup and plan/load gates in DOCUMENTS.md.
+
 ## Current handoff status — 9 October 2026
 
 The owner ran the corrected `db:resume-runtime` helper and shared its explicit

@@ -9,6 +9,11 @@ export const announcementGrantsSql = `
     ON public.workspace_announcement TO ${runtimeRole};
   GRANT INSERT(id,tenant_id,announcement_id,author_object_id,body),
     UPDATE(hidden_at,hidden_by_object_id) ON public.workspace_comment TO ${runtimeRole};`;
+export const documentGrantsSql=`
+  GRANT SELECT ON public.workspace_document,public.workspace_document_control TO ${runtimeRole};
+  GRANT INSERT(id,tenant_id,uploader_object_id,title,description,folder,filename,byte_size,page_count,sha256,blob_path),
+    UPDATE(status,moderated,version,updated_at) ON public.workspace_document TO ${runtimeRole};
+  GRANT UPDATE(reserved_bytes) ON public.workspace_document_control TO ${runtimeRole};`;
 
 export function runtimeGrantsSql(database) {
   if (!/^[a-z][a-z0-9_]*$/.test(database)) throw new Error('Invalid database name.');
@@ -28,7 +33,8 @@ export function runtimeGrantsSql(database) {
       ON TABLE public.workspace_audit TO ${runtimeRole};
     GRANT USAGE ON SEQUENCE public.workspace_audit_id_seq TO ${runtimeRole};
     GRANT SELECT, INSERT, UPDATE ON TABLE public.workspace_throttle TO ${runtimeRole};
-  ${announcementGrantsSql}`;
+  ${announcementGrantsSql}
+  ${documentGrantsSql}`;
 }
 
 // Checks effective grants, including PUBLIC and membership inheritance, not
@@ -64,7 +70,7 @@ export async function verifyRuntimeRole(db) {
       await check('SELECT has_table_privilege($1,$2,$3) AS allowed', [runtimeRole, `public."${table}"`, privilege], true);
     }
   }
-  for (const table of ['workspace_member','workspace_control','workspace_audit','workspace_throttle','workspace_announcement','workspace_comment']) {
+  for (const table of ['workspace_member','workspace_control','workspace_audit','workspace_throttle','workspace_announcement','workspace_comment','workspace_document','workspace_document_control']) {
     await check('SELECT has_table_privilege($1,$2,\'SELECT\') AS allowed', [runtimeRole, `public.${table}`], true);
     for (const privilege of ['DELETE','TRUNCATE','TRIGGER','REFERENCES']) {
       await check('SELECT has_table_privilege($1,$2,$3) AS allowed', [runtimeRole, `public.${table}`, privilege], false);
@@ -79,6 +85,9 @@ export async function verifyRuntimeRole(db) {
     ...['title','body','category','status','pinned','moderated','comments_enabled','version','updated_at','published_at'].map(c=>['workspace_announcement',c,'UPDATE']),
     ...['id','tenant_id','announcement_id','author_object_id','body'].map(c=>['workspace_comment',c,'INSERT']),
     ...['hidden_at','hidden_by_object_id'].map(c=>['workspace_comment',c,'UPDATE']),
+    ...['id','tenant_id','uploader_object_id','title','description','folder','filename','byte_size','page_count','sha256','blob_path'].map(c=>['workspace_document',c,'INSERT']),
+    ...['status','moderated','version','updated_at'].map(c=>['workspace_document',c,'UPDATE']),
+    ['workspace_document_control','reserved_bytes','UPDATE'],
   ]) await check('SELECT has_column_privilege($1,$2,$3,$4) AS allowed', [runtimeRole, `public.${table}`,column,privilege], true);
   for (const [table, column, privilege] of [
     ['workspace_member','role','INSERT'], ['workspace_member','created_at','INSERT'],
@@ -89,6 +98,10 @@ export async function verifyRuntimeRole(db) {
     ...['status','pinned','moderated','comments_enabled','version','created_at','updated_at','published_at'].map(c=>['workspace_announcement',c,'INSERT']),
     ...['id','tenant_id','announcement_id','author_object_id','body','created_at'].map(c=>['workspace_comment',c,'UPDATE']),
     ...['created_at','hidden_at','hidden_by_object_id'].map(c=>['workspace_comment',c,'INSERT']),
+    ...['id','tenant_id','uploader_object_id','title','description','folder','filename','byte_size','page_count','sha256','blob_path','created_at'].map(c=>['workspace_document',c,'UPDATE']),
+    ...['status','moderated','version','created_at','updated_at'].map(c=>['workspace_document',c,'INSERT']),
+    ['workspace_document_control','id','UPDATE'],
+    ...['id','reserved_bytes'].map(c=>['workspace_document_control',c,'INSERT']),
   ]) await check('SELECT has_column_privilege($1,$2,$3,$4) AS allowed', [runtimeRole, `public.${table}`,column,privilege], false);
   await check("SELECT has_any_column_privilege($1,'public.workspace_audit','UPDATE') AS allowed", [runtimeRole], false);
   for (const privilege of ['SELECT','INSERT','UPDATE','DELETE','TRUNCATE']) {

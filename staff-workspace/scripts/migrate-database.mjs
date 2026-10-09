@@ -2,11 +2,11 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {Pool} from 'pg';
 import {databaseConfig} from '../lib/database-config.mjs';
-import {runtimeRole,announcementGrantsSql,verifyRuntimeRole} from '../lib/runtime-role-policy.mjs';
-const files=['000-auth.sql','001-membership.sql','002-announcements.sql'];
+import {runtimeRole,announcementGrantsSql,documentGrantsSql,verifyRuntimeRole} from '../lib/runtime-role-policy.mjs';
+const files=['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql'];
 const migrations=await Promise.all(files.map(async name=>{const sql=(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8')).replace(/\r\n/g,'\n');return {name,sql,hash:createHash('sha256').update(sql).digest('hex')};}));
 if(!process.argv.includes('--apply')) {
-  console.log('Plan only: existing auth/membership migrations, plus additive announcement/comment tables.');
+  console.log('Plan only: existing migrations, plus additive private-document metadata and quota tables.');
   console.log('Only new content-table privileges are added to an existing limited runtime role. No staff rows or old grants change.');
   console.log('No database connection or writes. Prepared migration files:', files.join(', '));
   process.exit(0);
@@ -28,10 +28,11 @@ try {
       await db.query(migration.sql);
       if(migration.name==='002-announcements.sql' && (await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length) {
         await db.query(announcementGrantsSql);
-        await verifyRuntimeRole(db);
       }
+      if(migration.name==='003-documents.sql' && (await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length)await db.query(documentGrantsSql);
       await db.query('INSERT INTO workspace_migration(name,hash) VALUES ($1,$2)',[migration.name,migration.hash]);
     }
+    if((await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length)await verifyRuntimeRole(db);
     await db.query('COMMIT'); console.log('Database migrations applied. No memberships or admin roles created.');
   } catch(error) {await db.query('ROLLBACK');throw error;} finally {db.release();}
 } catch {console.error('Migration failed. Check private connection settings and database permissions. No credentials are printed.');process.exitCode=1;}

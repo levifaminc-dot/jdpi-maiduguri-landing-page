@@ -9,7 +9,7 @@ export function filterMembers(members, status, query) {
   return members.filter(m=>(status==='ALL' || m.status===status) && m.name.toLocaleLowerCase('en').includes(needle));
 }
 export function workspaceNavigation(role) {
-  const items=[{href:'/workspace',label:'Dashboard',icon:'dashboard'},{href:'/workspace/announcements',label:'Announcements',icon:'megaphone'}];
+  const items=[{href:'/workspace',label:'Dashboard',icon:'dashboard'},{href:'/workspace/announcements',label:'Announcements',icon:'megaphone'},{href:'/workspace/documents',label:'Documents',icon:'folder'}];
   if(role==='ADMIN') items.push({href:'/workspace/members',label:'Members',icon:'users'},
     {href:'/workspace/invitations',label:'Invitations',icon:'mail'}, {href:'/workspace/settings',label:'Settings',icon:'settings'});
   return items;
@@ -40,5 +40,6 @@ export function accessEventLabel(action) {
     'announcement-publish':'Announcement published','announcement-archive':'Announcement archived',
     'announcement-restore':'Announcement restored to drafts','announcement-pin':'Pinned update changed',
     'announcement-comments':'Discussion settings changed','announcement-commented':'Staff comment added',
-    'announcement-comment-removed':'Comment removed'})[action] || 'Access record updated';
+    'announcement-comment-removed':'Comment removed','document-shared':'PDF shared with staff',
+    'document-archive':'Document archived','document-restore':'Document restored'})[action] || 'Access record updated';
 }
