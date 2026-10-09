@@ -25,3 +25,16 @@ test('one console reader completes confirmation and two hidden entries without e
     assert(captured.includes('Confirm password (hidden): '));
   } finally {prompt.close();input.destroy();output.destroy();}
 });
+
+test('Ctrl+C aborts a hidden prompt instead of leaving an unanswered question',async()=>{
+  const input=new PassThrough();input.isTTY=true;input.setRawMode=()=>{};
+  let captured='';
+  const output=new Writable({write(chunk,_encoding,done){captured+=chunk.toString();done();}});
+  const prompt=privateTerminal(input,output);
+  try {
+    const question=prompt.secret('Hidden: ');
+    input.write('fictional-only\x03');
+    await assert.rejects(question,{name:'AbortError'});
+    assert(!captured.includes('fictional-only'));
+  } finally {prompt.close();input.destroy();output.destroy();}
+});

@@ -1,11 +1,18 @@
 import {createHash,createHmac,pbkdf2Sync,randomBytes} from 'node:crypto';
 
+// Safe, fixed feedback: never include the supplied password in an error.
+export function runtimePasswordProblem(password) {
+  if(typeof password!=='string' || password.length<24) return 'The password needs at least 24 characters. Use a unique 32-character password from your password manager.';
+  if(password.length>128) return 'The password must contain no more than 128 characters.';
+  if(!/^[!-~]+$/.test(password)) return 'Use ordinary English letters, numbers and symbols only, without spaces, accents or emoji.';
+  return null;
+}
+
 // PostgreSQL SCRAM-SHA-256 verifier. ASCII-only input avoids Unicode/SASLprep
 // differences. Only the verifier, never plaintext, appears in ALTER ROLE SQL.
 export function runtimePasswordVerifier(password, salt=randomBytes(16)) {
-  if (typeof password!=='string' || !/^[!-~]{24,128}$/.test(password)) {
-    throw new Error('Use a password-manager-generated 24–128 character ASCII password without spaces.');
-  }
+  const problem=runtimePasswordProblem(password);
+  if(problem) throw new Error(problem);
   if (!Buffer.isBuffer(salt) || salt.length!==16) throw new Error('Invalid verifier salt.');
   const iterations=4096;
   const salted=pbkdf2Sync(password,salt,iterations,32,'sha256');

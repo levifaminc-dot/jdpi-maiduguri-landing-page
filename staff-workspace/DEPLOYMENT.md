@@ -120,6 +120,12 @@ entries without printing them, and a stream test checks single raw-mode ownershi
 and no secret echo. Safe progress/stage messages were added. Activation remains
 an owner handoff; no password was set by these diagnostic tests.
 
+After a first-entry validation failure, the prompt now explains the length or
+character requirement using fixed messages, without displaying any input. Invalid
+or mismatched entries can be retried before connecting to the database. Ctrl+C
+aborts outstanding hidden questions safely. The 24–128 printable-ASCII/no-space
+requirement and limited role permissions were not weakened.
+
 ## Release limits
 
 The team was on Vercel Hobby when this unconnected foundation was deployed.

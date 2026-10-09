@@ -3,7 +3,7 @@ import {fileURLToPath} from 'node:url';
 import {Pool} from 'pg';
 import {databaseConfig} from '../lib/database-config.mjs';
 import {verifyRuntimeRole,runtimeRole} from '../lib/runtime-role-policy.mjs';
-import {runtimePasswordVerifier,runtimeConnectionUrl} from '../lib/runtime-password.mjs';
+import {runtimePasswordProblem,runtimePasswordVerifier,runtimeConnectionUrl} from '../lib/runtime-password.mjs';
 import {privateTerminal} from '../lib/private-terminal.mjs';
 
 // OWNER HANDOFF ONLY: an interactive command, not a build step or web route.
@@ -25,9 +25,17 @@ try {
   reader=privateTerminal();
   const consent=await reader.visible('Type INITIALISE to continue, or press Enter to cancel: ');
   if(consent!=='INITIALISE') {reader.close();console.log('Cancelled. No database or file changes.');process.exit(0);}
-  const password=await reader.secret('New password (hidden; use 24–128 random characters from your password manager): ');
+  let password;
+  for (;;) {
+    password=await reader.secret('New password (hidden; 24–128 characters, no spaces; Ctrl+C cancels): ');
+    const problem=runtimePasswordProblem(password);
+    if(problem) {console.log(problem);console.log('Please try again. No password has been saved or changed.');continue;}
+    if(password!==await reader.secret('Enter the same password again (hidden): ')) {
+      console.log('The two entries did not match. Please enter both again; nothing has been saved or changed.');continue;
+    }
+    break;
+  }
   const verifier=runtimePasswordVerifier(password);
-  if(password!==await reader.secret('Enter the same password again (hidden): ')) throw new Error('Passwords did not match.');
   reader.close();reader=undefined;
   console.log('Password entries received. Checking the limited database role…');
   phase='connect-and-check-role';

@@ -1,9 +1,17 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PGlite} from '@electric-sql/pglite';
-import {runtimePasswordVerifier,runtimeConnectionUrl} from '../lib/runtime-password.mjs';
+import {runtimePasswordProblem,runtimePasswordVerifier,runtimeConnectionUrl} from '../lib/runtime-password.mjs';
 
 const fictional='Fictional-test-only-password-123!';
+test('password feedback identifies the requirement without revealing input',()=>{
+  assert.match(runtimePasswordProblem('private-short-value'),/at least 24/);
+  assert.match(runtimePasswordProblem('x'.repeat(129)),/no more than 128/);
+  assert.match(runtimePasswordProblem(`${fictional} `),/without spaces/);
+  assert.match(runtimePasswordProblem(`${fictional}é`),/accents/);
+  assert.equal(runtimePasswordProblem(fictional),null);
+  for(const input of ['private-short-value','x'.repeat(129),`${fictional} `,`${fictional}é`]) assert(!runtimePasswordProblem(input).includes(input));
+});
 test('SCRAM verifier matches PostgreSQL password hashing with the server salt',async()=>{
   const db=new PGlite();
   try {

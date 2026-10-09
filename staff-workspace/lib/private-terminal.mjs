@@ -11,18 +11,21 @@ export function privateTerminal(input=process.stdin,output=process.stdout) {
   }});
   protectedOutput.columns=output.columns || 80;
   const reader=createInterface({input,output:protectedOutput,terminal:true,historySize:0});
-  reader.on('error',()=>{failed=true;reader.close();});
+  const cancellation=new AbortController();
+  reader.on('error',()=>{failed=true;cancellation.abort();reader.close();});
+  reader.on('SIGINT',()=>{cancellation.abort();reader.close();});
+  reader.on('close',()=>cancellation.abort());
   return {
     async visible(prompt) {
       hidden=false;
       if(failed) throw new Error('Private terminal unavailable.');
-      return reader.question(prompt);
+      return reader.question(prompt,{signal:cancellation.signal});
     },
     async secret(prompt) {
       hidden=true;
       if(failed) throw new Error('Private terminal unavailable.');
       output.write(prompt);
-      try {return await reader.question('');}
+      try {return await reader.question('',{signal:cancellation.signal});}
       finally {output.write('\n');}
     },
     close(){reader.close();input.pause();input.unref?.();},
