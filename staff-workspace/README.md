@@ -1,4 +1,4 @@
-# JDPI staff workspace - Vercel foundation and local preview
+# JDPI staff workspace - Microsoft sign-in and membership
 
 This separate Next.js project replaces the proposed Laravel/Namecheap direction.
 It does not replace the Astro public website or the Sanity Studio. No staff data
@@ -10,7 +10,10 @@ is stored in the marketing CMS. The original vanilla preview is retained in
 1. `npm ci` within this folder.
 2. `npm run dev` (or `npm run staff:preview` from the repository root).
 3. Open http://127.0.0.1:4330/ for the sign-in design.
-4. Use **Explore as staff** or **Explore as admin**. These are DEMO views only.
+4. Sign in with the JDPI Microsoft work account. Approved members land on the
+   real `/workspace` dashboard. Nonmembers see the admission-request screen.
+5. **Explore as staff** / **Explore as admin** are isolated fictional DEMO views,
+   available only in local development. They are not the real workspace.
 
 `npm run check`, `npm test` and `npm run build` verify the foundation. Dependencies
 are pinned in this project's independent package-lock. The PDF worker and fonts
@@ -18,13 +21,46 @@ are prepared from the installed dependency before dev/build, not an external CDN
 
 ## Current capabilities and limits
 
+The real workspace now uses Microsoft sign-in with durable Neon PostgreSQL
+sessions and membership. The explicitly approved first administrator is active.
+Admin sign-in lands on a dashboard with real membership counts and access
+activity. Dedicated pages are available at:
+
+- `/workspace/members`: name search, access-status filters, admission, suspension,
+  restoration and role changes. Changes require confirmation; the last active
+  admin cannot be removed or suspended. Microsoft IDs are read-only details,
+  not everyday form fields.
+- `/workspace/invitations`: enter a work email and optional name to prepare a
+  message and copy the workspace link. Automatic email delivery is **not**
+  connected. Opening an email app (only for a nonlocal configured address)
+  prepares a draft; the administrator sends it manually. No invitation record,
+  delivery claim or membership is created by preparing a message. Recipients
+  sign in and request access, then an admin approves the verified identity as
+  staff. An email address/link alone never grants access or an admin role.
+- `/workspace/settings`: read-only connection/security status plus links to
+  membership and invitations. There are no cosmetic save controls or unsecured
+  settings changes.
+
+These pages independently check fresh database-active administrator status;
+navigation visibility is not the authorization boundary. The membership API
+also rechecks authorization inside the SQL transaction. The real staff-content
+backend (announcements/comments, private document storage and directory profiles)
+remains **not connected** and is labelled accordingly. No real staff invitations
+or access changes were made while testing the redesign.
+
+The interface uses labelled controls, visible keyboard focus, a skip link,
+native confirmation dialogs, readable text and responsive navigation. Local
+invitation drafts warn that localhost links cannot be used by colleagues.
+
+### Separate fictional demo
+
 The demo has announcements, comments, search/filtering, a staff directory,
 sample document selection, PDF.js preview with page navigation/zoom/search,
 and a membership-management design. Admin sample actions include invite, admit,
 role assignment and suspension. Staff sample views do not expose these controls.
 Directory sample data includes only active fictional members.
 
-ALL state is held in React memory and resets on reload. No emails are sent.
+ALL **demo** state is held in React memory and resets on reload. No emails are sent.
 Files stay in the tab. Audience labels are illustrative, not access permissions.
 The preview role switch is not authentication or a production security boundary.
 Do not enter real staff information, HR documents or safeguarding case material.
@@ -39,23 +75,22 @@ on 8 October 2026 after the private secret Value was corrected. The identity
 session survived a refresh; sign-out cleared access, and a direct `/workspace`
 visit then redirected to sign-in. Personal consent only; no tenant-wide grant.
 
-This is an identity-only connection, NOT a production staff backend. No database,
-private Blob store or real membership API is connected. After verified sign-in,
-`/workspace` shows a setup/admission notice, not private content. No real user is
-invited, admitted, or made an admin. The proposed bootstrap-admin email does not
-grant permissions. Demo state remains isolated and fictional.
+The connection began as identity-only and has since gained durable sessions and
+membership. Private Blob storage and staff publishing are still not connected.
+Nonmembers remain locked until admin approval. The proposed bootstrap-admin
+email never grants permissions. Demo state remains isolated and fictional.
 
-Membership preparation has now been added for Neon PostgreSQL. See
-[database setup](DATABASE-SETUP.md) for the prepared admission/admin screens,
-durable session and server-side membership checks, explicit migrations and
-separate first-admin approval. No hosted database or actual grant has been made.
-Without a database connection, the identity-only locked setup behaviour remains.
+Neon PostgreSQL's Free plan was provisioned, the two migrations applied, and the
+first admin approved explicitly. See [database setup](DATABASE-SETUP.md) for the
+verified setup, admission and authorization rules, and production readiness
+gates. Without a database connection, the locked setup behaviour remains.
 
 `/preview` and `/api/preview-assets/*` require development mode, a loopback Host
 and no Vercel environment. They return 404 in production, even if a role or
 preview query parameter is supplied. `/workspace` redirects unauthenticated users
 to sign-in and checks the verified identity server-side. Production builds expose
-only identity/setup screens, not the demo portal. No push/deploy this turn.
+the real sign-in and membership routes, not the fictional demo portal. This
+workspace is still local-only, not deployed to Vercel.
 
 ## Hosting plan
 
@@ -80,14 +115,16 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
 - Microsoft sign-in is identity proof only. Every server action must check an
   ACTIVE database membership. Do not auto-admit based on email domain. Deny all
   membership changes except for ACTIVE ADMINS loaded from trusted server state.
-- Bootstrap the approved first admin as an explicit, audited, one-time operation;
+- The approved first-admin bootstrap is complete as an explicit, audited,
+  one-time operation;
   never continually elevate anyone whose email matches an environment variable.
 - Only admins may invite/admit, revoke/suspend, and assign roles. New invitations
   default to staff unless explicitly changed by an admin. Record durable audit
   events and prevent accidental removal of the last active admin.
-- Invitations admit existing Microsoft identities; they are not Microsoft account
-  provisioning. Design expiring, single-use invitation tokens and verified account
-  matching. Configure and test email delivery. Add MFA under JDPI tenant policy.
+- The email-draft workflow does not provision Microsoft accounts or pre-admit
+  staff. Configure and test automatic email delivery separately if required.
+  Any future admission invitation must be single-use, expiring and securely bound
+  to verified identity. Add MFA under JDPI tenant policy.
 - All admitted staff can publish/comment/upload. Check ownership/moderation rules
   on every request. Add CSRF protections, validation, rate limits and XSS tests.
 - Private document uploads need server permission checks, size/type/signature
@@ -118,7 +155,8 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
   matching-page search, no-match feedback and phone-sized rendering worked.
   The two-page fictional PDF fixture was rendered and visually inspected.
 - No real invitation, Microsoft access grant, Git push or Vercel deployment was
-  performed. Authentication and all production data services remain unconnected.
+  performed during that earlier foundation check. Current connection status is
+  described above; these earlier checks are historical, not current limitations.
 
 ## Sources used for the technical direction
 

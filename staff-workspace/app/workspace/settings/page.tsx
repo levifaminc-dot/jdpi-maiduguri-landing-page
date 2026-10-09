@@ -1,0 +1,16 @@
+import Link from 'next/link';
+import MemberShell, {PageHeading} from '../../../components/MemberShell';
+import Icon from '../../../components/Icon';
+import {requireWorkspacePage} from '../../../lib/workspace-page';
+import {invitationOrigin} from '../../../lib/workspace-ui.mjs';
+export const dynamic='force-dynamic';
+export default async function SettingsPage() {
+  const {identity,member}=await requireWorkspacePage(true);
+  const address=invitationOrigin(process.env.BETTER_AUTH_URL ?? '');
+  return <MemberShell name={identity.name} role={member.role} page="Settings"><PageHeading eyebrow="ADMINISTRATION" title="Workspace settings" description="A clear view of how your workspace is connected and protected."/>
+    <p className="ws-notice">These are your current setup details. Security and hosting configuration are managed outside this page; there are no unsaved settings here.</p>
+    <div className="ws-settings-grid"><section className="ws-card"><div className="ws-section-heading"><h2><Icon name="shield"/> Sign-in & access</h2><span className="ws-badge">Connected</span></div><dl className="ws-settings-list"><div><dt>Sign-in method</dt><dd>JDPI Microsoft work accounts</dd></div><div><dt>Membership</dt><dd>Administrator approval required</dd></div><div><dt>New member role</dt><dd>Staff · never automatically administrator</dd></div><div><dt>Access changes</dt><dd>Recorded in the membership activity log</dd></div><div><dt>Session protection</dt><dd>Suspension and role changes end the affected workspace sessions</dd></div></dl><Link className="ws-button ws-button-quiet" href="/workspace/members" prefetch={false}>Manage members<Icon name="arrow"/></Link></section>
+    <section className="ws-card"><div className="ws-section-heading"><h2><Icon name="mail"/> Invitations & hosting</h2><span className="ws-badge ws-badge-neutral">{address?.local?'Local preview':address?'Configured address':'Setup needed'}</span></div><dl className="ws-settings-list"><div><dt>Workspace address</dt><dd className="ws-break">{address?.url || 'Not configured'}</dd></div><div><dt>Email delivery</dt><dd>Manual email drafts · automatic delivery not connected</dd></div><div><dt>Who can invite</dt><dd>Active workspace administrators only</dd></div><div><dt>Database</dt><dd>PostgreSQL membership and sessions connected</dd></div><div><dt>Staff content</dt><dd>Announcements, private document storage and directory profiles are not connected yet</dd></div></dl><Link className="ws-button ws-button-quiet" href="/workspace/invitations" prefetch={false}>Prepare an invitation<Icon name="arrow"/></Link></section></div>
+    <section className="ws-card ws-settings-help"><Icon name="heart"/><div><h2>Designed for everyone on the team</h2><p>Clear labels, readable text, keyboard navigation and phone-friendly pages. Permissions stay with the administrator, without technical IDs in the everyday invitation flow.</p></div></section>
+  </MemberShell>;
+}
