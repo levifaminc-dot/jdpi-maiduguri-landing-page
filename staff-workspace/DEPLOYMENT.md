@@ -1,5 +1,20 @@
 # Staff workspace deployment record
 
+## Current handoff status — 9 October 2026
+
+The owner ran the corrected `db:resume-runtime` helper and shared its explicit
+success: runtime password initialised; TLS login, limited privileges and row
+locking verified. The runtime credential is now active. The private pooled URL
+remains in ignored `.env.runtime.local`; it was not printed, uploaded or committed.
+No staff memberships or grants were changed by this activation.
+
+The remaining deployment handoff is the six approved Production-only settings
+listed below, followed by redeployment and real Microsoft login/logout and
+private-route checks. Use `DATABASE_URL` from `.env.runtime.local`, NOT the owner
+connection in `.env.local`. Do not run password initialisation, migrations or
+first-admin bootstrap again. Historical sections below describe the earlier
+unconnected foundation and setup failures, not the current credential state.
+
 ## Verified foundation — 9 October 2026
 
 - Private GitHub repository: `levifaminc-dot/jdpi-maiduguri-landing-page`.
