@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PGlite} from '@electric-sql/pglite';
-import {runtimePasswordProblem,runtimePasswordVerifier,runtimeConnectionUrl} from '../lib/runtime-password.mjs';
+import {runtimePasswordProblem,runtimePasswordVerifier,runtimeConnectionUrl,runtimeRecovery} from '../lib/runtime-password.mjs';
 
 const fictional='Fictional-test-only-password-123!';
 test('password feedback identifies the requirement without revealing input',()=>{
@@ -33,4 +33,17 @@ test('private runtime connection keeps the existing branch and uses encoded cred
   assert.equal(output.hostname,new URL(app).hostname);
   assert.throws(()=>runtimeConnectionUrl(app,operator.replace('ep-fictional','ep-other'),fictional));
   assert.throws(()=>runtimeConnectionUrl(app.replace('jdpi_staff','wrong'),operator,fictional));
+});
+
+test('resume validates a limited recovery connection without overwriting or accepting owner credentials',()=>{
+  const operator='postgresql://fictional:old@ep-fictional.eu-central-1.aws.neon.tech/jdpi_staff?sslmode=require';
+  const pooled=operator.replace('ep-fictional.','ep-fictional-pooler.');
+  const connection=runtimeConnectionUrl(pooled,operator,fictional);
+  const recovered=runtimeRecovery(`# private fixture\nDATABASE_URL=${connection}\n`,operator);
+  assert.equal(recovered.password,fictional);
+  assert.equal(recovered.connection,connection);
+  assert.throws(()=>runtimeRecovery(`DATABASE_URL=${pooled}`,operator));
+  assert.throws(()=>runtimeRecovery(`DATABASE_URL=${connection}\nDATABASE_MIGRATION_URL=${operator}`,operator));
+  assert.throws(()=>runtimeRecovery(`DATABASE_URL=${connection}`,operator.replace('ep-fictional.','ep-other.')));
+  assert.throws(()=>runtimeRecovery('x'.repeat(4097),operator));
 });

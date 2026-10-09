@@ -126,6 +126,25 @@ or mismatched entries can be retried before connecting to the database. Ctrl+C
 aborts outstanding hidden questions safely. The 24–128 printable-ASCII/no-space
 requirement and limited role permissions were not weakened.
 
+### Saved-but-unactivated recovery
+
+The owner reached activation, but the transaction rolled back after saving the
+private recovery file. Read-only verification still found runtime login disabled.
+The operator had role-management permission and direct ADMIN OPTION. Diagnostic
+transactions using fictional data accepted LOGIN, SCRAM-password assignment and
+the exact combined operation plus effective-grant checks; ALL were rolled back.
+The earlier failure has not been reproduced or attributed to a specific cause.
+No real password was read by those diagnostic tests.
+
+The owner can run `npm run db:resume-runtime` and confirm `RESUME`. This reads the
+existing private recovery file locally, validates the runtime role and existing
+Neon branch, and does not overwrite the file or request another password. It
+activates only an inactive role. An already-active role is tested without changing
+its credential. It then verifies the runtime connection and row lock. Error
+codes and separate activation/verification/commit stages are safe to share; error
+messages, URLs, passwords and verifiers are never printed. Do not upload the
+recovery file until the command explicitly confirms successful verification.
+
 ## Release limits
 
 The team was on Vercel Hobby when this unconnected foundation was deployed.

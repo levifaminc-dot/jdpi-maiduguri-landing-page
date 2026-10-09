@@ -1,4 +1,5 @@
 import {createHash,createHmac,pbkdf2Sync,randomBytes} from 'node:crypto';
+import {parseEnv} from 'node:util';
 
 // Safe, fixed feedback: never include the supplied password in an error.
 export function runtimePasswordProblem(password) {
@@ -35,4 +36,15 @@ export function runtimeConnectionUrl(appUrl, operatorUrl, password) {
   app.username='jdpi_workspace_runtime';
   app.password=password;
   return app.toString();
+}
+
+export function runtimeRecovery(text,operatorUrl) {
+  if(typeof text!=='string' || Buffer.byteLength(text)>4096) throw new Error('Invalid private recovery file.');
+  const values=parseEnv(text);
+  if(Object.keys(values).length!==1 || !values.DATABASE_URL) throw new Error('Recovery file must contain only DATABASE_URL.');
+  const url=new URL(values.DATABASE_URL);
+  if(url.username!=='jdpi_workspace_runtime') throw new Error('Recovery file is not the limited runtime connection.');
+  const password=decodeURIComponent(url.password);
+  const connection=runtimeConnectionUrl(values.DATABASE_URL,operatorUrl,password);
+  return {password,connection};
 }
