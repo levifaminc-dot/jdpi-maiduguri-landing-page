@@ -2,8 +2,16 @@
 
 ## Current state
 
-Neon PostgreSQL has been selected by the user, but no hosted project, paid plan,
-database credential, remote migration or real membership grant was created.
+Neon project `jdpi-staff-workspace` (`autumn-surf-32450889`) was created on
+9 October 2026 in the signed-in Tayo organisation after user approval, on the
+$0 Free plan. It uses AWS Frankfurt, PostgreSQL 18, database `jdpi_staff`, and
+the default `production` branch (`br-cold-sun-b121i3ov`). Extra services were
+left off; no paid upgrade was selected. Free-plan compute/network limits can
+suspend service and storage limits can block writes; they do not incur automatic
+paid overages. Capacity must be measured before release to all 210 staff.
+
+Private connection URLs still need to be saved locally. No remote migration or
+real membership grant has been executed, and the application is not connected.
 Microsoft sign-in remains available locally. Without DATABASE_URL, staff content
 is locked and the screen explains that membership setup is pending.
 
@@ -107,10 +115,14 @@ revocation. These do not replace a live Neon integration/concurrency test.
 On 9 October, all 15 automated tests and the production build passed. The Windows
 sandbox denied Next's generated pg dependency junction; running the same build
 and loopback preview with the required OS permission resolved that environment
-issue without changing authentication or TLS protections. No hosted writes occurred.
+issue without changing authentication or TLS protections. No hosted application
+schema or staff-record writes occurred. The empty Neon project was provisioned
+after these tests; live integration testing remains pending.
 
 References:
 - https://better-auth.com/docs/adapters/postgresql
 - https://better-auth.com/docs/concepts/database
 - https://better-auth.com/docs/concepts/session-management
 - https://neon.com/docs/connect/connection-pooling
+- https://neon.com/docs/introduction/plans
+- https://neon.com/blog/neon-free-plan-1-gb-per-project
