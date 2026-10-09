@@ -30,6 +30,9 @@ for(const file of htmlFiles){
   if(!primary?.includes('href="/programmes/"')||!/>Programmes<\/a>/.test(primary)||!/>Stories &amp; Updates<\/a>/.test(primary))errors.push(`${file}: primary navigation must use consistent Programmes and Stories & Updates labels`);
   if(!footer?.includes('href="/contact/privacy/"'))errors.push(`${file}: missing contact privacy link`);
   if(pageName==='dist/index.html'){
+    const countValues=[...html.matchAll(/data-count-final="([^"]+)"/g)].map(match=>match[1]);
+    if(JSON.stringify(countValues)!==JSON.stringify(snapshot.home.impactFacts.map(fact=>fact.value)))errors.push(`${file}: count-up totals must match homepage content`);
+    if((html.match(/class="count-up-accessible"/g)||[]).length!==countValues.length||(html.match(/data-count-up[^>]*aria-hidden="true"/g)||[]).length!==countValues.length)errors.push(`${file}: count-up needs static accessible values and decorative animation`);
     const cardCategories=[...html.matchAll(/class="story-card"[^>]*data-type="([^"]+)"/g)].map(match=>match[1]);
     for(const category of new Set(['all',...cardCategories]))if(!html.includes(`data-filter="${category}"`))errors.push(`${file}: missing consistent homepage story filter ${category}`);
     for(const category of cardCategories)if(!['field','blog','news','publications'].includes(category))errors.push(`${file}: unsupported homepage story category ${category}`);
