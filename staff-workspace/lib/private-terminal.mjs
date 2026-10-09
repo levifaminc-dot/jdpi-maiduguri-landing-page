@@ -25,6 +25,6 @@ export function privateTerminal(input=process.stdin,output=process.stdout) {
       try {return await reader.question('');}
       finally {output.write('\n');}
     },
-    close(){reader.close();},
+    close(){reader.close();input.pause();input.unref?.();},
   };
 }

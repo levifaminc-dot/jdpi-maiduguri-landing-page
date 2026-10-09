@@ -72,3 +72,6 @@ try {
   console.error('Stage:',phase);
   console.error('No credentials printed.');process.exitCode=1;
 } finally {reader?.close();await pool?.end();}
+// Windows consoles can retain a stdin handle even after readline closes.
+// Database/file work and pool shutdown are awaited before exiting the CLI.
+process.exit(process.exitCode ?? 0);
