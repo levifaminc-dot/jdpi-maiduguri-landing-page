@@ -90,13 +90,16 @@ and no Vercel environment. They return 404 in production, even if a role or
 preview query parameter is supplied. `/workspace` redirects unauthenticated users
 to sign-in and checks the verified identity server-side. Production builds expose
 the real sign-in and membership routes, not the fictional demo portal. This
-workspace is still local-only, not deployed to Vercel.
+workspace has a credential-free Vercel foundation deployment. Online Microsoft
+sign-in and database access remain disabled until production setup is approved
+and verified. See [deployment status](DEPLOYMENT.md).
 
 ## Hosting plan
 
-Use a separate Vercel project, root directory `staff-workspace`, Next.js preset,
-`npm ci` install and `npm run build`. The intended domain is
-`staff.jdpimaiduguri.org`, subject to final approval and DNS setup. Do not change
+The separate Vercel project is `jdpi-staff-workspace`, root directory
+`staff-workspace`, Next.js preset, `npm ci` install and `npm run build`.
+Production tracks `staff-workspace-backup`, not the public website's `main`.
+The approved domain is `staff.jdpimaiduguri.org`. Do not change
 the WordPress/public-site domain, Sanity subdomain or mail DNS records.
 Production organisation data will require PostgreSQL plus a PRIVATE Blob store
 (or another approved private document store), not local deployment files.

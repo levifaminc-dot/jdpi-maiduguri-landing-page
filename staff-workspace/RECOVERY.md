@@ -5,7 +5,8 @@ The staff workspace is stored in the private repository
 `staff-workspace-backup`. Application source is in `staff-workspace/`; the
 earlier fictional design preview is in `staff-preview/`. The branch preserves
 the commit history without updating the public website's production `main`.
-This is a source-code backup, not a staff deployment or database backup.
+This is a source-code backup, not a database or credential backup. A separate,
+credential-free Vercel foundation now tracks this branch; see `DEPLOYMENT.md`.
 
 ## Restore on another computer
 
