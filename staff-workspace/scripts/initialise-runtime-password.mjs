@@ -3,7 +3,7 @@ import {fileURLToPath} from 'node:url';
 import {Pool} from 'pg';
 import {databaseConfig} from '../lib/database-config.mjs';
 import {verifyRuntimeRole,runtimeRole} from '../lib/runtime-role-policy.mjs';
-import {runtimePasswordProblem,runtimePasswordVerifier,runtimeConnectionUrl,runtimeRecovery} from '../lib/runtime-password.mjs';
+import {runtimePasswordProblem,runtimeActivationSql,runtimeConnectionUrl,runtimeRecovery} from '../lib/runtime-password.mjs';
 import {privateTerminal} from '../lib/private-terminal.mjs';
 
 // OWNER HANDOFF ONLY: an interactive command, not a build step or web route.
@@ -25,8 +25,11 @@ try {
   }
   const config=databaseConfig({...process.env,DATABASE_URL:process.env.DATABASE_MIGRATION_URL});
   if(!config || (!resume && !process.env.DATABASE_URL)) throw new Error('Missing private local connections.');
+  if(config.ssl?.rejectUnauthorized!==true) throw new Error('Activation requires verified hosted TLS.');
   console.log(resume ? 'Resume activation ONLY for jdpi_workspace_runtime using the existing private recovery file.' : 'Initialise the password ONLY for jdpi_workspace_runtime in jdpi_staff.');
   console.log('No owner password, grants, staff records or Vercel settings will change.');
+  console.log('Neon requires the original password over verified TLS, not a precomputed hash.');
+  console.log('It is sent only from this local command to Neon; never printed or placed in shell history.');
   phase='private-password-prompt';
   reader=privateTerminal();
   const word=resume ? 'RESUME' : 'INITIALISE';
@@ -46,7 +49,8 @@ try {
     }
     break;
   }
-  const verifier=runtimePasswordVerifier(password);
+  // Only the owner-run process handles this secret; no assistant-run activation.
+  const activationSql=runtimeActivationSql(password);
   reader.close();reader=undefined;
   console.log(resume ? 'Private recovery file accepted. Checking the limited database role…' : 'Password entries received. Checking the limited database role…');
   phase='connect-and-check-role';
@@ -67,9 +71,8 @@ try {
       await writeFile(outputFile,`# PRIVATE. Never commit, share in chat or screenshot.\nDATABASE_URL=${runtimeUrl}\n`,{flag:'wx',mode:0o600});
     }
     saved=true;
-    if(!/^SCRAM-SHA-256\$4096:[A-Za-z0-9+/=]+\$[A-Za-z0-9+/=]+:[A-Za-z0-9+/=]+$/.test(verifier)) throw new Error('Invalid verifier.');
     phase='activate-runtime-password';
-    if(!alreadyActive) await db.query(`ALTER ROLE ${runtimeRole} LOGIN PASSWORD '${verifier}'`);
+    if(!alreadyActive) await db.query(activationSql);
     else console.log('Role already active. Checking the saved connection without changing its password.');
     phase='verify-activated-privileges';
     if(!(await verifyRuntimeRole(db)).loginEnabled) throw new Error('Role not enabled.');
@@ -93,8 +96,8 @@ try {
   console.log('No secret is printed. Keep this file private; deployment credentials are still not uploaded.');
 } catch(error) {
   // Never print PostgreSQL errors, input passwords, verifiers or URLs.
-  console.error(committed ? 'Activation transaction completed, but runtime verification failed. Keep the private file and report this status.' : 'Initialisation stopped; no password change committed.');
-  if(saved && !committed) console.error('A private recovery file exists, but its password was NOT activated. Do not upload it; ask for the next safe step.');
+  console.error(committed ? 'Activation transaction completed, but runtime verification failed. Keep the private file and report this status.' : 'Activation did not finish. Do not assume the password is active.');
+  if(saved && !committed) console.error('The private recovery file is preserved. Do not upload it until runtime login verification succeeds.');
   console.error('Stage:',phase);
   console.error('Error code:',/^[A-Z0-9]{5}$/.test(error.code || '') ? error.code : 'LOCAL_POLICY_CHECK');
   console.error('No credentials printed.');process.exitCode=1;

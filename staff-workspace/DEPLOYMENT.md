@@ -99,14 +99,16 @@ delete the role or replace it with an owner-privileged console-created account.
 
 The owner can instead run `scripts/initialise-runtime-password.mjs` in a local
 interactive terminal with the ignored `.env.local` loaded. It requires explicit
-`INITIALISE` confirmation and two hidden password entries. It sends a PostgreSQL
-SCRAM verifier, not plaintext password SQL, and changes only the existing runtime
-role's LOGIN/password. Existing limited grants are rechecked, not broadened.
+`INITIALISE` confirmation and two hidden password entries. It sends the original
+password to Neon over certificate-verified TLS, as required by Neon's role API;
+precomputed SCRAM verifiers are not supported. It changes only the existing
+runtime role's LOGIN/password. Existing limited grants are rechecked, not broadened.
 The private pooled connection is saved once in ignored `.env.runtime.local`;
 the existing `.env.local` is not overwritten. It then tests TLS runtime login,
 effective privileges and the required authorisation row lock without staff writes.
-The assistant has NOT run this credential-creation command. Only fixture tests
-have exercised its verifier; activation still awaits the owner handoff.
+The assistant has NOT run this credential-creation command. Only fictional
+fixture tests have exercised the SQL escaping; activation still awaits the owner
+handoff.
 
 Never paste that private file, password, verifier or connection URL into chat,
 Git or a screenshot. `DATABASE_MIGRATION_URL` must never be uploaded to Vercel.
@@ -133,7 +135,7 @@ private recovery file. Read-only verification still found runtime login disabled
 The operator had role-management permission and direct ADMIN OPTION. Diagnostic
 transactions using fictional data accepted LOGIN, SCRAM-password assignment and
 the exact combined operation plus effective-grant checks; ALL were rolled back.
-The earlier failure has not been reproduced or attributed to a specific cause.
+Those rollback-only probes did not exercise Neon's commit-time role integration.
 No real password was read by those diagnostic tests.
 
 The owner can run `npm run db:resume-runtime` and confirm `RESUME`. This reads the
@@ -144,6 +146,31 @@ its credential. It then verifies the runtime connection and row lock. Error
 codes and separate activation/verification/commit stages are safe to share; error
 messages, URLs, passwords and verifiers are never printed. Do not upload the
 recovery file until the command explicitly confirms successful verification.
+
+### Neon commit-time incompatibility correction
+
+The owner's resume attempt returned `XX000` at `commit-activation`. Neon's
+official documentation states that role passwords must be supplied in original
+form; hashed passwords are unsupported:
+https://neon.com/docs/manage/roles#manage-roles-with-sql.
+The previous helper incorrectly assumed PostgreSQL's acceptance of precomputed
+SCRAM hashes also applied to Neon. PostgreSQL accepted it within the transaction,
+but rollback-only diagnostics skipped the commit-time integration.
+
+The corrected owner-run helper reuses the existing private recovery password,
+sends it only over verified hosted TLS, and uses a tested escaped E-string for
+the fixed role. The SQL is constructed in process memory, not a shell argument,
+SQL editor or shell-history entry. It is never printed, nor are provider error
+messages/details. Provider-side handling/diagnostic logging is controlled by
+Neon; this command cannot guarantee removal from provider logs. Do not run it
+through an assistant tool, query logger, traced shell or recorded terminal.
+Role grants and staff data remain unchanged. The diagnostic tool is now strictly
+read-only; it does not read the recovery file or attempt password changes.
+
+Run the same `npm run db:resume-runtime` owner handoff, confirm `RESUME`, and wait
+for the explicit TLS/runtime privilege and row-lock verification success before
+using the credential for deployment. This correction is fixture-tested, not a
+claim that production password activation has already succeeded.
 
 ## Release limits
 

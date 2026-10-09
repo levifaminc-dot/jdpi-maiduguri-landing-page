@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {PGlite} from '@electric-sql/pglite';
-import {runtimePasswordProblem,runtimePasswordVerifier,runtimeConnectionUrl,runtimeRecovery} from '../lib/runtime-password.mjs';
+import {runtimePasswordProblem,runtimeActivationSql,runtimeConnectionUrl,runtimeRecovery} from '../lib/runtime-password.mjs';
 
 const fictional='Fictional-test-only-password-123!';
 test('password feedback identifies the requirement without revealing input',()=>{
@@ -12,16 +12,30 @@ test('password feedback identifies the requirement without revealing input',()=>
   assert.equal(runtimePasswordProblem(fictional),null);
   for(const input of ['private-short-value','x'.repeat(129),`${fictional} `,`${fictional}é`]) assert(!runtimePasswordProblem(input).includes(input));
 });
-test('SCRAM verifier matches PostgreSQL password hashing with the server salt',async()=>{
+test('Neon activation uses the original password safely escaped for the fixed limited role',async()=>{
   const db=new PGlite();
   try {
-    await db.exec("SET password_encryption='scram-sha-256'; CREATE ROLE fictional_test LOGIN PASSWORD 'Fictional-test-only-password-123!'");
-    const verifier=(await db.query("SELECT rolpassword FROM pg_authid WHERE rolname='fictional_test'")).rows[0].rolpassword;
-    const salt=Buffer.from(verifier.split('$')[1].split(':')[1],'base64');
-    assert.equal(runtimePasswordVerifier(fictional,salt),verifier);
-    assert(!verifier.includes(fictional));
-    assert.throws(()=>runtimePasswordVerifier('short'));
-    assert.throws(()=>runtimePasswordVerifier(`${fictional}é`));
+    await db.exec("SET password_encryption='scram-sha-256'; CREATE ROLE jdpi_workspace_runtime NOLOGIN; CREATE TABLE escape_guard(id int)");
+    // Parse the exact E-string and compare privately in the fixture. Include
+    // quotes, backslashes, dollar signs and SQL punctuation; no real secrets.
+    for(const mode of ['on','off']) {
+      await db.exec(`SET standard_conforming_strings=${mode}`);
+      for(const input of [fictional,`${fictional}'\\$;--/*()`,`${fictional}\\'\\\\'';--`]) {
+        const sql=runtimeActivationSql(input);
+        assert.match(sql,/^ALTER ROLE jdpi_workspace_runtime LOGIN PASSWORD E'/);
+        const literal=sql.split(' PASSWORD ')[1];
+        assert.equal((await db.query(`SELECT ${literal} AS password`)).rows[0].password,input);
+        await db.exec(sql);
+        const row=(await db.query("SELECT rolcanlogin,rolpassword FROM pg_authid WHERE rolname='jdpi_workspace_runtime'")).rows[0];
+        assert.equal(row.rolcanlogin,true);
+        assert.match(row.rolpassword,/^SCRAM-SHA-256\$/);
+      }
+    }
+    assert.equal((await db.query("SELECT count(*)::int AS n FROM escape_guard")).rows[0].n,0);
+    assert.throws(()=>runtimeActivationSql('short'));
+    assert.throws(()=>runtimeActivationSql(`${fictional}é`));
+    assert.throws(()=>runtimeActivationSql(`SCRAM-SHA-256$${fictional}`));
+    assert.throws(()=>runtimeActivationSql(`md5${'a'.repeat(32)}`));
   } finally {await db.close();}
 });
 test('private runtime connection keeps the existing branch and uses encoded credentials',()=>{

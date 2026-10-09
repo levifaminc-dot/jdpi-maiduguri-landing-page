@@ -1,5 +1,5 @@
-import {createHash,createHmac,pbkdf2Sync,randomBytes} from 'node:crypto';
 import {parseEnv} from 'node:util';
+import {runtimeRole} from './runtime-role-policy.mjs';
 
 // Safe, fixed feedback: never include the supplied password in an error.
 export function runtimePasswordProblem(password) {
@@ -9,23 +9,21 @@ export function runtimePasswordProblem(password) {
   return null;
 }
 
-// PostgreSQL SCRAM-SHA-256 verifier. ASCII-only input avoids Unicode/SASLprep
-// differences. Only the verifier, never plaintext, appears in ALTER ROLE SQL.
-export function runtimePasswordVerifier(password, salt=randomBytes(16)) {
+// OWNER CLI ONLY. Neon rejects precomputed hashes at commit. The password must
+// reach Neon over verified TLS; NEVER log this SQL or pass it via shell args.
+// E-string escaping is explicit and independent of standard_conforming_strings.
+export function runtimeActivationSql(password) {
   const problem=runtimePasswordProblem(password);
   if(problem) throw new Error(problem);
-  if (!Buffer.isBuffer(salt) || salt.length!==16) throw new Error('Invalid verifier salt.');
-  const iterations=4096;
-  const salted=pbkdf2Sync(password,salt,iterations,32,'sha256');
-  const client=createHmac('sha256',salted).update('Client Key').digest();
-  const stored=createHash('sha256').update(client).digest('base64');
-  const server=createHmac('sha256',salted).update('Server Key').digest('base64');
-  return `SCRAM-SHA-256$${iterations}:${salt.toString('base64')}$${stored}:${server}`;
+  if(password.startsWith('SCRAM-SHA-256$') || /^md5[0-9a-f]{32}$/.test(password)) throw new Error('Use an original password, not a password hash.');
+  const literal=password.replaceAll('\\','\\\\').replaceAll("'","''");
+  return `ALTER ROLE ${runtimeRole} LOGIN PASSWORD E'${literal}'`;
 }
 
 export function runtimeConnectionUrl(appUrl, operatorUrl, password) {
   // Validate the password without accepting connection/SQL fragments.
-  runtimePasswordVerifier(password,Buffer.alloc(16));
+  const problem=runtimePasswordProblem(password);
+  if(problem) throw new Error(problem);
   const app=new URL(appUrl), operator=new URL(operatorUrl);
   if (!app.hostname.endsWith('.neon.tech') || !app.hostname.includes('-pooler.') ||
       app.hostname.replace('-pooler.','.')!==operator.hostname ||
