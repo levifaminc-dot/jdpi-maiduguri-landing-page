@@ -16,6 +16,7 @@
     "db:plan": "node scripts/migrate-database.mjs",
     "db:migrate": "node --env-file=.env.local scripts/migrate-database.mjs --apply",
     "db:bootstrap": "node --env-file=.env.local scripts/bootstrap-admin.mjs",
+    "db:activate-runtime": "node --env-file=.env.local scripts/initialise-runtime-password.mjs",
     "test": "node --conditions=react-server --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {

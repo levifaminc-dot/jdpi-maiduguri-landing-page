@@ -91,6 +91,26 @@ existing role. `--check` verifies current privileges without changing them.
 Neither generates, logs or uploads a password. Do not run these operator tools
 in deployment builds or through a public route.
 
+### First-password handoff correction
+
+Neon's console rejected Reset password for the passwordless SQL-created role:
+`cannot update password for role without password`. Do not retry that action,
+delete the role or replace it with an owner-privileged console-created account.
+
+The owner can instead run `scripts/initialise-runtime-password.mjs` in a local
+interactive terminal with the ignored `.env.local` loaded. It requires explicit
+`INITIALISE` confirmation and two hidden password entries. It sends a PostgreSQL
+SCRAM verifier, not plaintext password SQL, and changes only the existing runtime
+role's LOGIN/password. Existing limited grants are rechecked, not broadened.
+The private pooled connection is saved once in ignored `.env.runtime.local`;
+the existing `.env.local` is not overwritten. It then tests TLS runtime login,
+effective privileges and the required authorisation row lock without staff writes.
+The assistant has NOT run this credential-creation command. Only fixture tests
+have exercised its verifier; activation still awaits the owner handoff.
+
+Never paste that private file, password, verifier or connection URL into chat,
+Git or a screenshot. `DATABASE_MIGRATION_URL` must never be uploaded to Vercel.
+
 ## Release limits
 
 The team was on Vercel Hobby when this unconnected foundation was deployed.
