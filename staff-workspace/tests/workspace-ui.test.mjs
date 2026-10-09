@@ -11,9 +11,9 @@ test('dashboard counts and search/filter use membership statuses, not claimed ro
   assert.equal(filterMembers(members,'ALL','Test').length,4);
 });
 test('staff navigation has no administration routes; admin has separate pages',()=>{
-  assert.deepEqual(workspaceNavigation('STAFF').map(m=>m.href),['/workspace']);
-  assert.deepEqual(workspaceNavigation('ADMIN').map(m=>m.label),['Dashboard','Members','Invitations','Settings']);
-  assert.deepEqual(workspaceNavigation('anything').map(m=>m.href),['/workspace']);
+  assert.deepEqual(workspaceNavigation('STAFF').map(m=>m.href),['/workspace','/workspace/announcements']);
+  assert.deepEqual(workspaceNavigation('ADMIN').map(m=>m.label),['Dashboard','Announcements','Members','Invitations','Settings']);
+  assert.deepEqual(workspaceNavigation('anything').map(m=>m.href),['/workspace','/workspace/announcements']);
 });
 test('invitation drafts are messages, not invitations or automatic access grants',()=>{
   const result=invitationDraft('colleague@example.invalid','Test Colleague','https://staff.example.org');

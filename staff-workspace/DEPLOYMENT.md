@@ -8,12 +8,38 @@ locking verified. The runtime credential is now active. The private pooled URL
 remains in ignored `.env.runtime.local`; it was not printed, uploaded or committed.
 No staff memberships or grants were changed by this activation.
 
-The remaining deployment handoff is the six approved Production-only settings
-listed below, followed by redeployment and real Microsoft login/logout and
-private-route checks. Use `DATABASE_URL` from `.env.runtime.local`, NOT the owner
-connection in `.env.local`. Do not run password initialisation, migrations or
-first-admin bootstrap again. Historical sections below describe the earlier
-unconnected foundation and setup failures, not the current credential state.
+The six approved Production-only settings were configured: three nonsecret values
+and three secrets privately entered by the owner. Deployment
+`DSsNZJ4Am4ag5x7fdk6eG3tVMsYL` was Ready at commit `32d2292`, and the owner
+confirmed successful production Microsoft login. Use `DATABASE_URL` from
+`.env.runtime.local`, NOT the owner connection in `.env.local`. Do not repeat
+password initialisation or first-admin bootstrap. Historical sections below
+describe the earlier unconnected foundation and setup failures, not the current
+credential state.
+
+## Announcements release — prepared 9 October 2026
+
+The owner confirmed all approved staff may publish, with admin moderation.
+The new `002-announcements.sql` migration adds two empty content tables and
+column-specific runtime grants. It does not change staff, sessions, passwords,
+previous migrations or membership permissions. The existing limited role is
+verified before the migration commits. Use the operator migration connection
+locally only; no new production secrets or services are needed.
+
+- Staff: publish/manage their own updates; join open discussions; remove their
+  own comments. Other authors' drafts/archives are inaccessible.
+- Admins: moderate all updates/comments, pin updates, close/open discussions.
+  Staff cannot restore an update archived by an administrator.
+- No automatic emails, seeded announcements, real content writes or membership
+  changes are included in testing. Search, draft/archive views, pagination,
+  conflict detection and duplicate/rate-limit protections are implemented.
+- 36 fixture tests pass, including operations under the limited database role,
+  ownership, draft isolation, moderation, revocation, validation and SQL limits.
+- Final production build passes. The additive Neon migration committed and
+  verified the runtime's effective grants without changing membership records.
+  `scripts/check-announcements.mjs` provides a counts-only runtime smoke check;
+  load the ignored runtime environment locally, never the owner URL on Vercel.
+  Live verification must still be completed; do not infer it from a push.
 
 ## Verified foundation — 9 October 2026
 
@@ -194,8 +220,8 @@ Confirm plan eligibility and budget before organisational production use; no pai
 upgrade or trial was approved or activated. Vercel describes Hobby as personal,
 non-commercial use: https://vercel.com/docs/plans/hobby.
 
-Announcements/comments, private documents, directory profiles and automatic
-invitation emails are not connected. The hosted foundation is not a completed
+Private documents, directory profiles and automatic invitation emails are not
+connected. The hosted workspace is not a completed
 210-person staff portal. Backup/restore, access-revocation, security and expected
 concurrency checks remain release gates; see `DATABASE-SETUP.md` and `RECOVERY.md`.
 

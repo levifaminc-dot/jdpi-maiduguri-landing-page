@@ -9,7 +9,7 @@ export function filterMembers(members, status, query) {
   return members.filter(m=>(status==='ALL' || m.status===status) && m.name.toLocaleLowerCase('en').includes(needle));
 }
 export function workspaceNavigation(role) {
-  const items=[{href:'/workspace',label:'Dashboard',icon:'dashboard'}];
+  const items=[{href:'/workspace',label:'Dashboard',icon:'dashboard'},{href:'/workspace/announcements',label:'Announcements',icon:'megaphone'}];
   if(role==='ADMIN') items.push({href:'/workspace/members',label:'Members',icon:'users'},
     {href:'/workspace/invitations',label:'Invitations',icon:'mail'}, {href:'/workspace/settings',label:'Settings',icon:'settings'});
   return items;
@@ -35,5 +35,10 @@ export function invitationDraft(email, name, origin) {
 export function accessEventLabel(action) {
   return ({'access-requested':'Workspace access requested', 'operator-first-admin-bootstrap':'First administrator set up',
     admit:'Staff access approved', suspend:'Workspace access suspended', restore:'Staff access restored', role:'Member role changed',
-    invite:'Identity invitation created', 'invitation-accepted':'Staff invitation accepted'})[action] || 'Access record updated';
+    invite:'Identity invitation created', 'invitation-accepted':'Staff invitation accepted',
+    'announcement-created':'Announcement draft created','announcement-edit':'Announcement updated',
+    'announcement-publish':'Announcement published','announcement-archive':'Announcement archived',
+    'announcement-restore':'Announcement restored to drafts','announcement-pin':'Pinned update changed',
+    'announcement-comments':'Discussion settings changed','announcement-commented':'Staff comment added',
+    'announcement-comment-removed':'Comment removed'})[action] || 'Access record updated';
 }

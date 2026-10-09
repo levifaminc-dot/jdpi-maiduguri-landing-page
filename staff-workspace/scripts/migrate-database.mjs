@@ -2,10 +2,12 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {Pool} from 'pg';
 import {databaseConfig} from '../lib/database-config.mjs';
-const files=['000-auth.sql','001-membership.sql'];
+import {runtimeRole,announcementGrantsSql,verifyRuntimeRole} from '../lib/runtime-role-policy.mjs';
+const files=['000-auth.sql','001-membership.sql','002-announcements.sql'];
 const migrations=await Promise.all(files.map(async name=>{const sql=(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8')).replace(/\r\n/g,'\n');return {name,sql,hash:createHash('sha256').update(sql).digest('hex')};}));
 if(!process.argv.includes('--apply')) {
-  console.log('Plan only: auth tables, durable sessions, memberships, audit and rate-limit tables.');
+  console.log('Plan only: existing auth/membership migrations, plus additive announcement/comment tables.');
+  console.log('Only new content-table privileges are added to an existing limited runtime role. No staff rows or old grants change.');
   console.log('No database connection or writes. Prepared migration files:', files.join(', '));
   process.exit(0);
 }
@@ -17,12 +19,17 @@ try {
   const db=await pool.connect();
   try {
     await db.query('BEGIN');
+    if((await db.query('SELECT current_database() AS name')).rows[0].name!=='jdpi_staff') throw new Error('Unexpected database.');
     await db.query('CREATE TABLE IF NOT EXISTS workspace_migration(name text PRIMARY KEY, hash text NOT NULL, applied_at timestamptz NOT NULL DEFAULT now())');
     await db.query('LOCK TABLE workspace_migration IN EXCLUSIVE MODE');
     for(const migration of migrations) {
       const current=(await db.query('SELECT hash FROM workspace_migration WHERE name=$1',[migration.name])).rows[0];
       if(current) {if(current.hash!==migration.hash) throw new Error('Applied migration has changed.'); continue;}
       await db.query(migration.sql);
+      if(migration.name==='002-announcements.sql' && (await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length) {
+        await db.query(announcementGrantsSql);
+        await verifyRuntimeRole(db);
+      }
       await db.query('INSERT INTO workspace_migration(name,hash) VALUES ($1,$2)',[migration.name,migration.hash]);
     }
     await db.query('COMMIT'); console.log('Database migrations applied. No memberships or admin roles created.');

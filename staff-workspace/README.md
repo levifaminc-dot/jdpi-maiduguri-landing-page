@@ -40,12 +40,21 @@ activity. Dedicated pages are available at:
 - `/workspace/settings`: read-only connection/security status plus links to
   membership and invitations. There are no cosmetic save controls or unsecured
   settings changes.
+- `/workspace/announcements`: searchable published updates, private drafts and
+  archives. All ACTIVE staff can create, publish, edit and archive their own
+  updates. Drafts/archives are visible only to their author and administrators.
+  Admins can edit/moderate any update, pin posts and open/close discussions. An
+  admin-moderated archive requires an admin to restore it; its author cannot
+  bypass moderation. Published open discussions accept comments from all ACTIVE
+  staff. Authors can remove their own comments; admins can remove any comment.
+  Removal hides the body from the page/API while preserving the database record.
 
-These pages independently check fresh database-active administrator status;
+Administration pages independently check fresh database-active administrator status;
 navigation visibility is not the authorization boundary. The membership API
-also rechecks authorization inside the SQL transaction. The real staff-content
-backend (announcements/comments, private document storage and directory profiles)
-remains **not connected** and is labelled accordingly. No real staff invitations
+also rechecks authorization inside the SQL transaction. Announcement operations
+recheck ACTIVE membership and ownership under the shared access-control lock.
+Private document storage and directory profiles remain **not connected** and are
+labelled accordingly. No real staff invitations
 or access changes were made while testing the redesign.
 
 The interface uses labelled controls, visible keyboard focus, a skip link,
@@ -76,11 +85,11 @@ session survived a refresh; sign-out cleared access, and a direct `/workspace`
 visit then redirected to sign-in. Personal consent only; no tenant-wide grant.
 
 The connection began as identity-only and has since gained durable sessions and
-membership. Private Blob storage and staff publishing are still not connected.
+membership. Private Blob storage is still not connected.
 Nonmembers remain locked until admin approval. The proposed bootstrap-admin
 email never grants permissions. Demo state remains isolated and fictional.
 
-Neon PostgreSQL's Free plan was provisioned, the two migrations applied, and the
+Neon PostgreSQL's Free plan was provisioned, the foundation migrations applied, and the
 first admin approved explicitly. See [database setup](DATABASE-SETUP.md) for the
 verified setup, admission and authorization rules, and production readiness
 gates. Without a database connection, the locked setup behaviour remains.
@@ -90,9 +99,9 @@ and no Vercel environment. They return 404 in production, even if a role or
 preview query parameter is supplied. `/workspace` redirects unauthenticated users
 to sign-in and checks the verified identity server-side. Production builds expose
 the real sign-in and membership routes, not the fictional demo portal. This
-workspace has a credential-free Vercel foundation deployment. Online Microsoft
-sign-in and database access remain disabled until production setup is approved
-and verified. See [deployment status](DEPLOYMENT.md).
+workspace now has a separately configured Vercel deployment. The owner confirmed
+successful production Microsoft sign-in after entering the protected credentials.
+See [deployment status](DEPLOYMENT.md) for release evidence and remaining gates.
 
 ## Hosting plan
 
@@ -128,8 +137,10 @@ storage, bandwidth, restore plans and expected concurrent usage for ~210 staff.
   staff. Configure and test automatic email delivery separately if required.
   Any future admission invitation must be single-use, expiring and securely bound
   to verified identity. Add MFA under JDPI tenant policy.
-- All admitted staff can publish/comment/upload. Check ownership/moderation rules
-  on every request. Add CSRF protections, validation, rate limits and XSS tests.
+- All admitted staff can publish/comment. Server ownership/moderation checks,
+  same-origin writes, bounded JSON/text, shared throttling, optimistic versions,
+  duplicate request IDs and plain-text rendering are implemented and tested.
+  Upload permissions/storage still require a separate implementation.
 - Private document uploads need server permission checks, size/type/signature
   validation, malware scanning/quarantine, tenant/audience metadata and permission-
   checked reads. Preview/download must share the same authorisation path. Never

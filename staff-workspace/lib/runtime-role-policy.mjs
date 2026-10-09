@@ -2,6 +2,13 @@
 export const runtimeRole = 'jdpi_workspace_runtime';
 export const createRuntimeRoleSql = `CREATE ROLE ${runtimeRole}
   NOLOGIN NOINHERIT NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION NOBYPASSRLS`;
+export const announcementGrantsSql = `
+  GRANT SELECT ON public.workspace_announcement,public.workspace_comment TO ${runtimeRole};
+  GRANT INSERT(id,tenant_id,author_object_id,title,body,category),
+    UPDATE(title,body,category,status,pinned,moderated,comments_enabled,version,updated_at,published_at)
+    ON public.workspace_announcement TO ${runtimeRole};
+  GRANT INSERT(id,tenant_id,announcement_id,author_object_id,body),
+    UPDATE(hidden_at,hidden_by_object_id) ON public.workspace_comment TO ${runtimeRole};`;
 
 export function runtimeGrantsSql(database) {
   if (!/^[a-z][a-z0-9_]*$/.test(database)) throw new Error('Invalid database name.');
@@ -21,7 +28,7 @@ export function runtimeGrantsSql(database) {
       ON TABLE public.workspace_audit TO ${runtimeRole};
     GRANT USAGE ON SEQUENCE public.workspace_audit_id_seq TO ${runtimeRole};
     GRANT SELECT, INSERT, UPDATE ON TABLE public.workspace_throttle TO ${runtimeRole};
-  `;
+  ${announcementGrantsSql}`;
 }
 
 // Checks effective grants, including PUBLIC and membership inheritance, not
@@ -57,7 +64,7 @@ export async function verifyRuntimeRole(db) {
       await check('SELECT has_table_privilege($1,$2,$3) AS allowed', [runtimeRole, `public."${table}"`, privilege], true);
     }
   }
-  for (const table of ['workspace_member','workspace_control','workspace_audit','workspace_throttle']) {
+  for (const table of ['workspace_member','workspace_control','workspace_audit','workspace_throttle','workspace_announcement','workspace_comment']) {
     await check('SELECT has_table_privilege($1,$2,\'SELECT\') AS allowed', [runtimeRole, `public.${table}`], true);
     for (const privilege of ['DELETE','TRUNCATE','TRIGGER','REFERENCES']) {
       await check('SELECT has_table_privilege($1,$2,$3) AS allowed', [runtimeRole, `public.${table}`, privilege], false);
@@ -68,12 +75,20 @@ export async function verifyRuntimeRole(db) {
     ...['tenant_id','object_id','name','status'].map(c => ['workspace_member',c,'INSERT']),
     ...['name','role','status','updated_at'].map(c => ['workspace_member',c,'UPDATE']),
     ...['actor_object_id','target_object_id','action','details'].map(c => ['workspace_audit',c,'INSERT']),
+    ...['id','tenant_id','author_object_id','title','body','category'].map(c=>['workspace_announcement',c,'INSERT']),
+    ...['title','body','category','status','pinned','moderated','comments_enabled','version','updated_at','published_at'].map(c=>['workspace_announcement',c,'UPDATE']),
+    ...['id','tenant_id','announcement_id','author_object_id','body'].map(c=>['workspace_comment',c,'INSERT']),
+    ...['hidden_at','hidden_by_object_id'].map(c=>['workspace_comment',c,'UPDATE']),
   ]) await check('SELECT has_column_privilege($1,$2,$3,$4) AS allowed', [runtimeRole, `public.${table}`,column,privilege], true);
   for (const [table, column, privilege] of [
     ['workspace_member','role','INSERT'], ['workspace_member','created_at','INSERT'],
     ...['tenant_id','object_id','created_at'].map(c => ['workspace_member',c,'UPDATE']),
     ['workspace_audit','id','INSERT'], ['workspace_audit','created_at','INSERT'],
     ['workspace_control','id','INSERT'],
+    ...['id','tenant_id','author_object_id','created_at'].map(c=>['workspace_announcement',c,'UPDATE']),
+    ...['status','pinned','moderated','comments_enabled','version','created_at','updated_at','published_at'].map(c=>['workspace_announcement',c,'INSERT']),
+    ...['id','tenant_id','announcement_id','author_object_id','body','created_at'].map(c=>['workspace_comment',c,'UPDATE']),
+    ...['created_at','hidden_at','hidden_by_object_id'].map(c=>['workspace_comment',c,'INSERT']),
   ]) await check('SELECT has_column_privilege($1,$2,$3,$4) AS allowed', [runtimeRole, `public.${table}`,column,privilege], false);
   await check("SELECT has_any_column_privilege($1,'public.workspace_audit','UPDATE') AS allowed", [runtimeRole], false);
   for (const privilege of ['SELECT','INSERT','UPDATE','DELETE','TRUNCATE']) {

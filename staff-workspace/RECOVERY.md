@@ -6,7 +6,7 @@ The staff workspace is stored in the private repository
 earlier fictional design preview is in `staff-preview/`. The branch preserves
 the commit history without updating the public website's production `main`.
 This is a source-code backup, not a database or credential backup. A separate,
-credential-free Vercel foundation now tracks this branch; see `DEPLOYMENT.md`.
+Vercel staff deployment now tracks this branch; see `DEPLOYMENT.md`.
 
 ## Restore on another computer
 
@@ -31,7 +31,7 @@ credential-free Vercel foundation now tracks this branch; see `DEPLOYMENT.md`.
 ## Separate recovery responsibilities
 
 - GitHub: source code, dependency lockfile, migration files and setup guides.
-- Neon: staff identities, sessions, membership and audit records. A tested
+- Neon: staff identities, sessions, membership, announcements, comments and audit records. A tested
   database backup/restore process remains a release requirement; GitHub does
   not back up these records.
 - Secrets: keep approved credentials in an organisation-controlled password
@@ -41,7 +41,7 @@ credential-free Vercel foundation now tracks this branch; see `DEPLOYMENT.md`.
   require their own retention and recovery process.
 
 Do not deploy with the generated Neon owner role. Set up least-privilege runtime
-credentials before release. Announcements/comments, private documents and staff
-profiles still require backend implementation. A separate staff repository is
+credentials before release. Announcements/comments now have a durable backend;
+private documents and staff profiles still require backend implementation. A separate staff repository is
 optional for future independent access/deployment; it is not required for this
 code backup.
