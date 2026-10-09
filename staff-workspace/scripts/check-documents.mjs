@@ -11,6 +11,8 @@ try {
     await verifyRuntimeRole(db);await db.query('BEGIN READ ONLY');
     try {
       const counts=(await db.query(`SELECT (SELECT count(*)::int FROM workspace_document) AS documents,
+        (SELECT count(*)::int FROM workspace_document WHERE status='READY') AS shared,
+        (SELECT count(*)::int FROM workspace_document WHERE status='ARCHIVED') AS archived,
         (SELECT reserved_bytes::text FROM workspace_document_control WHERE id=1) AS reservedBytes,
         (SELECT count(*)::int FROM workspace_member) AS members`)).rows[0];
       console.log('Verified TLS runtime connection and limited document privileges.');console.log('Read-only counts:',JSON.stringify(counts));

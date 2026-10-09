@@ -22,6 +22,25 @@ file access, integrity checks and quota reservations. Structural PDF validation
 is not antivirus scanning. Confidential case/HR documents and a 210-staff rollout
 require the scanning, retention, backup and plan/load gates in DOCUMENTS.md.
 
+Application commit `cb1220cc740a2b22dcd9d435869fe2a98d5cf941` was pushed only to
+`staff-workspace-backup`. Vercel deployment `C858wwVuSrWKeG6FXwL4EFSVeGjk` is Ready.
+The live app successfully uploaded the owner-approved fictional two-page sample,
+opened it through the authenticated file endpoint, rendered both complete pages,
+found the expected text matches and exposed readable page text. The downloaded
+file's SHA-256 exactly matches the original. Desktop and 390px mobile previews
+were visually inspected; the library has no document-level horizontal overflow.
+The sample was then archived successfully and disappeared from the shared feed.
+It remains recoverable for its uploader/admins; no real staff file was uploaded.
+The member count later increased to two independently of this migration; these
+implementation/test steps did not modify or admit any staff accounts.
+
+The browser test also prompted two small UX refinements: changing PDF pages now
+returns to the top, and archival no longer displays an upload-progress label.
+Cookie-free checks deny the file and feed APIs (401), redirect the document page
+(307), reject cross-origin writes (403), and hide the fictional demo (404).
+The final counts-only runtime check confirms one document, zero shared, one
+archived and 4,557 reserved bytes. Original and downloaded fixture hashes match.
+
 ## Current handoff status — 9 October 2026
 
 The owner ran the corrected `db:resume-runtime` helper and shared its explicit

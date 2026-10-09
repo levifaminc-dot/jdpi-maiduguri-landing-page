@@ -9,6 +9,7 @@ export default function PdfViewer({doc,onClose,mode='sample'}:{doc:PdfPreviewDoc
   const [pageText,setPageText] = useState('');
   const [hasSearched,setHasSearched] = useState(false), [viewerWidth,setViewerWidth] = useState(700);
   useEffect(() => {const previous=document.activeElement;modal.current?.showModal();return ()=>{if(previous instanceof HTMLElement && previous.isConnected)previous.focus();};}, []);
+  useEffect(()=>{scroller.current?.scrollTo({top:0});},[page]);
   useEffect(() => {
     if (!scroller.current) return;
     const observer = new ResizeObserver(([entry]) => setViewerWidth(entry.contentRect.width));
