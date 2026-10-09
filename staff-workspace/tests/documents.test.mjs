@@ -9,6 +9,7 @@ import {documentFeed,uploadDocument,changeDocument,readDocumentFile} from '../li
 import {validatePdf} from '../lib/pdf-validation.mjs';
 import {validDocumentUpload,PDF_MAX_BYTES,DOCUMENT_BUDGET_BYTES} from '../lib/document-policy.mjs';
 import {boundedBytes} from '../lib/private-bytes.mjs';
+import {SHAREPOINT_TARGET} from '../lib/sharepoint-target.mjs';
 const id=n=>`00000000-0000-4000-8000-${String(n).padStart(12,'0')}`;
 const person=n=>({tenantId:JDPI_TENANT_ID,objectId:id(n),name:`Fictional colleague ${n}`});
 const admin=person(1),staff=person(2),other=person(3),pending=person(4),suspended=person(5);
@@ -17,7 +18,7 @@ const bytes=new Uint8Array(Buffer.from('%PDF-1.7\nFictional test bytes only\n%%E
 const stubValidator=async()=>2;
 async function fixture() {
   const db=new PGlite();
-  for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql'])await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
+  for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql','004-document-storage.sql'])await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
   await db.exec('CREATE TABLE workspace_migration(name text PRIMARY KEY)');
   for(const [identity,role,status] of [[admin,'ADMIN','ACTIVE'],[staff,'STAFF','ACTIVE'],[other,'STAFF','ACTIVE'],[pending,'STAFF','PENDING'],[suspended,'STAFF','SUSPENDED']])await db.query('INSERT INTO workspace_member(tenant_id,object_id,name,role,status) VALUES ($1,$2,$3,$4,$5)',[identity.tenantId,identity.objectId,identity.name,role,status]);
   await db.exec(createRuntimeRoleSql);await db.exec(runtimeGrantsSql((await db.query('SELECT current_database() AS name')).rows[0].name));
@@ -49,7 +50,7 @@ test('all ACTIVE staff share immediately; nonmembers, wrong tenants and suspende
     assert.equal(parses,0);assert.equal(f.writes(),0);assert.equal(f.reads(),0);
     const doc=await uploadDocument(f.pool,staff,metadata(),bytes,f.storage,validator);
     assert.equal(doc.status,'READY');assert.equal(doc.uploader,staff.name);assert.equal(doc.pages,2);assert.equal(doc.version,2);
-    for(const key of ['sha256','blob_path','url','uploader_object_id'])assert(!(key in doc));
+    for(const key of ['sha256','blob_path','url','uploader_object_id','storage_provider','storage_site_id','storage_drive_id'])assert(!(key in doc));
     assert.equal((await documentFeed(f.pool,other)).documents.length,1);
     assert.deepEqual((await readDocumentFile(f.pool,other,id(100),f.storage)).bytes,bytes);
     await f.db.exec('RESET ROLE');await f.db.query("UPDATE workspace_member SET status='SUSPENDED' WHERE object_id=$1",[staff.objectId]);await f.db.exec('SET ROLE jdpi_workspace_runtime');
@@ -67,8 +68,27 @@ test('duplicate submissions are idempotent, ownership cannot be forged and immut
     assert(validDocumentUpload(metadata()));
     await assert.rejects(f.db.query('UPDATE workspace_document SET uploader_object_id=$1',[other.objectId]));
     await assert.rejects(f.db.query('UPDATE workspace_document SET blob_path=$1',['forged-path']));
+    await assert.rejects(f.db.query("UPDATE workspace_document SET storage_provider='sharepoint'"));
+    await assert.rejects(f.db.query("UPDATE workspace_document SET storage_site_id='forged-site'"));
     await assert.rejects(f.db.exec('DELETE FROM workspace_document'));await assert.rejects(f.db.exec('TRUNCATE workspace_document'));
     await assert.rejects(f.db.exec('UPDATE workspace_audit SET action=\'forged\''));
+  }finally{await f.db.close();}
+});
+
+test('immutable per-document routing keeps Blob files readable after switching new uploads to SharePoint',async()=>{
+  const f=await fixture();try {
+    await uploadDocument(f.pool,staff,metadata(),bytes,f.storage,stubValidator);
+    const sharepoint={...f.storage,reference:()=>({provider:'sharepoint',siteId:SHAREPOINT_TARGET.siteId,driveId:SHAREPOINT_TARGET.driveId})};
+    await uploadDocument(f.pool,staff,metadata(101),bytes,sharepoint,stubValidator);
+    const seen=[];
+    const resolve=row=>{seen.push(row.storage_provider);return f.storage;};
+    await readDocumentFile(f.pool,other,id(100),resolve);
+    await readDocumentFile(f.pool,other,id(101),resolve);
+    assert.deepEqual(seen,['blob','sharepoint']);
+    const row=(await f.db.query('SELECT storage_site_id,storage_drive_id FROM workspace_document WHERE id=$1',[id(101)])).rows[0];
+    assert.equal(row.storage_site_id,SHAREPOINT_TARGET.siteId);assert.equal(row.storage_drive_id,SHAREPOINT_TARGET.driveId);
+    await assert.rejects(uploadDocument(f.pool,other,metadata(102),bytes,{...f.storage,reference:()=>({provider:'sharepoint',siteId:'wrong',driveId:'wrong'})},stubValidator));
+    assert.equal(f.writes(),2);
   }finally{await f.db.close();}
 });
 test('archive and restore enforce ownership, version conflicts and admin moderation',async()=>{

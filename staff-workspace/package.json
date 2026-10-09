@@ -18,6 +18,7 @@
     "db:bootstrap": "node --env-file=.env.local scripts/bootstrap-admin.mjs",
     "db:activate-runtime": "node --env-file=.env.local scripts/initialise-runtime-password.mjs",
     "db:resume-runtime": "node --env-file=.env.local scripts/initialise-runtime-password.mjs --resume",
+    "storage:verify": "node --conditions=react-server --env-file=.env.local scripts/verify-sharepoint.mjs",
     "test": "node --conditions=react-server --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {

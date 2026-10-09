@@ -13,7 +13,7 @@ test('runtime provisioning is explicit and cannot interpolate arbitrary database
 test('limited role supports runtime locks and rejects effective dangerous grants',async()=>{
   const db=new PGlite();
   try {
-    for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql']) await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
+    for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql','004-document-storage.sql']) await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
     await db.exec('CREATE TABLE workspace_migration(name text PRIMARY KEY)');
     const database=(await db.query('SELECT current_database() AS name')).rows[0].name;
     await db.exec(createRuntimeRoleSql);

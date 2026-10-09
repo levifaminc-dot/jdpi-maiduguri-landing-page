@@ -12,7 +12,7 @@ const leader=person(1),staff=person(2),other=person(3),pending=person(4),suspend
 const draft=(n=100)=>({action:'create',id:id(n),title:'Fictional team update',body:'Fictional test content only.',category:'General'});
 async function fixture() {
   const db=new PGlite();
-  for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql'])await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
+  for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql','004-document-storage.sql'])await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
   await db.exec('CREATE TABLE workspace_migration(name text PRIMARY KEY)');
   for(const [identity,role,status] of [[leader,'ADMIN','ACTIVE'],[staff,'STAFF','ACTIVE'],[other,'STAFF','ACTIVE'],[pending,'STAFF','PENDING'],[suspended,'STAFF','SUSPENDED']])await db.query('INSERT INTO workspace_member(tenant_id,object_id,name,role,status) VALUES ($1,$2,$3,$4,$5)',[identity.tenantId,identity.objectId,identity.name,role,status]);
   await db.exec(createRuntimeRoleSql);await db.exec(runtimeGrantsSql((await db.query('SELECT current_database() AS name')).rows[0].name));

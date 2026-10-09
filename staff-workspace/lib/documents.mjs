@@ -40,7 +40,8 @@ export async function uploadDocument(pool,identity,metadata,bytes,storage,valida
   // Authorize before spending CPU on untrusted parsing, then recheck after it.
   if(!storage)throw new AccessError(503,'Private document storage is not connected yet. Nothing has been uploaded.');
   await transaction(pool,async db=>{await active(db,identity);await throttle(db,identity);});
-  const pages=await validator(bytes);const sha256=hash(bytes),pathname=documentPath(identity.tenantId,metadata.id);
+  const pages=await validator(bytes);const sha256=hash(bytes),pathname=documentPath(identity.tenantId,metadata.id.toLowerCase());
+  const reference=storage.reference?.() || {provider:'blob',siteId:null,driveId:null};
   const ready=await transaction(pool,async db=>{
     const actor=await active(db,identity);
     await db.query('SELECT id FROM workspace_document_control WHERE id=1 FOR UPDATE');
@@ -53,13 +54,13 @@ export async function uploadDocument(pool,identity,metadata,bytes,storage,valida
     const budget=(await db.query('SELECT reserved_bytes FROM workspace_document_control WHERE id=1')).rows[0];
     if(Number(budget.reserved_bytes)+bytes.length>DOCUMENT_BUDGET_BYTES)throw new AccessError(409,'The workspace file allowance is full. Contact an administrator; no paid upgrade is started automatically.');
     await db.query('UPDATE workspace_document_control SET reserved_bytes=reserved_bytes+$1 WHERE id=1',[bytes.length]);
-    await db.query(`INSERT INTO workspace_document(id,tenant_id,uploader_object_id,title,description,folder,filename,byte_size,page_count,sha256,blob_path)
-      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,[metadata.id,identity.tenantId,identity.objectId,metadata.title.trim(),metadata.description.trim(),metadata.folder,metadata.filename,bytes.length,pages,sha256,pathname]);
+    await db.query(`INSERT INTO workspace_document(id,tenant_id,uploader_object_id,title,description,folder,filename,byte_size,page_count,sha256,blob_path,storage_provider,storage_site_id,storage_drive_id)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,[metadata.id,identity.tenantId,identity.objectId,metadata.title.trim(),metadata.description.trim(),metadata.folder,metadata.filename,bytes.length,pages,sha256,pathname,reference.provider,reference.siteId,reference.driveId]);
     return null;
   });
   if(ready)return ready;
   try {
-    await storage.put(pathname,bytes);
+    await storage.put(pathname,bytes,reference);
     return await transaction(pool,async db=>{
       const actor=await active(db,identity);
       const row=(await db.query(`UPDATE workspace_document SET status='READY',updated_at=now(),version=version+1
@@ -68,7 +69,7 @@ export async function uploadDocument(pool,identity,metadata,bytes,storage,valida
       await audit(db,identity,'shared',row.id);return dto({...row,uploader_name:actor.name},actor,identity);
     });
   } catch(error) {
-    // Only finalize this actor's reservation. Never delete a Blob: a failed
+    // Only finalize this actor's reservation. Never delete a stored file: a failed
     // COMMIT acknowledgement could have published it successfully already.
     try{await transaction(pool,db=>db.query("UPDATE workspace_document SET status='FAILED',updated_at=now(),version=version+1 WHERE id=$1 AND tenant_id=$2 AND uploader_object_id=$3 AND status='UPLOADING'",[metadata.id,identity.tenantId,identity.objectId]));}catch{}
     if(error instanceof AccessError)throw error;
@@ -94,8 +95,9 @@ export async function readDocumentFile(pool,identity,id,storage) {
     const actor=await active(db,identity);
     const row=(await db.query('SELECT * FROM workspace_document WHERE tenant_id=$1 AND id=$2',[identity.tenantId,id])).rows[0];
     if(!row || !['READY','ARCHIVED'].includes(row.status) || (row.status==='ARCHIVED' && actor.role!=='ADMIN' && row.uploader_object_id!==identity.objectId))throw new AccessError(404,'Document not available.');
-    if(!storage || row.blob_path!==documentPath(identity.tenantId,row.id))throw new AccessError(503,'The private file is temporarily unavailable.');
-    const bytes=await storage.read(row.blob_path);
+    const reader=typeof storage==='function'?storage(row):storage;
+    if(!reader || row.blob_path!==documentPath(identity.tenantId,row.id))throw new AccessError(503,'The private file is temporarily unavailable.');
+    const bytes=await reader.read(row.blob_path,{provider:row.storage_provider,siteId:row.storage_site_id,driveId:row.storage_drive_id});
     if(!(bytes instanceof Uint8Array) || bytes.length!==row.byte_size || hash(bytes)!==row.sha256)throw new AccessError(503,'The private file could not be verified.');
     return {bytes,filename:row.filename};
   });

@@ -14,6 +14,9 @@ export const documentGrantsSql=`
   GRANT INSERT(id,tenant_id,uploader_object_id,title,description,folder,filename,byte_size,page_count,sha256,blob_path),
     UPDATE(status,moderated,version,updated_at) ON public.workspace_document TO ${runtimeRole};
   GRANT UPDATE(reserved_bytes) ON public.workspace_document_control TO ${runtimeRole};`;
+export const documentStorageGrantsSql=`
+  GRANT INSERT(storage_provider,storage_site_id,storage_drive_id)
+    ON public.workspace_document TO ${runtimeRole};`;
 
 export function runtimeGrantsSql(database) {
   if (!/^[a-z][a-z0-9_]*$/.test(database)) throw new Error('Invalid database name.');
@@ -34,7 +37,8 @@ export function runtimeGrantsSql(database) {
     GRANT USAGE ON SEQUENCE public.workspace_audit_id_seq TO ${runtimeRole};
     GRANT SELECT, INSERT, UPDATE ON TABLE public.workspace_throttle TO ${runtimeRole};
   ${announcementGrantsSql}
-  ${documentGrantsSql}`;
+  ${documentGrantsSql}
+  ${documentStorageGrantsSql}`;
 }
 
 // Checks effective grants, including PUBLIC and membership inheritance, not
@@ -86,6 +90,7 @@ export async function verifyRuntimeRole(db) {
     ...['id','tenant_id','announcement_id','author_object_id','body'].map(c=>['workspace_comment',c,'INSERT']),
     ...['hidden_at','hidden_by_object_id'].map(c=>['workspace_comment',c,'UPDATE']),
     ...['id','tenant_id','uploader_object_id','title','description','folder','filename','byte_size','page_count','sha256','blob_path'].map(c=>['workspace_document',c,'INSERT']),
+    ...['storage_provider','storage_site_id','storage_drive_id'].map(c=>['workspace_document',c,'INSERT']),
     ...['status','moderated','version','updated_at'].map(c=>['workspace_document',c,'UPDATE']),
     ['workspace_document_control','reserved_bytes','UPDATE'],
   ]) await check('SELECT has_column_privilege($1,$2,$3,$4) AS allowed', [runtimeRole, `public.${table}`,column,privilege], true);
@@ -99,6 +104,7 @@ export async function verifyRuntimeRole(db) {
     ...['id','tenant_id','announcement_id','author_object_id','body','created_at'].map(c=>['workspace_comment',c,'UPDATE']),
     ...['created_at','hidden_at','hidden_by_object_id'].map(c=>['workspace_comment',c,'INSERT']),
     ...['id','tenant_id','uploader_object_id','title','description','folder','filename','byte_size','page_count','sha256','blob_path','created_at'].map(c=>['workspace_document',c,'UPDATE']),
+    ...['storage_provider','storage_site_id','storage_drive_id'].map(c=>['workspace_document',c,'UPDATE']),
     ...['status','moderated','version','created_at','updated_at'].map(c=>['workspace_document',c,'INSERT']),
     ['workspace_document_control','id','UPDATE'],
     ...['id','reserved_bytes'].map(c=>['workspace_document_control',c,'INSERT']),
