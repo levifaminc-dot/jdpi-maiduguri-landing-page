@@ -24,5 +24,6 @@ test('website and editor deny framing and content sniffing without blocking the 
     const csp=headers.find(h=>h.key==='Content-Security-Policy').value;
     assert.match(csp,/frame-ancestors 'none'/);assert.doesNotMatch(csp,/unsafe-eval/);
     if(path==='../vercel.json')assert.match(csp,/form-action 'self' https:\/\/formsubmit.co/);
+    else {assert.match(csp,/connect-src [^;]*https:\/\/sanity-cdn\.com/);assert.doesNotMatch(csp,/script-src [^;]*sanity-cdn/);}
   }
 });

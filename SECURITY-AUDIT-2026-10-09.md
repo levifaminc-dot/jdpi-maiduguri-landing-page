@@ -30,4 +30,8 @@ Reviewed the public Astro website, self-hosted Sanity Studio and the separate Ne
 
 Regression commands: `npm run verify`; Studio production build with `SANITY_STUDIO_HOSTING=vercel`; staff `npm test` and `npm run build`. Optional review helpers under `scripts/security-*` are read-only; the secrets comparison requires private local files and prints counts only. The static QA servers bind only to loopback and are not production services.
 
+## Production verification
+
+Public website/Studio security release `4c5661e` and staff release `2019707` reached Vercel Ready/Production. Live public and Studio responses now contain the configured protections; staff contains the added Permissions-Policy. Cross-origin and unauthenticated denials still pass after deployment. The public contact map renders with the hashed-script policy and the original FormSubmit destination is preserved. Existing Microsoft account sign-in successfully returns the administrator to the dashboard, without new permissions or consent. The signed-in Studio structure loads; its official `sanity-cdn.com` version-metadata connection was subsequently added to `connect-src` only, not to executable script sources.
+
 Primary advisory references: [braces](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm), [sprintf-js](https://github.com/advisories/GHSA-hp3w-g68c-fv3c). Guidance: [Astro CSP](https://docs.astro.build/en/reference/configuration-reference/#securitycsp), [Sanity browser security](https://www.sanity.io/docs/content-lake/browser-security-and-cors), [Next.js CSP](https://nextjs.org/docs/app/guides/content-security-policy).
