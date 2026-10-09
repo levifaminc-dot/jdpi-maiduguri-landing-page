@@ -45,6 +45,12 @@ private Blob store or real membership API is connected. After verified sign-in,
 invited, admitted, or made an admin. The proposed bootstrap-admin email does not
 grant permissions. Demo state remains isolated and fictional.
 
+Membership preparation has now been added for Neon PostgreSQL. See
+[database setup](DATABASE-SETUP.md) for the prepared admission/admin screens,
+durable session and server-side membership checks, explicit migrations and
+separate first-admin approval. No hosted database or actual grant has been made.
+Without a database connection, the identity-only locked setup behaviour remains.
+
 `/preview` and `/api/preview-assets/*` require development mode, a loopback Host
 and no Vercel environment. They return 404 in production, even if a role or
 preview query parameter is supplied. `/workspace` redirects unauthenticated users

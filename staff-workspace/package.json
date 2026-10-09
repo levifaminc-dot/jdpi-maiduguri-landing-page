@@ -13,6 +13,9 @@
     "build": "next build",
     "start": "next start --hostname 127.0.0.1 --port 4330",
     "check": "tsc --noEmit",
+    "db:plan": "node scripts/migrate-database.mjs",
+    "db:migrate": "node --env-file=.env.local scripts/migrate-database.mjs --apply",
+    "db:bootstrap": "node --env-file=.env.local scripts/bootstrap-admin.mjs",
     "test": "node --conditions=react-server --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {
@@ -20,12 +23,15 @@
     "jose": "6.2.12",
     "next": "16.4.0",
     "pdfjs-dist": "6.4.299",
+    "pg": "8.23.1",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "0.0.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
     "@types/node": "^24.0.0",
+    "@types/pg": "8.20.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "typescript": "^5.9.3"
