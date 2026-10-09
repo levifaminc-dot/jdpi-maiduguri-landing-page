@@ -2,6 +2,7 @@ import {getPool} from '../../../lib/database.mjs';
 import {microsoftConfig} from '../../../lib/microsoft-policy.mjs';
 import {workspaceIdentity} from '../../../lib/workspace-access';
 import {AccessError, adminOverview, changeMember, requestAccess, acceptInvitation} from '../../../lib/membership.mjs';
+import {boundedJson} from '../../../lib/private-json.mjs';
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
 const reply=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store'}});
@@ -16,11 +17,7 @@ async function handle(request:Request) {
     const pool=getPool();
     if(!pool) return reply({error:'The membership database is not connected yet.'},503);
     if(request.method==='GET') return reply(await adminOverview(pool,identity));
-    if(Number(request.headers.get('content-length'))>2048) return reply({error:'Request too large.'},413);
-    const text=await request.text();
-    if(text.length>2048) return reply({error:'Request too large.'},413);
-    let body;
-    try {body=JSON.parse(text);} catch {return reply({error:'Invalid request.'},400);}
+    const body=await boundedJson(request,2048);
     if(body && typeof body==='object' && !Array.isArray(body) && Object.keys(body).length===1) {
       if(body.action==='request') return reply({member:await requestAccess(pool,identity)});
       if(body.action==='accept') return reply({member:await acceptInvitation(pool,identity)});

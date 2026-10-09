@@ -17,7 +17,11 @@ export default {
       {key: 'X-Content-Type-Options', value: 'nosniff'},
       {key: 'X-Frame-Options', value: 'DENY'},
       {key: 'Referrer-Policy', value: 'no-referrer'},
+      {key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()'},
       {key: 'Cache-Control', value: 'private, no-store'},
+    ]}, {source:'/api/:path*',headers:[
+      // Pages have a per-request nonce policy; JSON/PDF routes need no scripts.
+      {key:'Content-Security-Policy',value:"default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'"},
     ]}];
   },
 };

@@ -1,5 +1,7 @@
 import {getAuth} from '../../../../lib/auth';
-import {allowedAuthRequest, microsoftConfig, validSignInBody} from '../../../../lib/microsoft-policy.mjs';
+import {allowedAuthRequest, microsoftConfig} from '../../../../lib/microsoft-policy.mjs';
+import {boundedAuthRequest} from '../../../../lib/auth-request.mjs';
+import {AccessError} from '../../../../lib/membership.mjs';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 const failure = (status:number) => Response.json({error:'Microsoft sign-in is unavailable. Please return to the sign-in page.'},{status, headers:{'Cache-Control':'private, no-store'}});
@@ -16,13 +18,11 @@ async function handler(request:Request) {
   if (request.headers.get('host') !== new URL(config.origin).host) return failure(403);
   if (request.method === 'POST') {
     if (request.headers.get('origin') !== config.origin || !request.headers.get('content-type')?.startsWith('application/json')) return failure(403);
-    if (Number(request.headers.get('content-length')) > 2048) return failure(413);
-    if (path === '/sign-in/social') {
-      try {
-        const body = await request.clone().text();
-        if (body.length > 2048 || !validSignInBody(JSON.parse(body))) return failure(400);
-      } catch {return failure(400);}
-    }
+    try {
+      // Bound the actual stream even without Content-Length. Do not tee/clone
+      // an unbounded request or forward extra fields to the authentication SDK.
+      request=await boundedAuthRequest(request,path);
+    } catch(error) {return failure(error instanceof AccessError?error.status:400);}
   }
   try {
     const auth = getAuth();

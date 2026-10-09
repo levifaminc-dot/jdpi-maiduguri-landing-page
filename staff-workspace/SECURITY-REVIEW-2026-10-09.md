@@ -1,0 +1,9 @@
+# Staff workspace security review — 9 October 2026
+
+Confirmed fixes: authentication and membership requests now enforce a 2,048-byte limit while streaming, including requests without a trustworthy Content-Length header. The authentication boundary rejects unapproved request fields and preserves legitimate cookies/origin data without cloning an unbounded stream. Staff APIs receive a restrictive deny-execution CSP, and responses restrict unused browser capabilities. Existing nonce-based page CSP and private PDF response protections remain unchanged.
+
+Verification: all 56 tests and the production build pass. Existing tests cover tenant/session checks, current membership and suspension, admin-only admission/roles, ownership/moderation, CSRF, private PDF access/integrity, and limited database privileges. Live unauthenticated API/file requests return 401; invalid-origin writes return 403; preview/sample endpoints return 404. Read-only runtime checks passed for TLS and the existing limited database role. Staff dependency audit reported no advisories at review time. No membership, credentials, grants or document records were changed by this security review.
+
+This is a targeted review, not a penetration-test certification. Remaining pilot limitations include no malware/quarantine scanning, confidential audiences, retention/deletion workflow, verified independent backups/recovery, or 210-staff load test. Organization MFA, account recovery and provider access policies require separate review. Do not store sensitive case/HR/safeguarding records until appropriate controls are approved.
+
+Release this checkout only to `staff-workspace-backup`; the public site and Studio release from their separate `main` checkout. Full cross-site review is recorded on the public release branch in `SECURITY-AUDIT-2026-10-09.md`.
