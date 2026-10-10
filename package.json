@@ -12,6 +12,7 @@
     "test:security": "node --experimental-strip-types --test scripts/security.test.mjs",
     "test:socials": "node --experimental-strip-types --test scripts/socials.test.mjs",
     "test:pages": "node --test scripts/page-content.test.mjs",
+    "test:structure": "node --test scripts/content-structure.test.mjs",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
     "content:snapshot": "node --env-file-if-exists=.env scripts/snapshot-content.mjs",

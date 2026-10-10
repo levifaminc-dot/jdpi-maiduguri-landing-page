@@ -11,4 +11,12 @@ for(const args of [['schema','extract','--enforce-required-fields','--force'],['
   const result=spawnSync(process.execPath,[cli,...args],{cwd:path.resolve('studio'),env,stdio:'inherit'});
   if(result.error)throw result.error;
   if(result.status!==0)process.exit(result.status||1);
+  if(args[0]==='schema'){
+    const tests=spawnSync(process.execPath,['--test','scripts/content-structure.test.mjs'],{env,stdio:'inherit'});
+    if(tests.error)throw tests.error;
+    if(tests.status!==0)process.exit(tests.status||1);
+    const structure=spawnSync(process.execPath,['scripts/validate-structure.mjs'],{env,stdio:'inherit'});
+    if(structure.error)throw structure.error;
+    if(structure.status!==0)process.exit(structure.status||1);
+  }
 }

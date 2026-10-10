@@ -15,7 +15,7 @@ JDPI should own its domain, CMS project and payment-provider account, with docum
 
 Every code release includes its rendered content snapshot. After a checkout of the chosen release commit, run `npm ci` and `npm run verify`; `dist/` is the reproducible public site. Snapshot mode requires no live Sanity API call. The GitHub release artifact also contains the ready-to-deploy site and source SHA.
 
-For CMS releases, `content/documents.ndjson` retains original published document IDs and asset references. `content/assets.json` maps asset IDs to backed-up local bytes and SHA-256 checksums. These copies are committed in the private repository. They contain published marketing content, not staff drafts or a full organisational backup.
+For CMS releases, `content/documents.ndjson` retains original published document IDs and asset references. `content/assets.json` maps asset IDs to backed-up local bytes and SHA-256 checksums. These copies are committed in the public website repository. They contain published marketing content, not staff drafts or a full organisational backup. Never upload confidential information or unpublished staff records to these backups.
 
 Before restoring Sanity, export the current destination dataset and work in a separate recovery dataset. Reupload the saved original asset bytes first, preserving the content hashes; compare returned asset IDs with the manifest. Import published documents only after assets exist, then validate counts and references. Do not overwrite a live dataset without explicit agreement. A full Sanity dataset export, including drafts and history as supported by the chosen plan, is a separate backup procedure.
 

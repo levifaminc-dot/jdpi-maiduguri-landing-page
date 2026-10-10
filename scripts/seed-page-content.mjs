@@ -70,7 +70,7 @@ for(const item of content.projects){
     const equal=(a,b)=>JSON.stringify(a??null)===JSON.stringify(b??null);
     for(const key of ['title','summary','body','location','status','startDate','endDate','impactFacts','reportingYear','imageCaption']){
       if(equal(doc[key],original?.[key])&&!equal(item[key],original?.[key])){
-        if(item[key]===undefined)unset.push(key);else updates[key]=await convert(item[key]);
+        if(item[key]===undefined)unset.push(key);else updates[key]=await convert(item[key],key);
       }
     }
     // The raw export keeps asset references; compare those rather than CDN URLs.

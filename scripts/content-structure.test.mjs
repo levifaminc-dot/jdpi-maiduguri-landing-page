@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {structuralIssues} from './content-structure.mjs';
+import {withFigureType} from './figure-types.mjs';
+const schema=JSON.parse(await readFile(new URL('../studio/schema.json',import.meta.url),'utf8'));
+const documents=(await readFile(new URL('../content/documents.ndjson',import.meta.url),'utf8')).trim().split('\n').map(JSON.parse);
+const clean=()=>structuredClone(documents).map(doc=>{if(doc.impactFacts)doc.impactFacts=doc.impactFacts.map(fact=>({...fact,_type:doc._type==='homePage'?'impactFact':'projectImpactFact'}));return doc;});
+test('approved raw content matches the extracted Studio structure',()=>assert.deepEqual(structuralIssues(clean(),schema),[]));
+test('legacy array types are rejected even if figures and labels remain valid',()=>{const docs=clean();docs.find(doc=>doc._type==='project'&&doc.impactFacts?.length).impactFacts[0]._type='rootItem';assert(structuralIssues(docs,schema).some(issue=>issue.includes('incompatible saved type')));});
+test('unknown fields and duplicate array keys are rejected',()=>{const docs=clean(),home=docs.find(doc=>doc._type==='homePage');home.unrecognisedField='test';home.impactFacts[1]._key=home.impactFacts[0]._key;const issues=structuralIssues(docs,schema);assert(issues.some(issue=>issue.includes('unknown field')));assert(issues.some(issue=>issue.includes('duplicate array key')));});
+test('missing required content and broken strong references are rejected',()=>{const docs=clean(),home=docs.find(doc=>doc._type==='homePage');delete home.heroStatement;home.heroImage.asset._ref='image-not-in-export';const issues=structuralIssues(docs,schema);assert(issues.some(issue=>issue.includes('missing required field')));assert(issues.some(issue=>issue.includes('missing referenced document')));});
+test('initial imports preserve figures and keys without mutating the source',()=>{const source=[{_key:'original-key',value:'20',label:'Communities'}];assert.deepEqual(withFigureType(source,'projectImpactFact'),[{...source[0],_type:'projectImpactFact'}]);assert.equal(source[0]._type,undefined);assert.throws(()=>withFigureType(source,'rootItem'));});

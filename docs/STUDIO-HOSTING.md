@@ -1,6 +1,6 @@
 # JDPI Studio on Vercel
 
-The public Astro website and the standalone Sanity editor use separate Vercel projects connected to the same private repository. The editor continues to use Sanity project `j2wxo4uh`, dataset `production`; this is not a new CMS project or a content migration. Keep the existing `jdpi-maiduguri-editor.sanity.studio` editor as a fallback.
+The public Astro website and the standalone Sanity editor use separate Vercel projects connected to the same public repository. The editor continues to use Sanity project `j2wxo4uh`, dataset `production`; this is not a new CMS project or a content migration. Keep the existing Sanity-hosted editor as a fallback, and deploy it from the same schema whenever the Vercel editor's structure changes.
 
 ## Vercel configuration
 
@@ -33,6 +33,12 @@ Editor hosting does not change the publishing workflow: Sanity Publish → sched
 Before declaring ready, verify the Studio build, exact CORS origins, the production sign-in page, a signed-in document list, and a direct `/structure/story` reload. Check the noindex header and static assets. Verify the DNS and HTTPS configuration separately before claiming the branded subdomain is active.
 
 References: [Sanity hosting](https://www.sanity.io/docs/studio/deployment), [Sanity CORS](https://www.sanity.io/docs/content-lake/cors), [Vercel custom domains](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
+
+## Keep both editor structures in sync
+
+After `npm run studio:verify` succeeds, deploy the existing Sanity-hosted application with `npm run studio:deploy` using the authorised organisation-owned CLI session. Do not set `SANITY_STUDIO_HOSTING=vercel` for that hosted deployment. The hosted app ID is `h54itqdo1aqfvh4caz97kmun`; the Vercel external app ID is different. Uploading the schema alone does not replace an older hosted Studio bundle. Both editors must recognise the same document fields and array member types.
+
+`studio:verify` now checks the raw published snapshot against the freshly extracted schema: incompatible array types, missing/duplicate keys, unknown fields, missing required content and broken strong references stop the release. Previewing CMS values or validating document rules alone is insufficient.
 
 ## Deployment record — 8 October 2026
 
