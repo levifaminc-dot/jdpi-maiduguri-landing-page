@@ -1,16 +1,13 @@
 ---
 import type {SiteContent} from '../lib/content';
-import {safeExternalUrl} from '../lib/content';
 import ProjectIcon from './ProjectIcon.astro';
-import {reportSocials} from '../data/socials';
+import SocialIcon from './SocialIcon.astro';
+import {socialLinks} from '../lib/socials';
 interface Props {content: SiteContent}
 const {settings, programmes}=Astro.props.content;
 const quickLinks=[['About Us','/about/'],['Projects','/projects/'],['Our Impact','/impact/'],['Stories & Updates','/stories/']];
 const footerProgrammes=programmes.slice(0,3);
-const configuredSocials=(settings.socialLinks || []).filter(link=>safeExternalUrl(link.url));
-// Keep editor-configured destinations while adding report-verified platforms.
-const platform=(url:string)=>new URL(url).hostname.replace(/^www\./,'').replace('twitter.com','x.com');
-const socials=[...configuredSocials,...reportSocials.filter(link=>!configuredSocials.some(configured=>platform(configured.url)===platform(link.url)))];
+const socials=socialLinks(settings.socialLinks);
 ---
 <footer id="contact" class="jdpi-footer">
   <div class="jf-shell">
@@ -39,10 +36,7 @@ const socials=[...configuredSocials,...reportSocials.filter(link=>!configuredSoc
         </address>
         <a class="jf-contact-link" href="/contact/">Send us a message <ProjectIcon name="arrow"/></a>
         <div class="jf-socials" aria-label="JDPI social media">{socials.map(link=><a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={`${link.label} — opens in a new tab`} title={link.label}>
-          {link.label.toLowerCase().includes('facebook') && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .3-2 2-2h2V1.5A22 22 0 0 0 15 1c-3 0-5 2-5 5v3H7v4h3v8Z"/></svg>}
-          {platform(link.url)==='instagram.com' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>}
-          {platform(link.url)==='x.com' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 3h4l12 18h-4L4 3ZM20 3 4 21"/></svg>}
-          {platform(link.url)==='linkedin.com' && <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 8h4v13H4V8ZM6 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM11 8h4v2c1-2 6-3 6 3v8h-4v-7c0-3-2-3-2 0v7h-4V8Z"/></svg>}
+          {link.icon && <SocialIcon name={link.icon}/>}
           <span class="jf-social-label">{link.label}</span>
         </a>)}</div>
       </div>

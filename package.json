@@ -10,6 +10,7 @@
     "check": "astro check && npm run check --workspace studio",
     "test:counts": "node --experimental-strip-types --test scripts/count-up.test.mjs",
     "test:security": "node --experimental-strip-types --test scripts/security.test.mjs",
+    "test:socials": "node --experimental-strip-types --test scripts/socials.test.mjs",
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
     "content:snapshot": "node --env-file-if-exists=.env scripts/snapshot-content.mjs",
@@ -20,7 +21,7 @@
     "studio:verify": "node --env-file-if-exists=studio/.env scripts/verify-studio.mjs",
     "studio:deploy": "npm run deploy --workspace studio",
     "typegen": "npm run typegen --workspace studio",
-    "verify": "npm run test:security && npm run test:counts && npm run content:validate && node scripts/verify-report-projects.mjs && node scripts/verify-stories.mjs && node scripts/verify-programmes.mjs && node scripts/verify-donations.mjs && npm run check && npm run build && node scripts/verify-build.mjs"
+    "verify": "npm run test:security && npm run test:counts && npm run test:socials && npm run content:validate && node scripts/verify-report-projects.mjs && node scripts/verify-stories.mjs && node scripts/verify-programmes.mjs && node scripts/verify-donations.mjs && npm run check && npm run build && node scripts/verify-build.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",
