@@ -1,4 +1,5 @@
 ---
+import {pageEditor} from "../../lib/page-editor";
 import {getContent,safeExternalUrl} from '../../lib/content';
 import {getDonationGateways} from '../../lib/donations';
 import donationConfig from '../../../config/donations.json';
@@ -7,7 +8,8 @@ import Icon from '../../components/DonationIcon.astro';
 import ProgrammeIcon from '../../components/ProjectIcon.astro';
 import '../../styles/project-directory.css';
 import '../../styles/donations.css';
-const content=await getContent();const {settings}=content;
+const content=await getContent();
+const page=pageEditor(content,"donate");const {settings}=content;
 const gateways=getDonationGateways(donationConfig,import.meta.env,settings.donationUrl);
 const initial=gateways.find(gateway=>gateway.oneTimeUrl)||gateways[0];
 const pending=!gateways.some(gateway=>gateway.oneTimeUrl||gateway.monthlyUrl);
@@ -21,18 +23,18 @@ const areas=[
   {icon:'peace' as const,title:'Safety, dignity & peace',copy:'Protection, wellbeing and community dialogue that strengthen peaceful coexistence.',url:'/programmes/peacebuilding-and-social-cohesion/'}
 ];
 ---
-<Layout content={content} title={`Donate | ${settings.shortName}`} description="Support dignity, resilience and peace across Northeast Nigeria. Explore JDPI’s Paystack and Flutterwave giving options, or contact our team about other ways to give." pageClass="projects-page donation-page">
+<Layout content={content} title={`${page.text("seoTitle")} | ${content.settings.shortName}`} description={page.text("seoDescription")} pageClass="projects-page donation-page">
   <section class="dn-hero" aria-labelledby="donate-heading"><div class="project-shell">
     <nav class="dn-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Donate</span></nav>
     <div class="dn-hero-grid">
       <div class="dn-story">
-        <img src="/assets/projects/bmz-greenhouse-monitoring.jpg" alt="A farmer and JDPI team member inspecting crops in a community greenhouse" width="802" height="394" fetchpriority="high"/>
-        <div class="dn-story-copy"><p class="dn-eyebrow">YOUR GENEROSITY. SHARED POSSIBILITY.</p><h1 id="donate-heading">Give with heart.<br/><span>Grow lasting change.</span></h1><p>Stand alongside communities across Northeast Nigeria as they build safer, healthier and more resilient lives.</p><div class="dn-place"><ProgrammeIcon name="location"/><span>Borno · Adamawa · Yobe</span></div></div>
-        <p class="dn-photo-credit">Community greenhouse visit · JDPI Annual Report 2025</p>
+        <img src={page.image("donateImage1").url} alt={page.image("donateImage1").alt} width="802" height="394" fetchpriority="high"/>
+        <div class="dn-story-copy"><p class="dn-eyebrow">{page.text("donateParagraph1")}</p><h1 id="donate-heading">{page.text("donateHeading1")}<br/><span>{page.text("donateText1")}</span></h1><p>{page.text("donateParagraph2")}</p><div class="dn-place"><ProgrammeIcon name="location"/><span>{page.text("donateText2")}</span></div></div>
+        <p class="dn-photo-credit">{page.text("donateParagraph3")}</p>
       </div>
       <section class="dn-giving" id="give" aria-labelledby="giving-heading" data-donation-panel data-email={settings.email}>
-        <div class="dn-panel-heading"><span class="dn-heart"><Icon name="heart"/></span><div><p class="dn-eyebrow">A GIFT THAT MATTERS</p><h2 id="giving-heading">Choose how to give.</h2></div></div>
-        <p class="dn-panel-intro">A simple next step towards dignity and opportunity.</p>
+        <div class="dn-panel-heading"><span class="dn-heart"><Icon name="heart"/></span><div><p class="dn-eyebrow">{page.text("givingParagraph1")}</p><h2 id="giving-heading">{page.text("givingHeading1")}</h2></div></div>
+        <p class="dn-panel-intro">{page.text("givingParagraph2")}</p>
         {pending&&<p class="dn-setup-note">Online giving is being prepared. You can explore the options below and contact JDPI for an approved way to give today.</p>}
         <div data-donation-enhancement hidden>
           <fieldset class="dn-frequency"><legend>How often would you like to give?</legend><div><label><input type="radio" name="giving-frequency" value="once" checked/><span>Give once</span></label><label><input type="radio" name="giving-frequency" value="monthly"/><span>Monthly</span></label></div></fieldset>
@@ -45,24 +47,24 @@ const areas=[
           <p class="dn-checkout-note"><Icon name="lock"/><span>No card or bank details are collected on this website. When activated, payments take place on the selected provider’s checkout.</span></p>
         </div>
         <noscript><div class="dn-nojs"><h3>Available giving links</h3>{gateways.map(gateway=><div><strong>{gateway.name}</strong>{gateway.oneTimeUrl?<a href={gateway.oneTimeUrl} rel="noopener noreferrer">Give once with {gateway.name} →</a>:<p>One-time checkout awaiting activation.</p>}{gateway.monthlyUrl?<a href={gateway.monthlyUrl} rel="noopener noreferrer">Monthly giving with {gateway.name} →</a>:<p>Monthly checkout awaiting activation.</p>}</div>)}</div></noscript>
-        {separateCheckout&&<a class="dn-inline-link" href={separateCheckout} rel="noopener noreferrer">Other JDPI donation checkout →</a>}
-        <a class="dn-help-link" href="#other-ways">Prefer to speak to our team? Other ways to give ↓</a>
+        {separateCheckout&&<a class="dn-inline-link" href={separateCheckout} rel="noopener noreferrer">{page.text("givingLinkLabel1")}</a>}
+        <a class="dn-help-link" href="#other-ways">{page.text("givingLinkLabel2")}</a>
       </section>
     </div>
   </div></section>
-  <div class="dn-assurance"><div class="project-shell"><span><Icon name="heart"/>Rooted in human dignity</span><span><ProgrammeIcon name="location"/>Working across the BAY states</span><a href="/resources/"><Icon name="receipt"/>Read our published reports →</a></div></div>
+  <div class="dn-assurance"><div class="project-shell"><span><Icon name="heart"/>{page.text("introText1")}</span><span><ProgrammeIcon name="location"/>{page.text("introText2")}</span><a href="/resources/"><Icon name="receipt"/>{page.text("introLinkLabel1")}</a></div></div>
   <section class="project-shell dn-purpose" aria-labelledby="purpose-heading">
-    <div class="dn-section-heading"><div><p class="dn-eyebrow">BEHIND EVERY GIFT, PEOPLE</p><h2 id="purpose-heading">Support that meets real needs.</h2></div><p>JDPI connects humanitarian assistance, development and peacebuilding. Discover the work your generosity can help sustain.</p></div>
-    <div class="dn-area-grid">{areas.map(area=><article><span class="dn-area-icon"><ProgrammeIcon name={area.icon}/></span><h3>{area.title}</h3><p>{area.copy}</p><a href={area.url}>Explore the programme <Icon name="arrow"/><span class="sr-only">— {area.title}</span></a></article>)}</div>
-    <p class="dn-purpose-note">These are examples of JDPI’s work—not fixed-price donation packages. If you want to support a specific project, please discuss it with our team before giving.</p>
+    <div class="dn-section-heading"><div><p class="dn-eyebrow">{page.text("purposeParagraph1")}</p><h2 id="purpose-heading">{page.text("purposeHeading1")}</h2></div><p>{page.text("purposeParagraph2")}</p></div>
+    <div class="dn-area-grid">{areas.map(area=><article><span class="dn-area-icon"><ProgrammeIcon name={area.icon}/></span><h3>{area.title}</h3><p>{area.copy}</p><a href={area.url}>{page.text("purposeLinkLabel1")} <Icon name="arrow"/><span class="sr-only">— {area.title}</span></a></article>)}</div>
+    <p class="dn-purpose-note">{page.text("purposeParagraph3")}</p>
   </section>
-  <section class="dn-evidence" aria-labelledby="evidence-heading"><div class="project-shell dn-evidence-grid"><div class="dn-evidence-photo"><img src="/assets/about/community-dialogue.jpg" alt="Community members participating in a JDPI dialogue session" width="1200" height="656" loading="lazy"/><span>Community dialogue · Annual Report 2025</span></div><div><p class="dn-eyebrow">GIVE WITH UNDERSTANDING</p><h2 id="evidence-heading">See the work.<br/><span>Understand the impact.</span></h2><p>Your support deserves a clear picture of our work. Explore community experiences, programme results and JDPI’s published annual and financial reports.</p><div class="dn-evidence-links"><a class="dn-primary" href="/impact/">Explore our impact <Icon name="arrow"/></a><a class="dn-inline-link" href="/resources/">Read our reports →</a></div><p class="dn-evidence-note">A local commitment to the dignity of every human person.</p></div></div></section>
-  <section class="project-shell dn-other" id="other-ways" aria-labelledby="other-heading"><div class="dn-section-heading"><div><p class="dn-eyebrow">MORE THAN ONE WAY TO HELP</p><h2 id="other-heading">Let’s find the right way to give.</h2></div><a class="dn-inline-link" href="/contact/">Speak to JDPI →</a></div><div class="dn-other-grid">
-    <article><span class="dn-area-icon"><Icon name="bank"/></span><h3>Bank transfer</h3><p>Request JDPI’s verified bank details directly from our team before making a transfer.</p><a href={emailFor('Donation enquiry — verified bank transfer details')}>Request bank details <Icon name="arrow"/></a></article>
-    <article><span class="dn-area-icon"><Icon name="heart"/></span><h3>Partnerships & larger gifts</h3><p>Talk with us about supporting a programme, a community or a shared long-term commitment.</p><a href={emailFor('Donation enquiry — partnership or larger gift')}>Start a conversation <Icon name="arrow"/></a></article>
-    <article><span class="dn-area-icon"><Icon name="gift"/></span><h3>In-kind support</h3><p>Discuss useful goods or professional services with JDPI before organising a contribution.</p><a href={emailFor('Donation enquiry — in-kind support')}>Discuss your contribution <Icon name="arrow"/></a></article>
+  <section class="dn-evidence" aria-labelledby="evidence-heading"><div class="project-shell dn-evidence-grid"><div class="dn-evidence-photo"><img src={page.image("evidenceImage1").url} alt={page.image("evidenceImage1").alt} width="1200" height="656" loading="lazy"/><span>{page.text("evidenceText1")}</span></div><div><p class="dn-eyebrow">{page.text("evidenceParagraph1")}</p><h2 id="evidence-heading">{page.text("evidenceHeading1")}<br/><span>{page.text("evidenceText2")}</span></h2><p>{page.text("evidenceParagraph2")}</p><div class="dn-evidence-links"><a class="dn-primary" href="/impact/">{page.text("evidenceLinkLabel1")} <Icon name="arrow"/></a><a class="dn-inline-link" href="/resources/">{page.text("evidenceLinkLabel2")}</a></div><p class="dn-evidence-note">{page.text("evidenceParagraph3")}</p></div></div></section>
+  <section class="project-shell dn-other" id="other-ways" aria-labelledby="other-heading"><div class="dn-section-heading"><div><p class="dn-eyebrow">{page.text("otherParagraph1")}</p><h2 id="other-heading">{page.text("otherHeading1")}</h2></div><a class="dn-inline-link" href="/contact/">{page.text("otherLinkLabel1")}</a></div><div class="dn-other-grid">
+    <article><span class="dn-area-icon"><Icon name="bank"/></span><h3>{page.text("otherHeading2")}</h3><p>{page.text("otherParagraph2")}</p><a href={emailFor('Donation enquiry — verified bank transfer details')}>{page.text("otherLinkLabel2")} <Icon name="arrow"/></a></article>
+    <article><span class="dn-area-icon"><Icon name="heart"/></span><h3>{page.text("otherHeading3")}</h3><p>{page.text("otherParagraph3")}</p><a href={emailFor('Donation enquiry — partnership or larger gift')}>{page.text("otherLinkLabel3")} <Icon name="arrow"/></a></article>
+    <article><span class="dn-area-icon"><Icon name="gift"/></span><h3>{page.text("otherHeading4")}</h3><p>{page.text("otherParagraph4")}</p><a href={emailFor('Donation enquiry — in-kind support')}>{page.text("otherLinkLabel4")} <Icon name="arrow"/></a></article>
   </div></section>
-  <section class="project-shell dn-faq" aria-labelledby="faq-heading"><div><p class="dn-eyebrow">A LITTLE CLARITY</p><h2 id="faq-heading">Questions about giving?</h2><p>We’re here to help you take the next step.</p><a class="dn-inline-link" href={helpLink}>Contact our team →</a></div><div class="dn-questions">
+  <section class="project-shell dn-faq" aria-labelledby="faq-heading"><div><p class="dn-eyebrow">{page.text("faqParagraph1")}</p><h2 id="faq-heading">{page.text("faqHeading1")}</h2><p>{page.text("faqParagraph2")}</p><a class="dn-inline-link" href={helpLink}>{page.text("faqLinkLabel1")}</a></div><div class="dn-questions">
     <details><summary>Can I donate online right now?</summary><p>Only options labelled “Hosted checkout” lead to an approved JDPI payment page. Options awaiting activation do not take payments; contact our team for an approved way to give.</p></details>
     <details><summary>Which amounts, currencies and payment methods can I use?</summary><p>Your final amount, currency and available payment methods are shown on the provider’s checkout. They depend on JDPI’s account and checkout configuration. Review them before authorising payment.</p></details>
     <details><summary>How does monthly giving work?</summary><p>Monthly giving becomes available only when JDPI supplies an approved recurring-payment link. Choosing “Monthly” on this page does not create a subscription or charge you. Review the schedule and cancellation information on the provider’s checkout before authorising it.</p></details>

@@ -1,0 +1,527 @@
+{
+  "about": {
+    "timeline": [
+      {
+        "year": "1971",
+        "title": "A beginning in service",
+        "text": "Established in March as the Social Welfare Apostolate of the Catholic Diocese of Maiduguri."
+      },
+      {
+        "year": "1988",
+        "title": "Justice, development, peace",
+        "text": "The Social Welfare Apostolate became the Justice Development and Peace Commission (JDPC)."
+      },
+      {
+        "year": "2015",
+        "title": "Our registered identity",
+        "text": "Justice Development and Peace Initiative became the name recognised by the Corporate Affairs Commission."
+      },
+      {
+        "year": "2025",
+        "title": "One identity. Same mission.",
+        "text": "Our public identity was aligned with our registered name, JDPI Maiduguri, with continuity of purpose and partnerships."
+      }
+    ],
+    "values": [
+      {
+        "title": "Human dignity",
+        "text": "Every person deserves respect, protection and the opportunity to thrive."
+      },
+      {
+        "title": "Justice",
+        "text": "We stand for fair opportunities and the rights of people facing exclusion."
+      },
+      {
+        "title": "Peace",
+        "text": "We nurture dialogue, reconciliation and peaceful coexistence."
+      },
+      {
+        "title": "Solidarity",
+        "text": "We stand alongside vulnerable communities and listen to their voices."
+      },
+      {
+        "title": "Accountability",
+        "text": "We use entrusted resources responsibly and learn from communities."
+      },
+      {
+        "title": "Service",
+        "text": "Compassion and practical action are at the heart of our work."
+      }
+    ],
+    "approach": [
+      {
+        "title": "Community-led",
+        "text": "Local knowledge, participation and priorities inform how we design and deliver programmes."
+      },
+      {
+        "title": "Integrated",
+        "text": "We respond to interconnected needs, linking immediate assistance with longer-term recovery."
+      },
+      {
+        "title": "Inclusive",
+        "text": "Women, children, persons with disabilities and other vulnerable groups are considered in programme design."
+      },
+      {
+        "title": "Sustainable",
+        "text": "We strengthen local skills, livelihoods and community structures that can outlast a project."
+      }
+    ],
+    "leadership": [
+      {
+        "name": "Most Rev. Dr. Oliver Dashe Doeme",
+        "role": "Chairman, Board of Trustees",
+        "detail": "Bishop of Maiduguri Diocese",
+        "image": {
+          "url": "/assets/about/oliver-dashe-doeme.jpg",
+          "alt": "Most Rev. Dr. Oliver Dashe Doeme"
+        }
+      },
+      {
+        "name": "Rev. Fr. Vincent Okoye",
+        "role": "Executive Director",
+        "detail": "Management team",
+        "image": {
+          "url": "/assets/about/vincent-okoye.jpg",
+          "alt": "Rev. Fr. Vincent Okoye"
+        }
+      },
+      {
+        "name": "Adowuyi Farindo",
+        "role": "Head of Programmes",
+        "detail": "Management team",
+        "image": {
+          "url": "/assets/about/adowuyi-farindo.jpg",
+          "alt": "Adowuyi Farindo"
+        }
+      },
+      {
+        "name": "Chioma Onuoha",
+        "role": "HR / Admin Lead",
+        "detail": "Management team",
+        "image": {
+          "url": "/assets/about/chioma-onuoha.jpg",
+          "alt": "Chioma Onuoha"
+        }
+      }
+    ],
+    "accountability": {
+      "safeguarding": {
+        "title": "Safeguarding",
+        "text": "Protecting dignity, safety and wellbeing."
+      },
+      "community": {
+        "title": "Community accountability",
+        "text": "Listening, learning and responding."
+      },
+      "feedback": {
+        "title": "Feedback & enquiries",
+        "text": "Get in touch with our team."
+      },
+      "transparency": {
+        "title": "Financial transparency",
+        "text": "Explore our published reports."
+      }
+    }
+  },
+  "team": {
+    "board": [
+      {
+        "name": "Most Rev. Dr. Oliver Dashe Doeme",
+        "role": "Chairman, Board of Trustees",
+        "detail": "Bishop of Maiduguri Diocese",
+        "image": {
+          "url": "/assets/team/oliver-dashe-doeme.jpg",
+          "alt": "Most Rev. Dr. Oliver Dashe Doeme"
+        }
+      },
+      {
+        "name": "Most Rev. Dr. John Bogna Bakeni",
+        "role": "Secretary, Board of Trustees",
+        "detail": "Auxiliary Bishop of Maiduguri Diocese",
+        "image": {
+          "url": "/assets/team/john-bogna-bakeni.jpg",
+          "alt": "Most Rev. Dr. John Bogna Bakeni"
+        }
+      },
+      {
+        "name": "Lady Jemimah Abdulateef",
+        "role": "Member, Board of Trustees",
+        "detail": "",
+        "image": {
+          "url": "/assets/team/jemimah-abdulateef.jpg",
+          "alt": "Lady Jemimah Abdulateef"
+        }
+      },
+      {
+        "name": "Mr. Elias Dawa",
+        "role": "Member, Board of Trustees",
+        "detail": "",
+        "image": {
+          "url": "/assets/team/elias-dawa.jpg",
+          "alt": "Mr. Elias Dawa"
+        }
+      },
+      {
+        "name": "Barr. (Mrs) Habiba Gana",
+        "role": "Member, Board of Trustees",
+        "detail": "",
+        "image": {
+          "url": "/assets/team/habiba-gana.jpg",
+          "alt": "Barr. (Mrs) Habiba Gana"
+        }
+      }
+    ],
+    "management": [
+      {
+        "name": "Rev. Fr. Vincent Okoye",
+        "role": "Executive Director",
+        "image": {
+          "url": "/assets/team/vincent-okoye.jpg",
+          "alt": "Rev. Fr. Vincent Okoye"
+        }
+      },
+      {
+        "name": "Rev. Fr. Alphonsus Afina",
+        "role": "Deputy Executive Director",
+        "image": {
+          "url": "/assets/team/alphonsus-afina.jpg",
+          "alt": "Rev. Fr. Alphonsus Afina"
+        }
+      },
+      {
+        "name": "Rev. Fr. Joseph F. Bature",
+        "role": "Director / MHPSS Advisor",
+        "image": {
+          "url": "/assets/team/joseph-bature.jpg",
+          "alt": "Rev. Fr. Joseph F. Bature"
+        }
+      },
+      {
+        "name": "Adowuyi Farindo",
+        "role": "Head of Programmes",
+        "image": {
+          "url": "/assets/team/adowuyi-farindo.jpg",
+          "alt": "Adowuyi Farindo"
+        }
+      },
+      {
+        "name": "Chioma Onuoha",
+        "role": "HR / Admin Lead",
+        "image": {
+          "url": "/assets/team/chioma-onuoha.jpg",
+          "alt": "Chioma Onuoha"
+        }
+      },
+      {
+        "name": "Christopher Ani",
+        "role": "Finance Manager",
+        "image": {
+          "url": "/assets/team/christopher-ani.jpg",
+          "alt": "Christopher Ani"
+        }
+      },
+      {
+        "name": "Ueiju Simon",
+        "role": "MEAL Manager",
+        "image": {
+          "url": "/assets/team/ueiju-simon.jpg",
+          "alt": "Ueiju Simon"
+        }
+      },
+      {
+        "name": "Gabriel Audu",
+        "role": "Potiskum Office Base Lead",
+        "image": {
+          "url": "/assets/team/gabriel-audu.jpg",
+          "alt": "Gabriel Audu"
+        }
+      },
+      {
+        "name": "Thomas Patrick",
+        "role": "Mubi Office Base Lead",
+        "image": {
+          "url": "/assets/team/thomas-patrick.jpg",
+          "alt": "Thomas Patrick"
+        }
+      },
+      {
+        "name": "Jagila Ali Hamman",
+        "role": "Safeguarding Lead",
+        "image": {
+          "url": "/assets/team/jagila-ali-hamman.jpg",
+          "alt": "Jagila Ali Hamman"
+        }
+      },
+      {
+        "name": "Monica Peter Zadva",
+        "role": "Agriculture Specialist",
+        "image": {
+          "url": "/assets/team/monica-peter-zadva.jpg",
+          "alt": "Monica Peter Zadva"
+        }
+      }
+    ]
+  },
+  "impact": {
+    "impactYear": 2025,
+    "impactOverview": [
+      {
+        "value": "20,229",
+        "label": "Households supported",
+        "source": "Page 10"
+      },
+      {
+        "value": "114",
+        "label": "Communities reached",
+        "source": "Page 12"
+      },
+      {
+        "value": "10",
+        "label": "Projects implemented",
+        "source": "Page 10"
+      },
+      {
+        "value": "3",
+        "label": "States covered",
+        "source": "Page 12"
+      }
+    ],
+    "sectorImpact": [
+      {
+        "title": "Food Security & Livelihoods",
+        "slug": "food-security-and-livelihoods",
+        "value": "48,016",
+        "label": "People reached",
+        "description": "Agricultural support, livelihoods and food assistance helped households meet immediate needs and build resilience.",
+        "source": "Pages 6 and 11"
+      },
+      {
+        "title": "Nutrition",
+        "slug": "nutrition",
+        "value": "10,317",
+        "label": "Children and caregivers supported",
+        "description": "Lifesaving nutrition support included community-based care, referrals and nutrition education.",
+        "source": "Pages 6 and 11"
+      },
+      {
+        "title": "Water, Sanitation & Hygiene",
+        "slug": "water-sanitation-and-hygiene",
+        "value": "22,000",
+        "label": "People with improved safe-water access",
+        "description": "An estimated 22,000 people gained improved access to safe water. JDPI completed 22 boreholes: 15 constructed and 7 rehabilitated.",
+        "source": "Pages 6 and 11",
+        "estimated": true
+      },
+      {
+        "title": "Mental Health & Psychosocial Support",
+        "slug": "mental-health-and-psychosocial-support",
+        "value": "21,729",
+        "label": "People reached through messaging",
+        "description": "Mental health and psychosocial support messages expanded awareness. This figure is not a count of people receiving individual counselling.",
+        "source": "Pages 6 and 11"
+      },
+      {
+        "title": "Protection",
+        "slug": "protection",
+        "value": "22,182",
+        "label": "People reached through awareness activities",
+        "description": "Awareness sessions and messages shared information on safety, dignity, rights and available support services.",
+        "source": "Pages 6 and 11"
+      },
+      {
+        "title": "Social Cohesion & Peacebuilding",
+        "slug": "peacebuilding-and-social-cohesion",
+        "value": "13",
+        "label": "Community conflicts resolved",
+        "description": "Community-led peacebuilding mechanisms helped resolve conflicts and strengthen peaceful coexistence.",
+        "source": "Page 11"
+      }
+    ],
+    "photos": [
+      {
+        "name": "bmz-greenhouse-monitoring",
+        "image": {
+          "url": "/assets/projects/bmz-greenhouse-monitoring.jpg",
+          "alt": "A farmer and JDPI staff checking crops in a community greenhouse"
+        }
+      },
+      {
+        "name": "bmz-greenhouse-crops",
+        "image": {
+          "url": "/assets/projects/bmz-greenhouse-crops.jpg",
+          "alt": "Vegetable crops growing in a JDPI-supported community greenhouse"
+        }
+      },
+      {
+        "name": "bmz-greenhouse-harvest",
+        "image": {
+          "url": "/assets/projects/bmz-greenhouse-harvest.jpg",
+          "alt": "Peppers harvested from a community greenhouse"
+        }
+      },
+      {
+        "name": "we-sing-startup-kits",
+        "image": {
+          "url": "/assets/projects/we-sing-startup-kits.jpg",
+          "alt": "A participant receiving a sewing-machine livelihood kit at the WE-SING distribution"
+        }
+      }
+    ]
+  },
+  "where-we-work": {
+    "lgaActivities": [
+      {
+        "state": "Borno",
+        "lga": "Jere",
+        "activities": [
+          {
+            "title": "Nutrition and WaSH",
+            "text": "INTO-MAMI supported mothers, infants and community water services in Jere and Magumeri. The public closeout update confirms completion; it does not establish 2025-only LGA totals.",
+            "source": "JDPI INTO-MAMI project brief and public closeout update",
+            "project": "echf-into-mami-project"
+          }
+        ]
+      },
+      {
+        "state": "Borno",
+        "lga": "Magumeri",
+        "activities": [
+          {
+            "title": "Community nutrition",
+            "text": "The report describes screening, referral, growth monitoring and caregiver nutrition counselling for a child in Magumeri through a CRS-supported programme.",
+            "source": "Annual Report 2025, page 53",
+            "page": 53
+          },
+          {
+            "title": "Nutrition and WaSH",
+            "text": "Magumeri was also a location of the completed INTO-MAMI project with CRS. Project details are recorded separately from the report’s 2025 results.",
+            "source": "JDPI INTO-MAMI project brief and public closeout update",
+            "project": "echf-into-mami-project"
+          }
+        ]
+      },
+      {
+        "state": "Borno",
+        "lga": "Kaga",
+        "activities": [
+          {
+            "title": "Mental health and psychosocial support",
+            "text": "In Tsallake, counselling and appropriate medical support helped a conflict-affected child recover under the GFFO-funded Food Security and Humanitarian Protection for Victims of Lake Chad project.",
+            "source": "Annual Report 2025, page 52",
+            "page": 52,
+            "project": "gffo-food-security-humanitarian-protection-lake-chad"
+          }
+        ]
+      },
+      {
+        "state": "Adamawa",
+        "lga": "Hong",
+        "activities": [
+          {
+            "title": "Climate-smart agriculture",
+            "text": "Hong and Michika hosted community greenhouses. The report also describes irrigation equipment, seeds and farmer training in Kwatau, Hong.",
+            "source": "Annual Report 2025, pages 17 and 45",
+            "page": 17,
+            "project": "bmz-multisectoral-resilience-project"
+          },
+          {
+            "title": "Safe water",
+            "text": "A motorised solar-powered borehole in Kilamada reduced reliance on river water and brought safer water collection closer to households.",
+            "source": "Annual Report 2025, page 51",
+            "page": 51,
+            "project": "bmz-multisectoral-resilience-project"
+          }
+        ]
+      },
+      {
+        "state": "Adamawa",
+        "lga": "Michika",
+        "activities": [
+          {
+            "title": "Climate-smart agriculture",
+            "text": "Community greenhouse farming in Hong and Michika supported year-round vegetable production under the BMZ-funded resilience project.",
+            "source": "Annual Report 2025, page 17",
+            "page": 17,
+            "project": "bmz-multisectoral-resilience-project"
+          },
+          {
+            "title": "Livelihood recovery and savings",
+            "text": "Reported experiences in Michika describe income-generating grants, restarting small businesses and savings-group participation.",
+            "source": "Annual Report 2025, pages 47 and 49",
+            "page": 47,
+            "project": "bmz-multisectoral-resilience-project"
+          }
+        ]
+      },
+      {
+        "state": "Adamawa",
+        "lga": "Madagali",
+        "activities": [
+          {
+            "title": "Vocational skills and livelihoods",
+            "text": "In Dar community, a participant received barbering training and a start-up kit through Strengthening Protection and GBV Response in Madagali.",
+            "source": "Annual Report 2025, page 55",
+            "page": 55,
+            "project": "strengthening-protection-gbv-response-madagali"
+          },
+          {
+            "title": "Integrated nutrition and protection",
+            "text": "JDPI’s supplied project brief also lists the NHF nutrition and protection project in Madagali. Whether it is the same award as the report-listed GBV project remains under review; the two are not combined here.",
+            "source": "Organisation-supplied NHF project brief",
+            "project": "nhf-integrated-nutrition-and-protection"
+          }
+        ]
+      }
+    ],
+    "offices": [
+      {
+        "town": "Maiduguri",
+        "state": "Borno State",
+        "type": "Headquarters"
+      },
+      {
+        "town": "Mubi",
+        "state": "Adamawa State",
+        "type": "Office base"
+      },
+      {
+        "town": "Potiskum",
+        "state": "Yobe State",
+        "type": "Office base"
+      }
+    ]
+  },
+  "resources": {
+    "legacyReports": [
+      {
+        "title": "JDPI Annual Report 2025",
+        "category": "Annual reports",
+        "year": 2025,
+        "summary": "Programme activities, outcomes and community stories from January to December 2025 across Northeast Nigeria.",
+        "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/JDPI-Maiduguri-2025-Annual-Report-Protected.pdf",
+        "onlineUrl": "https://heyzine.com/flip-book/fbc150516f.html"
+      },
+      {
+        "title": "JDPI Financial Report 2025",
+        "category": "Financial reports",
+        "year": 2025,
+        "summary": "The 2025 financial-report document published in JDPI’s audited financial reports collection.",
+        "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/AUDIT-REPORT-AS-AT-SEPT-2025.pdf"
+      },
+      {
+        "title": "JDPI Financial Report 2024",
+        "category": "Financial reports",
+        "year": 2024,
+        "summary": "The 2024 financial-report document published in JDPI’s audited financial reports collection.",
+        "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/JDPC-Audit-report-Sept.-2024.pdf"
+      },
+      {
+        "title": "JDPI Financial Report 2023",
+        "category": "Financial reports",
+        "year": 2023,
+        "summary": "The 2023 financial-report document published in JDPI’s audited financial reports collection.",
+        "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/AUDIT-REPORT-2023-1.pdf"
+      }
+    ]
+  }
+}

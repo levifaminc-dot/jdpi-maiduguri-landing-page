@@ -1,7 +1,8 @@
 // Lightweight hourly check: no dependency installation or write access needed.
 import {readFile} from 'node:fs/promises';
+import catalogue from '../content/page-fields.json' with {type:'json'};
 const settings=JSON.parse(await readFile('config/sanity.json','utf8'));
-const types=['siteSettings','homePage','programme','project','story','report','partner'];
+const types=['siteSettings','homePage','programme','project','story','report','partner',...catalogue.map(page=>page.type)];
 const project=process.env.PUBLIC_SANITY_PROJECT_ID||settings.projectId;
 const dataset=process.env.PUBLIC_SANITY_DATASET||settings.dataset;
 const query='*[_type in $types && !(_id in path("drafts.**")) && !(_id in path("versions.**"))] | order(_id){_id,_rev}';

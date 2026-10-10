@@ -1,42 +1,44 @@
 ---
+import {pageEditor} from "../../lib/page-editor";
 import {getContent} from '../../lib/content';
-import {getResourceLibrary, safeResourceUrl} from '../../lib/resources';
+import {getPublishedResources, safeResourceUrl} from '../../lib/resources';
 import Layout from '../../layouts/SiteLayout.astro';
 import '../../styles/project-directory.css';
 import '../../styles/resources.css';
 const content=await getContent();
-const resources=getResourceLibrary(content.reports);
+const page=pageEditor(content,"resources");
+const resources=getPublishedResources(content);
 const featured=resources.find(resource=>resource.category==='Annual reports');
 const categories=['All resources','Annual reports','Financial reports',...(resources.some(resource=>resource.category==='Publications')?['Publications']:[])];
 const missingArchiveYears=[2024,2023].filter(year=>!resources.some(resource=>resource.category==='Annual reports'&&resource.year===year));
 const requestUrl=(subject:string)=>`mailto:${content.settings.email}?subject=${encodeURIComponent(subject)}`;
 ---
-<Layout content={content} title={`Resources & Publications | ${content.settings.shortName}`} description="Explore JDPI Maiduguri’s annual reports and financial reports, read the latest annual report online, and request publications or media assets." pageClass="projects-page resources-page">
+<Layout content={content} title={`${page.text("seoTitle")} | ${content.settings.shortName}`} description={page.text("seoDescription")} pageClass="projects-page resources-page">
   <section class="resource-intro project-shell" aria-labelledby="resources-heading">
     <nav class="resource-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Resources</span></nav>
-    <p class="resource-eyebrow">RESOURCES &amp; PUBLICATIONS</p>
-    <h1 id="resources-heading">Our work, <span>documented.</span></h1>
-    <p>Explore our annual reports and financial reports from Northeast Nigeria.</p>
+    <p class="resource-eyebrow">{page.text("resourcesParagraph1")}</p>
+    <h1 id="resources-heading">{page.text("resourcesHeading1")} <span>{page.text("resourcesText1")}</span></h1>
+    <p>{page.text("resourcesParagraph2")}</p>
   </section>
   <div class="project-shell resource-content">
     {featured && <section class="resource-feature" aria-labelledby="featured-report-heading">
-      <div class="resource-feature-copy"><p class="resource-eyebrow">LATEST ANNUAL REPORT</p><h2 id="featured-report-heading">{featured.title}</h2><p>{featured.summary}</p>
-        <div class="resource-feature-actions"><a class="resource-primary" href={featured.fileUrl} target="_blank" rel="noopener noreferrer">Open PDF <span class="sr-only">— {featured.title} (opens in a new tab)</span></a>{safeResourceUrl(featured.onlineUrl) && <a class="resource-secondary" href={featured.onlineUrl} target="_blank" rel="noopener noreferrer">Read online <span class="sr-only">— {featured.title} (opens in a new tab)</span></a>}</div>
+      <div class="resource-feature-copy"><p class="resource-eyebrow">{page.text("featuredReportParagraph1")}</p><h2 id="featured-report-heading">{featured.title}</h2><p>{featured.summary}</p>
+        <div class="resource-feature-actions"><a class="resource-primary" href={featured.fileUrl} target="_blank" rel="noopener noreferrer">{page.text("featuredReportLinkLabel1")} <span class="sr-only">— {featured.title} (opens in a new tab)</span></a>{safeResourceUrl(featured.onlineUrl) && <a class="resource-secondary" href={featured.onlineUrl} target="_blank" rel="noopener noreferrer">{page.text("featuredReportLinkLabel2")} <span class="sr-only">— {featured.title} (opens in a new tab)</span></a>}</div>
       </div>
-      <div class="resource-feature-year" aria-hidden="true"><span>ANNUAL REPORT</span><strong>{featured.year||'JDPI'}</strong><span>JUSTICE · DEVELOPMENT · PEACE</span></div>
+      <div class="resource-feature-year" aria-hidden="true"><span>{page.text("featuredReportText1")}</span><strong>{featured.year||'JDPI'}</strong><span>{page.text("featuredReportText2")}</span></div>
     </section>}
     <section class="resource-library" aria-labelledby="library-heading">
-      <div class="resource-library-heading"><h2 id="library-heading">Report library</h2><p id="resource-count" role="status" aria-live="polite">{resources.length} documents</p></div>
+      <div class="resource-library-heading"><h2 id="library-heading">{page.text("libraryHeading1")}</h2><p id="resource-count" role="status" aria-live="polite">{resources.length} {page.text("libraryParagraph1")}</p></div>
       <div class="resource-filters" role="group" aria-label="Filter resources by type" data-resource-filters hidden>{categories.map((category,index)=><button type="button" data-resource-filter={category} aria-pressed={index===0} aria-controls="resource-list">{category}</button>)}</div>
       <div class="resource-grid" id="resource-list">{resources.map(resource=><article class="resource-card" data-resource-category={resource.category}>
         <div class="resource-card-meta"><span>{resource.category==='Annual reports'?'Annual report':resource.category==='Financial reports'?'Financial report':'Publication'}</span>{resource.year && <span>{resource.year}</span>}</div>
         <h3>{resource.title}</h3><p>{resource.summary}</p>
-        <a class="resource-file" href={resource.fileUrl} target="_blank" rel="noopener noreferrer"><span class="resource-file-label">Open PDF <span class="sr-only">— {resource.title} (opens in a new tab)</span></span><span class="resource-file-type">PDF</span></a>
+        <a class="resource-file" href={resource.fileUrl} target="_blank" rel="noopener noreferrer"><span class="resource-file-label">{page.text("libraryText1")} <span class="sr-only">— {resource.title} (opens in a new tab)</span></span><span class="resource-file-type">{page.text("libraryText2")}</span></a>
       </article>)}</div>
-      <p class="resource-empty" data-resource-empty hidden>No documents are available in this category yet.</p>
-      {missingArchiveYears.length>0 && <aside class="resource-archive"><div><h3>Looking for an earlier annual report?</h3><p>The {missingArchiveYears.join(' and ')} annual-report {missingArchiveYears.length===1?'download is':'downloads are'} not currently available in this library. Please request a copy from our team.</p></div><a href={requestUrl('Request an earlier JDPI annual report')}>Request a report</a></aside>}
+      <p class="resource-empty" data-resource-empty hidden>{page.text("libraryParagraph2")}</p>
+      {missingArchiveYears.length>0 && <aside class="resource-archive"><div><h3>{page.text("libraryHeading2")}</h3><p>{page.text("libraryParagraph3")} {missingArchiveYears.join(' and ')} {page.text("libraryParagraph4")} {missingArchiveYears.length===1?'download is':'downloads are'} {page.text("libraryParagraph5")}</p></div><a href={requestUrl('Request an earlier JDPI annual report')}>{page.text("libraryLinkLabel1")}</a></aside>}
     </section>
-    <section class="resource-media" aria-labelledby="media-heading"><div class="resource-media-heading"><p class="resource-eyebrow">FOR MEDIA &amp; PARTNERS</p><h2 id="media-heading">JDPI media kit</h2></div><div><p>For approved logos, brand assets, press information or publication enquiries, contact the JDPI team.</p><a class="resource-contact" href={requestUrl('JDPI media kit and press enquiry')}>Request media assets <span class="sr-only">by email</span></a><p class="resource-contact-email"><a href={`mailto:${content.settings.email}`}>{content.settings.email}</a></p></div></section>
+    <section class="resource-media" aria-labelledby="media-heading"><div class="resource-media-heading"><p class="resource-eyebrow">{page.text("mediaParagraph1")}</p><h2 id="media-heading">{page.text("mediaHeading1")}</h2></div><div><p>{page.text("mediaParagraph2")}</p><a class="resource-contact" href={requestUrl('JDPI media kit and press enquiry')}>{page.text("mediaLinkLabel1")} <span class="sr-only">by email</span></a><p class="resource-contact-email"><a href={`mailto:${content.settings.email}`}>{content.settings.email}</a></p></div></section>
   </div>
 </Layout>
 <script>

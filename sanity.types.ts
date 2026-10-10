@@ -124,6 +124,53 @@ export type Project = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  profile?: {
+    donor: string;
+    partners?: string;
+    overview: Array<string>;
+    context: string;
+    activities: Array<{
+      title: string;
+      text: string;
+      _type: "activitiesItem";
+      _key: string;
+    }>;
+    facts?: Array<{
+      value: string;
+      label: string;
+      _type: "factsItem";
+      _key: string;
+    }>;
+    resultsIntro: string;
+    stories: Array<{
+      title: string;
+      text: string;
+      source: string;
+      _type: "storiesItem";
+      _key: string;
+    }>;
+    overviewImage?: EditorialImage;
+    overviewCaption?: string;
+    gallery: Array<{
+      image: EditorialImage;
+      caption: string;
+      _type: "galleryItem";
+      _key: string;
+    }>;
+    sources: Array<{
+      title: string;
+      detail: string;
+      url?: string;
+      _type: "sourcesItem";
+      _key: string;
+    }>;
+    storyNote?: string;
+    photoNote?: string;
+    reviewNote?: string;
+    outcomes?: Array<string>;
+  };
+  reportingYear?: number;
+  imageCaption?: string;
   title: string;
   slug: Slug;
   summary?: string;
@@ -199,6 +246,663 @@ export type Programme = {
   seoTitle?: string;
   seoDescription?: string;
   sourceKey?: string;
+  details?: {
+    projectSlugs?: Array<string>;
+    interventions: Array<string>;
+    source: string;
+    locations: Array<{
+      label: string;
+      detail: string;
+      source: string;
+      _type: "locationsItem";
+      _key: string;
+    }>;
+    locationNote?: string;
+    projectReach?: {
+      value: string;
+      label: string;
+      description: string;
+      source: string;
+      project: string;
+    };
+  };
+};
+
+export type ContactPage = {
+  _id: string;
+  _type: "contactPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  introParagraph1?: string;
+  introHeading1?: string;
+  introText1?: string;
+  introParagraph2?: string;
+  contactDetailsParagraph1?: string;
+  contactDetailsHeading1?: string;
+  contactDetailsHeading2?: string;
+  contactDetailsParagraph2?: string;
+  contactDetailsHeading3?: string;
+  contactDetailsHeading4?: string;
+  contactDetailsHeading5?: string;
+  contactDetailsLinkLabel1?: string;
+  enquiryHeading1?: string;
+  enquiryParagraph1?: string;
+  enquiryParagraph2?: string;
+  enquiryParagraph3?: string;
+  officeParagraph1?: string;
+  officeHeading1?: string;
+  officeParagraph2?: string;
+  officeLinkLabel1?: string;
+  officeLinkLabel2?: string;
+};
+
+export type DonatePage = {
+  _id: string;
+  _type: "donatePage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  donateImage1?: EditorialImage;
+  donateParagraph1?: string;
+  donateHeading1?: string;
+  donateText1?: string;
+  donateParagraph2?: string;
+  donateText2?: string;
+  donateParagraph3?: string;
+  givingParagraph1?: string;
+  givingHeading1?: string;
+  givingParagraph2?: string;
+  givingLinkLabel1?: string;
+  givingLinkLabel2?: string;
+  introText1?: string;
+  introText2?: string;
+  introLinkLabel1?: string;
+  purposeParagraph1?: string;
+  purposeHeading1?: string;
+  purposeParagraph2?: string;
+  purposeLinkLabel1?: string;
+  purposeParagraph3?: string;
+  evidenceImage1?: EditorialImage;
+  evidenceText1?: string;
+  evidenceParagraph1?: string;
+  evidenceHeading1?: string;
+  evidenceText2?: string;
+  evidenceParagraph2?: string;
+  evidenceLinkLabel1?: string;
+  evidenceLinkLabel2?: string;
+  evidenceParagraph3?: string;
+  otherParagraph1?: string;
+  otherHeading1?: string;
+  otherLinkLabel1?: string;
+  otherHeading2?: string;
+  otherParagraph2?: string;
+  otherLinkLabel2?: string;
+  otherHeading3?: string;
+  otherParagraph3?: string;
+  otherLinkLabel3?: string;
+  otherHeading4?: string;
+  otherParagraph4?: string;
+  otherLinkLabel4?: string;
+  faqParagraph1?: string;
+  faqHeading1?: string;
+  faqParagraph2?: string;
+  faqLinkLabel1?: string;
+};
+
+export type ResourcesPage = {
+  _id: string;
+  _type: "resourcesPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  resourcesParagraph1?: string;
+  resourcesHeading1?: string;
+  resourcesText1?: string;
+  resourcesParagraph2?: string;
+  featuredReportParagraph1?: string;
+  featuredReportLinkLabel1?: string;
+  featuredReportLinkLabel2?: string;
+  featuredReportText1?: string;
+  featuredReportText2?: string;
+  libraryHeading1?: string;
+  libraryParagraph1?: string;
+  libraryText1?: string;
+  libraryText2?: string;
+  libraryParagraph2?: string;
+  libraryHeading2?: string;
+  libraryParagraph3?: string;
+  libraryParagraph4?: string;
+  libraryParagraph5?: string;
+  libraryLinkLabel1?: string;
+  mediaParagraph1?: string;
+  mediaHeading1?: string;
+  mediaParagraph2?: string;
+  mediaLinkLabel1?: string;
+  data?: {
+    legacyReports: Array<{
+      title: string;
+      category: "Annual reports" | "Financial reports" | "Publications";
+      year: number;
+      summary: string;
+      fileUrl: string;
+      onlineUrl?: string;
+      _type: "legacyReportsItem";
+      _key: string;
+    }>;
+  };
+};
+
+export type StoriesPage = {
+  _id: string;
+  _type: "storiesPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  updatesImage1?: EditorialImage;
+  updatesParagraph1?: string;
+  updatesHeading1?: string;
+  updatesText1?: string;
+  updatesParagraph2?: string;
+  updatesParagraph3?: string;
+  updatesLibraryParagraph1?: string;
+  updatesLibraryHeading1?: string;
+  updatesLibraryLinkLabel1?: string;
+  updatesLibraryParagraph2?: string;
+  updatesLibraryParagraph3?: string;
+  updatesLibraryText1?: string;
+  updatesLibraryText2?: string;
+  updatesLibraryText3?: string;
+  updatesLibraryText4?: string;
+  updatesLibraryText5?: string;
+  updatesLibraryText6?: string;
+  updatesLibraryHeading2?: string;
+  updatesLibraryParagraph4?: string;
+  introParagraph1?: string;
+  introHeading1?: string;
+  introHeading2?: string;
+  introParagraph2?: string;
+  introLinkLabel1?: string;
+};
+
+export type ProjectsPage = {
+  _id: string;
+  _type: "projectsPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  projectsParagraph1?: string;
+  projectsHeading1?: string;
+  projectsHeading2?: string;
+  projectsText1?: string;
+  projectsParagraph2?: string;
+  introLinkLabel1?: string;
+  introHeading1?: string;
+  introParagraph1?: string;
+  projectImpactHeading1?: string;
+  projectImpactText1?: string;
+  projectImpactParagraph1?: string;
+  projectImpactLinkLabel1?: string;
+  cmsManagedProjects?: boolean;
+};
+
+export type ProgrammesPage = {
+  _id: string;
+  _type: "programmesPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  programmesImage1?: EditorialImage;
+  programmesParagraph1?: string;
+  programmesHeading1?: string;
+  programmesText1?: string;
+  programmesParagraph2?: string;
+  programmesLinkLabel1?: string;
+  programmesParagraph3?: string;
+  areasParagraph1?: string;
+  areasHeading1?: string;
+  areasHeading2?: string;
+  areasParagraph2?: string;
+  areasParagraph3?: string;
+  areasText1?: string;
+  areasParagraph4?: string;
+  areasParagraph5?: string;
+  areasParagraph6?: string;
+  areasText2?: string;
+  areasLinkLabel1?: string;
+  areasHeading3?: string;
+  areasParagraph7?: string;
+  areasLinkLabel2?: string;
+  areasHeading4?: string;
+  areasLinkLabel3?: string;
+  areasParagraph8?: string;
+  areasParagraph9?: string;
+  areasLinkLabel4?: string;
+  areasParagraph10?: string;
+  areasParagraph11?: string;
+  areasParagraph12?: string;
+  areasLinkLabel5?: string;
+  approachImage1?: EditorialImage;
+  approachCaption1?: string;
+  approachParagraph1?: string;
+  approachHeading1?: string;
+  approachText1?: string;
+  approachParagraph2?: string;
+  approachHeading2?: string;
+  approachParagraph3?: string;
+  approachHeading3?: string;
+  approachParagraph4?: string;
+  approachLinkLabel1?: string;
+  actionParagraph1?: string;
+  actionHeading1?: string;
+  actionText1?: string;
+  actionParagraph2?: string;
+  actionLinkLabel1?: string;
+  actionLinkLabel2?: string;
+  actionLinkLabel3?: string;
+};
+
+export type WhereWeWorkPage = {
+  _id: string;
+  _type: "whereWeWorkPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  whereWorkParagraph1?: string;
+  whereWorkHeading1?: string;
+  whereWorkText1?: string;
+  whereWorkParagraph2?: string;
+  whereWorkLinkLabel1?: string;
+  whereWorkImage1?: EditorialImage;
+  whereWorkCaption1?: string;
+  introText1?: string;
+  introText2?: string;
+  introText3?: string;
+  introText4?: string;
+  introText5?: string;
+  introText6?: string;
+  introText7?: string;
+  coverageParagraph1?: string;
+  coverageHeading1?: string;
+  coverageParagraph2?: string;
+  coverageParagraph3?: string;
+  coverageText1?: string;
+  coverageParagraph4?: string;
+  basesParagraph1?: string;
+  basesHeading1?: string;
+  basesLinkLabel1?: string;
+  basesParagraph2?: string;
+  introParagraph1?: string;
+  introHeading1?: string;
+  introParagraph2?: string;
+  introLinkLabel1?: string;
+  data?: {
+    lgaActivities: Array<{
+      state: "Borno" | "Adamawa" | "Yobe";
+      lga:
+        | "MMC"
+        | "Jere"
+        | "Magumeri"
+        | "Gwoza"
+        | "Kaga"
+        | "Biu"
+        | "Chibok"
+        | "Hong"
+        | "Michika"
+        | "Madagali"
+        | "Mubi North"
+        | "Mubi South"
+        | "Potiskum"
+        | "Geidam"
+        | "Fika"
+        | "Fune"
+        | "Jakusko"
+        | "Nangere"
+        | "Bade"
+        | "Nguru";
+      activities: Array<{
+        title: string;
+        text: string;
+        source: string;
+        project?: string;
+        page?: number;
+        _type: "activitiesItem";
+        _key: string;
+      }>;
+      _type: "lgaActivitiesItem";
+      _key: string;
+    }>;
+    offices: Array<{
+      town: string;
+      state: string;
+      type: string;
+      _type: "officesItem";
+      _key: string;
+    }>;
+  };
+};
+
+export type ImpactPage = {
+  _id: string;
+  _type: "impactPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  impactParagraph1?: string;
+  impactParagraph2?: string;
+  impactHeading1?: string;
+  impactText1?: string;
+  impactText2?: string;
+  impactParagraph3?: string;
+  impactParagraph4?: string;
+  impactLinkLabel1?: string;
+  impactText3?: string;
+  impactCaption1?: string;
+  overviewHeading1?: string;
+  overviewHeading2?: string;
+  overviewParagraph1?: string;
+  overviewParagraph2?: string;
+  storiesParagraph1?: string;
+  storiesHeading1?: string;
+  storiesParagraph2?: string;
+  storiesParagraph3?: string;
+  storiesParagraph4?: string;
+  growingCaption1?: string;
+  growingCaption2?: string;
+  growingParagraph1?: string;
+  growingHeading1?: string;
+  growingText1?: string;
+  growingParagraph2?: string;
+  growingParagraph3?: string;
+  growingText2?: string;
+  growingText3?: string;
+  growingText4?: string;
+  growingText5?: string;
+  growingParagraph4?: string;
+  growingParagraph5?: string;
+  growingLinkLabel1?: string;
+  womenCaption1?: string;
+  womenParagraph1?: string;
+  womenHeading1?: string;
+  womenText1?: string;
+  womenText2?: string;
+  womenParagraph2?: string;
+  womenText3?: string;
+  womenText4?: string;
+  womenText5?: string;
+  womenParagraph3?: string;
+  womenParagraph4?: string;
+  womenLinkLabel1?: string;
+  enterpriseParagraph1?: string;
+  enterpriseHeading1?: string;
+  enterpriseHeading2?: string;
+  enterpriseText1?: string;
+  enterpriseText2?: string;
+  enterpriseText3?: string;
+  enterpriseText4?: string;
+  enterpriseParagraph2?: string;
+  storiesParagraph5?: string;
+  storiesLinkLabel1?: string;
+  sectorsParagraph1?: string;
+  sectorsParagraph2?: string;
+  sectorsHeading1?: string;
+  sectorsHeading2?: string;
+  sectorsParagraph3?: string;
+  sectorsParagraph4?: string;
+  sectorsText1?: string;
+  sectorsParagraph5?: string;
+  coverageParagraph1?: string;
+  coverageHeading1?: string;
+  coverageParagraph2?: string;
+  coverageParagraph3?: string;
+  coverageLinkLabel1?: string;
+  accountabilityParagraph1?: string;
+  accountabilityHeading1?: string;
+  accountabilityText1?: string;
+  accountabilityParagraph2?: string;
+  accountabilityParagraph3?: string;
+  accountabilityLinkLabel1?: string;
+  accountabilityLinkLabel2?: string;
+  accountabilityParagraph4?: string;
+  accountabilityParagraph5?: string;
+  accountabilityHeading2?: string;
+  accountabilityParagraph6?: string;
+  accountabilityLinkLabel3?: string;
+  data?: {
+    impactYear: number;
+    impactOverview: Array<{
+      value: string;
+      label: string;
+      source: string;
+      _type: "impactOverviewItem";
+      _key: string;
+    }>;
+    sectorImpact: Array<{
+      title: string;
+      slug: string;
+      value: string;
+      label: string;
+      description: string;
+      source: string;
+      estimated?: boolean;
+      _type: "sectorImpactItem";
+      _key: string;
+    }>;
+    photos: Array<{
+      name: string;
+      image: EditorialImage;
+      _type: "photosItem";
+      _key: string;
+    }>;
+  };
+};
+
+export type TeamPage = {
+  _id: string;
+  _type: "teamPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  teamParagraph1?: string;
+  teamHeading1?: string;
+  teamText1?: string;
+  teamParagraph2?: string;
+  teamLinkLabel1?: string;
+  teamImage1?: EditorialImage;
+  teamCaption1?: string;
+  introText1?: string;
+  introParagraph1?: string;
+  introLinkLabel1?: string;
+  boardParagraph1?: string;
+  boardHeading1?: string;
+  boardParagraph2?: string;
+  boardParagraph3?: string;
+  managementParagraph1?: string;
+  managementHeading1?: string;
+  managementParagraph2?: string;
+  managementParagraph3?: string;
+  peopleImage1?: EditorialImage;
+  peopleCaption1?: string;
+  peopleParagraph1?: string;
+  peopleHeading1?: string;
+  peopleParagraph2?: string;
+  peopleText1?: string;
+  peopleText2?: string;
+  peopleText3?: string;
+  peopleText4?: string;
+  peopleParagraph3?: string;
+  peopleLinkLabel1?: string;
+  introParagraph2?: string;
+  introHeading1?: string;
+  introHeading2?: string;
+  introLinkLabel2?: string;
+  data?: {
+    board: Array<{
+      name: string;
+      role: string;
+      detail?: string;
+      image: EditorialImage;
+      _type: "boardItem";
+      _key: string;
+    }>;
+    management: Array<{
+      name: string;
+      role: string;
+      image: EditorialImage;
+      _type: "managementItem";
+      _key: string;
+    }>;
+  };
+};
+
+export type AboutPage = {
+  _id: string;
+  _type: "aboutPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoDescription?: string;
+  seoTitle?: string;
+  aboutImage1?: EditorialImage;
+  aboutParagraph1?: string;
+  aboutHeading1?: string;
+  aboutText1?: string;
+  aboutText2?: string;
+  aboutParagraph2?: string;
+  whoParagraph1?: string;
+  whoHeading1?: string;
+  whoHeading2?: string;
+  whoParagraph2?: string;
+  whoParagraph3?: string;
+  whoParagraph4?: string;
+  whoText1?: string;
+  whoImage1?: EditorialImage;
+  whoCaption1?: string;
+  whoText2?: string;
+  whoText3?: string;
+  storyParagraph1?: string;
+  storyHeading1?: string;
+  storyHeading2?: string;
+  storyParagraph2?: string;
+  guidesParagraph1?: string;
+  guidesHeading1?: string;
+  guidesHeading2?: string;
+  guidesHeading3?: string;
+  guidesParagraph2?: string;
+  guidesHeading4?: string;
+  guidesParagraph3?: string;
+  guidesHeading5?: string;
+  identityParagraph1?: string;
+  identityHeading1?: string;
+  identityHeading2?: string;
+  identityParagraph2?: string;
+  identityParagraph3?: string;
+  identityText1?: string;
+  identityImage1?: EditorialImage;
+  identityCaption1?: string;
+  whereParagraph1?: string;
+  whereHeading1?: string;
+  whereParagraph2?: string;
+  whereCaption1?: string;
+  whereLinkLabel1?: string;
+  whereHeading2?: string;
+  whereLinkLabel2?: string;
+  whereParagraph3?: string;
+  whereParagraph4?: string;
+  whereLinkLabel3?: string;
+  approachParagraph1?: string;
+  approachHeading1?: string;
+  approachHeading2?: string;
+  leadershipParagraph1?: string;
+  leadershipHeading1?: string;
+  leadershipParagraph2?: string;
+  leadershipText1?: string;
+  leadershipText2?: string;
+  leadershipImage1?: EditorialImage;
+  leadershipHeading2?: string;
+  leadershipHeading3?: string;
+  leadershipParagraph3?: string;
+  leadershipLinkLabel1?: string;
+  accountabilityParagraph1?: string;
+  accountabilityHeading1?: string;
+  accountabilityParagraph2?: string;
+  accountabilityParagraph3?: string;
+  partnershipParagraph1?: string;
+  partnershipHeading1?: string;
+  partnershipParagraph2?: string;
+  partnershipLinkLabel1?: string;
+  ctaImage1?: EditorialImage;
+  ctaParagraph1?: string;
+  ctaHeading1?: string;
+  ctaHeading2?: string;
+  ctaParagraph2?: string;
+  ctaLinkLabel1?: string;
+  ctaLinkLabel2?: string;
+  data?: {
+    timeline: Array<{
+      year: string;
+      title: string;
+      text: string;
+      _type: "timelineItem";
+      _key: string;
+    }>;
+    values: Array<{
+      title: string;
+      text: string;
+      _type: "valuesItem";
+      _key: string;
+    }>;
+    approach: Array<{
+      title: string;
+      text: string;
+      _type: "approachItem";
+      _key: string;
+    }>;
+    leadership: Array<{
+      name: string;
+      role: string;
+      detail: string;
+      image: EditorialImage;
+      _type: "leadershipItem";
+      _key: string;
+    }>;
+    accountability: {
+      safeguarding: {
+        title: string;
+        text: string;
+      };
+      community: {
+        title: string;
+        text: string;
+      };
+      feedback: {
+        title: string;
+        text: string;
+      };
+      transparency: {
+        title: string;
+        text: string;
+      };
+    };
+  };
 };
 
 export type HomePage = {
@@ -380,6 +1084,16 @@ export type AllSanitySchemaTypes =
   | ProgrammeReference
   | Project
   | Programme
+  | ContactPage
+  | DonatePage
+  | ResourcesPage
+  | StoriesPage
+  | ProjectsPage
+  | ProgrammesPage
+  | WhereWeWorkPage
+  | ImpactPage
+  | TeamPage
+  | AboutPage
   | HomePage
   | SiteSettings
   | SanityImageCrop
@@ -395,9 +1109,5177 @@ export type AllSanitySchemaTypes =
 
 // Source: ../src/lib/queries.ts
 // Variable: CONTENT_QUERY
-// Query: {  "schemaVersion": 1,  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}
+// Query: {  "schemaVersion": 1,  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}
 export type CONTENT_QUERY_RESULT = {
   schemaVersion: 1;
+  projectsManaged: boolean | false;
+  pages: Array<
+    | {
+        _id: "aboutPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          aboutImage1: null;
+          aboutParagraph1: null;
+          aboutHeading1: null;
+          aboutText1: null;
+          aboutText2: null;
+          aboutParagraph2: null;
+          whoParagraph1: null;
+          whoHeading1: null;
+          whoHeading2: null;
+          whoParagraph2: null;
+          whoParagraph3: null;
+          whoParagraph4: null;
+          whoText1: null;
+          whoImage1: null;
+          whoCaption1: null;
+          whoText2: null;
+          whoText3: null;
+          storyParagraph1: null;
+          storyHeading1: null;
+          storyHeading2: null;
+          storyParagraph2: null;
+          guidesParagraph1: null;
+          guidesHeading1: null;
+          guidesHeading2: null;
+          guidesHeading3: null;
+          guidesParagraph2: null;
+          guidesHeading4: null;
+          guidesParagraph3: null;
+          guidesHeading5: null;
+          identityParagraph1: null;
+          identityHeading1: null;
+          identityHeading2: null;
+          identityParagraph2: null;
+          identityParagraph3: null;
+          identityText1: null;
+          identityImage1: null;
+          identityCaption1: null;
+          whereParagraph1: null;
+          whereHeading1: null;
+          whereParagraph2: null;
+          whereCaption1: null;
+          whereLinkLabel1: null;
+          whereHeading2: null;
+          whereLinkLabel2: null;
+          whereParagraph3: null;
+          whereParagraph4: null;
+          whereLinkLabel3: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachHeading2: null;
+          leadershipParagraph1: null;
+          leadershipHeading1: null;
+          leadershipParagraph2: null;
+          leadershipText1: null;
+          leadershipText2: null;
+          leadershipImage1: null;
+          leadershipHeading2: null;
+          leadershipHeading3: null;
+          leadershipParagraph3: null;
+          leadershipLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          partnershipParagraph1: null;
+          partnershipHeading1: null;
+          partnershipParagraph2: null;
+          partnershipLinkLabel1: null;
+          ctaImage1: null;
+          ctaParagraph1: null;
+          ctaHeading1: null;
+          ctaHeading2: null;
+          ctaParagraph2: null;
+          ctaLinkLabel1: null;
+          ctaLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "aboutPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          aboutImage1: null;
+          aboutParagraph1: null;
+          aboutHeading1: null;
+          aboutText1: null;
+          aboutText2: null;
+          aboutParagraph2: null;
+          whoParagraph1: null;
+          whoHeading1: null;
+          whoHeading2: null;
+          whoParagraph2: null;
+          whoParagraph3: null;
+          whoParagraph4: null;
+          whoText1: null;
+          whoImage1: null;
+          whoCaption1: null;
+          whoText2: null;
+          whoText3: null;
+          storyParagraph1: null;
+          storyHeading1: null;
+          storyHeading2: null;
+          storyParagraph2: null;
+          guidesParagraph1: null;
+          guidesHeading1: null;
+          guidesHeading2: null;
+          guidesHeading3: null;
+          guidesParagraph2: null;
+          guidesHeading4: null;
+          guidesParagraph3: null;
+          guidesHeading5: null;
+          identityParagraph1: null;
+          identityHeading1: null;
+          identityHeading2: null;
+          identityParagraph2: null;
+          identityParagraph3: null;
+          identityText1: null;
+          identityImage1: null;
+          identityCaption1: null;
+          whereParagraph1: null;
+          whereHeading1: null;
+          whereParagraph2: null;
+          whereCaption1: null;
+          whereLinkLabel1: null;
+          whereHeading2: null;
+          whereLinkLabel2: null;
+          whereParagraph3: null;
+          whereParagraph4: null;
+          whereLinkLabel3: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachHeading2: null;
+          leadershipParagraph1: null;
+          leadershipHeading1: null;
+          leadershipParagraph2: null;
+          leadershipText1: null;
+          leadershipText2: null;
+          leadershipImage1: null;
+          leadershipHeading2: null;
+          leadershipHeading3: null;
+          leadershipParagraph3: null;
+          leadershipLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          partnershipParagraph1: null;
+          partnershipHeading1: null;
+          partnershipParagraph2: null;
+          partnershipLinkLabel1: null;
+          ctaImage1: null;
+          ctaParagraph1: null;
+          ctaHeading1: null;
+          ctaHeading2: null;
+          ctaParagraph2: null;
+          ctaLinkLabel1: null;
+          ctaLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "aboutPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          aboutImage1: null;
+          aboutParagraph1: null;
+          aboutHeading1: null;
+          aboutText1: null;
+          aboutText2: null;
+          aboutParagraph2: null;
+          whoParagraph1: null;
+          whoHeading1: null;
+          whoHeading2: null;
+          whoParagraph2: null;
+          whoParagraph3: null;
+          whoParagraph4: null;
+          whoText1: null;
+          whoImage1: null;
+          whoCaption1: null;
+          whoText2: null;
+          whoText3: null;
+          storyParagraph1: null;
+          storyHeading1: null;
+          storyHeading2: null;
+          storyParagraph2: null;
+          guidesParagraph1: null;
+          guidesHeading1: null;
+          guidesHeading2: null;
+          guidesHeading3: null;
+          guidesParagraph2: null;
+          guidesHeading4: null;
+          guidesParagraph3: null;
+          guidesHeading5: null;
+          identityParagraph1: null;
+          identityHeading1: null;
+          identityHeading2: null;
+          identityParagraph2: null;
+          identityParagraph3: null;
+          identityText1: null;
+          identityImage1: null;
+          identityCaption1: null;
+          whereParagraph1: null;
+          whereHeading1: null;
+          whereParagraph2: null;
+          whereCaption1: null;
+          whereLinkLabel1: null;
+          whereHeading2: null;
+          whereLinkLabel2: null;
+          whereParagraph3: null;
+          whereParagraph4: null;
+          whereLinkLabel3: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachHeading2: null;
+          leadershipParagraph1: null;
+          leadershipHeading1: null;
+          leadershipParagraph2: null;
+          leadershipText1: null;
+          leadershipText2: null;
+          leadershipImage1: null;
+          leadershipHeading2: null;
+          leadershipHeading3: null;
+          leadershipParagraph3: null;
+          leadershipLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          partnershipParagraph1: null;
+          partnershipHeading1: null;
+          partnershipParagraph2: null;
+          partnershipLinkLabel1: null;
+          ctaImage1: null;
+          ctaParagraph1: null;
+          ctaHeading1: null;
+          ctaHeading2: null;
+          ctaParagraph2: null;
+          ctaLinkLabel1: null;
+          ctaLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "aboutPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          aboutImage1: null;
+          aboutParagraph1: null;
+          aboutHeading1: null;
+          aboutText1: null;
+          aboutText2: null;
+          aboutParagraph2: null;
+          whoParagraph1: null;
+          whoHeading1: null;
+          whoHeading2: null;
+          whoParagraph2: null;
+          whoParagraph3: null;
+          whoParagraph4: null;
+          whoText1: null;
+          whoImage1: null;
+          whoCaption1: null;
+          whoText2: null;
+          whoText3: null;
+          storyParagraph1: null;
+          storyHeading1: null;
+          storyHeading2: null;
+          storyParagraph2: null;
+          guidesParagraph1: null;
+          guidesHeading1: null;
+          guidesHeading2: null;
+          guidesHeading3: null;
+          guidesParagraph2: null;
+          guidesHeading4: null;
+          guidesParagraph3: null;
+          guidesHeading5: null;
+          identityParagraph1: null;
+          identityHeading1: null;
+          identityHeading2: null;
+          identityParagraph2: null;
+          identityParagraph3: null;
+          identityText1: null;
+          identityImage1: null;
+          identityCaption1: null;
+          whereParagraph1: null;
+          whereHeading1: null;
+          whereParagraph2: null;
+          whereCaption1: null;
+          whereLinkLabel1: null;
+          whereHeading2: null;
+          whereLinkLabel2: null;
+          whereParagraph3: null;
+          whereParagraph4: null;
+          whereLinkLabel3: null;
+          approachParagraph1: string | null;
+          approachHeading1: string | null;
+          approachHeading2: string | null;
+          leadershipParagraph1: null;
+          leadershipHeading1: null;
+          leadershipParagraph2: null;
+          leadershipText1: null;
+          leadershipText2: null;
+          leadershipImage1: null;
+          leadershipHeading2: null;
+          leadershipHeading3: null;
+          leadershipParagraph3: null;
+          leadershipLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          partnershipParagraph1: null;
+          partnershipHeading1: null;
+          partnershipParagraph2: null;
+          partnershipLinkLabel1: null;
+          ctaImage1: null;
+          ctaParagraph1: null;
+          ctaHeading1: null;
+          ctaHeading2: null;
+          ctaParagraph2: null;
+          ctaLinkLabel1: null;
+          ctaLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "aboutPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          aboutImage1: null;
+          aboutParagraph1: null;
+          aboutHeading1: null;
+          aboutText1: null;
+          aboutText2: null;
+          aboutParagraph2: null;
+          whoParagraph1: null;
+          whoHeading1: null;
+          whoHeading2: null;
+          whoParagraph2: null;
+          whoParagraph3: null;
+          whoParagraph4: null;
+          whoText1: null;
+          whoImage1: null;
+          whoCaption1: null;
+          whoText2: null;
+          whoText3: null;
+          storyParagraph1: null;
+          storyHeading1: null;
+          storyHeading2: null;
+          storyParagraph2: null;
+          guidesParagraph1: null;
+          guidesHeading1: null;
+          guidesHeading2: null;
+          guidesHeading3: null;
+          guidesParagraph2: null;
+          guidesHeading4: null;
+          guidesParagraph3: null;
+          guidesHeading5: null;
+          identityParagraph1: null;
+          identityHeading1: null;
+          identityHeading2: null;
+          identityParagraph2: null;
+          identityParagraph3: null;
+          identityText1: null;
+          identityImage1: null;
+          identityCaption1: null;
+          whereParagraph1: null;
+          whereHeading1: null;
+          whereParagraph2: null;
+          whereCaption1: null;
+          whereLinkLabel1: null;
+          whereHeading2: null;
+          whereLinkLabel2: null;
+          whereParagraph3: null;
+          whereParagraph4: null;
+          whereLinkLabel3: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachHeading2: null;
+          leadershipParagraph1: null;
+          leadershipHeading1: null;
+          leadershipParagraph2: null;
+          leadershipText1: null;
+          leadershipText2: null;
+          leadershipImage1: null;
+          leadershipHeading2: null;
+          leadershipHeading3: null;
+          leadershipParagraph3: null;
+          leadershipLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          partnershipParagraph1: null;
+          partnershipHeading1: null;
+          partnershipParagraph2: null;
+          partnershipLinkLabel1: null;
+          ctaImage1: null;
+          ctaParagraph1: null;
+          ctaHeading1: null;
+          ctaHeading2: null;
+          ctaParagraph2: null;
+          ctaLinkLabel1: null;
+          ctaLinkLabel2: null;
+        };
+        data: {
+          timeline: null;
+          values: null;
+          approach: null;
+          leadership: null;
+          accountability: null;
+        } | null;
+      }
+    | {
+        _id: "aboutPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          aboutImage1: null;
+          aboutParagraph1: null;
+          aboutHeading1: null;
+          aboutText1: null;
+          aboutText2: null;
+          aboutParagraph2: null;
+          whoParagraph1: null;
+          whoHeading1: null;
+          whoHeading2: null;
+          whoParagraph2: null;
+          whoParagraph3: null;
+          whoParagraph4: null;
+          whoText1: null;
+          whoImage1: null;
+          whoCaption1: null;
+          whoText2: null;
+          whoText3: null;
+          storyParagraph1: null;
+          storyHeading1: null;
+          storyHeading2: null;
+          storyParagraph2: null;
+          guidesParagraph1: null;
+          guidesHeading1: null;
+          guidesHeading2: null;
+          guidesHeading3: null;
+          guidesParagraph2: null;
+          guidesHeading4: null;
+          guidesParagraph3: null;
+          guidesHeading5: null;
+          identityParagraph1: null;
+          identityHeading1: null;
+          identityHeading2: null;
+          identityParagraph2: null;
+          identityParagraph3: null;
+          identityText1: null;
+          identityImage1: null;
+          identityCaption1: null;
+          whereParagraph1: null;
+          whereHeading1: null;
+          whereParagraph2: null;
+          whereCaption1: null;
+          whereLinkLabel1: null;
+          whereHeading2: null;
+          whereLinkLabel2: null;
+          whereParagraph3: null;
+          whereParagraph4: null;
+          whereLinkLabel3: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachHeading2: null;
+          leadershipParagraph1: null;
+          leadershipHeading1: null;
+          leadershipParagraph2: null;
+          leadershipText1: null;
+          leadershipText2: null;
+          leadershipImage1: null;
+          leadershipHeading2: null;
+          leadershipHeading3: null;
+          leadershipParagraph3: null;
+          leadershipLinkLabel1: null;
+          accountabilityParagraph1: string | null;
+          accountabilityHeading1: string | null;
+          accountabilityParagraph2: string | null;
+          accountabilityParagraph3: string | null;
+          partnershipParagraph1: null;
+          partnershipHeading1: null;
+          partnershipParagraph2: null;
+          partnershipLinkLabel1: null;
+          ctaImage1: null;
+          ctaParagraph1: null;
+          ctaHeading1: null;
+          ctaHeading2: null;
+          ctaParagraph2: null;
+          ctaLinkLabel1: null;
+          ctaLinkLabel2: null;
+        };
+        data: {
+          timeline: null;
+          values: null;
+          approach: null;
+          leadership: null;
+          accountability: null;
+        } | null;
+      }
+    | {
+        _id: "aboutPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          aboutImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          aboutParagraph1: string | null;
+          aboutHeading1: string | null;
+          aboutText1: string | null;
+          aboutText2: string | null;
+          aboutParagraph2: string | null;
+          whoParagraph1: string | null;
+          whoHeading1: string | null;
+          whoHeading2: string | null;
+          whoParagraph2: string | null;
+          whoParagraph3: string | null;
+          whoParagraph4: string | null;
+          whoText1: string | null;
+          whoImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          whoCaption1: string | null;
+          whoText2: string | null;
+          whoText3: string | null;
+          storyParagraph1: string | null;
+          storyHeading1: string | null;
+          storyHeading2: string | null;
+          storyParagraph2: string | null;
+          guidesParagraph1: string | null;
+          guidesHeading1: string | null;
+          guidesHeading2: string | null;
+          guidesHeading3: string | null;
+          guidesParagraph2: string | null;
+          guidesHeading4: string | null;
+          guidesParagraph3: string | null;
+          guidesHeading5: string | null;
+          identityParagraph1: string | null;
+          identityHeading1: string | null;
+          identityHeading2: string | null;
+          identityParagraph2: string | null;
+          identityParagraph3: string | null;
+          identityText1: string | null;
+          identityImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          identityCaption1: string | null;
+          whereParagraph1: string | null;
+          whereHeading1: string | null;
+          whereParagraph2: string | null;
+          whereCaption1: string | null;
+          whereLinkLabel1: string | null;
+          whereHeading2: string | null;
+          whereLinkLabel2: string | null;
+          whereParagraph3: string | null;
+          whereParagraph4: string | null;
+          whereLinkLabel3: string | null;
+          approachParagraph1: string | null;
+          approachHeading1: string | null;
+          approachHeading2: string | null;
+          leadershipParagraph1: string | null;
+          leadershipHeading1: string | null;
+          leadershipParagraph2: string | null;
+          leadershipText1: string | null;
+          leadershipText2: string | null;
+          leadershipImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          leadershipHeading2: string | null;
+          leadershipHeading3: string | null;
+          leadershipParagraph3: string | null;
+          leadershipLinkLabel1: string | null;
+          accountabilityParagraph1: string | null;
+          accountabilityHeading1: string | null;
+          accountabilityParagraph2: string | null;
+          accountabilityParagraph3: string | null;
+          partnershipParagraph1: string | null;
+          partnershipHeading1: string | null;
+          partnershipParagraph2: string | null;
+          partnershipLinkLabel1: string | null;
+          ctaImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          ctaParagraph1: string | null;
+          ctaHeading1: string | null;
+          ctaHeading2: string | null;
+          ctaParagraph2: string | null;
+          ctaLinkLabel1: string | null;
+          ctaLinkLabel2: string | null;
+        };
+        data: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            };
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        } | null;
+      }
+    | null
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introText1: null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          introParagraph1: null;
+          introHeading1: null;
+          introText1: null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: null;
+          introHeading1: null;
+          introText1: null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: null;
+          introHeading1: null;
+          introText1: string | null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introText1: null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introText1: null;
+          introParagraph2: string | null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introText1: string | null;
+          introParagraph2: string | null;
+          contactDetailsParagraph1: string | null;
+          contactDetailsHeading1: string | null;
+          contactDetailsHeading2: string | null;
+          contactDetailsParagraph2: string | null;
+          contactDetailsHeading3: string | null;
+          contactDetailsHeading4: string | null;
+          contactDetailsHeading5: string | null;
+          contactDetailsLinkLabel1: string | null;
+          enquiryHeading1: string | null;
+          enquiryParagraph1: string | null;
+          enquiryParagraph2: string | null;
+          enquiryParagraph3: string | null;
+          officeParagraph1: string | null;
+          officeHeading1: string | null;
+          officeParagraph2: string | null;
+          officeLinkLabel1: string | null;
+          officeLinkLabel2: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: null;
+          introHeading1: null;
+          introText1: null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+            _type: "timelineItem";
+            _key: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+            _type: "valuesItem";
+            _key: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+            _type: "approachItem";
+            _key: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: EditorialImage;
+            _type: "leadershipItem";
+            _key: string;
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        } | null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introText1: string | null;
+          introParagraph2: string | null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail?: string;
+            image: EditorialImage;
+            _type: "boardItem";
+            _key: string;
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: EditorialImage;
+            _type: "managementItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: null;
+          introHeading1: null;
+          introText1: null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+            _type: "impactOverviewItem";
+            _key: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated?: boolean;
+            _type: "sectorImpactItem";
+            _key: string;
+          }>;
+          photos: Array<{
+            name: string;
+            image: EditorialImage;
+            _type: "photosItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: null;
+          introHeading1: null;
+          introText1: null;
+          introParagraph2: null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl?: string;
+            _type: "legacyReportsItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "contactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introText1: string | null;
+          introParagraph2: string | null;
+          contactDetailsParagraph1: null;
+          contactDetailsHeading1: null;
+          contactDetailsHeading2: null;
+          contactDetailsParagraph2: null;
+          contactDetailsHeading3: null;
+          contactDetailsHeading4: null;
+          contactDetailsHeading5: null;
+          contactDetailsLinkLabel1: null;
+          enquiryHeading1: null;
+          enquiryParagraph1: null;
+          enquiryParagraph2: null;
+          enquiryParagraph3: null;
+          officeParagraph1: null;
+          officeHeading1: null;
+          officeParagraph2: null;
+          officeLinkLabel1: null;
+          officeLinkLabel2: null;
+        };
+        data: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project?: string;
+              page?: number;
+              _type: "activitiesItem";
+              _key: string;
+            }>;
+            _type: "lgaActivitiesItem";
+            _key: string;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+            _type: "officesItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | null
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: null;
+          introText2: null;
+          introLinkLabel1: null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: null;
+          introText2: null;
+          introLinkLabel1: null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: null;
+          introText2: null;
+          introLinkLabel1: null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: string | null;
+          introText2: null;
+          introLinkLabel1: null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: null;
+          introText2: null;
+          introLinkLabel1: string | null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          donateParagraph1: string | null;
+          donateHeading1: string | null;
+          donateText1: string | null;
+          donateParagraph2: string | null;
+          donateText2: string | null;
+          donateParagraph3: string | null;
+          givingParagraph1: string | null;
+          givingHeading1: string | null;
+          givingParagraph2: string | null;
+          givingLinkLabel1: string | null;
+          givingLinkLabel2: string | null;
+          introText1: string | null;
+          introText2: string | null;
+          introLinkLabel1: string | null;
+          purposeParagraph1: string | null;
+          purposeHeading1: string | null;
+          purposeParagraph2: string | null;
+          purposeLinkLabel1: string | null;
+          purposeParagraph3: string | null;
+          evidenceImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          evidenceText1: string | null;
+          evidenceParagraph1: string | null;
+          evidenceHeading1: string | null;
+          evidenceText2: string | null;
+          evidenceParagraph2: string | null;
+          evidenceLinkLabel1: string | null;
+          evidenceLinkLabel2: string | null;
+          evidenceParagraph3: string | null;
+          otherParagraph1: string | null;
+          otherHeading1: string | null;
+          otherLinkLabel1: string | null;
+          otherHeading2: string | null;
+          otherParagraph2: string | null;
+          otherLinkLabel2: string | null;
+          otherHeading3: string | null;
+          otherParagraph3: string | null;
+          otherLinkLabel3: string | null;
+          otherHeading4: string | null;
+          otherParagraph4: string | null;
+          otherLinkLabel4: string | null;
+          faqParagraph1: string | null;
+          faqHeading1: string | null;
+          faqParagraph2: string | null;
+          faqLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: null;
+          introText2: null;
+          introLinkLabel1: null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+            _type: "timelineItem";
+            _key: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+            _type: "valuesItem";
+            _key: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+            _type: "approachItem";
+            _key: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: EditorialImage;
+            _type: "leadershipItem";
+            _key: string;
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        } | null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: string | null;
+          introText2: null;
+          introLinkLabel1: string | null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail?: string;
+            image: EditorialImage;
+            _type: "boardItem";
+            _key: string;
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: EditorialImage;
+            _type: "managementItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: null;
+          introText2: null;
+          introLinkLabel1: null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+            _type: "impactOverviewItem";
+            _key: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated?: boolean;
+            _type: "sectorImpactItem";
+            _key: string;
+          }>;
+          photos: Array<{
+            name: string;
+            image: EditorialImage;
+            _type: "photosItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: null;
+          introText2: null;
+          introLinkLabel1: null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl?: string;
+            _type: "legacyReportsItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "donatePage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          donateImage1: null;
+          donateParagraph1: null;
+          donateHeading1: null;
+          donateText1: null;
+          donateParagraph2: null;
+          donateText2: null;
+          donateParagraph3: null;
+          givingParagraph1: null;
+          givingHeading1: null;
+          givingParagraph2: null;
+          givingLinkLabel1: null;
+          givingLinkLabel2: null;
+          introText1: string | null;
+          introText2: string | null;
+          introLinkLabel1: string | null;
+          purposeParagraph1: null;
+          purposeHeading1: null;
+          purposeParagraph2: null;
+          purposeLinkLabel1: null;
+          purposeParagraph3: null;
+          evidenceImage1: null;
+          evidenceText1: null;
+          evidenceParagraph1: null;
+          evidenceHeading1: null;
+          evidenceText2: null;
+          evidenceParagraph2: null;
+          evidenceLinkLabel1: null;
+          evidenceLinkLabel2: null;
+          evidenceParagraph3: null;
+          otherParagraph1: null;
+          otherHeading1: null;
+          otherLinkLabel1: null;
+          otherHeading2: null;
+          otherParagraph2: null;
+          otherLinkLabel2: null;
+          otherHeading3: null;
+          otherParagraph3: null;
+          otherLinkLabel3: null;
+          otherHeading4: null;
+          otherParagraph4: null;
+          otherLinkLabel4: null;
+          faqParagraph1: null;
+          faqHeading1: null;
+          faqParagraph2: null;
+          faqLinkLabel1: null;
+        };
+        data: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project?: string;
+              page?: number;
+              _type: "activitiesItem";
+              _key: string;
+            }>;
+            _type: "lgaActivitiesItem";
+            _key: string;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+            _type: "officesItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | null
+    | {
+        _id: "impactPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          impactParagraph1: null;
+          impactParagraph2: null;
+          impactHeading1: null;
+          impactText1: null;
+          impactText2: null;
+          impactParagraph3: null;
+          impactParagraph4: null;
+          impactLinkLabel1: null;
+          impactText3: null;
+          impactCaption1: null;
+          overviewHeading1: null;
+          overviewHeading2: null;
+          overviewParagraph1: null;
+          overviewParagraph2: null;
+          storiesParagraph1: null;
+          storiesHeading1: null;
+          storiesParagraph2: null;
+          storiesParagraph3: null;
+          storiesParagraph4: null;
+          growingCaption1: null;
+          growingCaption2: null;
+          growingParagraph1: null;
+          growingHeading1: null;
+          growingText1: null;
+          growingParagraph2: null;
+          growingParagraph3: null;
+          growingText2: null;
+          growingText3: null;
+          growingText4: null;
+          growingText5: null;
+          growingParagraph4: null;
+          growingParagraph5: null;
+          growingLinkLabel1: null;
+          womenCaption1: null;
+          womenParagraph1: null;
+          womenHeading1: null;
+          womenText1: null;
+          womenText2: null;
+          womenParagraph2: null;
+          womenText3: null;
+          womenText4: null;
+          womenText5: null;
+          womenParagraph3: null;
+          womenParagraph4: null;
+          womenLinkLabel1: null;
+          enterpriseParagraph1: null;
+          enterpriseHeading1: null;
+          enterpriseHeading2: null;
+          enterpriseText1: null;
+          enterpriseText2: null;
+          enterpriseText3: null;
+          enterpriseText4: null;
+          enterpriseParagraph2: null;
+          storiesParagraph5: null;
+          storiesLinkLabel1: null;
+          sectorsParagraph1: null;
+          sectorsParagraph2: null;
+          sectorsHeading1: null;
+          sectorsHeading2: null;
+          sectorsParagraph3: null;
+          sectorsParagraph4: null;
+          sectorsText1: null;
+          sectorsParagraph5: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityText1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          accountabilityLinkLabel1: null;
+          accountabilityLinkLabel2: null;
+          accountabilityParagraph4: null;
+          accountabilityParagraph5: null;
+          accountabilityHeading2: null;
+          accountabilityParagraph6: null;
+          accountabilityLinkLabel3: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "impactPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          impactParagraph1: null;
+          impactParagraph2: null;
+          impactHeading1: null;
+          impactText1: null;
+          impactText2: null;
+          impactParagraph3: null;
+          impactParagraph4: null;
+          impactLinkLabel1: null;
+          impactText3: null;
+          impactCaption1: null;
+          overviewHeading1: null;
+          overviewHeading2: null;
+          overviewParagraph1: null;
+          overviewParagraph2: null;
+          storiesParagraph1: null;
+          storiesHeading1: null;
+          storiesParagraph2: null;
+          storiesParagraph3: null;
+          storiesParagraph4: null;
+          growingCaption1: null;
+          growingCaption2: null;
+          growingParagraph1: null;
+          growingHeading1: null;
+          growingText1: null;
+          growingParagraph2: null;
+          growingParagraph3: null;
+          growingText2: null;
+          growingText3: null;
+          growingText4: null;
+          growingText5: null;
+          growingParagraph4: null;
+          growingParagraph5: null;
+          growingLinkLabel1: null;
+          womenCaption1: null;
+          womenParagraph1: null;
+          womenHeading1: null;
+          womenText1: null;
+          womenText2: null;
+          womenParagraph2: null;
+          womenText3: null;
+          womenText4: null;
+          womenText5: null;
+          womenParagraph3: null;
+          womenParagraph4: null;
+          womenLinkLabel1: null;
+          enterpriseParagraph1: null;
+          enterpriseHeading1: null;
+          enterpriseHeading2: null;
+          enterpriseText1: null;
+          enterpriseText2: null;
+          enterpriseText3: null;
+          enterpriseText4: null;
+          enterpriseParagraph2: null;
+          storiesParagraph5: null;
+          storiesLinkLabel1: null;
+          sectorsParagraph1: null;
+          sectorsParagraph2: null;
+          sectorsHeading1: null;
+          sectorsHeading2: null;
+          sectorsParagraph3: null;
+          sectorsParagraph4: null;
+          sectorsText1: null;
+          sectorsParagraph5: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityText1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          accountabilityLinkLabel1: null;
+          accountabilityLinkLabel2: null;
+          accountabilityParagraph4: null;
+          accountabilityParagraph5: null;
+          accountabilityHeading2: null;
+          accountabilityParagraph6: null;
+          accountabilityLinkLabel3: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "impactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          impactParagraph1: null;
+          impactParagraph2: null;
+          impactHeading1: null;
+          impactText1: null;
+          impactText2: null;
+          impactParagraph3: null;
+          impactParagraph4: null;
+          impactLinkLabel1: null;
+          impactText3: null;
+          impactCaption1: null;
+          overviewHeading1: null;
+          overviewHeading2: null;
+          overviewParagraph1: null;
+          overviewParagraph2: null;
+          storiesParagraph1: null;
+          storiesHeading1: null;
+          storiesParagraph2: null;
+          storiesParagraph3: null;
+          storiesParagraph4: null;
+          growingCaption1: null;
+          growingCaption2: null;
+          growingParagraph1: null;
+          growingHeading1: null;
+          growingText1: null;
+          growingParagraph2: null;
+          growingParagraph3: null;
+          growingText2: null;
+          growingText3: null;
+          growingText4: null;
+          growingText5: null;
+          growingParagraph4: null;
+          growingParagraph5: null;
+          growingLinkLabel1: null;
+          womenCaption1: null;
+          womenParagraph1: null;
+          womenHeading1: null;
+          womenText1: null;
+          womenText2: null;
+          womenParagraph2: null;
+          womenText3: null;
+          womenText4: null;
+          womenText5: null;
+          womenParagraph3: null;
+          womenParagraph4: null;
+          womenLinkLabel1: null;
+          enterpriseParagraph1: null;
+          enterpriseHeading1: null;
+          enterpriseHeading2: null;
+          enterpriseText1: null;
+          enterpriseText2: null;
+          enterpriseText3: null;
+          enterpriseText4: null;
+          enterpriseParagraph2: null;
+          storiesParagraph5: null;
+          storiesLinkLabel1: null;
+          sectorsParagraph1: null;
+          sectorsParagraph2: null;
+          sectorsHeading1: null;
+          sectorsHeading2: null;
+          sectorsParagraph3: null;
+          sectorsParagraph4: null;
+          sectorsText1: null;
+          sectorsParagraph5: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityText1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          accountabilityLinkLabel1: null;
+          accountabilityLinkLabel2: null;
+          accountabilityParagraph4: null;
+          accountabilityParagraph5: null;
+          accountabilityHeading2: null;
+          accountabilityParagraph6: null;
+          accountabilityLinkLabel3: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "impactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          impactParagraph1: string | null;
+          impactParagraph2: string | null;
+          impactHeading1: string | null;
+          impactText1: string | null;
+          impactText2: string | null;
+          impactParagraph3: string | null;
+          impactParagraph4: string | null;
+          impactLinkLabel1: string | null;
+          impactText3: string | null;
+          impactCaption1: string | null;
+          overviewHeading1: string | null;
+          overviewHeading2: string | null;
+          overviewParagraph1: string | null;
+          overviewParagraph2: string | null;
+          storiesParagraph1: string | null;
+          storiesHeading1: string | null;
+          storiesParagraph2: string | null;
+          storiesParagraph3: string | null;
+          storiesParagraph4: string | null;
+          growingCaption1: string | null;
+          growingCaption2: string | null;
+          growingParagraph1: string | null;
+          growingHeading1: string | null;
+          growingText1: string | null;
+          growingParagraph2: string | null;
+          growingParagraph3: string | null;
+          growingText2: string | null;
+          growingText3: string | null;
+          growingText4: string | null;
+          growingText5: string | null;
+          growingParagraph4: string | null;
+          growingParagraph5: string | null;
+          growingLinkLabel1: string | null;
+          womenCaption1: string | null;
+          womenParagraph1: string | null;
+          womenHeading1: string | null;
+          womenText1: string | null;
+          womenText2: string | null;
+          womenParagraph2: string | null;
+          womenText3: string | null;
+          womenText4: string | null;
+          womenText5: string | null;
+          womenParagraph3: string | null;
+          womenParagraph4: string | null;
+          womenLinkLabel1: string | null;
+          enterpriseParagraph1: string | null;
+          enterpriseHeading1: string | null;
+          enterpriseHeading2: string | null;
+          enterpriseText1: string | null;
+          enterpriseText2: string | null;
+          enterpriseText3: string | null;
+          enterpriseText4: string | null;
+          enterpriseParagraph2: string | null;
+          storiesParagraph5: string | null;
+          storiesLinkLabel1: string | null;
+          sectorsParagraph1: string | null;
+          sectorsParagraph2: string | null;
+          sectorsHeading1: string | null;
+          sectorsHeading2: string | null;
+          sectorsParagraph3: string | null;
+          sectorsParagraph4: string | null;
+          sectorsText1: string | null;
+          sectorsParagraph5: string | null;
+          coverageParagraph1: string | null;
+          coverageHeading1: string | null;
+          coverageParagraph2: string | null;
+          coverageParagraph3: string | null;
+          coverageLinkLabel1: string | null;
+          accountabilityParagraph1: string | null;
+          accountabilityHeading1: string | null;
+          accountabilityText1: string | null;
+          accountabilityParagraph2: string | null;
+          accountabilityParagraph3: string | null;
+          accountabilityLinkLabel1: string | null;
+          accountabilityLinkLabel2: string | null;
+          accountabilityParagraph4: string | null;
+          accountabilityParagraph5: string | null;
+          accountabilityHeading2: string | null;
+          accountabilityParagraph6: string | null;
+          accountabilityLinkLabel3: string | null;
+        };
+        data: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated: boolean | null;
+          }>;
+          photos: Array<{
+            name: string;
+            image: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            };
+          }>;
+        } | null;
+      }
+    | {
+        _id: "impactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          impactParagraph1: null;
+          impactParagraph2: null;
+          impactHeading1: null;
+          impactText1: null;
+          impactText2: null;
+          impactParagraph3: null;
+          impactParagraph4: null;
+          impactLinkLabel1: null;
+          impactText3: null;
+          impactCaption1: null;
+          overviewHeading1: null;
+          overviewHeading2: null;
+          overviewParagraph1: null;
+          overviewParagraph2: null;
+          storiesParagraph1: null;
+          storiesHeading1: null;
+          storiesParagraph2: null;
+          storiesParagraph3: null;
+          storiesParagraph4: null;
+          growingCaption1: null;
+          growingCaption2: null;
+          growingParagraph1: null;
+          growingHeading1: null;
+          growingText1: null;
+          growingParagraph2: null;
+          growingParagraph3: null;
+          growingText2: null;
+          growingText3: null;
+          growingText4: null;
+          growingText5: null;
+          growingParagraph4: null;
+          growingParagraph5: null;
+          growingLinkLabel1: null;
+          womenCaption1: null;
+          womenParagraph1: null;
+          womenHeading1: null;
+          womenText1: null;
+          womenText2: null;
+          womenParagraph2: null;
+          womenText3: null;
+          womenText4: null;
+          womenText5: null;
+          womenParagraph3: null;
+          womenParagraph4: null;
+          womenLinkLabel1: null;
+          enterpriseParagraph1: null;
+          enterpriseHeading1: null;
+          enterpriseHeading2: null;
+          enterpriseText1: null;
+          enterpriseText2: null;
+          enterpriseText3: null;
+          enterpriseText4: null;
+          enterpriseParagraph2: null;
+          storiesParagraph5: null;
+          storiesLinkLabel1: null;
+          sectorsParagraph1: null;
+          sectorsParagraph2: null;
+          sectorsHeading1: null;
+          sectorsHeading2: null;
+          sectorsParagraph3: null;
+          sectorsParagraph4: null;
+          sectorsText1: null;
+          sectorsParagraph5: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityText1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          accountabilityLinkLabel1: null;
+          accountabilityLinkLabel2: null;
+          accountabilityParagraph4: null;
+          accountabilityParagraph5: null;
+          accountabilityHeading2: null;
+          accountabilityParagraph6: null;
+          accountabilityLinkLabel3: null;
+        };
+        data: {
+          impactYear: null;
+          impactOverview: null;
+          sectorImpact: null;
+          photos: null;
+        } | null;
+      }
+    | {
+        _id: "impactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          impactParagraph1: null;
+          impactParagraph2: null;
+          impactHeading1: null;
+          impactText1: null;
+          impactText2: null;
+          impactParagraph3: null;
+          impactParagraph4: null;
+          impactLinkLabel1: null;
+          impactText3: null;
+          impactCaption1: null;
+          overviewHeading1: null;
+          overviewHeading2: null;
+          overviewParagraph1: null;
+          overviewParagraph2: null;
+          storiesParagraph1: null;
+          storiesHeading1: null;
+          storiesParagraph2: null;
+          storiesParagraph3: null;
+          storiesParagraph4: null;
+          growingCaption1: null;
+          growingCaption2: null;
+          growingParagraph1: null;
+          growingHeading1: null;
+          growingText1: null;
+          growingParagraph2: null;
+          growingParagraph3: null;
+          growingText2: null;
+          growingText3: null;
+          growingText4: null;
+          growingText5: null;
+          growingParagraph4: null;
+          growingParagraph5: null;
+          growingLinkLabel1: null;
+          womenCaption1: null;
+          womenParagraph1: null;
+          womenHeading1: null;
+          womenText1: null;
+          womenText2: null;
+          womenParagraph2: null;
+          womenText3: null;
+          womenText4: null;
+          womenText5: null;
+          womenParagraph3: null;
+          womenParagraph4: null;
+          womenLinkLabel1: null;
+          enterpriseParagraph1: null;
+          enterpriseHeading1: null;
+          enterpriseHeading2: null;
+          enterpriseText1: null;
+          enterpriseText2: null;
+          enterpriseText3: null;
+          enterpriseText4: null;
+          enterpriseParagraph2: null;
+          storiesParagraph5: null;
+          storiesLinkLabel1: null;
+          sectorsParagraph1: null;
+          sectorsParagraph2: null;
+          sectorsHeading1: null;
+          sectorsHeading2: null;
+          sectorsParagraph3: null;
+          sectorsParagraph4: null;
+          sectorsText1: null;
+          sectorsParagraph5: null;
+          coverageParagraph1: string | null;
+          coverageHeading1: string | null;
+          coverageParagraph2: string | null;
+          coverageParagraph3: string | null;
+          coverageLinkLabel1: null;
+          accountabilityParagraph1: null;
+          accountabilityHeading1: null;
+          accountabilityText1: null;
+          accountabilityParagraph2: null;
+          accountabilityParagraph3: null;
+          accountabilityLinkLabel1: null;
+          accountabilityLinkLabel2: null;
+          accountabilityParagraph4: null;
+          accountabilityParagraph5: null;
+          accountabilityHeading2: null;
+          accountabilityParagraph6: null;
+          accountabilityLinkLabel3: null;
+        };
+        data: {
+          impactYear: null;
+          impactOverview: null;
+          sectorImpact: null;
+          photos: null;
+        } | null;
+      }
+    | {
+        _id: "impactPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          impactParagraph1: null;
+          impactParagraph2: null;
+          impactHeading1: null;
+          impactText1: null;
+          impactText2: null;
+          impactParagraph3: null;
+          impactParagraph4: null;
+          impactLinkLabel1: null;
+          impactText3: null;
+          impactCaption1: null;
+          overviewHeading1: null;
+          overviewHeading2: null;
+          overviewParagraph1: null;
+          overviewParagraph2: null;
+          storiesParagraph1: null;
+          storiesHeading1: null;
+          storiesParagraph2: null;
+          storiesParagraph3: null;
+          storiesParagraph4: null;
+          growingCaption1: null;
+          growingCaption2: null;
+          growingParagraph1: null;
+          growingHeading1: null;
+          growingText1: null;
+          growingParagraph2: null;
+          growingParagraph3: null;
+          growingText2: null;
+          growingText3: null;
+          growingText4: null;
+          growingText5: null;
+          growingParagraph4: null;
+          growingParagraph5: null;
+          growingLinkLabel1: null;
+          womenCaption1: null;
+          womenParagraph1: null;
+          womenHeading1: null;
+          womenText1: null;
+          womenText2: null;
+          womenParagraph2: null;
+          womenText3: null;
+          womenText4: null;
+          womenText5: null;
+          womenParagraph3: null;
+          womenParagraph4: null;
+          womenLinkLabel1: null;
+          enterpriseParagraph1: null;
+          enterpriseHeading1: null;
+          enterpriseHeading2: null;
+          enterpriseText1: null;
+          enterpriseText2: null;
+          enterpriseText3: null;
+          enterpriseText4: null;
+          enterpriseParagraph2: null;
+          storiesParagraph5: null;
+          storiesLinkLabel1: null;
+          sectorsParagraph1: null;
+          sectorsParagraph2: null;
+          sectorsHeading1: null;
+          sectorsHeading2: null;
+          sectorsParagraph3: null;
+          sectorsParagraph4: null;
+          sectorsText1: null;
+          sectorsParagraph5: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageLinkLabel1: null;
+          accountabilityParagraph1: string | null;
+          accountabilityHeading1: string | null;
+          accountabilityText1: null;
+          accountabilityParagraph2: string | null;
+          accountabilityParagraph3: string | null;
+          accountabilityLinkLabel1: null;
+          accountabilityLinkLabel2: null;
+          accountabilityParagraph4: null;
+          accountabilityParagraph5: null;
+          accountabilityHeading2: null;
+          accountabilityParagraph6: null;
+          accountabilityLinkLabel3: null;
+        };
+        data: {
+          impactYear: null;
+          impactOverview: null;
+          sectorImpact: null;
+          photos: null;
+        } | null;
+      }
+    | null
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          programmesImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          programmesParagraph1: string | null;
+          programmesHeading1: string | null;
+          programmesText1: string | null;
+          programmesParagraph2: string | null;
+          programmesLinkLabel1: string | null;
+          programmesParagraph3: string | null;
+          areasParagraph1: string | null;
+          areasHeading1: string | null;
+          areasHeading2: string | null;
+          areasParagraph2: string | null;
+          areasParagraph3: string | null;
+          areasText1: string | null;
+          areasParagraph4: string | null;
+          areasParagraph5: string | null;
+          areasParagraph6: string | null;
+          areasText2: string | null;
+          areasLinkLabel1: string | null;
+          areasHeading3: string | null;
+          areasParagraph7: string | null;
+          areasLinkLabel2: string | null;
+          areasHeading4: string | null;
+          areasLinkLabel3: string | null;
+          areasParagraph8: string | null;
+          areasParagraph9: string | null;
+          areasLinkLabel4: string | null;
+          areasParagraph10: string | null;
+          areasParagraph11: string | null;
+          areasParagraph12: string | null;
+          areasLinkLabel5: string | null;
+          approachImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          approachCaption1: string | null;
+          approachParagraph1: string | null;
+          approachHeading1: string | null;
+          approachText1: string | null;
+          approachParagraph2: string | null;
+          approachHeading2: string | null;
+          approachParagraph3: string | null;
+          approachHeading3: string | null;
+          approachParagraph4: string | null;
+          approachLinkLabel1: string | null;
+          actionParagraph1: string | null;
+          actionHeading1: string | null;
+          actionText1: string | null;
+          actionParagraph2: string | null;
+          actionLinkLabel1: string | null;
+          actionLinkLabel2: string | null;
+          actionLinkLabel3: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: string | null;
+          approachHeading1: string | null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: string | null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+            _type: "timelineItem";
+            _key: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+            _type: "valuesItem";
+            _key: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+            _type: "approachItem";
+            _key: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: EditorialImage;
+            _type: "leadershipItem";
+            _key: string;
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        } | null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail?: string;
+            image: EditorialImage;
+            _type: "boardItem";
+            _key: string;
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: EditorialImage;
+            _type: "managementItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+            _type: "impactOverviewItem";
+            _key: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated?: boolean;
+            _type: "sectorImpactItem";
+            _key: string;
+          }>;
+          photos: Array<{
+            name: string;
+            image: EditorialImage;
+            _type: "photosItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl?: string;
+            _type: "legacyReportsItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "programmesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          programmesImage1: null;
+          programmesParagraph1: null;
+          programmesHeading1: null;
+          programmesText1: null;
+          programmesParagraph2: null;
+          programmesLinkLabel1: null;
+          programmesParagraph3: null;
+          areasParagraph1: null;
+          areasHeading1: null;
+          areasHeading2: null;
+          areasParagraph2: null;
+          areasParagraph3: null;
+          areasText1: null;
+          areasParagraph4: null;
+          areasParagraph5: null;
+          areasParagraph6: null;
+          areasText2: null;
+          areasLinkLabel1: null;
+          areasHeading3: null;
+          areasParagraph7: null;
+          areasLinkLabel2: null;
+          areasHeading4: null;
+          areasLinkLabel3: null;
+          areasParagraph8: null;
+          areasParagraph9: null;
+          areasLinkLabel4: null;
+          areasParagraph10: null;
+          areasParagraph11: null;
+          areasParagraph12: null;
+          areasLinkLabel5: null;
+          approachImage1: null;
+          approachCaption1: null;
+          approachParagraph1: null;
+          approachHeading1: null;
+          approachText1: null;
+          approachParagraph2: null;
+          approachHeading2: null;
+          approachParagraph3: null;
+          approachHeading3: null;
+          approachParagraph4: null;
+          approachLinkLabel1: null;
+          actionParagraph1: null;
+          actionHeading1: null;
+          actionText1: null;
+          actionParagraph2: null;
+          actionLinkLabel1: null;
+          actionLinkLabel2: null;
+          actionLinkLabel3: null;
+        };
+        data: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project?: string;
+              page?: number;
+              _type: "activitiesItem";
+              _key: string;
+            }>;
+            _type: "lgaActivitiesItem";
+            _key: string;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+            _type: "officesItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | null
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: null;
+          introHeading1: null;
+          introParagraph1: null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: null;
+          introHeading1: null;
+          introParagraph1: null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: null;
+          introHeading1: null;
+          introParagraph1: null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: string | null;
+          introHeading1: null;
+          introParagraph1: null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: null;
+          introHeading1: string | null;
+          introParagraph1: string | null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: string | null;
+          introHeading1: string | null;
+          introParagraph1: string | null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: string | null;
+          projectsHeading1: string | null;
+          projectsHeading2: string | null;
+          projectsText1: string | null;
+          projectsParagraph2: string | null;
+          introLinkLabel1: string | null;
+          introHeading1: string | null;
+          introParagraph1: string | null;
+          projectImpactHeading1: string | null;
+          projectImpactText1: string | null;
+          projectImpactParagraph1: string | null;
+          projectImpactLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: null;
+          introHeading1: null;
+          introParagraph1: null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+            _type: "timelineItem";
+            _key: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+            _type: "valuesItem";
+            _key: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+            _type: "approachItem";
+            _key: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: EditorialImage;
+            _type: "leadershipItem";
+            _key: string;
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        } | null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: string | null;
+          introHeading1: string | null;
+          introParagraph1: string | null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail?: string;
+            image: EditorialImage;
+            _type: "boardItem";
+            _key: string;
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: EditorialImage;
+            _type: "managementItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: null;
+          introHeading1: null;
+          introParagraph1: null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+            _type: "impactOverviewItem";
+            _key: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated?: boolean;
+            _type: "sectorImpactItem";
+            _key: string;
+          }>;
+          photos: Array<{
+            name: string;
+            image: EditorialImage;
+            _type: "photosItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: null;
+          introHeading1: null;
+          introParagraph1: null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl?: string;
+            _type: "legacyReportsItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "projectsPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          projectsParagraph1: null;
+          projectsHeading1: null;
+          projectsHeading2: null;
+          projectsText1: null;
+          projectsParagraph2: null;
+          introLinkLabel1: string | null;
+          introHeading1: string | null;
+          introParagraph1: string | null;
+          projectImpactHeading1: null;
+          projectImpactText1: null;
+          projectImpactParagraph1: null;
+          projectImpactLinkLabel1: null;
+        };
+        data: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project?: string;
+              page?: number;
+              _type: "activitiesItem";
+              _key: string;
+            }>;
+            _type: "lgaActivitiesItem";
+            _key: string;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+            _type: "officesItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | null
+    | {
+        _id: "resourcesPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          resourcesParagraph1: null;
+          resourcesHeading1: null;
+          resourcesText1: null;
+          resourcesParagraph2: null;
+          featuredReportParagraph1: null;
+          featuredReportLinkLabel1: null;
+          featuredReportLinkLabel2: null;
+          featuredReportText1: null;
+          featuredReportText2: null;
+          libraryHeading1: null;
+          libraryParagraph1: null;
+          libraryText1: null;
+          libraryText2: null;
+          libraryParagraph2: null;
+          libraryHeading2: null;
+          libraryParagraph3: null;
+          libraryParagraph4: null;
+          libraryParagraph5: null;
+          libraryLinkLabel1: null;
+          mediaParagraph1: null;
+          mediaHeading1: null;
+          mediaParagraph2: null;
+          mediaLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "resourcesPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          resourcesParagraph1: null;
+          resourcesHeading1: null;
+          resourcesText1: null;
+          resourcesParagraph2: null;
+          featuredReportParagraph1: null;
+          featuredReportLinkLabel1: null;
+          featuredReportLinkLabel2: null;
+          featuredReportText1: null;
+          featuredReportText2: null;
+          libraryHeading1: null;
+          libraryParagraph1: null;
+          libraryText1: null;
+          libraryText2: null;
+          libraryParagraph2: null;
+          libraryHeading2: null;
+          libraryParagraph3: null;
+          libraryParagraph4: null;
+          libraryParagraph5: null;
+          libraryLinkLabel1: null;
+          mediaParagraph1: null;
+          mediaHeading1: null;
+          mediaParagraph2: null;
+          mediaLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "resourcesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          resourcesParagraph1: null;
+          resourcesHeading1: null;
+          resourcesText1: null;
+          resourcesParagraph2: null;
+          featuredReportParagraph1: null;
+          featuredReportLinkLabel1: null;
+          featuredReportLinkLabel2: null;
+          featuredReportText1: null;
+          featuredReportText2: null;
+          libraryHeading1: null;
+          libraryParagraph1: null;
+          libraryText1: null;
+          libraryText2: null;
+          libraryParagraph2: null;
+          libraryHeading2: null;
+          libraryParagraph3: null;
+          libraryParagraph4: null;
+          libraryParagraph5: null;
+          libraryLinkLabel1: null;
+          mediaParagraph1: null;
+          mediaHeading1: null;
+          mediaParagraph2: null;
+          mediaLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "resourcesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          resourcesParagraph1: string | null;
+          resourcesHeading1: string | null;
+          resourcesText1: string | null;
+          resourcesParagraph2: string | null;
+          featuredReportParagraph1: string | null;
+          featuredReportLinkLabel1: string | null;
+          featuredReportLinkLabel2: string | null;
+          featuredReportText1: string | null;
+          featuredReportText2: string | null;
+          libraryHeading1: string | null;
+          libraryParagraph1: string | null;
+          libraryText1: string | null;
+          libraryText2: string | null;
+          libraryParagraph2: string | null;
+          libraryHeading2: string | null;
+          libraryParagraph3: string | null;
+          libraryParagraph4: string | null;
+          libraryParagraph5: string | null;
+          libraryLinkLabel1: string | null;
+          mediaParagraph1: string | null;
+          mediaHeading1: string | null;
+          mediaParagraph2: string | null;
+          mediaLinkLabel1: string | null;
+        };
+        data: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl: string | null;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "resourcesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          resourcesParagraph1: null;
+          resourcesHeading1: null;
+          resourcesText1: null;
+          resourcesParagraph2: null;
+          featuredReportParagraph1: null;
+          featuredReportLinkLabel1: null;
+          featuredReportLinkLabel2: null;
+          featuredReportText1: null;
+          featuredReportText2: null;
+          libraryHeading1: null;
+          libraryParagraph1: null;
+          libraryText1: null;
+          libraryText2: null;
+          libraryParagraph2: null;
+          libraryHeading2: null;
+          libraryParagraph3: null;
+          libraryParagraph4: null;
+          libraryParagraph5: null;
+          libraryLinkLabel1: null;
+          mediaParagraph1: null;
+          mediaHeading1: null;
+          mediaParagraph2: null;
+          mediaLinkLabel1: null;
+        };
+        data: {
+          legacyReports: null;
+        } | null;
+      }
+    | null
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introHeading2: null;
+          introParagraph2: string | null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          updatesParagraph1: string | null;
+          updatesHeading1: string | null;
+          updatesText1: string | null;
+          updatesParagraph2: string | null;
+          updatesParagraph3: string | null;
+          updatesLibraryParagraph1: string | null;
+          updatesLibraryHeading1: string | null;
+          updatesLibraryLinkLabel1: string | null;
+          updatesLibraryParagraph2: string | null;
+          updatesLibraryParagraph3: string | null;
+          updatesLibraryText1: string | null;
+          updatesLibraryText2: string | null;
+          updatesLibraryText3: string | null;
+          updatesLibraryText4: string | null;
+          updatesLibraryText5: string | null;
+          updatesLibraryText6: string | null;
+          updatesLibraryHeading2: string | null;
+          updatesLibraryParagraph4: string | null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introHeading2: string | null;
+          introParagraph2: string | null;
+          introLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+            _type: "timelineItem";
+            _key: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+            _type: "valuesItem";
+            _key: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+            _type: "approachItem";
+            _key: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: EditorialImage;
+            _type: "leadershipItem";
+            _key: string;
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        } | null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introHeading2: string | null;
+          introParagraph2: string | null;
+          introLinkLabel1: string | null;
+        };
+        data: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail?: string;
+            image: EditorialImage;
+            _type: "boardItem";
+            _key: string;
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: EditorialImage;
+            _type: "managementItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+            _type: "impactOverviewItem";
+            _key: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated?: boolean;
+            _type: "sectorImpactItem";
+            _key: string;
+          }>;
+          photos: Array<{
+            name: string;
+            image: EditorialImage;
+            _type: "photosItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introHeading2: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl?: string;
+            _type: "legacyReportsItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "storiesPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          updatesImage1: null;
+          updatesParagraph1: null;
+          updatesHeading1: null;
+          updatesText1: null;
+          updatesParagraph2: null;
+          updatesParagraph3: null;
+          updatesLibraryParagraph1: null;
+          updatesLibraryHeading1: null;
+          updatesLibraryLinkLabel1: null;
+          updatesLibraryParagraph2: null;
+          updatesLibraryParagraph3: null;
+          updatesLibraryText1: null;
+          updatesLibraryText2: null;
+          updatesLibraryText3: null;
+          updatesLibraryText4: null;
+          updatesLibraryText5: null;
+          updatesLibraryText6: null;
+          updatesLibraryHeading2: null;
+          updatesLibraryParagraph4: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introHeading2: null;
+          introParagraph2: string | null;
+          introLinkLabel1: string | null;
+        };
+        data: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project?: string;
+              page?: number;
+              _type: "activitiesItem";
+              _key: string;
+            }>;
+            _type: "lgaActivitiesItem";
+            _key: string;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+            _type: "officesItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | null
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: null;
+          introParagraph1: null;
+          introLinkLabel1: null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: null;
+          introHeading1: null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: null;
+          introParagraph1: null;
+          introLinkLabel1: null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: null;
+          introHeading1: null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: null;
+          introParagraph1: null;
+          introLinkLabel1: null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: null;
+          introHeading1: null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: string | null;
+          introParagraph1: null;
+          introLinkLabel1: string | null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: null;
+          introHeading1: null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: string | null;
+          introParagraph1: string | null;
+          introLinkLabel1: null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: string | null;
+          introHeading1: string | null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: null;
+          introParagraph1: string | null;
+          introLinkLabel1: string | null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: null;
+          introHeading1: string | null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: null;
+          introParagraph1: string | null;
+          introLinkLabel1: string | null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: string | null;
+          introHeading1: string | null;
+          introHeading2: string | null;
+          introLinkLabel2: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: string | null;
+          teamHeading1: string | null;
+          teamText1: string | null;
+          teamParagraph2: string | null;
+          teamLinkLabel1: string | null;
+          teamImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          teamCaption1: string | null;
+          introText1: string | null;
+          introParagraph1: string | null;
+          introLinkLabel1: string | null;
+          boardParagraph1: string | null;
+          boardHeading1: string | null;
+          boardParagraph2: string | null;
+          boardParagraph3: string | null;
+          managementParagraph1: string | null;
+          managementHeading1: string | null;
+          managementParagraph2: string | null;
+          managementParagraph3: string | null;
+          peopleImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          peopleCaption1: string | null;
+          peopleParagraph1: string | null;
+          peopleHeading1: string | null;
+          peopleParagraph2: string | null;
+          peopleText1: string | null;
+          peopleText2: string | null;
+          peopleText3: string | null;
+          peopleText4: string | null;
+          peopleParagraph3: string | null;
+          peopleLinkLabel1: string | null;
+          introParagraph2: string | null;
+          introHeading1: string | null;
+          introHeading2: string | null;
+          introLinkLabel2: string | null;
+        };
+        data: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail: string | null;
+            image: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            };
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            };
+          }>;
+        } | null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: null;
+          introParagraph1: null;
+          introLinkLabel1: null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: null;
+          introHeading1: null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: {
+          board: null;
+          management: null;
+        } | null;
+      }
+    | {
+        _id: "teamPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          teamParagraph1: null;
+          teamHeading1: null;
+          teamText1: null;
+          teamParagraph2: null;
+          teamLinkLabel1: null;
+          teamImage1: null;
+          teamCaption1: null;
+          introText1: string | null;
+          introParagraph1: string | null;
+          introLinkLabel1: string | null;
+          boardParagraph1: null;
+          boardHeading1: null;
+          boardParagraph2: null;
+          boardParagraph3: null;
+          managementParagraph1: null;
+          managementHeading1: null;
+          managementParagraph2: null;
+          managementParagraph3: null;
+          peopleImage1: null;
+          peopleCaption1: null;
+          peopleParagraph1: null;
+          peopleHeading1: null;
+          peopleParagraph2: null;
+          peopleText1: null;
+          peopleText2: null;
+          peopleText3: null;
+          peopleText4: null;
+          peopleParagraph3: null;
+          peopleLinkLabel1: null;
+          introParagraph2: string | null;
+          introHeading1: string | null;
+          introHeading2: null;
+          introLinkLabel2: null;
+        };
+        data: {
+          board: null;
+          management: null;
+        } | null;
+      }
+    | null
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: null;
+          seoTitle: null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string;
+          seoTitle: string;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: string | null;
+          introText2: string | null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introParagraph2: null;
+          introLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: string | null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introParagraph2: string | null;
+          introLinkLabel1: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introParagraph2: null;
+          introLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introParagraph2: string | null;
+          introLinkLabel1: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: string | null;
+          whereWorkHeading1: string | null;
+          whereWorkText1: string | null;
+          whereWorkParagraph2: string | null;
+          whereWorkLinkLabel1: string | null;
+          whereWorkImage1: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          whereWorkCaption1: string | null;
+          introText1: string | null;
+          introText2: string | null;
+          introText3: string | null;
+          introText4: string | null;
+          introText5: string | null;
+          introText6: string | null;
+          introText7: string | null;
+          coverageParagraph1: string | null;
+          coverageHeading1: string | null;
+          coverageParagraph2: string | null;
+          coverageParagraph3: string | null;
+          coverageText1: string | null;
+          coverageParagraph4: string | null;
+          basesParagraph1: string | null;
+          basesHeading1: string | null;
+          basesLinkLabel1: string | null;
+          basesParagraph2: string | null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introParagraph2: string | null;
+          introLinkLabel1: string | null;
+        };
+        data: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project: string | null;
+              page: number | null;
+            }>;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: {
+          lgaActivities: null;
+          offices: null;
+        } | null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: string | null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: null;
+          coverageHeading1: null;
+          coverageParagraph2: null;
+          coverageParagraph3: null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: string | null;
+          introHeading1: string | null;
+          introParagraph2: string | null;
+          introLinkLabel1: string | null;
+        };
+        data: {
+          lgaActivities: null;
+          offices: null;
+        } | null;
+      }
+    | {
+        _id: "whereWeWorkPage";
+        fields: {
+          seoDescription: string | null;
+          seoTitle: string | null;
+          whereWorkParagraph1: null;
+          whereWorkHeading1: null;
+          whereWorkText1: null;
+          whereWorkParagraph2: null;
+          whereWorkLinkLabel1: null;
+          whereWorkImage1: null;
+          whereWorkCaption1: null;
+          introText1: null;
+          introText2: null;
+          introText3: null;
+          introText4: null;
+          introText5: null;
+          introText6: null;
+          introText7: null;
+          coverageParagraph1: string | null;
+          coverageHeading1: string | null;
+          coverageParagraph2: string | null;
+          coverageParagraph3: string | null;
+          coverageText1: null;
+          coverageParagraph4: null;
+          basesParagraph1: null;
+          basesHeading1: null;
+          basesLinkLabel1: null;
+          basesParagraph2: null;
+          introParagraph1: null;
+          introHeading1: null;
+          introParagraph2: null;
+          introLinkLabel1: null;
+        };
+        data: {
+          lgaActivities: null;
+          offices: null;
+        } | null;
+      }
+    | null
+  >;
   settings:
     | {
         organisationName: null;
@@ -552,6 +6434,24 @@ export type CONTENT_QUERY_RESULT = {
       _type: "block";
       _key: string;
     }> | null;
+    details: {
+      projectSlugs: Array<string> | null;
+      interventions: Array<string>;
+      source: string;
+      locations: Array<{
+        label: string;
+        detail: string;
+        source: string;
+      }>;
+      locationNote: string | null;
+      projectReach: {
+        value: string;
+        label: string;
+        description: string;
+        source: string;
+        project: string;
+      } | null;
+    } | null;
     sortOrder: number | null;
     seoTitle: string | null;
     seoDescription: string | null;
@@ -584,6 +6484,51 @@ export type CONTENT_QUERY_RESULT = {
       _type: "block";
       _key: string;
     }> | null;
+    profile: {
+      donor: string;
+      partners: string | null;
+      overview: Array<string>;
+      context: string;
+      activities: Array<{
+        title: string;
+        text: string;
+      }>;
+      facts: Array<{
+        value: string;
+        label: string;
+      }> | null;
+      resultsIntro: string;
+      stories: Array<{
+        title: string;
+        text: string;
+        source: string;
+      }>;
+      overviewImage: {
+        url: string | null;
+        assetId: string | null;
+        alt: string;
+      } | null;
+      overviewCaption: string | null;
+      gallery: Array<{
+        image: {
+          url: string | null;
+          assetId: string | null;
+          alt: string;
+        };
+        caption: string;
+      }>;
+      sources: Array<{
+        title: string;
+        detail: string;
+        url: string | null;
+      }>;
+      storyNote: string | null;
+      photoNote: string | null;
+      reviewNote: string | null;
+      outcomes: Array<string> | null;
+    } | null;
+    reportingYear: number | null;
+    imageCaption: string | null;
     location: string | null;
     status: "completed" | "ongoing" | null;
     startDate: string | null;
@@ -663,8 +6608,223 @@ export type CONTENT_QUERY_RESULT = {
 
 // Source: ../src/lib/queries.ts
 // Variable: EXPORT_QUERY
-// Query: *[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)
+// Query: *[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)
 export type EXPORT_QUERY_RESULT = Array<
+  | {
+      _id: string;
+      _type: "aboutPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      aboutImage1?: EditorialImage;
+      aboutParagraph1?: string;
+      aboutHeading1?: string;
+      aboutText1?: string;
+      aboutText2?: string;
+      aboutParagraph2?: string;
+      whoParagraph1?: string;
+      whoHeading1?: string;
+      whoHeading2?: string;
+      whoParagraph2?: string;
+      whoParagraph3?: string;
+      whoParagraph4?: string;
+      whoText1?: string;
+      whoImage1?: EditorialImage;
+      whoCaption1?: string;
+      whoText2?: string;
+      whoText3?: string;
+      storyParagraph1?: string;
+      storyHeading1?: string;
+      storyHeading2?: string;
+      storyParagraph2?: string;
+      guidesParagraph1?: string;
+      guidesHeading1?: string;
+      guidesHeading2?: string;
+      guidesHeading3?: string;
+      guidesParagraph2?: string;
+      guidesHeading4?: string;
+      guidesParagraph3?: string;
+      guidesHeading5?: string;
+      identityParagraph1?: string;
+      identityHeading1?: string;
+      identityHeading2?: string;
+      identityParagraph2?: string;
+      identityParagraph3?: string;
+      identityText1?: string;
+      identityImage1?: EditorialImage;
+      identityCaption1?: string;
+      whereParagraph1?: string;
+      whereHeading1?: string;
+      whereParagraph2?: string;
+      whereCaption1?: string;
+      whereLinkLabel1?: string;
+      whereHeading2?: string;
+      whereLinkLabel2?: string;
+      whereParagraph3?: string;
+      whereParagraph4?: string;
+      whereLinkLabel3?: string;
+      approachParagraph1?: string;
+      approachHeading1?: string;
+      approachHeading2?: string;
+      leadershipParagraph1?: string;
+      leadershipHeading1?: string;
+      leadershipParagraph2?: string;
+      leadershipText1?: string;
+      leadershipText2?: string;
+      leadershipImage1?: EditorialImage;
+      leadershipHeading2?: string;
+      leadershipHeading3?: string;
+      leadershipParagraph3?: string;
+      leadershipLinkLabel1?: string;
+      accountabilityParagraph1?: string;
+      accountabilityHeading1?: string;
+      accountabilityParagraph2?: string;
+      accountabilityParagraph3?: string;
+      partnershipParagraph1?: string;
+      partnershipHeading1?: string;
+      partnershipParagraph2?: string;
+      partnershipLinkLabel1?: string;
+      ctaImage1?: EditorialImage;
+      ctaParagraph1?: string;
+      ctaHeading1?: string;
+      ctaHeading2?: string;
+      ctaParagraph2?: string;
+      ctaLinkLabel1?: string;
+      ctaLinkLabel2?: string;
+      data?: {
+        timeline: Array<{
+          year: string;
+          title: string;
+          text: string;
+          _type: "timelineItem";
+          _key: string;
+        }>;
+        values: Array<{
+          title: string;
+          text: string;
+          _type: "valuesItem";
+          _key: string;
+        }>;
+        approach: Array<{
+          title: string;
+          text: string;
+          _type: "approachItem";
+          _key: string;
+        }>;
+        leadership: Array<{
+          name: string;
+          role: string;
+          detail: string;
+          image: EditorialImage;
+          _type: "leadershipItem";
+          _key: string;
+        }>;
+        accountability: {
+          safeguarding: {
+            title: string;
+            text: string;
+          };
+          community: {
+            title: string;
+            text: string;
+          };
+          feedback: {
+            title: string;
+            text: string;
+          };
+          transparency: {
+            title: string;
+            text: string;
+          };
+        };
+      };
+    }
+  | {
+      _id: string;
+      _type: "contactPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      introParagraph1?: string;
+      introHeading1?: string;
+      introText1?: string;
+      introParagraph2?: string;
+      contactDetailsParagraph1?: string;
+      contactDetailsHeading1?: string;
+      contactDetailsHeading2?: string;
+      contactDetailsParagraph2?: string;
+      contactDetailsHeading3?: string;
+      contactDetailsHeading4?: string;
+      contactDetailsHeading5?: string;
+      contactDetailsLinkLabel1?: string;
+      enquiryHeading1?: string;
+      enquiryParagraph1?: string;
+      enquiryParagraph2?: string;
+      enquiryParagraph3?: string;
+      officeParagraph1?: string;
+      officeHeading1?: string;
+      officeParagraph2?: string;
+      officeLinkLabel1?: string;
+      officeLinkLabel2?: string;
+    }
+  | {
+      _id: string;
+      _type: "donatePage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      donateImage1?: EditorialImage;
+      donateParagraph1?: string;
+      donateHeading1?: string;
+      donateText1?: string;
+      donateParagraph2?: string;
+      donateText2?: string;
+      donateParagraph3?: string;
+      givingParagraph1?: string;
+      givingHeading1?: string;
+      givingParagraph2?: string;
+      givingLinkLabel1?: string;
+      givingLinkLabel2?: string;
+      introText1?: string;
+      introText2?: string;
+      introLinkLabel1?: string;
+      purposeParagraph1?: string;
+      purposeHeading1?: string;
+      purposeParagraph2?: string;
+      purposeLinkLabel1?: string;
+      purposeParagraph3?: string;
+      evidenceImage1?: EditorialImage;
+      evidenceText1?: string;
+      evidenceParagraph1?: string;
+      evidenceHeading1?: string;
+      evidenceText2?: string;
+      evidenceParagraph2?: string;
+      evidenceLinkLabel1?: string;
+      evidenceLinkLabel2?: string;
+      evidenceParagraph3?: string;
+      otherParagraph1?: string;
+      otherHeading1?: string;
+      otherLinkLabel1?: string;
+      otherHeading2?: string;
+      otherParagraph2?: string;
+      otherLinkLabel2?: string;
+      otherHeading3?: string;
+      otherParagraph3?: string;
+      otherLinkLabel3?: string;
+      otherHeading4?: string;
+      otherParagraph4?: string;
+      otherLinkLabel4?: string;
+      faqParagraph1?: string;
+      faqHeading1?: string;
+      faqParagraph2?: string;
+      faqLinkLabel1?: string;
+    }
   | {
       _id: string;
       _type: "homePage";
@@ -693,6 +6853,122 @@ export type EXPORT_QUERY_RESULT = Array<
       partnersIntro: string;
       supportIntro: string;
       supportImage: EditorialImage;
+    }
+  | {
+      _id: string;
+      _type: "impactPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      impactParagraph1?: string;
+      impactParagraph2?: string;
+      impactHeading1?: string;
+      impactText1?: string;
+      impactText2?: string;
+      impactParagraph3?: string;
+      impactParagraph4?: string;
+      impactLinkLabel1?: string;
+      impactText3?: string;
+      impactCaption1?: string;
+      overviewHeading1?: string;
+      overviewHeading2?: string;
+      overviewParagraph1?: string;
+      overviewParagraph2?: string;
+      storiesParagraph1?: string;
+      storiesHeading1?: string;
+      storiesParagraph2?: string;
+      storiesParagraph3?: string;
+      storiesParagraph4?: string;
+      growingCaption1?: string;
+      growingCaption2?: string;
+      growingParagraph1?: string;
+      growingHeading1?: string;
+      growingText1?: string;
+      growingParagraph2?: string;
+      growingParagraph3?: string;
+      growingText2?: string;
+      growingText3?: string;
+      growingText4?: string;
+      growingText5?: string;
+      growingParagraph4?: string;
+      growingParagraph5?: string;
+      growingLinkLabel1?: string;
+      womenCaption1?: string;
+      womenParagraph1?: string;
+      womenHeading1?: string;
+      womenText1?: string;
+      womenText2?: string;
+      womenParagraph2?: string;
+      womenText3?: string;
+      womenText4?: string;
+      womenText5?: string;
+      womenParagraph3?: string;
+      womenParagraph4?: string;
+      womenLinkLabel1?: string;
+      enterpriseParagraph1?: string;
+      enterpriseHeading1?: string;
+      enterpriseHeading2?: string;
+      enterpriseText1?: string;
+      enterpriseText2?: string;
+      enterpriseText3?: string;
+      enterpriseText4?: string;
+      enterpriseParagraph2?: string;
+      storiesParagraph5?: string;
+      storiesLinkLabel1?: string;
+      sectorsParagraph1?: string;
+      sectorsParagraph2?: string;
+      sectorsHeading1?: string;
+      sectorsHeading2?: string;
+      sectorsParagraph3?: string;
+      sectorsParagraph4?: string;
+      sectorsText1?: string;
+      sectorsParagraph5?: string;
+      coverageParagraph1?: string;
+      coverageHeading1?: string;
+      coverageParagraph2?: string;
+      coverageParagraph3?: string;
+      coverageLinkLabel1?: string;
+      accountabilityParagraph1?: string;
+      accountabilityHeading1?: string;
+      accountabilityText1?: string;
+      accountabilityParagraph2?: string;
+      accountabilityParagraph3?: string;
+      accountabilityLinkLabel1?: string;
+      accountabilityLinkLabel2?: string;
+      accountabilityParagraph4?: string;
+      accountabilityParagraph5?: string;
+      accountabilityHeading2?: string;
+      accountabilityParagraph6?: string;
+      accountabilityLinkLabel3?: string;
+      data?: {
+        impactYear: number;
+        impactOverview: Array<{
+          value: string;
+          label: string;
+          source: string;
+          _type: "impactOverviewItem";
+          _key: string;
+        }>;
+        sectorImpact: Array<{
+          title: string;
+          slug: string;
+          value: string;
+          label: string;
+          description: string;
+          source: string;
+          estimated?: boolean;
+          _type: "sectorImpactItem";
+          _key: string;
+        }>;
+        photos: Array<{
+          name: string;
+          image: EditorialImage;
+          _type: "photosItem";
+          _key: string;
+        }>;
+      };
     }
   | {
       _id: string;
@@ -738,6 +7014,83 @@ export type EXPORT_QUERY_RESULT = Array<
       seoTitle?: string;
       seoDescription?: string;
       sourceKey?: string;
+      details?: {
+        projectSlugs?: Array<string>;
+        interventions: Array<string>;
+        source: string;
+        locations: Array<{
+          label: string;
+          detail: string;
+          source: string;
+          _type: "locationsItem";
+          _key: string;
+        }>;
+        locationNote?: string;
+        projectReach?: {
+          value: string;
+          label: string;
+          description: string;
+          source: string;
+          project: string;
+        };
+      };
+    }
+  | {
+      _id: string;
+      _type: "programmesPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      programmesImage1?: EditorialImage;
+      programmesParagraph1?: string;
+      programmesHeading1?: string;
+      programmesText1?: string;
+      programmesParagraph2?: string;
+      programmesLinkLabel1?: string;
+      programmesParagraph3?: string;
+      areasParagraph1?: string;
+      areasHeading1?: string;
+      areasHeading2?: string;
+      areasParagraph2?: string;
+      areasParagraph3?: string;
+      areasText1?: string;
+      areasParagraph4?: string;
+      areasParagraph5?: string;
+      areasParagraph6?: string;
+      areasText2?: string;
+      areasLinkLabel1?: string;
+      areasHeading3?: string;
+      areasParagraph7?: string;
+      areasLinkLabel2?: string;
+      areasHeading4?: string;
+      areasLinkLabel3?: string;
+      areasParagraph8?: string;
+      areasParagraph9?: string;
+      areasLinkLabel4?: string;
+      areasParagraph10?: string;
+      areasParagraph11?: string;
+      areasParagraph12?: string;
+      areasLinkLabel5?: string;
+      approachImage1?: EditorialImage;
+      approachCaption1?: string;
+      approachParagraph1?: string;
+      approachHeading1?: string;
+      approachText1?: string;
+      approachParagraph2?: string;
+      approachHeading2?: string;
+      approachParagraph3?: string;
+      approachHeading3?: string;
+      approachParagraph4?: string;
+      approachLinkLabel1?: string;
+      actionParagraph1?: string;
+      actionHeading1?: string;
+      actionText1?: string;
+      actionParagraph2?: string;
+      actionLinkLabel1?: string;
+      actionLinkLabel2?: string;
+      actionLinkLabel3?: string;
     }
   | {
       _id: string;
@@ -745,6 +7098,53 @@ export type EXPORT_QUERY_RESULT = Array<
       _createdAt: string;
       _updatedAt: string;
       _rev: string;
+      profile?: {
+        donor: string;
+        partners?: string;
+        overview: Array<string>;
+        context: string;
+        activities: Array<{
+          title: string;
+          text: string;
+          _type: "activitiesItem";
+          _key: string;
+        }>;
+        facts?: Array<{
+          value: string;
+          label: string;
+          _type: "factsItem";
+          _key: string;
+        }>;
+        resultsIntro: string;
+        stories: Array<{
+          title: string;
+          text: string;
+          source: string;
+          _type: "storiesItem";
+          _key: string;
+        }>;
+        overviewImage?: EditorialImage;
+        overviewCaption?: string;
+        gallery: Array<{
+          image: EditorialImage;
+          caption: string;
+          _type: "galleryItem";
+          _key: string;
+        }>;
+        sources: Array<{
+          title: string;
+          detail: string;
+          url?: string;
+          _type: "sourcesItem";
+          _key: string;
+        }>;
+        storyNote?: string;
+        photoNote?: string;
+        reviewNote?: string;
+        outcomes?: Array<string>;
+      };
+      reportingYear?: number;
+      imageCaption?: string;
       title: string;
       slug: Slug;
       summary?: string;
@@ -789,6 +7189,28 @@ export type EXPORT_QUERY_RESULT = Array<
     }
   | {
       _id: string;
+      _type: "projectsPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      projectsParagraph1?: string;
+      projectsHeading1?: string;
+      projectsHeading2?: string;
+      projectsText1?: string;
+      projectsParagraph2?: string;
+      introLinkLabel1?: string;
+      introHeading1?: string;
+      introParagraph1?: string;
+      projectImpactHeading1?: string;
+      projectImpactText1?: string;
+      projectImpactParagraph1?: string;
+      projectImpactLinkLabel1?: string;
+      cmsManagedProjects?: boolean;
+    }
+  | {
+      _id: string;
       _type: "report";
       _createdAt: string;
       _updatedAt: string;
@@ -803,6 +7225,50 @@ export type EXPORT_QUERY_RESULT = Array<
         _type: "file";
       };
       sourceKey?: string;
+    }
+  | {
+      _id: string;
+      _type: "resourcesPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      resourcesParagraph1?: string;
+      resourcesHeading1?: string;
+      resourcesText1?: string;
+      resourcesParagraph2?: string;
+      featuredReportParagraph1?: string;
+      featuredReportLinkLabel1?: string;
+      featuredReportLinkLabel2?: string;
+      featuredReportText1?: string;
+      featuredReportText2?: string;
+      libraryHeading1?: string;
+      libraryParagraph1?: string;
+      libraryText1?: string;
+      libraryText2?: string;
+      libraryParagraph2?: string;
+      libraryHeading2?: string;
+      libraryParagraph3?: string;
+      libraryParagraph4?: string;
+      libraryParagraph5?: string;
+      libraryLinkLabel1?: string;
+      mediaParagraph1?: string;
+      mediaHeading1?: string;
+      mediaParagraph2?: string;
+      mediaLinkLabel1?: string;
+      data?: {
+        legacyReports: Array<{
+          title: string;
+          category: "Annual reports" | "Financial reports" | "Publications";
+          year: number;
+          summary: string;
+          fileUrl: string;
+          onlineUrl?: string;
+          _type: "legacyReportsItem";
+          _key: string;
+        }>;
+      };
     }
   | {
       _id: string;
@@ -827,6 +7293,39 @@ export type EXPORT_QUERY_RESULT = Array<
       }>;
       seoTitle: string;
       seoDescription: string;
+    }
+  | {
+      _id: string;
+      _type: "storiesPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      updatesImage1?: EditorialImage;
+      updatesParagraph1?: string;
+      updatesHeading1?: string;
+      updatesText1?: string;
+      updatesParagraph2?: string;
+      updatesParagraph3?: string;
+      updatesLibraryParagraph1?: string;
+      updatesLibraryHeading1?: string;
+      updatesLibraryLinkLabel1?: string;
+      updatesLibraryParagraph2?: string;
+      updatesLibraryParagraph3?: string;
+      updatesLibraryText1?: string;
+      updatesLibraryText2?: string;
+      updatesLibraryText3?: string;
+      updatesLibraryText4?: string;
+      updatesLibraryText5?: string;
+      updatesLibraryText6?: string;
+      updatesLibraryHeading2?: string;
+      updatesLibraryParagraph4?: string;
+      introParagraph1?: string;
+      introHeading1?: string;
+      introHeading2?: string;
+      introParagraph2?: string;
+      introLinkLabel1?: string;
     }
   | {
       _id: string;
@@ -863,14 +7362,5322 @@ export type EXPORT_QUERY_RESULT = Array<
       category: "Blogs" | "Events" | "News" | "Publications" | "Stories";
       publishedAt: string;
     }
+  | {
+      _id: string;
+      _type: "teamPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      teamParagraph1?: string;
+      teamHeading1?: string;
+      teamText1?: string;
+      teamParagraph2?: string;
+      teamLinkLabel1?: string;
+      teamImage1?: EditorialImage;
+      teamCaption1?: string;
+      introText1?: string;
+      introParagraph1?: string;
+      introLinkLabel1?: string;
+      boardParagraph1?: string;
+      boardHeading1?: string;
+      boardParagraph2?: string;
+      boardParagraph3?: string;
+      managementParagraph1?: string;
+      managementHeading1?: string;
+      managementParagraph2?: string;
+      managementParagraph3?: string;
+      peopleImage1?: EditorialImage;
+      peopleCaption1?: string;
+      peopleParagraph1?: string;
+      peopleHeading1?: string;
+      peopleParagraph2?: string;
+      peopleText1?: string;
+      peopleText2?: string;
+      peopleText3?: string;
+      peopleText4?: string;
+      peopleParagraph3?: string;
+      peopleLinkLabel1?: string;
+      introParagraph2?: string;
+      introHeading1?: string;
+      introHeading2?: string;
+      introLinkLabel2?: string;
+      data?: {
+        board: Array<{
+          name: string;
+          role: string;
+          detail?: string;
+          image: EditorialImage;
+          _type: "boardItem";
+          _key: string;
+        }>;
+        management: Array<{
+          name: string;
+          role: string;
+          image: EditorialImage;
+          _type: "managementItem";
+          _key: string;
+        }>;
+      };
+    }
+  | {
+      _id: string;
+      _type: "whereWeWorkPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoDescription?: string;
+      seoTitle?: string;
+      whereWorkParagraph1?: string;
+      whereWorkHeading1?: string;
+      whereWorkText1?: string;
+      whereWorkParagraph2?: string;
+      whereWorkLinkLabel1?: string;
+      whereWorkImage1?: EditorialImage;
+      whereWorkCaption1?: string;
+      introText1?: string;
+      introText2?: string;
+      introText3?: string;
+      introText4?: string;
+      introText5?: string;
+      introText6?: string;
+      introText7?: string;
+      coverageParagraph1?: string;
+      coverageHeading1?: string;
+      coverageParagraph2?: string;
+      coverageParagraph3?: string;
+      coverageText1?: string;
+      coverageParagraph4?: string;
+      basesParagraph1?: string;
+      basesHeading1?: string;
+      basesLinkLabel1?: string;
+      basesParagraph2?: string;
+      introParagraph1?: string;
+      introHeading1?: string;
+      introParagraph2?: string;
+      introLinkLabel1?: string;
+      data?: {
+        lgaActivities: Array<{
+          state: "Adamawa" | "Borno" | "Yobe";
+          lga:
+            | "Bade"
+            | "Biu"
+            | "Chibok"
+            | "Fika"
+            | "Fune"
+            | "Geidam"
+            | "Gwoza"
+            | "Hong"
+            | "Jakusko"
+            | "Jere"
+            | "Kaga"
+            | "Madagali"
+            | "Magumeri"
+            | "Michika"
+            | "MMC"
+            | "Mubi North"
+            | "Mubi South"
+            | "Nangere"
+            | "Nguru"
+            | "Potiskum";
+          activities: Array<{
+            title: string;
+            text: string;
+            source: string;
+            project?: string;
+            page?: number;
+            _type: "activitiesItem";
+            _key: string;
+          }>;
+          _type: "lgaActivitiesItem";
+          _key: string;
+        }>;
+        offices: Array<{
+          town: string;
+          state: string;
+          type: string;
+          _type: "officesItem";
+          _key: string;
+        }>;
+      };
+    }
 >;
 
 // Source: ../src/lib/queries.ts
 // Variable: RELEASE_QUERY
-// Query: {"content": {  "schemaVersion": 1,  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)}
+// Query: {"content": {  "schemaVersion": 1,  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)}
 export type RELEASE_QUERY_RESULT = {
   content: {
     schemaVersion: 1;
+    projectsManaged: boolean | false;
+    pages: Array<
+      | {
+          _id: "aboutPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            aboutImage1: null;
+            aboutParagraph1: null;
+            aboutHeading1: null;
+            aboutText1: null;
+            aboutText2: null;
+            aboutParagraph2: null;
+            whoParagraph1: null;
+            whoHeading1: null;
+            whoHeading2: null;
+            whoParagraph2: null;
+            whoParagraph3: null;
+            whoParagraph4: null;
+            whoText1: null;
+            whoImage1: null;
+            whoCaption1: null;
+            whoText2: null;
+            whoText3: null;
+            storyParagraph1: null;
+            storyHeading1: null;
+            storyHeading2: null;
+            storyParagraph2: null;
+            guidesParagraph1: null;
+            guidesHeading1: null;
+            guidesHeading2: null;
+            guidesHeading3: null;
+            guidesParagraph2: null;
+            guidesHeading4: null;
+            guidesParagraph3: null;
+            guidesHeading5: null;
+            identityParagraph1: null;
+            identityHeading1: null;
+            identityHeading2: null;
+            identityParagraph2: null;
+            identityParagraph3: null;
+            identityText1: null;
+            identityImage1: null;
+            identityCaption1: null;
+            whereParagraph1: null;
+            whereHeading1: null;
+            whereParagraph2: null;
+            whereCaption1: null;
+            whereLinkLabel1: null;
+            whereHeading2: null;
+            whereLinkLabel2: null;
+            whereParagraph3: null;
+            whereParagraph4: null;
+            whereLinkLabel3: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachHeading2: null;
+            leadershipParagraph1: null;
+            leadershipHeading1: null;
+            leadershipParagraph2: null;
+            leadershipText1: null;
+            leadershipText2: null;
+            leadershipImage1: null;
+            leadershipHeading2: null;
+            leadershipHeading3: null;
+            leadershipParagraph3: null;
+            leadershipLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            partnershipParagraph1: null;
+            partnershipHeading1: null;
+            partnershipParagraph2: null;
+            partnershipLinkLabel1: null;
+            ctaImage1: null;
+            ctaParagraph1: null;
+            ctaHeading1: null;
+            ctaHeading2: null;
+            ctaParagraph2: null;
+            ctaLinkLabel1: null;
+            ctaLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "aboutPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            aboutImage1: null;
+            aboutParagraph1: null;
+            aboutHeading1: null;
+            aboutText1: null;
+            aboutText2: null;
+            aboutParagraph2: null;
+            whoParagraph1: null;
+            whoHeading1: null;
+            whoHeading2: null;
+            whoParagraph2: null;
+            whoParagraph3: null;
+            whoParagraph4: null;
+            whoText1: null;
+            whoImage1: null;
+            whoCaption1: null;
+            whoText2: null;
+            whoText3: null;
+            storyParagraph1: null;
+            storyHeading1: null;
+            storyHeading2: null;
+            storyParagraph2: null;
+            guidesParagraph1: null;
+            guidesHeading1: null;
+            guidesHeading2: null;
+            guidesHeading3: null;
+            guidesParagraph2: null;
+            guidesHeading4: null;
+            guidesParagraph3: null;
+            guidesHeading5: null;
+            identityParagraph1: null;
+            identityHeading1: null;
+            identityHeading2: null;
+            identityParagraph2: null;
+            identityParagraph3: null;
+            identityText1: null;
+            identityImage1: null;
+            identityCaption1: null;
+            whereParagraph1: null;
+            whereHeading1: null;
+            whereParagraph2: null;
+            whereCaption1: null;
+            whereLinkLabel1: null;
+            whereHeading2: null;
+            whereLinkLabel2: null;
+            whereParagraph3: null;
+            whereParagraph4: null;
+            whereLinkLabel3: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachHeading2: null;
+            leadershipParagraph1: null;
+            leadershipHeading1: null;
+            leadershipParagraph2: null;
+            leadershipText1: null;
+            leadershipText2: null;
+            leadershipImage1: null;
+            leadershipHeading2: null;
+            leadershipHeading3: null;
+            leadershipParagraph3: null;
+            leadershipLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            partnershipParagraph1: null;
+            partnershipHeading1: null;
+            partnershipParagraph2: null;
+            partnershipLinkLabel1: null;
+            ctaImage1: null;
+            ctaParagraph1: null;
+            ctaHeading1: null;
+            ctaHeading2: null;
+            ctaParagraph2: null;
+            ctaLinkLabel1: null;
+            ctaLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "aboutPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            aboutImage1: null;
+            aboutParagraph1: null;
+            aboutHeading1: null;
+            aboutText1: null;
+            aboutText2: null;
+            aboutParagraph2: null;
+            whoParagraph1: null;
+            whoHeading1: null;
+            whoHeading2: null;
+            whoParagraph2: null;
+            whoParagraph3: null;
+            whoParagraph4: null;
+            whoText1: null;
+            whoImage1: null;
+            whoCaption1: null;
+            whoText2: null;
+            whoText3: null;
+            storyParagraph1: null;
+            storyHeading1: null;
+            storyHeading2: null;
+            storyParagraph2: null;
+            guidesParagraph1: null;
+            guidesHeading1: null;
+            guidesHeading2: null;
+            guidesHeading3: null;
+            guidesParagraph2: null;
+            guidesHeading4: null;
+            guidesParagraph3: null;
+            guidesHeading5: null;
+            identityParagraph1: null;
+            identityHeading1: null;
+            identityHeading2: null;
+            identityParagraph2: null;
+            identityParagraph3: null;
+            identityText1: null;
+            identityImage1: null;
+            identityCaption1: null;
+            whereParagraph1: null;
+            whereHeading1: null;
+            whereParagraph2: null;
+            whereCaption1: null;
+            whereLinkLabel1: null;
+            whereHeading2: null;
+            whereLinkLabel2: null;
+            whereParagraph3: null;
+            whereParagraph4: null;
+            whereLinkLabel3: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachHeading2: null;
+            leadershipParagraph1: null;
+            leadershipHeading1: null;
+            leadershipParagraph2: null;
+            leadershipText1: null;
+            leadershipText2: null;
+            leadershipImage1: null;
+            leadershipHeading2: null;
+            leadershipHeading3: null;
+            leadershipParagraph3: null;
+            leadershipLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            partnershipParagraph1: null;
+            partnershipHeading1: null;
+            partnershipParagraph2: null;
+            partnershipLinkLabel1: null;
+            ctaImage1: null;
+            ctaParagraph1: null;
+            ctaHeading1: null;
+            ctaHeading2: null;
+            ctaParagraph2: null;
+            ctaLinkLabel1: null;
+            ctaLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "aboutPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            aboutImage1: null;
+            aboutParagraph1: null;
+            aboutHeading1: null;
+            aboutText1: null;
+            aboutText2: null;
+            aboutParagraph2: null;
+            whoParagraph1: null;
+            whoHeading1: null;
+            whoHeading2: null;
+            whoParagraph2: null;
+            whoParagraph3: null;
+            whoParagraph4: null;
+            whoText1: null;
+            whoImage1: null;
+            whoCaption1: null;
+            whoText2: null;
+            whoText3: null;
+            storyParagraph1: null;
+            storyHeading1: null;
+            storyHeading2: null;
+            storyParagraph2: null;
+            guidesParagraph1: null;
+            guidesHeading1: null;
+            guidesHeading2: null;
+            guidesHeading3: null;
+            guidesParagraph2: null;
+            guidesHeading4: null;
+            guidesParagraph3: null;
+            guidesHeading5: null;
+            identityParagraph1: null;
+            identityHeading1: null;
+            identityHeading2: null;
+            identityParagraph2: null;
+            identityParagraph3: null;
+            identityText1: null;
+            identityImage1: null;
+            identityCaption1: null;
+            whereParagraph1: null;
+            whereHeading1: null;
+            whereParagraph2: null;
+            whereCaption1: null;
+            whereLinkLabel1: null;
+            whereHeading2: null;
+            whereLinkLabel2: null;
+            whereParagraph3: null;
+            whereParagraph4: null;
+            whereLinkLabel3: null;
+            approachParagraph1: string | null;
+            approachHeading1: string | null;
+            approachHeading2: string | null;
+            leadershipParagraph1: null;
+            leadershipHeading1: null;
+            leadershipParagraph2: null;
+            leadershipText1: null;
+            leadershipText2: null;
+            leadershipImage1: null;
+            leadershipHeading2: null;
+            leadershipHeading3: null;
+            leadershipParagraph3: null;
+            leadershipLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            partnershipParagraph1: null;
+            partnershipHeading1: null;
+            partnershipParagraph2: null;
+            partnershipLinkLabel1: null;
+            ctaImage1: null;
+            ctaParagraph1: null;
+            ctaHeading1: null;
+            ctaHeading2: null;
+            ctaParagraph2: null;
+            ctaLinkLabel1: null;
+            ctaLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "aboutPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            aboutImage1: null;
+            aboutParagraph1: null;
+            aboutHeading1: null;
+            aboutText1: null;
+            aboutText2: null;
+            aboutParagraph2: null;
+            whoParagraph1: null;
+            whoHeading1: null;
+            whoHeading2: null;
+            whoParagraph2: null;
+            whoParagraph3: null;
+            whoParagraph4: null;
+            whoText1: null;
+            whoImage1: null;
+            whoCaption1: null;
+            whoText2: null;
+            whoText3: null;
+            storyParagraph1: null;
+            storyHeading1: null;
+            storyHeading2: null;
+            storyParagraph2: null;
+            guidesParagraph1: null;
+            guidesHeading1: null;
+            guidesHeading2: null;
+            guidesHeading3: null;
+            guidesParagraph2: null;
+            guidesHeading4: null;
+            guidesParagraph3: null;
+            guidesHeading5: null;
+            identityParagraph1: null;
+            identityHeading1: null;
+            identityHeading2: null;
+            identityParagraph2: null;
+            identityParagraph3: null;
+            identityText1: null;
+            identityImage1: null;
+            identityCaption1: null;
+            whereParagraph1: null;
+            whereHeading1: null;
+            whereParagraph2: null;
+            whereCaption1: null;
+            whereLinkLabel1: null;
+            whereHeading2: null;
+            whereLinkLabel2: null;
+            whereParagraph3: null;
+            whereParagraph4: null;
+            whereLinkLabel3: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachHeading2: null;
+            leadershipParagraph1: null;
+            leadershipHeading1: null;
+            leadershipParagraph2: null;
+            leadershipText1: null;
+            leadershipText2: null;
+            leadershipImage1: null;
+            leadershipHeading2: null;
+            leadershipHeading3: null;
+            leadershipParagraph3: null;
+            leadershipLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            partnershipParagraph1: null;
+            partnershipHeading1: null;
+            partnershipParagraph2: null;
+            partnershipLinkLabel1: null;
+            ctaImage1: null;
+            ctaParagraph1: null;
+            ctaHeading1: null;
+            ctaHeading2: null;
+            ctaParagraph2: null;
+            ctaLinkLabel1: null;
+            ctaLinkLabel2: null;
+          };
+          data: {
+            timeline: null;
+            values: null;
+            approach: null;
+            leadership: null;
+            accountability: null;
+          } | null;
+        }
+      | {
+          _id: "aboutPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            aboutImage1: null;
+            aboutParagraph1: null;
+            aboutHeading1: null;
+            aboutText1: null;
+            aboutText2: null;
+            aboutParagraph2: null;
+            whoParagraph1: null;
+            whoHeading1: null;
+            whoHeading2: null;
+            whoParagraph2: null;
+            whoParagraph3: null;
+            whoParagraph4: null;
+            whoText1: null;
+            whoImage1: null;
+            whoCaption1: null;
+            whoText2: null;
+            whoText3: null;
+            storyParagraph1: null;
+            storyHeading1: null;
+            storyHeading2: null;
+            storyParagraph2: null;
+            guidesParagraph1: null;
+            guidesHeading1: null;
+            guidesHeading2: null;
+            guidesHeading3: null;
+            guidesParagraph2: null;
+            guidesHeading4: null;
+            guidesParagraph3: null;
+            guidesHeading5: null;
+            identityParagraph1: null;
+            identityHeading1: null;
+            identityHeading2: null;
+            identityParagraph2: null;
+            identityParagraph3: null;
+            identityText1: null;
+            identityImage1: null;
+            identityCaption1: null;
+            whereParagraph1: null;
+            whereHeading1: null;
+            whereParagraph2: null;
+            whereCaption1: null;
+            whereLinkLabel1: null;
+            whereHeading2: null;
+            whereLinkLabel2: null;
+            whereParagraph3: null;
+            whereParagraph4: null;
+            whereLinkLabel3: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachHeading2: null;
+            leadershipParagraph1: null;
+            leadershipHeading1: null;
+            leadershipParagraph2: null;
+            leadershipText1: null;
+            leadershipText2: null;
+            leadershipImage1: null;
+            leadershipHeading2: null;
+            leadershipHeading3: null;
+            leadershipParagraph3: null;
+            leadershipLinkLabel1: null;
+            accountabilityParagraph1: string | null;
+            accountabilityHeading1: string | null;
+            accountabilityParagraph2: string | null;
+            accountabilityParagraph3: string | null;
+            partnershipParagraph1: null;
+            partnershipHeading1: null;
+            partnershipParagraph2: null;
+            partnershipLinkLabel1: null;
+            ctaImage1: null;
+            ctaParagraph1: null;
+            ctaHeading1: null;
+            ctaHeading2: null;
+            ctaParagraph2: null;
+            ctaLinkLabel1: null;
+            ctaLinkLabel2: null;
+          };
+          data: {
+            timeline: null;
+            values: null;
+            approach: null;
+            leadership: null;
+            accountability: null;
+          } | null;
+        }
+      | {
+          _id: "aboutPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            aboutImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            aboutParagraph1: string | null;
+            aboutHeading1: string | null;
+            aboutText1: string | null;
+            aboutText2: string | null;
+            aboutParagraph2: string | null;
+            whoParagraph1: string | null;
+            whoHeading1: string | null;
+            whoHeading2: string | null;
+            whoParagraph2: string | null;
+            whoParagraph3: string | null;
+            whoParagraph4: string | null;
+            whoText1: string | null;
+            whoImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            whoCaption1: string | null;
+            whoText2: string | null;
+            whoText3: string | null;
+            storyParagraph1: string | null;
+            storyHeading1: string | null;
+            storyHeading2: string | null;
+            storyParagraph2: string | null;
+            guidesParagraph1: string | null;
+            guidesHeading1: string | null;
+            guidesHeading2: string | null;
+            guidesHeading3: string | null;
+            guidesParagraph2: string | null;
+            guidesHeading4: string | null;
+            guidesParagraph3: string | null;
+            guidesHeading5: string | null;
+            identityParagraph1: string | null;
+            identityHeading1: string | null;
+            identityHeading2: string | null;
+            identityParagraph2: string | null;
+            identityParagraph3: string | null;
+            identityText1: string | null;
+            identityImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            identityCaption1: string | null;
+            whereParagraph1: string | null;
+            whereHeading1: string | null;
+            whereParagraph2: string | null;
+            whereCaption1: string | null;
+            whereLinkLabel1: string | null;
+            whereHeading2: string | null;
+            whereLinkLabel2: string | null;
+            whereParagraph3: string | null;
+            whereParagraph4: string | null;
+            whereLinkLabel3: string | null;
+            approachParagraph1: string | null;
+            approachHeading1: string | null;
+            approachHeading2: string | null;
+            leadershipParagraph1: string | null;
+            leadershipHeading1: string | null;
+            leadershipParagraph2: string | null;
+            leadershipText1: string | null;
+            leadershipText2: string | null;
+            leadershipImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            leadershipHeading2: string | null;
+            leadershipHeading3: string | null;
+            leadershipParagraph3: string | null;
+            leadershipLinkLabel1: string | null;
+            accountabilityParagraph1: string | null;
+            accountabilityHeading1: string | null;
+            accountabilityParagraph2: string | null;
+            accountabilityParagraph3: string | null;
+            partnershipParagraph1: string | null;
+            partnershipHeading1: string | null;
+            partnershipParagraph2: string | null;
+            partnershipLinkLabel1: string | null;
+            ctaImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            ctaParagraph1: string | null;
+            ctaHeading1: string | null;
+            ctaHeading2: string | null;
+            ctaParagraph2: string | null;
+            ctaLinkLabel1: string | null;
+            ctaLinkLabel2: string | null;
+          };
+          data: {
+            timeline: Array<{
+              year: string;
+              title: string;
+              text: string;
+            }>;
+            values: Array<{
+              title: string;
+              text: string;
+            }>;
+            approach: Array<{
+              title: string;
+              text: string;
+            }>;
+            leadership: Array<{
+              name: string;
+              role: string;
+              detail: string;
+              image: {
+                url: string | null;
+                assetId: string | null;
+                alt: string;
+              };
+            }>;
+            accountability: {
+              safeguarding: {
+                title: string;
+                text: string;
+              };
+              community: {
+                title: string;
+                text: string;
+              };
+              feedback: {
+                title: string;
+                text: string;
+              };
+              transparency: {
+                title: string;
+                text: string;
+              };
+            };
+          } | null;
+        }
+      | null
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introText1: null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            introParagraph1: null;
+            introHeading1: null;
+            introText1: null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: null;
+            introHeading1: null;
+            introText1: null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: null;
+            introHeading1: null;
+            introText1: string | null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introText1: null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introText1: null;
+            introParagraph2: string | null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introText1: string | null;
+            introParagraph2: string | null;
+            contactDetailsParagraph1: string | null;
+            contactDetailsHeading1: string | null;
+            contactDetailsHeading2: string | null;
+            contactDetailsParagraph2: string | null;
+            contactDetailsHeading3: string | null;
+            contactDetailsHeading4: string | null;
+            contactDetailsHeading5: string | null;
+            contactDetailsLinkLabel1: string | null;
+            enquiryHeading1: string | null;
+            enquiryParagraph1: string | null;
+            enquiryParagraph2: string | null;
+            enquiryParagraph3: string | null;
+            officeParagraph1: string | null;
+            officeHeading1: string | null;
+            officeParagraph2: string | null;
+            officeLinkLabel1: string | null;
+            officeLinkLabel2: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: null;
+            introHeading1: null;
+            introText1: null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: {
+            timeline: Array<{
+              year: string;
+              title: string;
+              text: string;
+              _type: "timelineItem";
+              _key: string;
+            }>;
+            values: Array<{
+              title: string;
+              text: string;
+              _type: "valuesItem";
+              _key: string;
+            }>;
+            approach: Array<{
+              title: string;
+              text: string;
+              _type: "approachItem";
+              _key: string;
+            }>;
+            leadership: Array<{
+              name: string;
+              role: string;
+              detail: string;
+              image: EditorialImage;
+              _type: "leadershipItem";
+              _key: string;
+            }>;
+            accountability: {
+              safeguarding: {
+                title: string;
+                text: string;
+              };
+              community: {
+                title: string;
+                text: string;
+              };
+              feedback: {
+                title: string;
+                text: string;
+              };
+              transparency: {
+                title: string;
+                text: string;
+              };
+            };
+          } | null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introText1: string | null;
+            introParagraph2: string | null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: {
+            board: Array<{
+              name: string;
+              role: string;
+              detail?: string;
+              image: EditorialImage;
+              _type: "boardItem";
+              _key: string;
+            }>;
+            management: Array<{
+              name: string;
+              role: string;
+              image: EditorialImage;
+              _type: "managementItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: null;
+            introHeading1: null;
+            introText1: null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: {
+            impactYear: number;
+            impactOverview: Array<{
+              value: string;
+              label: string;
+              source: string;
+              _type: "impactOverviewItem";
+              _key: string;
+            }>;
+            sectorImpact: Array<{
+              title: string;
+              slug: string;
+              value: string;
+              label: string;
+              description: string;
+              source: string;
+              estimated?: boolean;
+              _type: "sectorImpactItem";
+              _key: string;
+            }>;
+            photos: Array<{
+              name: string;
+              image: EditorialImage;
+              _type: "photosItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: null;
+            introHeading1: null;
+            introText1: null;
+            introParagraph2: null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: {
+            legacyReports: Array<{
+              title: string;
+              category: "Annual reports" | "Financial reports" | "Publications";
+              year: number;
+              summary: string;
+              fileUrl: string;
+              onlineUrl?: string;
+              _type: "legacyReportsItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "contactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introText1: string | null;
+            introParagraph2: string | null;
+            contactDetailsParagraph1: null;
+            contactDetailsHeading1: null;
+            contactDetailsHeading2: null;
+            contactDetailsParagraph2: null;
+            contactDetailsHeading3: null;
+            contactDetailsHeading4: null;
+            contactDetailsHeading5: null;
+            contactDetailsLinkLabel1: null;
+            enquiryHeading1: null;
+            enquiryParagraph1: null;
+            enquiryParagraph2: null;
+            enquiryParagraph3: null;
+            officeParagraph1: null;
+            officeHeading1: null;
+            officeParagraph2: null;
+            officeLinkLabel1: null;
+            officeLinkLabel2: null;
+          };
+          data: {
+            lgaActivities: Array<{
+              state: "Adamawa" | "Borno" | "Yobe";
+              lga:
+                | "Bade"
+                | "Biu"
+                | "Chibok"
+                | "Fika"
+                | "Fune"
+                | "Geidam"
+                | "Gwoza"
+                | "Hong"
+                | "Jakusko"
+                | "Jere"
+                | "Kaga"
+                | "Madagali"
+                | "Magumeri"
+                | "Michika"
+                | "MMC"
+                | "Mubi North"
+                | "Mubi South"
+                | "Nangere"
+                | "Nguru"
+                | "Potiskum";
+              activities: Array<{
+                title: string;
+                text: string;
+                source: string;
+                project?: string;
+                page?: number;
+                _type: "activitiesItem";
+                _key: string;
+              }>;
+              _type: "lgaActivitiesItem";
+              _key: string;
+            }>;
+            offices: Array<{
+              town: string;
+              state: string;
+              type: string;
+              _type: "officesItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | null
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: null;
+            introText2: null;
+            introLinkLabel1: null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: null;
+            introText2: null;
+            introLinkLabel1: null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: null;
+            introText2: null;
+            introLinkLabel1: null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: string | null;
+            introText2: null;
+            introLinkLabel1: null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: null;
+            introText2: null;
+            introLinkLabel1: string | null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            donateParagraph1: string | null;
+            donateHeading1: string | null;
+            donateText1: string | null;
+            donateParagraph2: string | null;
+            donateText2: string | null;
+            donateParagraph3: string | null;
+            givingParagraph1: string | null;
+            givingHeading1: string | null;
+            givingParagraph2: string | null;
+            givingLinkLabel1: string | null;
+            givingLinkLabel2: string | null;
+            introText1: string | null;
+            introText2: string | null;
+            introLinkLabel1: string | null;
+            purposeParagraph1: string | null;
+            purposeHeading1: string | null;
+            purposeParagraph2: string | null;
+            purposeLinkLabel1: string | null;
+            purposeParagraph3: string | null;
+            evidenceImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            evidenceText1: string | null;
+            evidenceParagraph1: string | null;
+            evidenceHeading1: string | null;
+            evidenceText2: string | null;
+            evidenceParagraph2: string | null;
+            evidenceLinkLabel1: string | null;
+            evidenceLinkLabel2: string | null;
+            evidenceParagraph3: string | null;
+            otherParagraph1: string | null;
+            otherHeading1: string | null;
+            otherLinkLabel1: string | null;
+            otherHeading2: string | null;
+            otherParagraph2: string | null;
+            otherLinkLabel2: string | null;
+            otherHeading3: string | null;
+            otherParagraph3: string | null;
+            otherLinkLabel3: string | null;
+            otherHeading4: string | null;
+            otherParagraph4: string | null;
+            otherLinkLabel4: string | null;
+            faqParagraph1: string | null;
+            faqHeading1: string | null;
+            faqParagraph2: string | null;
+            faqLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: null;
+            introText2: null;
+            introLinkLabel1: null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: {
+            timeline: Array<{
+              year: string;
+              title: string;
+              text: string;
+              _type: "timelineItem";
+              _key: string;
+            }>;
+            values: Array<{
+              title: string;
+              text: string;
+              _type: "valuesItem";
+              _key: string;
+            }>;
+            approach: Array<{
+              title: string;
+              text: string;
+              _type: "approachItem";
+              _key: string;
+            }>;
+            leadership: Array<{
+              name: string;
+              role: string;
+              detail: string;
+              image: EditorialImage;
+              _type: "leadershipItem";
+              _key: string;
+            }>;
+            accountability: {
+              safeguarding: {
+                title: string;
+                text: string;
+              };
+              community: {
+                title: string;
+                text: string;
+              };
+              feedback: {
+                title: string;
+                text: string;
+              };
+              transparency: {
+                title: string;
+                text: string;
+              };
+            };
+          } | null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: string | null;
+            introText2: null;
+            introLinkLabel1: string | null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: {
+            board: Array<{
+              name: string;
+              role: string;
+              detail?: string;
+              image: EditorialImage;
+              _type: "boardItem";
+              _key: string;
+            }>;
+            management: Array<{
+              name: string;
+              role: string;
+              image: EditorialImage;
+              _type: "managementItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: null;
+            introText2: null;
+            introLinkLabel1: null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: {
+            impactYear: number;
+            impactOverview: Array<{
+              value: string;
+              label: string;
+              source: string;
+              _type: "impactOverviewItem";
+              _key: string;
+            }>;
+            sectorImpact: Array<{
+              title: string;
+              slug: string;
+              value: string;
+              label: string;
+              description: string;
+              source: string;
+              estimated?: boolean;
+              _type: "sectorImpactItem";
+              _key: string;
+            }>;
+            photos: Array<{
+              name: string;
+              image: EditorialImage;
+              _type: "photosItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: null;
+            introText2: null;
+            introLinkLabel1: null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: {
+            legacyReports: Array<{
+              title: string;
+              category: "Annual reports" | "Financial reports" | "Publications";
+              year: number;
+              summary: string;
+              fileUrl: string;
+              onlineUrl?: string;
+              _type: "legacyReportsItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "donatePage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            donateImage1: null;
+            donateParagraph1: null;
+            donateHeading1: null;
+            donateText1: null;
+            donateParagraph2: null;
+            donateText2: null;
+            donateParagraph3: null;
+            givingParagraph1: null;
+            givingHeading1: null;
+            givingParagraph2: null;
+            givingLinkLabel1: null;
+            givingLinkLabel2: null;
+            introText1: string | null;
+            introText2: string | null;
+            introLinkLabel1: string | null;
+            purposeParagraph1: null;
+            purposeHeading1: null;
+            purposeParagraph2: null;
+            purposeLinkLabel1: null;
+            purposeParagraph3: null;
+            evidenceImage1: null;
+            evidenceText1: null;
+            evidenceParagraph1: null;
+            evidenceHeading1: null;
+            evidenceText2: null;
+            evidenceParagraph2: null;
+            evidenceLinkLabel1: null;
+            evidenceLinkLabel2: null;
+            evidenceParagraph3: null;
+            otherParagraph1: null;
+            otherHeading1: null;
+            otherLinkLabel1: null;
+            otherHeading2: null;
+            otherParagraph2: null;
+            otherLinkLabel2: null;
+            otherHeading3: null;
+            otherParagraph3: null;
+            otherLinkLabel3: null;
+            otherHeading4: null;
+            otherParagraph4: null;
+            otherLinkLabel4: null;
+            faqParagraph1: null;
+            faqHeading1: null;
+            faqParagraph2: null;
+            faqLinkLabel1: null;
+          };
+          data: {
+            lgaActivities: Array<{
+              state: "Adamawa" | "Borno" | "Yobe";
+              lga:
+                | "Bade"
+                | "Biu"
+                | "Chibok"
+                | "Fika"
+                | "Fune"
+                | "Geidam"
+                | "Gwoza"
+                | "Hong"
+                | "Jakusko"
+                | "Jere"
+                | "Kaga"
+                | "Madagali"
+                | "Magumeri"
+                | "Michika"
+                | "MMC"
+                | "Mubi North"
+                | "Mubi South"
+                | "Nangere"
+                | "Nguru"
+                | "Potiskum";
+              activities: Array<{
+                title: string;
+                text: string;
+                source: string;
+                project?: string;
+                page?: number;
+                _type: "activitiesItem";
+                _key: string;
+              }>;
+              _type: "lgaActivitiesItem";
+              _key: string;
+            }>;
+            offices: Array<{
+              town: string;
+              state: string;
+              type: string;
+              _type: "officesItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | null
+      | {
+          _id: "impactPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            impactParagraph1: null;
+            impactParagraph2: null;
+            impactHeading1: null;
+            impactText1: null;
+            impactText2: null;
+            impactParagraph3: null;
+            impactParagraph4: null;
+            impactLinkLabel1: null;
+            impactText3: null;
+            impactCaption1: null;
+            overviewHeading1: null;
+            overviewHeading2: null;
+            overviewParagraph1: null;
+            overviewParagraph2: null;
+            storiesParagraph1: null;
+            storiesHeading1: null;
+            storiesParagraph2: null;
+            storiesParagraph3: null;
+            storiesParagraph4: null;
+            growingCaption1: null;
+            growingCaption2: null;
+            growingParagraph1: null;
+            growingHeading1: null;
+            growingText1: null;
+            growingParagraph2: null;
+            growingParagraph3: null;
+            growingText2: null;
+            growingText3: null;
+            growingText4: null;
+            growingText5: null;
+            growingParagraph4: null;
+            growingParagraph5: null;
+            growingLinkLabel1: null;
+            womenCaption1: null;
+            womenParagraph1: null;
+            womenHeading1: null;
+            womenText1: null;
+            womenText2: null;
+            womenParagraph2: null;
+            womenText3: null;
+            womenText4: null;
+            womenText5: null;
+            womenParagraph3: null;
+            womenParagraph4: null;
+            womenLinkLabel1: null;
+            enterpriseParagraph1: null;
+            enterpriseHeading1: null;
+            enterpriseHeading2: null;
+            enterpriseText1: null;
+            enterpriseText2: null;
+            enterpriseText3: null;
+            enterpriseText4: null;
+            enterpriseParagraph2: null;
+            storiesParagraph5: null;
+            storiesLinkLabel1: null;
+            sectorsParagraph1: null;
+            sectorsParagraph2: null;
+            sectorsHeading1: null;
+            sectorsHeading2: null;
+            sectorsParagraph3: null;
+            sectorsParagraph4: null;
+            sectorsText1: null;
+            sectorsParagraph5: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityText1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            accountabilityLinkLabel1: null;
+            accountabilityLinkLabel2: null;
+            accountabilityParagraph4: null;
+            accountabilityParagraph5: null;
+            accountabilityHeading2: null;
+            accountabilityParagraph6: null;
+            accountabilityLinkLabel3: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "impactPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            impactParagraph1: null;
+            impactParagraph2: null;
+            impactHeading1: null;
+            impactText1: null;
+            impactText2: null;
+            impactParagraph3: null;
+            impactParagraph4: null;
+            impactLinkLabel1: null;
+            impactText3: null;
+            impactCaption1: null;
+            overviewHeading1: null;
+            overviewHeading2: null;
+            overviewParagraph1: null;
+            overviewParagraph2: null;
+            storiesParagraph1: null;
+            storiesHeading1: null;
+            storiesParagraph2: null;
+            storiesParagraph3: null;
+            storiesParagraph4: null;
+            growingCaption1: null;
+            growingCaption2: null;
+            growingParagraph1: null;
+            growingHeading1: null;
+            growingText1: null;
+            growingParagraph2: null;
+            growingParagraph3: null;
+            growingText2: null;
+            growingText3: null;
+            growingText4: null;
+            growingText5: null;
+            growingParagraph4: null;
+            growingParagraph5: null;
+            growingLinkLabel1: null;
+            womenCaption1: null;
+            womenParagraph1: null;
+            womenHeading1: null;
+            womenText1: null;
+            womenText2: null;
+            womenParagraph2: null;
+            womenText3: null;
+            womenText4: null;
+            womenText5: null;
+            womenParagraph3: null;
+            womenParagraph4: null;
+            womenLinkLabel1: null;
+            enterpriseParagraph1: null;
+            enterpriseHeading1: null;
+            enterpriseHeading2: null;
+            enterpriseText1: null;
+            enterpriseText2: null;
+            enterpriseText3: null;
+            enterpriseText4: null;
+            enterpriseParagraph2: null;
+            storiesParagraph5: null;
+            storiesLinkLabel1: null;
+            sectorsParagraph1: null;
+            sectorsParagraph2: null;
+            sectorsHeading1: null;
+            sectorsHeading2: null;
+            sectorsParagraph3: null;
+            sectorsParagraph4: null;
+            sectorsText1: null;
+            sectorsParagraph5: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityText1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            accountabilityLinkLabel1: null;
+            accountabilityLinkLabel2: null;
+            accountabilityParagraph4: null;
+            accountabilityParagraph5: null;
+            accountabilityHeading2: null;
+            accountabilityParagraph6: null;
+            accountabilityLinkLabel3: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "impactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            impactParagraph1: null;
+            impactParagraph2: null;
+            impactHeading1: null;
+            impactText1: null;
+            impactText2: null;
+            impactParagraph3: null;
+            impactParagraph4: null;
+            impactLinkLabel1: null;
+            impactText3: null;
+            impactCaption1: null;
+            overviewHeading1: null;
+            overviewHeading2: null;
+            overviewParagraph1: null;
+            overviewParagraph2: null;
+            storiesParagraph1: null;
+            storiesHeading1: null;
+            storiesParagraph2: null;
+            storiesParagraph3: null;
+            storiesParagraph4: null;
+            growingCaption1: null;
+            growingCaption2: null;
+            growingParagraph1: null;
+            growingHeading1: null;
+            growingText1: null;
+            growingParagraph2: null;
+            growingParagraph3: null;
+            growingText2: null;
+            growingText3: null;
+            growingText4: null;
+            growingText5: null;
+            growingParagraph4: null;
+            growingParagraph5: null;
+            growingLinkLabel1: null;
+            womenCaption1: null;
+            womenParagraph1: null;
+            womenHeading1: null;
+            womenText1: null;
+            womenText2: null;
+            womenParagraph2: null;
+            womenText3: null;
+            womenText4: null;
+            womenText5: null;
+            womenParagraph3: null;
+            womenParagraph4: null;
+            womenLinkLabel1: null;
+            enterpriseParagraph1: null;
+            enterpriseHeading1: null;
+            enterpriseHeading2: null;
+            enterpriseText1: null;
+            enterpriseText2: null;
+            enterpriseText3: null;
+            enterpriseText4: null;
+            enterpriseParagraph2: null;
+            storiesParagraph5: null;
+            storiesLinkLabel1: null;
+            sectorsParagraph1: null;
+            sectorsParagraph2: null;
+            sectorsHeading1: null;
+            sectorsHeading2: null;
+            sectorsParagraph3: null;
+            sectorsParagraph4: null;
+            sectorsText1: null;
+            sectorsParagraph5: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityText1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            accountabilityLinkLabel1: null;
+            accountabilityLinkLabel2: null;
+            accountabilityParagraph4: null;
+            accountabilityParagraph5: null;
+            accountabilityHeading2: null;
+            accountabilityParagraph6: null;
+            accountabilityLinkLabel3: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "impactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            impactParagraph1: string | null;
+            impactParagraph2: string | null;
+            impactHeading1: string | null;
+            impactText1: string | null;
+            impactText2: string | null;
+            impactParagraph3: string | null;
+            impactParagraph4: string | null;
+            impactLinkLabel1: string | null;
+            impactText3: string | null;
+            impactCaption1: string | null;
+            overviewHeading1: string | null;
+            overviewHeading2: string | null;
+            overviewParagraph1: string | null;
+            overviewParagraph2: string | null;
+            storiesParagraph1: string | null;
+            storiesHeading1: string | null;
+            storiesParagraph2: string | null;
+            storiesParagraph3: string | null;
+            storiesParagraph4: string | null;
+            growingCaption1: string | null;
+            growingCaption2: string | null;
+            growingParagraph1: string | null;
+            growingHeading1: string | null;
+            growingText1: string | null;
+            growingParagraph2: string | null;
+            growingParagraph3: string | null;
+            growingText2: string | null;
+            growingText3: string | null;
+            growingText4: string | null;
+            growingText5: string | null;
+            growingParagraph4: string | null;
+            growingParagraph5: string | null;
+            growingLinkLabel1: string | null;
+            womenCaption1: string | null;
+            womenParagraph1: string | null;
+            womenHeading1: string | null;
+            womenText1: string | null;
+            womenText2: string | null;
+            womenParagraph2: string | null;
+            womenText3: string | null;
+            womenText4: string | null;
+            womenText5: string | null;
+            womenParagraph3: string | null;
+            womenParagraph4: string | null;
+            womenLinkLabel1: string | null;
+            enterpriseParagraph1: string | null;
+            enterpriseHeading1: string | null;
+            enterpriseHeading2: string | null;
+            enterpriseText1: string | null;
+            enterpriseText2: string | null;
+            enterpriseText3: string | null;
+            enterpriseText4: string | null;
+            enterpriseParagraph2: string | null;
+            storiesParagraph5: string | null;
+            storiesLinkLabel1: string | null;
+            sectorsParagraph1: string | null;
+            sectorsParagraph2: string | null;
+            sectorsHeading1: string | null;
+            sectorsHeading2: string | null;
+            sectorsParagraph3: string | null;
+            sectorsParagraph4: string | null;
+            sectorsText1: string | null;
+            sectorsParagraph5: string | null;
+            coverageParagraph1: string | null;
+            coverageHeading1: string | null;
+            coverageParagraph2: string | null;
+            coverageParagraph3: string | null;
+            coverageLinkLabel1: string | null;
+            accountabilityParagraph1: string | null;
+            accountabilityHeading1: string | null;
+            accountabilityText1: string | null;
+            accountabilityParagraph2: string | null;
+            accountabilityParagraph3: string | null;
+            accountabilityLinkLabel1: string | null;
+            accountabilityLinkLabel2: string | null;
+            accountabilityParagraph4: string | null;
+            accountabilityParagraph5: string | null;
+            accountabilityHeading2: string | null;
+            accountabilityParagraph6: string | null;
+            accountabilityLinkLabel3: string | null;
+          };
+          data: {
+            impactYear: number;
+            impactOverview: Array<{
+              value: string;
+              label: string;
+              source: string;
+            }>;
+            sectorImpact: Array<{
+              title: string;
+              slug: string;
+              value: string;
+              label: string;
+              description: string;
+              source: string;
+              estimated: boolean | null;
+            }>;
+            photos: Array<{
+              name: string;
+              image: {
+                url: string | null;
+                assetId: string | null;
+                alt: string;
+              };
+            }>;
+          } | null;
+        }
+      | {
+          _id: "impactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            impactParagraph1: null;
+            impactParagraph2: null;
+            impactHeading1: null;
+            impactText1: null;
+            impactText2: null;
+            impactParagraph3: null;
+            impactParagraph4: null;
+            impactLinkLabel1: null;
+            impactText3: null;
+            impactCaption1: null;
+            overviewHeading1: null;
+            overviewHeading2: null;
+            overviewParagraph1: null;
+            overviewParagraph2: null;
+            storiesParagraph1: null;
+            storiesHeading1: null;
+            storiesParagraph2: null;
+            storiesParagraph3: null;
+            storiesParagraph4: null;
+            growingCaption1: null;
+            growingCaption2: null;
+            growingParagraph1: null;
+            growingHeading1: null;
+            growingText1: null;
+            growingParagraph2: null;
+            growingParagraph3: null;
+            growingText2: null;
+            growingText3: null;
+            growingText4: null;
+            growingText5: null;
+            growingParagraph4: null;
+            growingParagraph5: null;
+            growingLinkLabel1: null;
+            womenCaption1: null;
+            womenParagraph1: null;
+            womenHeading1: null;
+            womenText1: null;
+            womenText2: null;
+            womenParagraph2: null;
+            womenText3: null;
+            womenText4: null;
+            womenText5: null;
+            womenParagraph3: null;
+            womenParagraph4: null;
+            womenLinkLabel1: null;
+            enterpriseParagraph1: null;
+            enterpriseHeading1: null;
+            enterpriseHeading2: null;
+            enterpriseText1: null;
+            enterpriseText2: null;
+            enterpriseText3: null;
+            enterpriseText4: null;
+            enterpriseParagraph2: null;
+            storiesParagraph5: null;
+            storiesLinkLabel1: null;
+            sectorsParagraph1: null;
+            sectorsParagraph2: null;
+            sectorsHeading1: null;
+            sectorsHeading2: null;
+            sectorsParagraph3: null;
+            sectorsParagraph4: null;
+            sectorsText1: null;
+            sectorsParagraph5: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityText1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            accountabilityLinkLabel1: null;
+            accountabilityLinkLabel2: null;
+            accountabilityParagraph4: null;
+            accountabilityParagraph5: null;
+            accountabilityHeading2: null;
+            accountabilityParagraph6: null;
+            accountabilityLinkLabel3: null;
+          };
+          data: {
+            impactYear: null;
+            impactOverview: null;
+            sectorImpact: null;
+            photos: null;
+          } | null;
+        }
+      | {
+          _id: "impactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            impactParagraph1: null;
+            impactParagraph2: null;
+            impactHeading1: null;
+            impactText1: null;
+            impactText2: null;
+            impactParagraph3: null;
+            impactParagraph4: null;
+            impactLinkLabel1: null;
+            impactText3: null;
+            impactCaption1: null;
+            overviewHeading1: null;
+            overviewHeading2: null;
+            overviewParagraph1: null;
+            overviewParagraph2: null;
+            storiesParagraph1: null;
+            storiesHeading1: null;
+            storiesParagraph2: null;
+            storiesParagraph3: null;
+            storiesParagraph4: null;
+            growingCaption1: null;
+            growingCaption2: null;
+            growingParagraph1: null;
+            growingHeading1: null;
+            growingText1: null;
+            growingParagraph2: null;
+            growingParagraph3: null;
+            growingText2: null;
+            growingText3: null;
+            growingText4: null;
+            growingText5: null;
+            growingParagraph4: null;
+            growingParagraph5: null;
+            growingLinkLabel1: null;
+            womenCaption1: null;
+            womenParagraph1: null;
+            womenHeading1: null;
+            womenText1: null;
+            womenText2: null;
+            womenParagraph2: null;
+            womenText3: null;
+            womenText4: null;
+            womenText5: null;
+            womenParagraph3: null;
+            womenParagraph4: null;
+            womenLinkLabel1: null;
+            enterpriseParagraph1: null;
+            enterpriseHeading1: null;
+            enterpriseHeading2: null;
+            enterpriseText1: null;
+            enterpriseText2: null;
+            enterpriseText3: null;
+            enterpriseText4: null;
+            enterpriseParagraph2: null;
+            storiesParagraph5: null;
+            storiesLinkLabel1: null;
+            sectorsParagraph1: null;
+            sectorsParagraph2: null;
+            sectorsHeading1: null;
+            sectorsHeading2: null;
+            sectorsParagraph3: null;
+            sectorsParagraph4: null;
+            sectorsText1: null;
+            sectorsParagraph5: null;
+            coverageParagraph1: string | null;
+            coverageHeading1: string | null;
+            coverageParagraph2: string | null;
+            coverageParagraph3: string | null;
+            coverageLinkLabel1: null;
+            accountabilityParagraph1: null;
+            accountabilityHeading1: null;
+            accountabilityText1: null;
+            accountabilityParagraph2: null;
+            accountabilityParagraph3: null;
+            accountabilityLinkLabel1: null;
+            accountabilityLinkLabel2: null;
+            accountabilityParagraph4: null;
+            accountabilityParagraph5: null;
+            accountabilityHeading2: null;
+            accountabilityParagraph6: null;
+            accountabilityLinkLabel3: null;
+          };
+          data: {
+            impactYear: null;
+            impactOverview: null;
+            sectorImpact: null;
+            photos: null;
+          } | null;
+        }
+      | {
+          _id: "impactPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            impactParagraph1: null;
+            impactParagraph2: null;
+            impactHeading1: null;
+            impactText1: null;
+            impactText2: null;
+            impactParagraph3: null;
+            impactParagraph4: null;
+            impactLinkLabel1: null;
+            impactText3: null;
+            impactCaption1: null;
+            overviewHeading1: null;
+            overviewHeading2: null;
+            overviewParagraph1: null;
+            overviewParagraph2: null;
+            storiesParagraph1: null;
+            storiesHeading1: null;
+            storiesParagraph2: null;
+            storiesParagraph3: null;
+            storiesParagraph4: null;
+            growingCaption1: null;
+            growingCaption2: null;
+            growingParagraph1: null;
+            growingHeading1: null;
+            growingText1: null;
+            growingParagraph2: null;
+            growingParagraph3: null;
+            growingText2: null;
+            growingText3: null;
+            growingText4: null;
+            growingText5: null;
+            growingParagraph4: null;
+            growingParagraph5: null;
+            growingLinkLabel1: null;
+            womenCaption1: null;
+            womenParagraph1: null;
+            womenHeading1: null;
+            womenText1: null;
+            womenText2: null;
+            womenParagraph2: null;
+            womenText3: null;
+            womenText4: null;
+            womenText5: null;
+            womenParagraph3: null;
+            womenParagraph4: null;
+            womenLinkLabel1: null;
+            enterpriseParagraph1: null;
+            enterpriseHeading1: null;
+            enterpriseHeading2: null;
+            enterpriseText1: null;
+            enterpriseText2: null;
+            enterpriseText3: null;
+            enterpriseText4: null;
+            enterpriseParagraph2: null;
+            storiesParagraph5: null;
+            storiesLinkLabel1: null;
+            sectorsParagraph1: null;
+            sectorsParagraph2: null;
+            sectorsHeading1: null;
+            sectorsHeading2: null;
+            sectorsParagraph3: null;
+            sectorsParagraph4: null;
+            sectorsText1: null;
+            sectorsParagraph5: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageLinkLabel1: null;
+            accountabilityParagraph1: string | null;
+            accountabilityHeading1: string | null;
+            accountabilityText1: null;
+            accountabilityParagraph2: string | null;
+            accountabilityParagraph3: string | null;
+            accountabilityLinkLabel1: null;
+            accountabilityLinkLabel2: null;
+            accountabilityParagraph4: null;
+            accountabilityParagraph5: null;
+            accountabilityHeading2: null;
+            accountabilityParagraph6: null;
+            accountabilityLinkLabel3: null;
+          };
+          data: {
+            impactYear: null;
+            impactOverview: null;
+            sectorImpact: null;
+            photos: null;
+          } | null;
+        }
+      | null
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            programmesImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            programmesParagraph1: string | null;
+            programmesHeading1: string | null;
+            programmesText1: string | null;
+            programmesParagraph2: string | null;
+            programmesLinkLabel1: string | null;
+            programmesParagraph3: string | null;
+            areasParagraph1: string | null;
+            areasHeading1: string | null;
+            areasHeading2: string | null;
+            areasParagraph2: string | null;
+            areasParagraph3: string | null;
+            areasText1: string | null;
+            areasParagraph4: string | null;
+            areasParagraph5: string | null;
+            areasParagraph6: string | null;
+            areasText2: string | null;
+            areasLinkLabel1: string | null;
+            areasHeading3: string | null;
+            areasParagraph7: string | null;
+            areasLinkLabel2: string | null;
+            areasHeading4: string | null;
+            areasLinkLabel3: string | null;
+            areasParagraph8: string | null;
+            areasParagraph9: string | null;
+            areasLinkLabel4: string | null;
+            areasParagraph10: string | null;
+            areasParagraph11: string | null;
+            areasParagraph12: string | null;
+            areasLinkLabel5: string | null;
+            approachImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            approachCaption1: string | null;
+            approachParagraph1: string | null;
+            approachHeading1: string | null;
+            approachText1: string | null;
+            approachParagraph2: string | null;
+            approachHeading2: string | null;
+            approachParagraph3: string | null;
+            approachHeading3: string | null;
+            approachParagraph4: string | null;
+            approachLinkLabel1: string | null;
+            actionParagraph1: string | null;
+            actionHeading1: string | null;
+            actionText1: string | null;
+            actionParagraph2: string | null;
+            actionLinkLabel1: string | null;
+            actionLinkLabel2: string | null;
+            actionLinkLabel3: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: string | null;
+            approachHeading1: string | null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: string | null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: {
+            timeline: Array<{
+              year: string;
+              title: string;
+              text: string;
+              _type: "timelineItem";
+              _key: string;
+            }>;
+            values: Array<{
+              title: string;
+              text: string;
+              _type: "valuesItem";
+              _key: string;
+            }>;
+            approach: Array<{
+              title: string;
+              text: string;
+              _type: "approachItem";
+              _key: string;
+            }>;
+            leadership: Array<{
+              name: string;
+              role: string;
+              detail: string;
+              image: EditorialImage;
+              _type: "leadershipItem";
+              _key: string;
+            }>;
+            accountability: {
+              safeguarding: {
+                title: string;
+                text: string;
+              };
+              community: {
+                title: string;
+                text: string;
+              };
+              feedback: {
+                title: string;
+                text: string;
+              };
+              transparency: {
+                title: string;
+                text: string;
+              };
+            };
+          } | null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: {
+            board: Array<{
+              name: string;
+              role: string;
+              detail?: string;
+              image: EditorialImage;
+              _type: "boardItem";
+              _key: string;
+            }>;
+            management: Array<{
+              name: string;
+              role: string;
+              image: EditorialImage;
+              _type: "managementItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: {
+            impactYear: number;
+            impactOverview: Array<{
+              value: string;
+              label: string;
+              source: string;
+              _type: "impactOverviewItem";
+              _key: string;
+            }>;
+            sectorImpact: Array<{
+              title: string;
+              slug: string;
+              value: string;
+              label: string;
+              description: string;
+              source: string;
+              estimated?: boolean;
+              _type: "sectorImpactItem";
+              _key: string;
+            }>;
+            photos: Array<{
+              name: string;
+              image: EditorialImage;
+              _type: "photosItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: {
+            legacyReports: Array<{
+              title: string;
+              category: "Annual reports" | "Financial reports" | "Publications";
+              year: number;
+              summary: string;
+              fileUrl: string;
+              onlineUrl?: string;
+              _type: "legacyReportsItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "programmesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            programmesImage1: null;
+            programmesParagraph1: null;
+            programmesHeading1: null;
+            programmesText1: null;
+            programmesParagraph2: null;
+            programmesLinkLabel1: null;
+            programmesParagraph3: null;
+            areasParagraph1: null;
+            areasHeading1: null;
+            areasHeading2: null;
+            areasParagraph2: null;
+            areasParagraph3: null;
+            areasText1: null;
+            areasParagraph4: null;
+            areasParagraph5: null;
+            areasParagraph6: null;
+            areasText2: null;
+            areasLinkLabel1: null;
+            areasHeading3: null;
+            areasParagraph7: null;
+            areasLinkLabel2: null;
+            areasHeading4: null;
+            areasLinkLabel3: null;
+            areasParagraph8: null;
+            areasParagraph9: null;
+            areasLinkLabel4: null;
+            areasParagraph10: null;
+            areasParagraph11: null;
+            areasParagraph12: null;
+            areasLinkLabel5: null;
+            approachImage1: null;
+            approachCaption1: null;
+            approachParagraph1: null;
+            approachHeading1: null;
+            approachText1: null;
+            approachParagraph2: null;
+            approachHeading2: null;
+            approachParagraph3: null;
+            approachHeading3: null;
+            approachParagraph4: null;
+            approachLinkLabel1: null;
+            actionParagraph1: null;
+            actionHeading1: null;
+            actionText1: null;
+            actionParagraph2: null;
+            actionLinkLabel1: null;
+            actionLinkLabel2: null;
+            actionLinkLabel3: null;
+          };
+          data: {
+            lgaActivities: Array<{
+              state: "Adamawa" | "Borno" | "Yobe";
+              lga:
+                | "Bade"
+                | "Biu"
+                | "Chibok"
+                | "Fika"
+                | "Fune"
+                | "Geidam"
+                | "Gwoza"
+                | "Hong"
+                | "Jakusko"
+                | "Jere"
+                | "Kaga"
+                | "Madagali"
+                | "Magumeri"
+                | "Michika"
+                | "MMC"
+                | "Mubi North"
+                | "Mubi South"
+                | "Nangere"
+                | "Nguru"
+                | "Potiskum";
+              activities: Array<{
+                title: string;
+                text: string;
+                source: string;
+                project?: string;
+                page?: number;
+                _type: "activitiesItem";
+                _key: string;
+              }>;
+              _type: "lgaActivitiesItem";
+              _key: string;
+            }>;
+            offices: Array<{
+              town: string;
+              state: string;
+              type: string;
+              _type: "officesItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | null
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: null;
+            introHeading1: null;
+            introParagraph1: null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: null;
+            introHeading1: null;
+            introParagraph1: null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: null;
+            introHeading1: null;
+            introParagraph1: null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: string | null;
+            introHeading1: null;
+            introParagraph1: null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: null;
+            introHeading1: string | null;
+            introParagraph1: string | null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: string | null;
+            introHeading1: string | null;
+            introParagraph1: string | null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: string | null;
+            projectsHeading1: string | null;
+            projectsHeading2: string | null;
+            projectsText1: string | null;
+            projectsParagraph2: string | null;
+            introLinkLabel1: string | null;
+            introHeading1: string | null;
+            introParagraph1: string | null;
+            projectImpactHeading1: string | null;
+            projectImpactText1: string | null;
+            projectImpactParagraph1: string | null;
+            projectImpactLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: null;
+            introHeading1: null;
+            introParagraph1: null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: {
+            timeline: Array<{
+              year: string;
+              title: string;
+              text: string;
+              _type: "timelineItem";
+              _key: string;
+            }>;
+            values: Array<{
+              title: string;
+              text: string;
+              _type: "valuesItem";
+              _key: string;
+            }>;
+            approach: Array<{
+              title: string;
+              text: string;
+              _type: "approachItem";
+              _key: string;
+            }>;
+            leadership: Array<{
+              name: string;
+              role: string;
+              detail: string;
+              image: EditorialImage;
+              _type: "leadershipItem";
+              _key: string;
+            }>;
+            accountability: {
+              safeguarding: {
+                title: string;
+                text: string;
+              };
+              community: {
+                title: string;
+                text: string;
+              };
+              feedback: {
+                title: string;
+                text: string;
+              };
+              transparency: {
+                title: string;
+                text: string;
+              };
+            };
+          } | null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: string | null;
+            introHeading1: string | null;
+            introParagraph1: string | null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: {
+            board: Array<{
+              name: string;
+              role: string;
+              detail?: string;
+              image: EditorialImage;
+              _type: "boardItem";
+              _key: string;
+            }>;
+            management: Array<{
+              name: string;
+              role: string;
+              image: EditorialImage;
+              _type: "managementItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: null;
+            introHeading1: null;
+            introParagraph1: null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: {
+            impactYear: number;
+            impactOverview: Array<{
+              value: string;
+              label: string;
+              source: string;
+              _type: "impactOverviewItem";
+              _key: string;
+            }>;
+            sectorImpact: Array<{
+              title: string;
+              slug: string;
+              value: string;
+              label: string;
+              description: string;
+              source: string;
+              estimated?: boolean;
+              _type: "sectorImpactItem";
+              _key: string;
+            }>;
+            photos: Array<{
+              name: string;
+              image: EditorialImage;
+              _type: "photosItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: null;
+            introHeading1: null;
+            introParagraph1: null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: {
+            legacyReports: Array<{
+              title: string;
+              category: "Annual reports" | "Financial reports" | "Publications";
+              year: number;
+              summary: string;
+              fileUrl: string;
+              onlineUrl?: string;
+              _type: "legacyReportsItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "projectsPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            projectsParagraph1: null;
+            projectsHeading1: null;
+            projectsHeading2: null;
+            projectsText1: null;
+            projectsParagraph2: null;
+            introLinkLabel1: string | null;
+            introHeading1: string | null;
+            introParagraph1: string | null;
+            projectImpactHeading1: null;
+            projectImpactText1: null;
+            projectImpactParagraph1: null;
+            projectImpactLinkLabel1: null;
+          };
+          data: {
+            lgaActivities: Array<{
+              state: "Adamawa" | "Borno" | "Yobe";
+              lga:
+                | "Bade"
+                | "Biu"
+                | "Chibok"
+                | "Fika"
+                | "Fune"
+                | "Geidam"
+                | "Gwoza"
+                | "Hong"
+                | "Jakusko"
+                | "Jere"
+                | "Kaga"
+                | "Madagali"
+                | "Magumeri"
+                | "Michika"
+                | "MMC"
+                | "Mubi North"
+                | "Mubi South"
+                | "Nangere"
+                | "Nguru"
+                | "Potiskum";
+              activities: Array<{
+                title: string;
+                text: string;
+                source: string;
+                project?: string;
+                page?: number;
+                _type: "activitiesItem";
+                _key: string;
+              }>;
+              _type: "lgaActivitiesItem";
+              _key: string;
+            }>;
+            offices: Array<{
+              town: string;
+              state: string;
+              type: string;
+              _type: "officesItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | null
+      | {
+          _id: "resourcesPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            resourcesParagraph1: null;
+            resourcesHeading1: null;
+            resourcesText1: null;
+            resourcesParagraph2: null;
+            featuredReportParagraph1: null;
+            featuredReportLinkLabel1: null;
+            featuredReportLinkLabel2: null;
+            featuredReportText1: null;
+            featuredReportText2: null;
+            libraryHeading1: null;
+            libraryParagraph1: null;
+            libraryText1: null;
+            libraryText2: null;
+            libraryParagraph2: null;
+            libraryHeading2: null;
+            libraryParagraph3: null;
+            libraryParagraph4: null;
+            libraryParagraph5: null;
+            libraryLinkLabel1: null;
+            mediaParagraph1: null;
+            mediaHeading1: null;
+            mediaParagraph2: null;
+            mediaLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "resourcesPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            resourcesParagraph1: null;
+            resourcesHeading1: null;
+            resourcesText1: null;
+            resourcesParagraph2: null;
+            featuredReportParagraph1: null;
+            featuredReportLinkLabel1: null;
+            featuredReportLinkLabel2: null;
+            featuredReportText1: null;
+            featuredReportText2: null;
+            libraryHeading1: null;
+            libraryParagraph1: null;
+            libraryText1: null;
+            libraryText2: null;
+            libraryParagraph2: null;
+            libraryHeading2: null;
+            libraryParagraph3: null;
+            libraryParagraph4: null;
+            libraryParagraph5: null;
+            libraryLinkLabel1: null;
+            mediaParagraph1: null;
+            mediaHeading1: null;
+            mediaParagraph2: null;
+            mediaLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "resourcesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            resourcesParagraph1: null;
+            resourcesHeading1: null;
+            resourcesText1: null;
+            resourcesParagraph2: null;
+            featuredReportParagraph1: null;
+            featuredReportLinkLabel1: null;
+            featuredReportLinkLabel2: null;
+            featuredReportText1: null;
+            featuredReportText2: null;
+            libraryHeading1: null;
+            libraryParagraph1: null;
+            libraryText1: null;
+            libraryText2: null;
+            libraryParagraph2: null;
+            libraryHeading2: null;
+            libraryParagraph3: null;
+            libraryParagraph4: null;
+            libraryParagraph5: null;
+            libraryLinkLabel1: null;
+            mediaParagraph1: null;
+            mediaHeading1: null;
+            mediaParagraph2: null;
+            mediaLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "resourcesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            resourcesParagraph1: string | null;
+            resourcesHeading1: string | null;
+            resourcesText1: string | null;
+            resourcesParagraph2: string | null;
+            featuredReportParagraph1: string | null;
+            featuredReportLinkLabel1: string | null;
+            featuredReportLinkLabel2: string | null;
+            featuredReportText1: string | null;
+            featuredReportText2: string | null;
+            libraryHeading1: string | null;
+            libraryParagraph1: string | null;
+            libraryText1: string | null;
+            libraryText2: string | null;
+            libraryParagraph2: string | null;
+            libraryHeading2: string | null;
+            libraryParagraph3: string | null;
+            libraryParagraph4: string | null;
+            libraryParagraph5: string | null;
+            libraryLinkLabel1: string | null;
+            mediaParagraph1: string | null;
+            mediaHeading1: string | null;
+            mediaParagraph2: string | null;
+            mediaLinkLabel1: string | null;
+          };
+          data: {
+            legacyReports: Array<{
+              title: string;
+              category: "Annual reports" | "Financial reports" | "Publications";
+              year: number;
+              summary: string;
+              fileUrl: string;
+              onlineUrl: string | null;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "resourcesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            resourcesParagraph1: null;
+            resourcesHeading1: null;
+            resourcesText1: null;
+            resourcesParagraph2: null;
+            featuredReportParagraph1: null;
+            featuredReportLinkLabel1: null;
+            featuredReportLinkLabel2: null;
+            featuredReportText1: null;
+            featuredReportText2: null;
+            libraryHeading1: null;
+            libraryParagraph1: null;
+            libraryText1: null;
+            libraryText2: null;
+            libraryParagraph2: null;
+            libraryHeading2: null;
+            libraryParagraph3: null;
+            libraryParagraph4: null;
+            libraryParagraph5: null;
+            libraryLinkLabel1: null;
+            mediaParagraph1: null;
+            mediaHeading1: null;
+            mediaParagraph2: null;
+            mediaLinkLabel1: null;
+          };
+          data: {
+            legacyReports: null;
+          } | null;
+        }
+      | null
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introHeading2: null;
+            introParagraph2: string | null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            updatesParagraph1: string | null;
+            updatesHeading1: string | null;
+            updatesText1: string | null;
+            updatesParagraph2: string | null;
+            updatesParagraph3: string | null;
+            updatesLibraryParagraph1: string | null;
+            updatesLibraryHeading1: string | null;
+            updatesLibraryLinkLabel1: string | null;
+            updatesLibraryParagraph2: string | null;
+            updatesLibraryParagraph3: string | null;
+            updatesLibraryText1: string | null;
+            updatesLibraryText2: string | null;
+            updatesLibraryText3: string | null;
+            updatesLibraryText4: string | null;
+            updatesLibraryText5: string | null;
+            updatesLibraryText6: string | null;
+            updatesLibraryHeading2: string | null;
+            updatesLibraryParagraph4: string | null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introHeading2: string | null;
+            introParagraph2: string | null;
+            introLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: {
+            timeline: Array<{
+              year: string;
+              title: string;
+              text: string;
+              _type: "timelineItem";
+              _key: string;
+            }>;
+            values: Array<{
+              title: string;
+              text: string;
+              _type: "valuesItem";
+              _key: string;
+            }>;
+            approach: Array<{
+              title: string;
+              text: string;
+              _type: "approachItem";
+              _key: string;
+            }>;
+            leadership: Array<{
+              name: string;
+              role: string;
+              detail: string;
+              image: EditorialImage;
+              _type: "leadershipItem";
+              _key: string;
+            }>;
+            accountability: {
+              safeguarding: {
+                title: string;
+                text: string;
+              };
+              community: {
+                title: string;
+                text: string;
+              };
+              feedback: {
+                title: string;
+                text: string;
+              };
+              transparency: {
+                title: string;
+                text: string;
+              };
+            };
+          } | null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introHeading2: string | null;
+            introParagraph2: string | null;
+            introLinkLabel1: string | null;
+          };
+          data: {
+            board: Array<{
+              name: string;
+              role: string;
+              detail?: string;
+              image: EditorialImage;
+              _type: "boardItem";
+              _key: string;
+            }>;
+            management: Array<{
+              name: string;
+              role: string;
+              image: EditorialImage;
+              _type: "managementItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: {
+            impactYear: number;
+            impactOverview: Array<{
+              value: string;
+              label: string;
+              source: string;
+              _type: "impactOverviewItem";
+              _key: string;
+            }>;
+            sectorImpact: Array<{
+              title: string;
+              slug: string;
+              value: string;
+              label: string;
+              description: string;
+              source: string;
+              estimated?: boolean;
+              _type: "sectorImpactItem";
+              _key: string;
+            }>;
+            photos: Array<{
+              name: string;
+              image: EditorialImage;
+              _type: "photosItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introHeading2: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: {
+            legacyReports: Array<{
+              title: string;
+              category: "Annual reports" | "Financial reports" | "Publications";
+              year: number;
+              summary: string;
+              fileUrl: string;
+              onlineUrl?: string;
+              _type: "legacyReportsItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "storiesPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            updatesImage1: null;
+            updatesParagraph1: null;
+            updatesHeading1: null;
+            updatesText1: null;
+            updatesParagraph2: null;
+            updatesParagraph3: null;
+            updatesLibraryParagraph1: null;
+            updatesLibraryHeading1: null;
+            updatesLibraryLinkLabel1: null;
+            updatesLibraryParagraph2: null;
+            updatesLibraryParagraph3: null;
+            updatesLibraryText1: null;
+            updatesLibraryText2: null;
+            updatesLibraryText3: null;
+            updatesLibraryText4: null;
+            updatesLibraryText5: null;
+            updatesLibraryText6: null;
+            updatesLibraryHeading2: null;
+            updatesLibraryParagraph4: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introHeading2: null;
+            introParagraph2: string | null;
+            introLinkLabel1: string | null;
+          };
+          data: {
+            lgaActivities: Array<{
+              state: "Adamawa" | "Borno" | "Yobe";
+              lga:
+                | "Bade"
+                | "Biu"
+                | "Chibok"
+                | "Fika"
+                | "Fune"
+                | "Geidam"
+                | "Gwoza"
+                | "Hong"
+                | "Jakusko"
+                | "Jere"
+                | "Kaga"
+                | "Madagali"
+                | "Magumeri"
+                | "Michika"
+                | "MMC"
+                | "Mubi North"
+                | "Mubi South"
+                | "Nangere"
+                | "Nguru"
+                | "Potiskum";
+              activities: Array<{
+                title: string;
+                text: string;
+                source: string;
+                project?: string;
+                page?: number;
+                _type: "activitiesItem";
+                _key: string;
+              }>;
+              _type: "lgaActivitiesItem";
+              _key: string;
+            }>;
+            offices: Array<{
+              town: string;
+              state: string;
+              type: string;
+              _type: "officesItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | null
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: null;
+            introParagraph1: null;
+            introLinkLabel1: null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: null;
+            introHeading1: null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: null;
+            introParagraph1: null;
+            introLinkLabel1: null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: null;
+            introHeading1: null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: null;
+            introParagraph1: null;
+            introLinkLabel1: null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: null;
+            introHeading1: null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: string | null;
+            introParagraph1: null;
+            introLinkLabel1: string | null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: null;
+            introHeading1: null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: string | null;
+            introParagraph1: string | null;
+            introLinkLabel1: null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: string | null;
+            introHeading1: string | null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: null;
+            introParagraph1: string | null;
+            introLinkLabel1: string | null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: null;
+            introHeading1: string | null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: null;
+            introParagraph1: string | null;
+            introLinkLabel1: string | null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: string | null;
+            introHeading1: string | null;
+            introHeading2: string | null;
+            introLinkLabel2: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: string | null;
+            teamHeading1: string | null;
+            teamText1: string | null;
+            teamParagraph2: string | null;
+            teamLinkLabel1: string | null;
+            teamImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            teamCaption1: string | null;
+            introText1: string | null;
+            introParagraph1: string | null;
+            introLinkLabel1: string | null;
+            boardParagraph1: string | null;
+            boardHeading1: string | null;
+            boardParagraph2: string | null;
+            boardParagraph3: string | null;
+            managementParagraph1: string | null;
+            managementHeading1: string | null;
+            managementParagraph2: string | null;
+            managementParagraph3: string | null;
+            peopleImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            peopleCaption1: string | null;
+            peopleParagraph1: string | null;
+            peopleHeading1: string | null;
+            peopleParagraph2: string | null;
+            peopleText1: string | null;
+            peopleText2: string | null;
+            peopleText3: string | null;
+            peopleText4: string | null;
+            peopleParagraph3: string | null;
+            peopleLinkLabel1: string | null;
+            introParagraph2: string | null;
+            introHeading1: string | null;
+            introHeading2: string | null;
+            introLinkLabel2: string | null;
+          };
+          data: {
+            board: Array<{
+              name: string;
+              role: string;
+              detail: string | null;
+              image: {
+                url: string | null;
+                assetId: string | null;
+                alt: string;
+              };
+            }>;
+            management: Array<{
+              name: string;
+              role: string;
+              image: {
+                url: string | null;
+                assetId: string | null;
+                alt: string;
+              };
+            }>;
+          } | null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: null;
+            introParagraph1: null;
+            introLinkLabel1: null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: null;
+            introHeading1: null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: {
+            board: null;
+            management: null;
+          } | null;
+        }
+      | {
+          _id: "teamPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            teamParagraph1: null;
+            teamHeading1: null;
+            teamText1: null;
+            teamParagraph2: null;
+            teamLinkLabel1: null;
+            teamImage1: null;
+            teamCaption1: null;
+            introText1: string | null;
+            introParagraph1: string | null;
+            introLinkLabel1: string | null;
+            boardParagraph1: null;
+            boardHeading1: null;
+            boardParagraph2: null;
+            boardParagraph3: null;
+            managementParagraph1: null;
+            managementHeading1: null;
+            managementParagraph2: null;
+            managementParagraph3: null;
+            peopleImage1: null;
+            peopleCaption1: null;
+            peopleParagraph1: null;
+            peopleHeading1: null;
+            peopleParagraph2: null;
+            peopleText1: null;
+            peopleText2: null;
+            peopleText3: null;
+            peopleText4: null;
+            peopleParagraph3: null;
+            peopleLinkLabel1: null;
+            introParagraph2: string | null;
+            introHeading1: string | null;
+            introHeading2: null;
+            introLinkLabel2: null;
+          };
+          data: {
+            board: null;
+            management: null;
+          } | null;
+        }
+      | null
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: null;
+            seoTitle: null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string;
+            seoTitle: string;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: string | null;
+            introText2: string | null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introParagraph2: null;
+            introLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: string | null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introParagraph2: string | null;
+            introLinkLabel1: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introParagraph2: null;
+            introLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introParagraph2: string | null;
+            introLinkLabel1: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: string | null;
+            whereWorkHeading1: string | null;
+            whereWorkText1: string | null;
+            whereWorkParagraph2: string | null;
+            whereWorkLinkLabel1: string | null;
+            whereWorkImage1: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            whereWorkCaption1: string | null;
+            introText1: string | null;
+            introText2: string | null;
+            introText3: string | null;
+            introText4: string | null;
+            introText5: string | null;
+            introText6: string | null;
+            introText7: string | null;
+            coverageParagraph1: string | null;
+            coverageHeading1: string | null;
+            coverageParagraph2: string | null;
+            coverageParagraph3: string | null;
+            coverageText1: string | null;
+            coverageParagraph4: string | null;
+            basesParagraph1: string | null;
+            basesHeading1: string | null;
+            basesLinkLabel1: string | null;
+            basesParagraph2: string | null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introParagraph2: string | null;
+            introLinkLabel1: string | null;
+          };
+          data: {
+            lgaActivities: Array<{
+              state: "Adamawa" | "Borno" | "Yobe";
+              lga:
+                | "Bade"
+                | "Biu"
+                | "Chibok"
+                | "Fika"
+                | "Fune"
+                | "Geidam"
+                | "Gwoza"
+                | "Hong"
+                | "Jakusko"
+                | "Jere"
+                | "Kaga"
+                | "Madagali"
+                | "Magumeri"
+                | "Michika"
+                | "MMC"
+                | "Mubi North"
+                | "Mubi South"
+                | "Nangere"
+                | "Nguru"
+                | "Potiskum";
+              activities: Array<{
+                title: string;
+                text: string;
+                source: string;
+                project: string | null;
+                page: number | null;
+              }>;
+            }>;
+            offices: Array<{
+              town: string;
+              state: string;
+              type: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: {
+            lgaActivities: null;
+            offices: null;
+          } | null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: string | null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: null;
+            coverageHeading1: null;
+            coverageParagraph2: null;
+            coverageParagraph3: null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: string | null;
+            introHeading1: string | null;
+            introParagraph2: string | null;
+            introLinkLabel1: string | null;
+          };
+          data: {
+            lgaActivities: null;
+            offices: null;
+          } | null;
+        }
+      | {
+          _id: "whereWeWorkPage";
+          fields: {
+            seoDescription: string | null;
+            seoTitle: string | null;
+            whereWorkParagraph1: null;
+            whereWorkHeading1: null;
+            whereWorkText1: null;
+            whereWorkParagraph2: null;
+            whereWorkLinkLabel1: null;
+            whereWorkImage1: null;
+            whereWorkCaption1: null;
+            introText1: null;
+            introText2: null;
+            introText3: null;
+            introText4: null;
+            introText5: null;
+            introText6: null;
+            introText7: null;
+            coverageParagraph1: string | null;
+            coverageHeading1: string | null;
+            coverageParagraph2: string | null;
+            coverageParagraph3: string | null;
+            coverageText1: null;
+            coverageParagraph4: null;
+            basesParagraph1: null;
+            basesHeading1: null;
+            basesLinkLabel1: null;
+            basesParagraph2: null;
+            introParagraph1: null;
+            introHeading1: null;
+            introParagraph2: null;
+            introLinkLabel1: null;
+          };
+          data: {
+            lgaActivities: null;
+            offices: null;
+          } | null;
+        }
+      | null
+    >;
     settings:
       | {
           organisationName: null;
@@ -1025,6 +12832,24 @@ export type RELEASE_QUERY_RESULT = {
         _type: "block";
         _key: string;
       }> | null;
+      details: {
+        projectSlugs: Array<string> | null;
+        interventions: Array<string>;
+        source: string;
+        locations: Array<{
+          label: string;
+          detail: string;
+          source: string;
+        }>;
+        locationNote: string | null;
+        projectReach: {
+          value: string;
+          label: string;
+          description: string;
+          source: string;
+          project: string;
+        } | null;
+      } | null;
       sortOrder: number | null;
       seoTitle: string | null;
       seoDescription: string | null;
@@ -1057,6 +12882,51 @@ export type RELEASE_QUERY_RESULT = {
         _type: "block";
         _key: string;
       }> | null;
+      profile: {
+        donor: string;
+        partners: string | null;
+        overview: Array<string>;
+        context: string;
+        activities: Array<{
+          title: string;
+          text: string;
+        }>;
+        facts: Array<{
+          value: string;
+          label: string;
+        }> | null;
+        resultsIntro: string;
+        stories: Array<{
+          title: string;
+          text: string;
+          source: string;
+        }>;
+        overviewImage: {
+          url: string | null;
+          assetId: string | null;
+          alt: string;
+        } | null;
+        overviewCaption: string | null;
+        gallery: Array<{
+          image: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          };
+          caption: string;
+        }>;
+        sources: Array<{
+          title: string;
+          detail: string;
+          url: string | null;
+        }>;
+        storyNote: string | null;
+        photoNote: string | null;
+        reviewNote: string | null;
+        outcomes: Array<string> | null;
+      } | null;
+      reportingYear: number | null;
+      imageCaption: string | null;
       location: string | null;
       status: "completed" | "ongoing" | null;
       startDate: string | null;
@@ -1136,6 +13006,221 @@ export type RELEASE_QUERY_RESULT = {
   documents: Array<
     | {
         _id: string;
+        _type: "aboutPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        aboutImage1?: EditorialImage;
+        aboutParagraph1?: string;
+        aboutHeading1?: string;
+        aboutText1?: string;
+        aboutText2?: string;
+        aboutParagraph2?: string;
+        whoParagraph1?: string;
+        whoHeading1?: string;
+        whoHeading2?: string;
+        whoParagraph2?: string;
+        whoParagraph3?: string;
+        whoParagraph4?: string;
+        whoText1?: string;
+        whoImage1?: EditorialImage;
+        whoCaption1?: string;
+        whoText2?: string;
+        whoText3?: string;
+        storyParagraph1?: string;
+        storyHeading1?: string;
+        storyHeading2?: string;
+        storyParagraph2?: string;
+        guidesParagraph1?: string;
+        guidesHeading1?: string;
+        guidesHeading2?: string;
+        guidesHeading3?: string;
+        guidesParagraph2?: string;
+        guidesHeading4?: string;
+        guidesParagraph3?: string;
+        guidesHeading5?: string;
+        identityParagraph1?: string;
+        identityHeading1?: string;
+        identityHeading2?: string;
+        identityParagraph2?: string;
+        identityParagraph3?: string;
+        identityText1?: string;
+        identityImage1?: EditorialImage;
+        identityCaption1?: string;
+        whereParagraph1?: string;
+        whereHeading1?: string;
+        whereParagraph2?: string;
+        whereCaption1?: string;
+        whereLinkLabel1?: string;
+        whereHeading2?: string;
+        whereLinkLabel2?: string;
+        whereParagraph3?: string;
+        whereParagraph4?: string;
+        whereLinkLabel3?: string;
+        approachParagraph1?: string;
+        approachHeading1?: string;
+        approachHeading2?: string;
+        leadershipParagraph1?: string;
+        leadershipHeading1?: string;
+        leadershipParagraph2?: string;
+        leadershipText1?: string;
+        leadershipText2?: string;
+        leadershipImage1?: EditorialImage;
+        leadershipHeading2?: string;
+        leadershipHeading3?: string;
+        leadershipParagraph3?: string;
+        leadershipLinkLabel1?: string;
+        accountabilityParagraph1?: string;
+        accountabilityHeading1?: string;
+        accountabilityParagraph2?: string;
+        accountabilityParagraph3?: string;
+        partnershipParagraph1?: string;
+        partnershipHeading1?: string;
+        partnershipParagraph2?: string;
+        partnershipLinkLabel1?: string;
+        ctaImage1?: EditorialImage;
+        ctaParagraph1?: string;
+        ctaHeading1?: string;
+        ctaHeading2?: string;
+        ctaParagraph2?: string;
+        ctaLinkLabel1?: string;
+        ctaLinkLabel2?: string;
+        data?: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+            _type: "timelineItem";
+            _key: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+            _type: "valuesItem";
+            _key: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+            _type: "approachItem";
+            _key: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: EditorialImage;
+            _type: "leadershipItem";
+            _key: string;
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        };
+      }
+    | {
+        _id: string;
+        _type: "contactPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        introParagraph1?: string;
+        introHeading1?: string;
+        introText1?: string;
+        introParagraph2?: string;
+        contactDetailsParagraph1?: string;
+        contactDetailsHeading1?: string;
+        contactDetailsHeading2?: string;
+        contactDetailsParagraph2?: string;
+        contactDetailsHeading3?: string;
+        contactDetailsHeading4?: string;
+        contactDetailsHeading5?: string;
+        contactDetailsLinkLabel1?: string;
+        enquiryHeading1?: string;
+        enquiryParagraph1?: string;
+        enquiryParagraph2?: string;
+        enquiryParagraph3?: string;
+        officeParagraph1?: string;
+        officeHeading1?: string;
+        officeParagraph2?: string;
+        officeLinkLabel1?: string;
+        officeLinkLabel2?: string;
+      }
+    | {
+        _id: string;
+        _type: "donatePage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        donateImage1?: EditorialImage;
+        donateParagraph1?: string;
+        donateHeading1?: string;
+        donateText1?: string;
+        donateParagraph2?: string;
+        donateText2?: string;
+        donateParagraph3?: string;
+        givingParagraph1?: string;
+        givingHeading1?: string;
+        givingParagraph2?: string;
+        givingLinkLabel1?: string;
+        givingLinkLabel2?: string;
+        introText1?: string;
+        introText2?: string;
+        introLinkLabel1?: string;
+        purposeParagraph1?: string;
+        purposeHeading1?: string;
+        purposeParagraph2?: string;
+        purposeLinkLabel1?: string;
+        purposeParagraph3?: string;
+        evidenceImage1?: EditorialImage;
+        evidenceText1?: string;
+        evidenceParagraph1?: string;
+        evidenceHeading1?: string;
+        evidenceText2?: string;
+        evidenceParagraph2?: string;
+        evidenceLinkLabel1?: string;
+        evidenceLinkLabel2?: string;
+        evidenceParagraph3?: string;
+        otherParagraph1?: string;
+        otherHeading1?: string;
+        otherLinkLabel1?: string;
+        otherHeading2?: string;
+        otherParagraph2?: string;
+        otherLinkLabel2?: string;
+        otherHeading3?: string;
+        otherParagraph3?: string;
+        otherLinkLabel3?: string;
+        otherHeading4?: string;
+        otherParagraph4?: string;
+        otherLinkLabel4?: string;
+        faqParagraph1?: string;
+        faqHeading1?: string;
+        faqParagraph2?: string;
+        faqLinkLabel1?: string;
+      }
+    | {
+        _id: string;
         _type: "homePage";
         _createdAt: string;
         _updatedAt: string;
@@ -1162,6 +13247,122 @@ export type RELEASE_QUERY_RESULT = {
         partnersIntro: string;
         supportIntro: string;
         supportImage: EditorialImage;
+      }
+    | {
+        _id: string;
+        _type: "impactPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        impactParagraph1?: string;
+        impactParagraph2?: string;
+        impactHeading1?: string;
+        impactText1?: string;
+        impactText2?: string;
+        impactParagraph3?: string;
+        impactParagraph4?: string;
+        impactLinkLabel1?: string;
+        impactText3?: string;
+        impactCaption1?: string;
+        overviewHeading1?: string;
+        overviewHeading2?: string;
+        overviewParagraph1?: string;
+        overviewParagraph2?: string;
+        storiesParagraph1?: string;
+        storiesHeading1?: string;
+        storiesParagraph2?: string;
+        storiesParagraph3?: string;
+        storiesParagraph4?: string;
+        growingCaption1?: string;
+        growingCaption2?: string;
+        growingParagraph1?: string;
+        growingHeading1?: string;
+        growingText1?: string;
+        growingParagraph2?: string;
+        growingParagraph3?: string;
+        growingText2?: string;
+        growingText3?: string;
+        growingText4?: string;
+        growingText5?: string;
+        growingParagraph4?: string;
+        growingParagraph5?: string;
+        growingLinkLabel1?: string;
+        womenCaption1?: string;
+        womenParagraph1?: string;
+        womenHeading1?: string;
+        womenText1?: string;
+        womenText2?: string;
+        womenParagraph2?: string;
+        womenText3?: string;
+        womenText4?: string;
+        womenText5?: string;
+        womenParagraph3?: string;
+        womenParagraph4?: string;
+        womenLinkLabel1?: string;
+        enterpriseParagraph1?: string;
+        enterpriseHeading1?: string;
+        enterpriseHeading2?: string;
+        enterpriseText1?: string;
+        enterpriseText2?: string;
+        enterpriseText3?: string;
+        enterpriseText4?: string;
+        enterpriseParagraph2?: string;
+        storiesParagraph5?: string;
+        storiesLinkLabel1?: string;
+        sectorsParagraph1?: string;
+        sectorsParagraph2?: string;
+        sectorsHeading1?: string;
+        sectorsHeading2?: string;
+        sectorsParagraph3?: string;
+        sectorsParagraph4?: string;
+        sectorsText1?: string;
+        sectorsParagraph5?: string;
+        coverageParagraph1?: string;
+        coverageHeading1?: string;
+        coverageParagraph2?: string;
+        coverageParagraph3?: string;
+        coverageLinkLabel1?: string;
+        accountabilityParagraph1?: string;
+        accountabilityHeading1?: string;
+        accountabilityText1?: string;
+        accountabilityParagraph2?: string;
+        accountabilityParagraph3?: string;
+        accountabilityLinkLabel1?: string;
+        accountabilityLinkLabel2?: string;
+        accountabilityParagraph4?: string;
+        accountabilityParagraph5?: string;
+        accountabilityHeading2?: string;
+        accountabilityParagraph6?: string;
+        accountabilityLinkLabel3?: string;
+        data?: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+            _type: "impactOverviewItem";
+            _key: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated?: boolean;
+            _type: "sectorImpactItem";
+            _key: string;
+          }>;
+          photos: Array<{
+            name: string;
+            image: EditorialImage;
+            _type: "photosItem";
+            _key: string;
+          }>;
+        };
       }
     | {
         _id: string;
@@ -1207,6 +13408,83 @@ export type RELEASE_QUERY_RESULT = {
         seoTitle?: string;
         seoDescription?: string;
         sourceKey?: string;
+        details?: {
+          projectSlugs?: Array<string>;
+          interventions: Array<string>;
+          source: string;
+          locations: Array<{
+            label: string;
+            detail: string;
+            source: string;
+            _type: "locationsItem";
+            _key: string;
+          }>;
+          locationNote?: string;
+          projectReach?: {
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            project: string;
+          };
+        };
+      }
+    | {
+        _id: string;
+        _type: "programmesPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        programmesImage1?: EditorialImage;
+        programmesParagraph1?: string;
+        programmesHeading1?: string;
+        programmesText1?: string;
+        programmesParagraph2?: string;
+        programmesLinkLabel1?: string;
+        programmesParagraph3?: string;
+        areasParagraph1?: string;
+        areasHeading1?: string;
+        areasHeading2?: string;
+        areasParagraph2?: string;
+        areasParagraph3?: string;
+        areasText1?: string;
+        areasParagraph4?: string;
+        areasParagraph5?: string;
+        areasParagraph6?: string;
+        areasText2?: string;
+        areasLinkLabel1?: string;
+        areasHeading3?: string;
+        areasParagraph7?: string;
+        areasLinkLabel2?: string;
+        areasHeading4?: string;
+        areasLinkLabel3?: string;
+        areasParagraph8?: string;
+        areasParagraph9?: string;
+        areasLinkLabel4?: string;
+        areasParagraph10?: string;
+        areasParagraph11?: string;
+        areasParagraph12?: string;
+        areasLinkLabel5?: string;
+        approachImage1?: EditorialImage;
+        approachCaption1?: string;
+        approachParagraph1?: string;
+        approachHeading1?: string;
+        approachText1?: string;
+        approachParagraph2?: string;
+        approachHeading2?: string;
+        approachParagraph3?: string;
+        approachHeading3?: string;
+        approachParagraph4?: string;
+        approachLinkLabel1?: string;
+        actionParagraph1?: string;
+        actionHeading1?: string;
+        actionText1?: string;
+        actionParagraph2?: string;
+        actionLinkLabel1?: string;
+        actionLinkLabel2?: string;
+        actionLinkLabel3?: string;
       }
     | {
         _id: string;
@@ -1214,6 +13492,53 @@ export type RELEASE_QUERY_RESULT = {
         _createdAt: string;
         _updatedAt: string;
         _rev: string;
+        profile?: {
+          donor: string;
+          partners?: string;
+          overview: Array<string>;
+          context: string;
+          activities: Array<{
+            title: string;
+            text: string;
+            _type: "activitiesItem";
+            _key: string;
+          }>;
+          facts?: Array<{
+            value: string;
+            label: string;
+            _type: "factsItem";
+            _key: string;
+          }>;
+          resultsIntro: string;
+          stories: Array<{
+            title: string;
+            text: string;
+            source: string;
+            _type: "storiesItem";
+            _key: string;
+          }>;
+          overviewImage?: EditorialImage;
+          overviewCaption?: string;
+          gallery: Array<{
+            image: EditorialImage;
+            caption: string;
+            _type: "galleryItem";
+            _key: string;
+          }>;
+          sources: Array<{
+            title: string;
+            detail: string;
+            url?: string;
+            _type: "sourcesItem";
+            _key: string;
+          }>;
+          storyNote?: string;
+          photoNote?: string;
+          reviewNote?: string;
+          outcomes?: Array<string>;
+        };
+        reportingYear?: number;
+        imageCaption?: string;
         title: string;
         slug: Slug;
         summary?: string;
@@ -1258,6 +13583,28 @@ export type RELEASE_QUERY_RESULT = {
       }
     | {
         _id: string;
+        _type: "projectsPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        projectsParagraph1?: string;
+        projectsHeading1?: string;
+        projectsHeading2?: string;
+        projectsText1?: string;
+        projectsParagraph2?: string;
+        introLinkLabel1?: string;
+        introHeading1?: string;
+        introParagraph1?: string;
+        projectImpactHeading1?: string;
+        projectImpactText1?: string;
+        projectImpactParagraph1?: string;
+        projectImpactLinkLabel1?: string;
+        cmsManagedProjects?: boolean;
+      }
+    | {
+        _id: string;
         _type: "report";
         _createdAt: string;
         _updatedAt: string;
@@ -1272,6 +13619,50 @@ export type RELEASE_QUERY_RESULT = {
           _type: "file";
         };
         sourceKey?: string;
+      }
+    | {
+        _id: string;
+        _type: "resourcesPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        resourcesParagraph1?: string;
+        resourcesHeading1?: string;
+        resourcesText1?: string;
+        resourcesParagraph2?: string;
+        featuredReportParagraph1?: string;
+        featuredReportLinkLabel1?: string;
+        featuredReportLinkLabel2?: string;
+        featuredReportText1?: string;
+        featuredReportText2?: string;
+        libraryHeading1?: string;
+        libraryParagraph1?: string;
+        libraryText1?: string;
+        libraryText2?: string;
+        libraryParagraph2?: string;
+        libraryHeading2?: string;
+        libraryParagraph3?: string;
+        libraryParagraph4?: string;
+        libraryParagraph5?: string;
+        libraryLinkLabel1?: string;
+        mediaParagraph1?: string;
+        mediaHeading1?: string;
+        mediaParagraph2?: string;
+        mediaLinkLabel1?: string;
+        data?: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl?: string;
+            _type: "legacyReportsItem";
+            _key: string;
+          }>;
+        };
       }
     | {
         _id: string;
@@ -1296,6 +13687,39 @@ export type RELEASE_QUERY_RESULT = {
         }>;
         seoTitle: string;
         seoDescription: string;
+      }
+    | {
+        _id: string;
+        _type: "storiesPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        updatesImage1?: EditorialImage;
+        updatesParagraph1?: string;
+        updatesHeading1?: string;
+        updatesText1?: string;
+        updatesParagraph2?: string;
+        updatesParagraph3?: string;
+        updatesLibraryParagraph1?: string;
+        updatesLibraryHeading1?: string;
+        updatesLibraryLinkLabel1?: string;
+        updatesLibraryParagraph2?: string;
+        updatesLibraryParagraph3?: string;
+        updatesLibraryText1?: string;
+        updatesLibraryText2?: string;
+        updatesLibraryText3?: string;
+        updatesLibraryText4?: string;
+        updatesLibraryText5?: string;
+        updatesLibraryText6?: string;
+        updatesLibraryHeading2?: string;
+        updatesLibraryParagraph4?: string;
+        introParagraph1?: string;
+        introHeading1?: string;
+        introHeading2?: string;
+        introParagraph2?: string;
+        introLinkLabel1?: string;
       }
     | {
         _id: string;
@@ -1332,15 +13756,155 @@ export type RELEASE_QUERY_RESULT = {
         category: "Blogs" | "Events" | "News" | "Publications" | "Stories";
         publishedAt: string;
       }
+    | {
+        _id: string;
+        _type: "teamPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        teamParagraph1?: string;
+        teamHeading1?: string;
+        teamText1?: string;
+        teamParagraph2?: string;
+        teamLinkLabel1?: string;
+        teamImage1?: EditorialImage;
+        teamCaption1?: string;
+        introText1?: string;
+        introParagraph1?: string;
+        introLinkLabel1?: string;
+        boardParagraph1?: string;
+        boardHeading1?: string;
+        boardParagraph2?: string;
+        boardParagraph3?: string;
+        managementParagraph1?: string;
+        managementHeading1?: string;
+        managementParagraph2?: string;
+        managementParagraph3?: string;
+        peopleImage1?: EditorialImage;
+        peopleCaption1?: string;
+        peopleParagraph1?: string;
+        peopleHeading1?: string;
+        peopleParagraph2?: string;
+        peopleText1?: string;
+        peopleText2?: string;
+        peopleText3?: string;
+        peopleText4?: string;
+        peopleParagraph3?: string;
+        peopleLinkLabel1?: string;
+        introParagraph2?: string;
+        introHeading1?: string;
+        introHeading2?: string;
+        introLinkLabel2?: string;
+        data?: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail?: string;
+            image: EditorialImage;
+            _type: "boardItem";
+            _key: string;
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: EditorialImage;
+            _type: "managementItem";
+            _key: string;
+          }>;
+        };
+      }
+    | {
+        _id: string;
+        _type: "whereWeWorkPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoDescription?: string;
+        seoTitle?: string;
+        whereWorkParagraph1?: string;
+        whereWorkHeading1?: string;
+        whereWorkText1?: string;
+        whereWorkParagraph2?: string;
+        whereWorkLinkLabel1?: string;
+        whereWorkImage1?: EditorialImage;
+        whereWorkCaption1?: string;
+        introText1?: string;
+        introText2?: string;
+        introText3?: string;
+        introText4?: string;
+        introText5?: string;
+        introText6?: string;
+        introText7?: string;
+        coverageParagraph1?: string;
+        coverageHeading1?: string;
+        coverageParagraph2?: string;
+        coverageParagraph3?: string;
+        coverageText1?: string;
+        coverageParagraph4?: string;
+        basesParagraph1?: string;
+        basesHeading1?: string;
+        basesLinkLabel1?: string;
+        basesParagraph2?: string;
+        introParagraph1?: string;
+        introHeading1?: string;
+        introParagraph2?: string;
+        introLinkLabel1?: string;
+        data?: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project?: string;
+              page?: number;
+              _type: "activitiesItem";
+              _key: string;
+            }>;
+            _type: "lgaActivitiesItem";
+            _key: string;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+            _type: "officesItem";
+            _key: string;
+          }>;
+        };
+      }
   >;
 };
 
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '{\n  "schemaVersion": 1,\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}': CONTENT_QUERY_RESULT;
-    '*[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)': EXPORT_QUERY_RESULT;
-    '{"content": {\n  "schemaVersion": 1,\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner"]] | order(_id asc)}': RELEASE_QUERY_RESULT;
+    '{\n  "schemaVersion": 1,\n  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,\n  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}': CONTENT_QUERY_RESULT;
+    '*[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)': EXPORT_QUERY_RESULT;
+    '{"content": {\n  "schemaVersion": 1,\n  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,\n  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)}': RELEASE_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

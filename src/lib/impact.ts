@@ -1,6 +1,8 @@
 // Curated from the supplied JDPI Annual Report 2025, pages 6 and 10–12.
 // Counts are kept in their original units; never summed as unique people reached.
-import reportCoverage from '../data/impact-coverage.json';
+import reportCoverage from '../data/impact-coverage.json' with {type:'json'};
+import type {SiteContent} from './content';
+import {pageEditor} from './page-editor.ts';
 export const impactYear=2025;
 export const impactOverview=[
   {value:'20,229',label:'Households supported',source:'Page 10'},
@@ -17,3 +19,7 @@ export const sectorImpact=[
   {title:'Social Cohesion & Peacebuilding',slug:'peacebuilding-and-social-cohesion',value:'13',label:'Community conflicts resolved',description:'Community-led peacebuilding mechanisms helped resolve conflicts and strengthen peaceful coexistence.',source:'Page 11'},
 ];
 export const impactCoverage=reportCoverage;
+export function getImpact(content:SiteContent){
+  const page=pageEditor(content,'impact');
+  return {impactYear:page.data('impactYear',impactYear),impactOverview:page.data('impactOverview',impactOverview),sectorImpact:page.data('sectorImpact',sectorImpact)};
+}

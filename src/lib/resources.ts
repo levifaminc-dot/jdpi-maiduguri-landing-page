@@ -1,4 +1,5 @@
-import type {ContentItem} from './content';
+import type {ContentItem,SiteContent} from './content';
+import {pageEditor} from './page-editor.ts';
 
 export interface ResourceRecord {
   title:string; category:'Annual reports'|'Financial reports'|'Publications';
@@ -27,8 +28,8 @@ export function safeResourceUrl(value?:string):string|undefined {
   try{const url=new URL(value);if(url.protocol==='https:'&&!url.username&&!url.password)return url.href;}catch{}
 }
 const titleKey=(title:string)=>title.toLowerCase().replace(/\bfinance\b/g,'financial').replace(/[^a-z0-9]+/g,' ').trim();
-export function getResourceLibrary(reports:ContentItem[]):ResourceRecord[] {
-  const records=wordpressReports.map(report=>({...report}));
+export function getResourceLibrary(reports:ContentItem[],base:ResourceRecord[]=wordpressReports):ResourceRecord[] {
+  const records=base.map(report=>({...report,fileUrl:safeResourceUrl(report.fileUrl)||'',onlineUrl:safeResourceUrl(report.onlineUrl)})).filter(report=>report.fileUrl);
   for(const report of reports){
     const fileUrl=safeResourceUrl(report.fileUrl);
     if(!fileUrl)continue;
@@ -42,4 +43,7 @@ export function getResourceLibrary(reports:ContentItem[]):ResourceRecord[] {
     if(existing>=0)records[existing]=next;else records.push(next);
   }
   return records.sort((a,b)=>(b.year||0)-(a.year||0)||a.title.localeCompare(b.title));
+}
+export function getPublishedResources(content:SiteContent){
+  return getResourceLibrary(content.reports,pageEditor(content,'resources').data<ResourceRecord[]|undefined>('legacyReports',undefined));
 }

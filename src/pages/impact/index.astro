@@ -1,8 +1,9 @@
 ---
+import {pageEditor} from "../../lib/page-editor";
 import {getContent} from '../../lib/content';
-import {impactYear, impactOverview} from '../../lib/impact';
+import {getImpact} from '../../lib/impact';
 import {getProjectProfile} from '../../lib/project-profiles';
-import {getResourceLibrary} from '../../lib/resources';
+import {getPublishedResources} from '../../lib/resources';
 import Layout from '../../layouts/SiteLayout.astro';
 import ContentImage from '../../components/ContentImage.astro';
 import ImpactProgrammeTabs from '../../components/ImpactProgrammeTabs.astro';
@@ -13,26 +14,28 @@ import '../../styles/impact-storytelling.css';
 import '../../styles/impact-interactions.css';
 
 const content = await getContent();
-const report = getResourceLibrary(content.reports).find(item => item.title === 'JDPI Annual Report 2025');
+const page=pageEditor(content,"impact");
+const {impactYear,impactOverview,sectorImpact}=getImpact(content);
+const report = getPublishedResources(content).find(item => item.title === 'JDPI Annual Report 2025');
 const bmz = content.projects.find(project => project.slug === 'bmz-multisectoral-resilience-project');
 const weSing = content.projects.find(project => project.slug === 'we-sing-project');
 const weSingStory = weSing ? getProjectProfile(weSing).stories[0] : undefined;
 const bmzStory = bmz ? getProjectProfile(bmz).stories[0] : undefined;
-const image = (name:string, alt:string) => ({url:`/assets/projects/${name}.jpg`, alt});
+const image = (name:string, alt:string) => page.data<{name:string;image:import('../../lib/content').ContentImage}[]>('photos',[]).find(photo=>photo.name===name)?.image || ({url:`/assets/projects/${name}.jpg`,alt});
 ---
-<Layout content={content} title={`Our Impact | ${content.settings.shortName}`} description="The people, communities and stories behind JDPI Maiduguri’s 2025 results. Explore livelihoods, safe water, wellbeing and peace across Northeast Nigeria." pageClass="projects-page impact-page impact-editorial">
+<Layout content={content} title={`${page.text("seoTitle")} | ${content.settings.shortName}`} description={page.text("seoDescription")} pageClass="projects-page impact-page impact-editorial">
   <section class="ie-hero" aria-labelledby="impact-heading">
     <div class="ie-hero-copy">
       <nav class="ci-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Our Impact</span></nav>
-      <p class="ie-eyebrow">OUR IMPACT · {impactYear} IN FOCUS</p>
-      <h1 id="impact-heading">Real people.<br/><span>Lasting<br class="ie-title-break"/> change.</span></h1>
-      <p class="ie-hero-lead">A livelihood rebuilt. A community strengthened. A new possibility for tomorrow.</p>
-      <p class="ie-hero-intro">Behind every result are people shaping their own futures. Discover how JDPI supports that journey across Northeast Nigeria.</p>
-      <a class="ie-button" href="#stories-heading">Discover the stories</a>
+      <p class="ie-eyebrow">{page.text("impactParagraph1")} {impactYear} {page.text("impactParagraph2")}</p>
+      <h1 id="impact-heading">{page.text("impactHeading1")}<br/><span>{page.text("impactText1")}<br class="ie-title-break"/> {page.text("impactText2")}</span></h1>
+      <p class="ie-hero-lead">{page.text("impactParagraph3")}</p>
+      <p class="ie-hero-intro">{page.text("impactParagraph4")}</p>
+      <a class="ie-button" href="#stories-heading">{page.text("impactLinkLabel1")}</a>
     </div>
     <figure class="ie-hero-photo">
       <ContentImage image={image('bmz-greenhouse-monitoring','A farmer and JDPI staff checking crops in a community greenhouse')} eager/>
-      <figcaption><span>Growing resilience, together.</span> Community greenhouse monitoring · Report, page 17</figcaption>
+      <figcaption><span>{page.text("impactText3")}</span> {page.text("impactCaption1")}</figcaption>
     </figure>
   </section>
 
@@ -40,48 +43,48 @@ const image = (name:string, alt:string) => ({url:`/assets/projects/${name}.jpg`,
 
   <section class="ie-overview" aria-labelledby="overview-heading">
     <div class="project-shell">
-      <div class="ie-overview-head"><h2 id="overview-heading">A year of working<br/>alongside communities.</h2><p>January–December {impactYear}<br/>Reported results · Annual Report, pages 10–12</p></div>
+      <div class="ie-overview-head"><h2 id="overview-heading">{page.text("overviewHeading1")}<br/>{page.text("overviewHeading2")}</h2><p>{page.text("overviewParagraph1")} {impactYear}<br/>{page.text("overviewParagraph2")}</p></div>
       <dl class="impact-stat-strip">{impactOverview.map(fact => <div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>
     </div>
   </section>
 
   <section class="ie-stories project-shell" aria-labelledby="stories-heading">
-    <header class="ie-section-heading"><div><p class="ie-eyebrow">BEHIND THE NUMBERS</p><h2 id="stories-heading">This is what change looks like.</h2></div><p>Practical support. Community ambition.<br/>{' '}Stories from our {impactYear} annual report.</p></header>
+    <header class="ie-section-heading"><div><p class="ie-eyebrow">{page.text("storiesParagraph1")}</p><h2 id="stories-heading">{page.text("storiesHeading1")}</h2></div><p>{page.text("storiesParagraph2")}<br/>{' '}{page.text("storiesParagraph3")} {impactYear} {page.text("storiesParagraph4")}</p></header>
 
     <article class="ie-story ie-growing" aria-labelledby="growing-heading">
       <div class="ie-story-visual">
-        <figure class="ie-main-image"><ContentImage image={image('bmz-greenhouse-crops','Vegetable crops growing in a JDPI-supported community greenhouse')}/><figcaption>Community greenhouse crops · Annual Report, page 18</figcaption></figure>
-        <figure class="ie-inset-image"><ContentImage image={image('bmz-greenhouse-harvest','Peppers harvested from a community greenhouse')}/><figcaption>A greenhouse harvest · Report, page 17</figcaption></figure>
+        <figure class="ie-main-image"><ContentImage image={image('bmz-greenhouse-crops','Vegetable crops growing in a JDPI-supported community greenhouse')}/><figcaption>{page.text("growingCaption1")}</figcaption></figure>
+        <figure class="ie-inset-image"><ContentImage image={image('bmz-greenhouse-harvest','Peppers harvested from a community greenhouse')}/><figcaption>{page.text("growingCaption2")}</figcaption></figure>
       </div>
-      <div class="ie-story-copy"><p class="ie-eyebrow">LIVELIHOODS · HONG &amp; MICHIKA</p><h3 id="growing-heading">More than a harvest.<br/><span>A way forward.</span></h3><p>For families in Hong and Michika, community greenhouses created opportunities to grow vegetables throughout the year. Climate-smart agricultural support connected food production with nutrition and livelihoods.</p><p>The BMZ Multisectoral Resilience Project supported 263 households through 20 community greenhouses—building resilience, season after season.</p><dl class="ie-story-facts"><div><dt>Households supported</dt><dd>263</dd></div><div><dt>Community greenhouses</dt><dd>20</dd></div></dl><p class="ie-source">Annual Report {impactYear}, pages 17–18</p>{bmz && <a class="ie-link" href={`/projects/${bmz.slug}/`}>Explore the BMZ project</a>}</div>
+      <div class="ie-story-copy"><p class="ie-eyebrow">{page.text("growingParagraph1")}</p><h3 id="growing-heading">{page.text("growingHeading1")}<br/><span>{page.text("growingText1")}</span></h3><p>{page.text("growingParagraph2")}</p><p>{page.text("growingParagraph3")}</p><dl class="ie-story-facts"><div><dt>{page.text("growingText2")}</dt><dd>{page.text("growingText3")}</dd></div><div><dt>{page.text("growingText4")}</dt><dd>{page.text("growingText5")}</dd></div></dl><p class="ie-source">{page.text("growingParagraph4")} {impactYear}{page.text("growingParagraph5")}</p>{bmz && <a class="ie-link" href={`/projects/${bmz.slug}/`}>{page.text("growingLinkLabel1")}</a>}</div>
     </article>
 
     <article class="ie-story ie-women" aria-labelledby="women-heading">
-      <figure class="ie-women-image"><ContentImage image={image('we-sing-startup-kits','A participant receiving a sewing-machine livelihood kit at the WE-SING distribution')}/><figcaption>WE-SING livelihood kit distribution · Annual Report, page 16</figcaption></figure>
-      <div class="ie-story-copy"><p class="ie-eyebrow">WOMEN’S LIVELIHOODS · BORNO</p><h3 id="women-heading">Her skills.<br/><span>Her ambitions.<br/>Her next chapter.</span></h3><p>One hundred women received start-up kits aligned with their chosen trades, including tailoring, petty trading and food processing.</p><p>{weSingStory?.text || 'The report describes women starting new businesses or expanding existing enterprises after receiving support tailored to their skills, interests and livelihood aspirations.'}</p><div class="ie-story-highlight"><strong>100</strong><span>women received trade-specific<br/>livelihood start-up kits</span></div><p class="ie-source">Annual Report {impactYear}, page 16</p>{weSing && <a class="ie-link" href={`/projects/${weSing.slug}/`}>Explore the WE-SING project</a>}</div>
+      <figure class="ie-women-image"><ContentImage image={image('we-sing-startup-kits','A participant receiving a sewing-machine livelihood kit at the WE-SING distribution')}/><figcaption>{page.text("womenCaption1")}</figcaption></figure>
+      <div class="ie-story-copy"><p class="ie-eyebrow">{page.text("womenParagraph1")}</p><h3 id="women-heading">{page.text("womenHeading1")}<br/><span>{page.text("womenText1")}<br/>{page.text("womenText2")}</span></h3><p>{page.text("womenParagraph2")}</p><p>{weSingStory?.text || 'The report describes women starting new businesses or expanding existing enterprises after receiving support tailored to their skills, interests and livelihood aspirations.'}</p><div class="ie-story-highlight"><strong>{page.text("womenText3")}</strong><span>{page.text("womenText4")}<br/>{page.text("womenText5")}</span></div><p class="ie-source">{page.text("womenParagraph3")} {impactYear}{page.text("womenParagraph4")}</p>{weSing && <a class="ie-link" href={`/projects/${weSing.slug}/`}>{page.text("womenLinkLabel1")}</a>}</div>
     </article>
     {bmzStory && <article class="ie-personal-story" aria-labelledby="enterprise-heading">
-      <div><p class="ie-eyebrow">A LIVELIHOOD STORY · MICHIKA</p><h3 id="enterprise-heading">A small start.<br/>A growing livelihood.</h3><p class="ie-source">{bmzStory.source}</p></div>
-      <div><p>{bmzStory.text}</p><dl class="ie-enterprise-progress"><div><dt>Bags bought at the start</dt><dd>2</dd></div><span aria-hidden="true">→</span><div><dt>Bags bought at a time as the business grew</dt><dd><span>Up to </span>20</dd></div></dl><p class="ie-case-note">One participant’s experience, as described in the report—not an organisation-wide result.</p></div>
+      <div><p class="ie-eyebrow">{page.text("enterpriseParagraph1")}</p><h3 id="enterprise-heading">{page.text("enterpriseHeading1")}<br/>{page.text("enterpriseHeading2")}</h3><p class="ie-source">{bmzStory.source}</p></div>
+      <div><p>{bmzStory.text}</p><dl class="ie-enterprise-progress"><div><dt>{page.text("enterpriseText1")}</dt><dd>2</dd></div><span aria-hidden="true">→</span><div><dt>{page.text("enterpriseText2")}</dt><dd><span>{page.text("enterpriseText3")} </span>{page.text("enterpriseText4")}</dd></div></dl><p class="ie-case-note">{page.text("enterpriseParagraph2")}</p></div>
     </article>}
-    <div class="ie-story-end"><p>Every project is part of a bigger story.</p><a class="ie-link" href="/projects/">Explore all our projects</a></div>
+    <div class="ie-story-end"><p>{page.text("storiesParagraph5")}</p><a class="ie-link" href="/projects/">{page.text("storiesLinkLabel1")}</a></div>
   </section>
 
   <section class="ie-results" aria-labelledby="sectors-heading"><div class="project-shell">
-    <header class="ie-section-heading"><div><p class="ie-eyebrow">OUR {impactYear} RESULTS</p><h2 id="sectors-heading">Different needs.<br/>One commitment to dignity.</h2></div><p>From essential services to stronger livelihoods,<br/>{' '}our programmes respond to the whole community.</p></header>
-    <ImpactProgrammeTabs/>
-    <p class="impact-count-note"><strong>A note on these figures.</strong> Programme counts measure different services and may include people reached by more than one intervention. They are not added together as a unique-person total.</p>
+    <header class="ie-section-heading"><div><p class="ie-eyebrow">{page.text("sectorsParagraph1")} {impactYear} {page.text("sectorsParagraph2")}</p><h2 id="sectors-heading">{page.text("sectorsHeading1")}<br/>{page.text("sectorsHeading2")}</h2></div><p>{page.text("sectorsParagraph3")}<br/>{' '}{page.text("sectorsParagraph4")}</p></header>
+    <ImpactProgrammeTabs sectorImpact={sectorImpact} impactYear={impactYear}/>
+    <p class="impact-count-note"><strong>{page.text("sectorsText1")}</strong> {page.text("sectorsParagraph5")}</p>
   </div></section>
 
   <section class="ie-coverage project-shell" aria-labelledby="coverage-heading">
-    <header class="ie-section-heading"><div><p class="ie-eyebrow">CLOSE TO THE COMMUNITIES WE SERVE</p><h2 id="coverage-heading">Rooted in Northeast Nigeria.</h2></div><p>3 states · 20 local government areas<br/>{' '}114 communities in {impactYear}</p></header>
-    <ImpactCoverageMaps/>
-    <a class="ie-link" href="/where-we-work/">Explore each LGA and our locally reported work</a>
+    <header class="ie-section-heading"><div><p class="ie-eyebrow">{page.text("coverageParagraph1")}</p><h2 id="coverage-heading">{page.text("coverageHeading1")}</h2></div><p>{page.text("coverageParagraph2")}<br/>{' '}{page.text("coverageParagraph3")} {impactYear}</p></header>
+    <ImpactCoverageMaps lgaActivities={pageEditor(content,'where-we-work').data('lgaActivities',undefined)} impactYear={impactYear}/>
+    <a class="ie-link" href="/where-we-work/">{page.text("coverageLinkLabel1")}</a>
   </section>
 
   <section class="ie-accountability" aria-labelledby="accountability-heading"><div class="project-shell ie-report-grid">
-    <div><p class="ie-eyebrow">THE WORK. THE STORIES. THE EVIDENCE.</p><h2 id="accountability-heading">Impact you can<br/><span>look into.</span></h2><p>These highlights are only part of the picture. Our {impactYear} annual report brings together programme results, community stories and financial reporting.</p><div class="ie-report-actions">{report && <a class="ie-button" href={report.fileUrl} target="_blank" rel="noopener noreferrer">Read the 2025 annual report <span class="sr-only">(opens in a new tab)</span></a>}<a class="ie-link" href="/resources/">All reports &amp; resources</a></div></div>
-    <aside class="ie-report-note"><span class="ie-report-year">{impactYear}</span><p>JDPI MAIDUGURI<br/>ANNUAL REPORT</p><div><h3>Let’s build what comes next.</h3><p>Talk with our team about supporting community-led change.</p><a class="ie-link" href="/contact/">Contact our team</a></div></aside>
+    <div><p class="ie-eyebrow">{page.text("accountabilityParagraph1")}</p><h2 id="accountability-heading">{page.text("accountabilityHeading1")}<br/><span>{page.text("accountabilityText1")}</span></h2><p>{page.text("accountabilityParagraph2")} {impactYear} {page.text("accountabilityParagraph3")}</p><div class="ie-report-actions">{report && <a class="ie-button" href={report.fileUrl} target="_blank" rel="noopener noreferrer">{page.text("accountabilityLinkLabel1")} <span class="sr-only">(opens in a new tab)</span></a>}<a class="ie-link" href="/resources/">{page.text("accountabilityLinkLabel2")}</a></div></div>
+    <aside class="ie-report-note"><span class="ie-report-year">{impactYear}</span><p>{page.text("accountabilityParagraph4")}<br/>{page.text("accountabilityParagraph5")}</p><div><h3>{page.text("accountabilityHeading2")}</h3><p>{page.text("accountabilityParagraph6")}</p><a class="ie-link" href="/contact/">{page.text("accountabilityLinkLabel3")}</a></div></aside>
   </div></section>
 <script>import '../../scripts/impact-interactions';</script>
 </Layout>

@@ -1,5 +1,6 @@
 import type {ContentItem, ContentImage} from './content';
-import {getResourceLibrary} from './resources.ts';
+import {getResourceLibrary,getPublishedResources,type ResourceRecord} from './resources.ts';
+import type {SiteContent} from './content';
 export const updateFilters=[
   {value:'all',label:'All updates'},{value:'field',label:'Field stories'},
   {value:'blog',label:'Blog posts'},{value:'news',label:'News & events'},
@@ -18,13 +19,13 @@ const categories:Record<string,{category:UpdateCategory;label:string}>={
 };
 export const storyCategory=(category?:string)=>categories[category||'']||{category:'news' as const,label:'Update'};
 // Preserve existing CMS categories; documents reuse the deduplicated resource library.
-export function getUpdates(stories:ContentItem[],reports:ContentItem[]):UpdateRecord[]{
+export function getUpdates(stories:ContentItem[],reports:ContentItem[],base?:ResourceRecord[]):UpdateRecord[]{
   const updates:UpdateRecord[]=stories.map(story=>({
     key:`story-${story.slug}`,title:story.title,summary:story.summary||undefined,
     image:story.image,...storyCategory(story.category),
     url:`/stories/${encodeURIComponent(story.slug)}/`,publishedAt:story.publishedAt,document:false,
   }));
-  for(const report of getResourceLibrary(reports))updates.push({
+  for(const report of getResourceLibrary(reports,base))updates.push({
     key:`document-${report.fileUrl}`,title:report.title,summary:report.summary,
     category:report.category==='Publications'&&!/\breport\b/i.test(report.title)?'publications':'reports',
     label:report.category==='Annual reports'?'Annual report':report.category==='Financial reports'?'Financial report':/\breport\b/i.test(report.title)?'Report':'Publication',
@@ -34,3 +35,4 @@ export function getUpdates(stories:ContentItem[],reports:ContentItem[]):UpdateRe
   const rank=(item:UpdateRecord)=>item.publishedAt?Date.parse(item.publishedAt):item.year?Date.UTC(item.year,0,1):0;
   return updates.sort((a,b)=>rank(b)-rank(a)||a.title.localeCompare(b.title));
 }
+export const getWebsiteUpdates=(content:SiteContent)=>getUpdates(content.stories,content.reports,getPublishedResources(content));

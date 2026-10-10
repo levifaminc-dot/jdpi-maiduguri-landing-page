@@ -1,8 +1,12 @@
 ---
-import {sectorImpact,impactYear} from '../lib/impact';
+import {sectorImpact as defaultSectors,impactYear as defaultYear} from '../lib/impact';
+interface Props {sectorImpact?:typeof defaultSectors;impactYear?:number}
+const {sectorImpact=defaultSectors,impactYear=defaultYear}=Astro.props;
 import Icon from './ProjectIcon.astro';
-const icons=['food','nutrition','water','wellbeing','protection','peace'] as const;
-const labels=['Food & livelihoods','Nutrition','Water & hygiene','Mental health','Protection','Peacebuilding'];
+const iconMap:Record<string,'food'|'nutrition'|'water'|'wellbeing'|'protection'|'peace'|'income'>={'food-security-and-livelihoods':'food',nutrition:'nutrition','water-sanitation-and-hygiene':'water','mental-health-and-psychosocial-support':'wellbeing',protection:'protection','peacebuilding-and-social-cohesion':'peace','economic-empowerment':'income'};
+const icons=sectorImpact.map(sector=>iconMap[sector.slug]||'food');
+const labelMap:Record<string,string>={'food-security-and-livelihoods':'Food & livelihoods',nutrition:'Nutrition','water-sanitation-and-hygiene':'Water & hygiene','mental-health-and-psychosocial-support':'Mental health',protection:'Protection','peacebuilding-and-social-cohesion':'Peacebuilding'};
+const labels=sectorImpact.map(sector=>labelMap[sector.slug]||sector.title);
 ---
 <div class="ip-tabs" data-tabs>
   <div class="ip-tablist" role="tablist" aria-label={`${impactYear} programme results`} aria-orientation="vertical">

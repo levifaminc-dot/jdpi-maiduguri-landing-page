@@ -1,0 +1,3226 @@
+[
+  {
+    "route": "about",
+    "title": "About Us",
+    "type": "aboutPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "about",
+        "title": "Introduction"
+      },
+      {
+        "name": "who",
+        "title": "Who We Are"
+      },
+      {
+        "name": "story",
+        "title": "Our Story"
+      },
+      {
+        "name": "guides",
+        "title": "Mission & Values"
+      },
+      {
+        "name": "identity",
+        "title": "Our Identity"
+      },
+      {
+        "name": "where",
+        "title": "Where We Work"
+      },
+      {
+        "name": "approach",
+        "title": "Our Approach"
+      },
+      {
+        "name": "leadership",
+        "title": "Leadership"
+      },
+      {
+        "name": "accountability",
+        "title": "Accountability"
+      },
+      {
+        "name": "partnership",
+        "title": "Partnerships"
+      },
+      {
+        "name": "cta",
+        "title": "Call to Action"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Meet JDPI Maiduguri: our story since 1971, our mission, values and people, and our commitment to human dignity across Northeast Nigeria."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "About Us"
+      },
+      {
+        "name": "aboutImage1",
+        "group": "about",
+        "kind": "image",
+        "title": "Introduction photograph",
+        "initialValue": {
+          "url": "/assets/about/peace-conference.jpg",
+          "alt": "Community members and partners gathered at JDPI’s 2025 peace conference"
+        }
+      },
+      {
+        "name": "aboutParagraph1",
+        "group": "about",
+        "kind": "paragraph",
+        "title": "Paragraph — ABOUT JDPI",
+        "initialValue": "ABOUT JDPI"
+      },
+      {
+        "name": "aboutHeading1",
+        "group": "about",
+        "kind": "heading",
+        "title": "Heading — Rooted in service.",
+        "initialValue": "Rooted in service."
+      },
+      {
+        "name": "aboutText1",
+        "group": "about",
+        "kind": "text",
+        "title": "Text — Committed to",
+        "initialValue": "Committed to"
+      },
+      {
+        "name": "aboutText2",
+        "group": "about",
+        "kind": "text",
+        "title": "Text — human dignity.",
+        "initialValue": "human dignity."
+      },
+      {
+        "name": "aboutParagraph2",
+        "group": "about",
+        "kind": "paragraph",
+        "title": "Paragraph — Working alongside communities across Northeast Nigeria to …",
+        "initialValue": "Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create a more dignified future."
+      },
+      {
+        "name": "whoParagraph1",
+        "group": "who",
+        "kind": "paragraph",
+        "title": "Paragraph — WHO WE ARE",
+        "initialValue": "WHO WE ARE"
+      },
+      {
+        "name": "whoHeading1",
+        "group": "who",
+        "kind": "heading",
+        "title": "Heading — Local roots.",
+        "initialValue": "Local roots."
+      },
+      {
+        "name": "whoHeading2",
+        "group": "who",
+        "kind": "heading",
+        "title": "Heading — A shared purpose.",
+        "initialValue": "A shared purpose."
+      },
+      {
+        "name": "whoParagraph2",
+        "group": "who",
+        "kind": "paragraph",
+        "title": "Paragraph — Justice Development and Peace Initiative in Maiduguri Dioc…",
+        "initialValue": "Justice Development and Peace Initiative in Maiduguri Diocese (JDPI Maiduguri) is the faith-based, non-profit humanitarian and development organisation of the Catholic Diocese of Maiduguri."
+      },
+      {
+        "name": "whoParagraph3",
+        "group": "who",
+        "kind": "paragraph",
+        "title": "Paragraph — Across Borno, Adamawa and Yobe, we work with people affect…",
+        "initialValue": "Across Borno, Adamawa and Yobe, we work with people affected by conflict, displacement and poverty—meeting immediate needs while supporting recovery, resilience and peaceful coexistence."
+      },
+      {
+        "name": "whoParagraph4",
+        "group": "who",
+        "kind": "paragraph",
+        "title": "Paragraph — We accompany communities, working with local structures, g…",
+        "initialValue": "We accompany communities, working with local structures, government institutions, civil society and development partners to address both urgent needs and the causes of vulnerability."
+      },
+      {
+        "name": "whoText1",
+        "group": "who",
+        "kind": "text",
+        "title": "Text — Upholding the dignity of every human person.",
+        "initialValue": "Upholding the dignity of every human person."
+      },
+      {
+        "name": "whoImage1",
+        "group": "who",
+        "kind": "image",
+        "title": "Who We Are photograph",
+        "initialValue": {
+          "url": "/assets/about/community-dialogue.jpg",
+          "alt": "Community members participating in an outdoor dialogue session under a tree"
+        }
+      },
+      {
+        "name": "whoCaption1",
+        "group": "who",
+        "kind": "caption",
+        "title": "Caption — Community dialogue · JDPI Annual Report 2025",
+        "initialValue": "Community dialogue · JDPI Annual Report 2025"
+      },
+      {
+        "name": "whoText2",
+        "group": "who",
+        "kind": "text",
+        "title": "Text — Since 1971",
+        "initialValue": "Since 1971"
+      },
+      {
+        "name": "whoText3",
+        "group": "who",
+        "kind": "text",
+        "title": "Text — A commitment to service.",
+        "initialValue": "A commitment to service."
+      },
+      {
+        "name": "storyParagraph1",
+        "group": "story",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR STORY",
+        "initialValue": "OUR STORY"
+      },
+      {
+        "name": "storyHeading1",
+        "group": "story",
+        "kind": "heading",
+        "title": "Heading — A legacy of service.",
+        "initialValue": "A legacy of service."
+      },
+      {
+        "name": "storyHeading2",
+        "group": "story",
+        "kind": "heading",
+        "title": "Heading — A continuing journey.",
+        "initialValue": "A continuing journey."
+      },
+      {
+        "name": "storyParagraph2",
+        "group": "story",
+        "kind": "paragraph",
+        "title": "Paragraph — Our journey is rooted in the Church’s commitment to justic…",
+        "initialValue": "Our journey is rooted in the Church’s commitment to justice, peace and the service of people experiencing poverty, conflict and marginalisation."
+      },
+      {
+        "name": "guidesParagraph1",
+        "group": "guides",
+        "kind": "paragraph",
+        "title": "Paragraph — WHAT GUIDES US",
+        "initialValue": "WHAT GUIDES US"
+      },
+      {
+        "name": "guidesHeading1",
+        "group": "guides",
+        "kind": "heading",
+        "title": "Heading — One purpose.",
+        "initialValue": "One purpose."
+      },
+      {
+        "name": "guidesHeading2",
+        "group": "guides",
+        "kind": "heading",
+        "title": "Heading — Every person matters.",
+        "initialValue": "Every person matters."
+      },
+      {
+        "name": "guidesHeading3",
+        "group": "guides",
+        "kind": "heading",
+        "title": "Heading — Our mission",
+        "initialValue": "Our mission"
+      },
+      {
+        "name": "guidesParagraph2",
+        "group": "guides",
+        "kind": "paragraph",
+        "title": "Paragraph — To deliver life-saving, life-sustaining and life-building …",
+        "initialValue": "To deliver life-saving, life-sustaining and life-building interventions to the most vulnerable."
+      },
+      {
+        "name": "guidesHeading4",
+        "group": "guides",
+        "kind": "heading",
+        "title": "Heading — Our vision",
+        "initialValue": "Our vision"
+      },
+      {
+        "name": "guidesParagraph3",
+        "group": "guides",
+        "kind": "paragraph",
+        "title": "Paragraph — A just and peaceful society where every person lives with …",
+        "initialValue": "A just and peaceful society where every person lives with dignity."
+      },
+      {
+        "name": "guidesHeading5",
+        "group": "guides",
+        "kind": "heading",
+        "title": "Heading — Our values",
+        "initialValue": "Our values"
+      },
+      {
+        "name": "identityParagraph1",
+        "group": "identity",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR IDENTITY",
+        "initialValue": "OUR IDENTITY"
+      },
+      {
+        "name": "identityHeading1",
+        "group": "identity",
+        "kind": "heading",
+        "title": "Heading — Faith expressed",
+        "initialValue": "Faith expressed"
+      },
+      {
+        "name": "identityHeading2",
+        "group": "identity",
+        "kind": "heading",
+        "title": "Heading — through service.",
+        "initialValue": "through service."
+      },
+      {
+        "name": "identityParagraph2",
+        "group": "identity",
+        "kind": "paragraph",
+        "title": "Paragraph — As the social development arm of the Catholic Diocese of M…",
+        "initialValue": "As the social development arm of the Catholic Diocese of Maiduguri, our work is inspired by Catholic Social Teaching and the inherent dignity of every human person."
+      },
+      {
+        "name": "identityParagraph3",
+        "group": "identity",
+        "kind": "paragraph",
+        "title": "Paragraph — This calls us to stand with people experiencing vulnerabil…",
+        "initialValue": "This calls us to stand with people experiencing vulnerability, promote justice and peace, and serve communities with compassion."
+      },
+      {
+        "name": "identityText1",
+        "group": "identity",
+        "kind": "text",
+        "title": "Text — Justice · Development · Peace",
+        "initialValue": "Justice · Development · Peace"
+      },
+      {
+        "name": "identityImage1",
+        "group": "identity",
+        "kind": "image",
+        "title": "Our Identity photograph",
+        "initialValue": {
+          "url": "/assets/about/maiduguri-team.jpg",
+          "alt": "JDPI staff at the headquarters in Maiduguri"
+        }
+      },
+      {
+        "name": "identityCaption1",
+        "group": "identity",
+        "kind": "caption",
+        "title": "Caption — JDPI’s Maiduguri team · Annual Report 2025",
+        "initialValue": "JDPI’s Maiduguri team · Annual Report 2025"
+      },
+      {
+        "name": "whereParagraph1",
+        "group": "where",
+        "kind": "paragraph",
+        "title": "Paragraph — WHERE WE WORK",
+        "initialValue": "WHERE WE WORK"
+      },
+      {
+        "name": "whereHeading1",
+        "group": "where",
+        "kind": "heading",
+        "title": "Heading — Rooted in the Northeast.",
+        "initialValue": "Rooted in the Northeast."
+      },
+      {
+        "name": "whereParagraph2",
+        "group": "where",
+        "kind": "paragraph",
+        "title": "Paragraph — Our programmes work alongside communities across Borno, Ad…",
+        "initialValue": "Our programmes work alongside communities across Borno, Adamawa and Yobe—the BAY states."
+      },
+      {
+        "name": "whereCaption1",
+        "group": "where",
+        "kind": "caption",
+        "title": "Caption — State boundaries: GRID3 via geoBoundaries, 2022 ·",
+        "initialValue": "State boundaries: GRID3 via geoBoundaries, 2022 ·"
+      },
+      {
+        "name": "whereLinkLabel1",
+        "group": "where",
+        "kind": "linkLabel",
+        "title": "Link label — CC BY 4.0",
+        "initialValue": "CC BY 4.0"
+      },
+      {
+        "name": "whereHeading2",
+        "group": "where",
+        "kind": "heading",
+        "title": "Heading — Our offices",
+        "initialValue": "Our offices"
+      },
+      {
+        "name": "whereLinkLabel2",
+        "group": "where",
+        "kind": "linkLabel",
+        "title": "Link label — Visit or contact us",
+        "initialValue": "Visit or contact us"
+      },
+      {
+        "name": "whereParagraph3",
+        "group": "where",
+        "kind": "paragraph",
+        "title": "Paragraph — We implement humanitarian and development programmes with …",
+        "initialValue": "We implement humanitarian and development programmes with local structures, community groups and partners—connecting essential support with longer-term opportunities."
+      },
+      {
+        "name": "whereParagraph4",
+        "group": "where",
+        "kind": "paragraph",
+        "title": "Paragraph — Explore the locations and locally reported activities in o…",
+        "initialValue": "Explore the locations and locally reported activities in our Where We Work page."
+      },
+      {
+        "name": "whereLinkLabel3",
+        "group": "where",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our coverage",
+        "initialValue": "Explore our coverage"
+      },
+      {
+        "name": "approachParagraph1",
+        "group": "approach",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR APPROACH",
+        "initialValue": "OUR APPROACH"
+      },
+      {
+        "name": "approachHeading1",
+        "group": "approach",
+        "kind": "heading",
+        "title": "Heading — Working with communities,",
+        "initialValue": "Working with communities,"
+      },
+      {
+        "name": "approachHeading2",
+        "group": "approach",
+        "kind": "heading",
+        "title": "Heading — not simply for them.",
+        "initialValue": "not simply for them."
+      },
+      {
+        "name": "leadershipParagraph1",
+        "group": "leadership",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR PEOPLE",
+        "initialValue": "OUR PEOPLE"
+      },
+      {
+        "name": "leadershipHeading1",
+        "group": "leadership",
+        "kind": "heading",
+        "title": "Heading — Leadership in service.",
+        "initialValue": "Leadership in service."
+      },
+      {
+        "name": "leadershipParagraph2",
+        "group": "leadership",
+        "kind": "paragraph",
+        "title": "Paragraph — Our Board of Trustees and management team guide our progra…",
+        "initialValue": "Our Board of Trustees and management team guide our programmes, people and organisational systems."
+      },
+      {
+        "name": "leadershipText1",
+        "group": "leadership",
+        "kind": "text",
+        "title": "Text — As listed in our",
+        "initialValue": "As listed in our"
+      },
+      {
+        "name": "leadershipText2",
+        "group": "leadership",
+        "kind": "text",
+        "title": "Text — 2025 Annual Report",
+        "initialValue": "2025 Annual Report"
+      },
+      {
+        "name": "leadershipImage1",
+        "group": "leadership",
+        "kind": "image",
+        "title": "Leadership photograph",
+        "initialValue": {
+          "url": "/assets/projects/allright-stakeholder-workshop.jpg",
+          "alt": "JDPI colleagues collaborating at an ALLRight stakeholder workshop"
+        }
+      },
+      {
+        "name": "leadershipHeading2",
+        "group": "leadership",
+        "kind": "heading",
+        "title": "Heading — A dedicated team.",
+        "initialValue": "A dedicated team."
+      },
+      {
+        "name": "leadershipHeading3",
+        "group": "leadership",
+        "kind": "heading",
+        "title": "Heading — A shared commitment.",
+        "initialValue": "A shared commitment."
+      },
+      {
+        "name": "leadershipParagraph3",
+        "group": "leadership",
+        "kind": "paragraph",
+        "title": "Paragraph — Behind every programme are people bringing local knowledge…",
+        "initialValue": "Behind every programme are people bringing local knowledge, skills and care to the communities we serve."
+      },
+      {
+        "name": "leadershipLinkLabel1",
+        "group": "leadership",
+        "kind": "linkLabel",
+        "title": "Link label — Meet our team",
+        "initialValue": "Meet our team"
+      },
+      {
+        "name": "accountabilityParagraph1",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — RESPONSIBILITY & TRUST",
+        "initialValue": "RESPONSIBILITY & TRUST"
+      },
+      {
+        "name": "accountabilityHeading1",
+        "group": "accountability",
+        "kind": "heading",
+        "title": "Heading — Our commitment to accountability.",
+        "initialValue": "Our commitment to accountability."
+      },
+      {
+        "name": "accountabilityParagraph2",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — Responsible, transparent programming protects the dignity,…",
+        "initialValue": "Responsible, transparent programming protects the dignity, rights and safety of the people and communities we work with."
+      },
+      {
+        "name": "accountabilityParagraph3",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — For general feedback, use our contact page. Please do not …",
+        "initialValue": "For general feedback, use our contact page. Please do not submit confidential case details through the website form."
+      },
+      {
+        "name": "partnershipParagraph1",
+        "group": "partnership",
+        "kind": "paragraph",
+        "title": "Paragraph — WORKING TOGETHER",
+        "initialValue": "WORKING TOGETHER"
+      },
+      {
+        "name": "partnershipHeading1",
+        "group": "partnership",
+        "kind": "heading",
+        "title": "Heading — Stronger through partnership.",
+        "initialValue": "Stronger through partnership."
+      },
+      {
+        "name": "partnershipParagraph2",
+        "group": "partnership",
+        "kind": "paragraph",
+        "title": "Paragraph — Our work is strengthened by communities, Church structures…",
+        "initialValue": "Our work is strengthened by communities, Church structures, government institutions, civil society, humanitarian actors and development partners."
+      },
+      {
+        "name": "partnershipLinkLabel1",
+        "group": "partnership",
+        "kind": "linkLabel",
+        "title": "Link label — Our partners",
+        "initialValue": "Our partners"
+      },
+      {
+        "name": "ctaImage1",
+        "group": "cta",
+        "kind": "image",
+        "title": "Call to Action photograph",
+        "initialValue": {
+          "url": "/assets/about/peace-conference.jpg",
+          "alt": "Participants coming together at the JDPI peace conference"
+        }
+      },
+      {
+        "name": "ctaParagraph1",
+        "group": "cta",
+        "kind": "paragraph",
+        "title": "Paragraph — TOGETHER, WE GO FURTHER",
+        "initialValue": "TOGETHER, WE GO FURTHER"
+      },
+      {
+        "name": "ctaHeading1",
+        "group": "cta",
+        "kind": "heading",
+        "title": "Heading — Together, dignity",
+        "initialValue": "Together, dignity"
+      },
+      {
+        "name": "ctaHeading2",
+        "group": "cta",
+        "kind": "heading",
+        "title": "Heading — becomes action.",
+        "initialValue": "becomes action."
+      },
+      {
+        "name": "ctaParagraph2",
+        "group": "cta",
+        "kind": "paragraph",
+        "title": "Paragraph — Discover how we are working alongside communities across N…",
+        "initialValue": "Discover how we are working alongside communities across Northeast Nigeria."
+      },
+      {
+        "name": "ctaLinkLabel1",
+        "group": "cta",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our work",
+        "initialValue": "Explore our work"
+      },
+      {
+        "name": "ctaLinkLabel2",
+        "group": "cta",
+        "kind": "linkLabel",
+        "title": "Link label — View our impact",
+        "initialValue": "View our impact"
+      }
+    ]
+  },
+  {
+    "route": "team",
+    "title": "Our Team",
+    "type": "teamPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "team",
+        "title": "Introduction"
+      },
+      {
+        "name": "board",
+        "title": "Board of Trustees"
+      },
+      {
+        "name": "management",
+        "title": "Management & Staff"
+      },
+      {
+        "name": "people",
+        "title": "Wider Team"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Meet JDPI’s Board of Trustees and management team, as listed in the 2025 annual report."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Our Team"
+      },
+      {
+        "name": "teamParagraph1",
+        "group": "team",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR PEOPLE",
+        "initialValue": "OUR PEOPLE"
+      },
+      {
+        "name": "teamHeading1",
+        "group": "team",
+        "kind": "heading",
+        "title": "Heading — A shared purpose.",
+        "initialValue": "A shared purpose."
+      },
+      {
+        "name": "teamText1",
+        "group": "team",
+        "kind": "text",
+        "title": "Text — A team in service.",
+        "initialValue": "A team in service."
+      },
+      {
+        "name": "teamParagraph2",
+        "group": "team",
+        "kind": "paragraph",
+        "title": "Paragraph — From strategic oversight to work in the field, our people …",
+        "initialValue": "From strategic oversight to work in the field, our people bring commitment, local knowledge and care to JDPI’s mission."
+      },
+      {
+        "name": "teamLinkLabel1",
+        "group": "team",
+        "kind": "linkLabel",
+        "title": "Link label — Meet our people",
+        "initialValue": "Meet our people"
+      },
+      {
+        "name": "teamImage1",
+        "group": "team",
+        "kind": "image",
+        "title": "Introduction photograph",
+        "initialValue": {
+          "url": "/assets/about/maiduguri-team.jpg",
+          "alt": "JDPI staff gathered at the head office in Maiduguri"
+        }
+      },
+      {
+        "name": "teamCaption1",
+        "group": "team",
+        "kind": "caption",
+        "title": "Caption — JDPI head-office staff · Annual Report 2025, page 60",
+        "initialValue": "JDPI head-office staff · Annual Report 2025, page 60"
+      },
+      {
+        "name": "introText1",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — As listed in the 2025 Annual Report.",
+        "initialValue": "As listed in the 2025 Annual Report."
+      },
+      {
+        "name": "introParagraph1",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — Names, roles and portraits below reflect the report’s rost…",
+        "initialValue": "Names, roles and portraits below reflect the report’s roster, rather than an independently confirmed current staff directory."
+      },
+      {
+        "name": "introLinkLabel1",
+        "group": "intro",
+        "kind": "linkLabel",
+        "title": "Link label — Read the source ↗",
+        "initialValue": "Read the source ↗"
+      },
+      {
+        "name": "boardParagraph1",
+        "group": "board",
+        "kind": "paragraph",
+        "title": "Paragraph — GOVERNANCE & OVERSIGHT",
+        "initialValue": "GOVERNANCE & OVERSIGHT"
+      },
+      {
+        "name": "boardHeading1",
+        "group": "board",
+        "kind": "heading",
+        "title": "Heading — Our Board of Trustees.",
+        "initialValue": "Our Board of Trustees."
+      },
+      {
+        "name": "boardParagraph2",
+        "group": "board",
+        "kind": "paragraph",
+        "title": "Paragraph — Providing strategic direction, governance and accountabili…",
+        "initialValue": "Providing strategic direction, governance and accountability to JDPI’s mission and the communities we serve."
+      },
+      {
+        "name": "boardParagraph3",
+        "group": "board",
+        "kind": "paragraph",
+        "title": "Paragraph — Names, roles and portraits: JDPI Annual Report 2025, page …",
+        "initialValue": "Names, roles and portraits: JDPI Annual Report 2025, page 63."
+      },
+      {
+        "name": "managementParagraph1",
+        "group": "management",
+        "kind": "paragraph",
+        "title": "Paragraph — LEADERSHIP IN ACTION",
+        "initialValue": "LEADERSHIP IN ACTION"
+      },
+      {
+        "name": "managementHeading1",
+        "group": "management",
+        "kind": "heading",
+        "title": "Heading — Management & key staff.",
+        "initialValue": "Management & key staff."
+      },
+      {
+        "name": "managementParagraph2",
+        "group": "management",
+        "kind": "paragraph",
+        "title": "Paragraph — Connecting programmes, operations and organisational syste…",
+        "initialValue": "Connecting programmes, operations and organisational systems so that commitments become practical, accountable action."
+      },
+      {
+        "name": "managementParagraph3",
+        "group": "management",
+        "kind": "paragraph",
+        "title": "Paragraph — Names, roles and portraits: JDPI Annual Report 2025, page …",
+        "initialValue": "Names, roles and portraits: JDPI Annual Report 2025, page 64."
+      },
+      {
+        "name": "peopleImage1",
+        "group": "people",
+        "kind": "image",
+        "title": "Wider Team photograph",
+        "initialValue": {
+          "url": "/assets/projects/allright-stakeholder-workshop.jpg",
+          "alt": "JDPI colleagues and stakeholders working together at an ALLRight workshop"
+        }
+      },
+      {
+        "name": "peopleCaption1",
+        "group": "people",
+        "kind": "caption",
+        "title": "Caption — Collaboration at an ALLRight stakeholder workshop · Annual…",
+        "initialValue": "Collaboration at an ALLRight stakeholder workshop · Annual Report 2025"
+      },
+      {
+        "name": "peopleParagraph1",
+        "group": "people",
+        "kind": "paragraph",
+        "title": "Paragraph — BEYOND THE DIRECTORY",
+        "initialValue": "BEYOND THE DIRECTORY"
+      },
+      {
+        "name": "peopleHeading1",
+        "group": "people",
+        "kind": "heading",
+        "title": "Heading — People make the difference.",
+        "initialValue": "People make the difference."
+      },
+      {
+        "name": "peopleParagraph2",
+        "group": "people",
+        "kind": "paragraph",
+        "title": "Paragraph — Our wider team works across programmes, office bases and c…",
+        "initialValue": "Our wider team works across programmes, office bases and communities. The report describes investment in technical training, safeguarding, staff wellbeing and continuous learning."
+      },
+      {
+        "name": "peopleText1",
+        "group": "people",
+        "kind": "text",
+        "title": "Text — Staff in 2025",
+        "initialValue": "Staff in 2025"
+      },
+      {
+        "name": "peopleText2",
+        "group": "people",
+        "kind": "text",
+        "title": "Text — 123",
+        "initialValue": "123"
+      },
+      {
+        "name": "peopleText3",
+        "group": "people",
+        "kind": "text",
+        "title": "Text — Staff trained during the year",
+        "initialValue": "Staff trained during the year"
+      },
+      {
+        "name": "peopleText4",
+        "group": "people",
+        "kind": "text",
+        "title": "Text — 47",
+        "initialValue": "47"
+      },
+      {
+        "name": "peopleParagraph3",
+        "group": "people",
+        "kind": "paragraph",
+        "title": "Paragraph — Annual Report 2025, page 60 · historical staff snapshot.",
+        "initialValue": "Annual Report 2025, page 60 · historical staff snapshot."
+      },
+      {
+        "name": "peopleLinkLabel1",
+        "group": "people",
+        "kind": "linkLabel",
+        "title": "Link label — Contact our team →",
+        "initialValue": "Contact our team →"
+      },
+      {
+        "name": "introParagraph2",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — ONE TEAM. ONE COMMITMENT.",
+        "initialValue": "ONE TEAM. ONE COMMITMENT."
+      },
+      {
+        "name": "introHeading1",
+        "group": "intro",
+        "kind": "heading",
+        "title": "Heading — Upholding the dignity",
+        "initialValue": "Upholding the dignity"
+      },
+      {
+        "name": "introHeading2",
+        "group": "intro",
+        "kind": "heading",
+        "title": "Heading — of every human person.",
+        "initialValue": "of every human person."
+      },
+      {
+        "name": "introLinkLabel2",
+        "group": "intro",
+        "kind": "linkLabel",
+        "title": "Link label — Where we work",
+        "initialValue": "Where we work"
+      }
+    ]
+  },
+  {
+    "route": "impact",
+    "title": "Our Impact",
+    "type": "impactPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "impact",
+        "title": "Impact"
+      },
+      {
+        "name": "overview",
+        "title": "Overview"
+      },
+      {
+        "name": "stories",
+        "title": "Community Stories"
+      },
+      {
+        "name": "growing",
+        "title": "Livelihoods Story"
+      },
+      {
+        "name": "women",
+        "title": "Women’s Livelihoods"
+      },
+      {
+        "name": "enterprise",
+        "title": "Enterprise Story"
+      },
+      {
+        "name": "sectors",
+        "title": "Programme Results"
+      },
+      {
+        "name": "coverage",
+        "title": "Coverage"
+      },
+      {
+        "name": "accountability",
+        "title": "Accountability"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "The people, communities and stories behind JDPI Maiduguri’s 2025 results. Explore livelihoods, safe water, wellbeing and peace across Northeast Nigeria."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Our Impact"
+      },
+      {
+        "name": "impactParagraph1",
+        "group": "impact",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR IMPACT ·",
+        "initialValue": "OUR IMPACT ·"
+      },
+      {
+        "name": "impactParagraph2",
+        "group": "impact",
+        "kind": "paragraph",
+        "title": "Paragraph — IN FOCUS",
+        "initialValue": "IN FOCUS"
+      },
+      {
+        "name": "impactHeading1",
+        "group": "impact",
+        "kind": "heading",
+        "title": "Heading — Real people.",
+        "initialValue": "Real people."
+      },
+      {
+        "name": "impactText1",
+        "group": "impact",
+        "kind": "text",
+        "title": "Text — Lasting",
+        "initialValue": "Lasting"
+      },
+      {
+        "name": "impactText2",
+        "group": "impact",
+        "kind": "text",
+        "title": "Text — change.",
+        "initialValue": "change."
+      },
+      {
+        "name": "impactParagraph3",
+        "group": "impact",
+        "kind": "paragraph",
+        "title": "Paragraph — A livelihood rebuilt. A community strengthened. A new poss…",
+        "initialValue": "A livelihood rebuilt. A community strengthened. A new possibility for tomorrow."
+      },
+      {
+        "name": "impactParagraph4",
+        "group": "impact",
+        "kind": "paragraph",
+        "title": "Paragraph — Behind every result are people shaping their own futures. …",
+        "initialValue": "Behind every result are people shaping their own futures. Discover how JDPI supports that journey across Northeast Nigeria."
+      },
+      {
+        "name": "impactLinkLabel1",
+        "group": "impact",
+        "kind": "linkLabel",
+        "title": "Link label — Discover the stories",
+        "initialValue": "Discover the stories"
+      },
+      {
+        "name": "impactText3",
+        "group": "impact",
+        "kind": "text",
+        "title": "Text — Growing resilience, together.",
+        "initialValue": "Growing resilience, together."
+      },
+      {
+        "name": "impactCaption1",
+        "group": "impact",
+        "kind": "caption",
+        "title": "Caption — Community greenhouse monitoring · Report, page 17",
+        "initialValue": "Community greenhouse monitoring · Report, page 17"
+      },
+      {
+        "name": "overviewHeading1",
+        "group": "overview",
+        "kind": "heading",
+        "title": "Heading — A year of working",
+        "initialValue": "A year of working"
+      },
+      {
+        "name": "overviewHeading2",
+        "group": "overview",
+        "kind": "heading",
+        "title": "Heading — alongside communities.",
+        "initialValue": "alongside communities."
+      },
+      {
+        "name": "overviewParagraph1",
+        "group": "overview",
+        "kind": "paragraph",
+        "title": "Paragraph — January–December",
+        "initialValue": "January–December"
+      },
+      {
+        "name": "overviewParagraph2",
+        "group": "overview",
+        "kind": "paragraph",
+        "title": "Paragraph — Reported results · Annual Report, pages 10–12",
+        "initialValue": "Reported results · Annual Report, pages 10–12"
+      },
+      {
+        "name": "storiesParagraph1",
+        "group": "stories",
+        "kind": "paragraph",
+        "title": "Paragraph — BEHIND THE NUMBERS",
+        "initialValue": "BEHIND THE NUMBERS"
+      },
+      {
+        "name": "storiesHeading1",
+        "group": "stories",
+        "kind": "heading",
+        "title": "Heading — This is what change looks like.",
+        "initialValue": "This is what change looks like."
+      },
+      {
+        "name": "storiesParagraph2",
+        "group": "stories",
+        "kind": "paragraph",
+        "title": "Paragraph — Practical support. Community ambition.",
+        "initialValue": "Practical support. Community ambition."
+      },
+      {
+        "name": "storiesParagraph3",
+        "group": "stories",
+        "kind": "paragraph",
+        "title": "Paragraph — Stories from our",
+        "initialValue": "Stories from our"
+      },
+      {
+        "name": "storiesParagraph4",
+        "group": "stories",
+        "kind": "paragraph",
+        "title": "Paragraph — annual report.",
+        "initialValue": "annual report."
+      },
+      {
+        "name": "growingCaption1",
+        "group": "growing",
+        "kind": "caption",
+        "title": "Caption — Community greenhouse crops · Annual Report, page 18",
+        "initialValue": "Community greenhouse crops · Annual Report, page 18"
+      },
+      {
+        "name": "growingCaption2",
+        "group": "growing",
+        "kind": "caption",
+        "title": "Caption — A greenhouse harvest · Report, page 17",
+        "initialValue": "A greenhouse harvest · Report, page 17"
+      },
+      {
+        "name": "growingParagraph1",
+        "group": "growing",
+        "kind": "paragraph",
+        "title": "Paragraph — LIVELIHOODS · HONG & MICHIKA",
+        "initialValue": "LIVELIHOODS · HONG & MICHIKA"
+      },
+      {
+        "name": "growingHeading1",
+        "group": "growing",
+        "kind": "heading",
+        "title": "Heading — More than a harvest.",
+        "initialValue": "More than a harvest."
+      },
+      {
+        "name": "growingText1",
+        "group": "growing",
+        "kind": "text",
+        "title": "Text — A way forward.",
+        "initialValue": "A way forward."
+      },
+      {
+        "name": "growingParagraph2",
+        "group": "growing",
+        "kind": "paragraph",
+        "title": "Paragraph — For families in Hong and Michika, community greenhouses cr…",
+        "initialValue": "For families in Hong and Michika, community greenhouses created opportunities to grow vegetables throughout the year. Climate-smart agricultural support connected food production with nutrition and livelihoods."
+      },
+      {
+        "name": "growingParagraph3",
+        "group": "growing",
+        "kind": "paragraph",
+        "title": "Paragraph — The BMZ Multisectoral Resilience Project supported 263 hou…",
+        "initialValue": "The BMZ Multisectoral Resilience Project supported 263 households through 20 community greenhouses—building resilience, season after season."
+      },
+      {
+        "name": "growingText2",
+        "group": "growing",
+        "kind": "text",
+        "title": "Text — Households supported",
+        "initialValue": "Households supported"
+      },
+      {
+        "name": "growingText3",
+        "group": "growing",
+        "kind": "text",
+        "title": "Text — 263",
+        "initialValue": "263"
+      },
+      {
+        "name": "growingText4",
+        "group": "growing",
+        "kind": "text",
+        "title": "Text — Community greenhouses",
+        "initialValue": "Community greenhouses"
+      },
+      {
+        "name": "growingText5",
+        "group": "growing",
+        "kind": "text",
+        "title": "Text — 20",
+        "initialValue": "20"
+      },
+      {
+        "name": "growingParagraph4",
+        "group": "growing",
+        "kind": "paragraph",
+        "title": "Paragraph — Annual Report",
+        "initialValue": "Annual Report"
+      },
+      {
+        "name": "growingParagraph5",
+        "group": "growing",
+        "kind": "paragraph",
+        "title": "Paragraph — , pages 17–18",
+        "initialValue": ", pages 17–18"
+      },
+      {
+        "name": "growingLinkLabel1",
+        "group": "growing",
+        "kind": "linkLabel",
+        "title": "Link label — Explore the BMZ project",
+        "initialValue": "Explore the BMZ project"
+      },
+      {
+        "name": "womenCaption1",
+        "group": "women",
+        "kind": "caption",
+        "title": "Caption — WE-SING livelihood kit distribution · Annual Report, page …",
+        "initialValue": "WE-SING livelihood kit distribution · Annual Report, page 16"
+      },
+      {
+        "name": "womenParagraph1",
+        "group": "women",
+        "kind": "paragraph",
+        "title": "Paragraph — WOMEN’S LIVELIHOODS · BORNO",
+        "initialValue": "WOMEN’S LIVELIHOODS · BORNO"
+      },
+      {
+        "name": "womenHeading1",
+        "group": "women",
+        "kind": "heading",
+        "title": "Heading — Her skills.",
+        "initialValue": "Her skills."
+      },
+      {
+        "name": "womenText1",
+        "group": "women",
+        "kind": "text",
+        "title": "Text — Her ambitions.",
+        "initialValue": "Her ambitions."
+      },
+      {
+        "name": "womenText2",
+        "group": "women",
+        "kind": "text",
+        "title": "Text — Her next chapter.",
+        "initialValue": "Her next chapter."
+      },
+      {
+        "name": "womenParagraph2",
+        "group": "women",
+        "kind": "paragraph",
+        "title": "Paragraph — One hundred women received start-up kits aligned with thei…",
+        "initialValue": "One hundred women received start-up kits aligned with their chosen trades, including tailoring, petty trading and food processing."
+      },
+      {
+        "name": "womenText3",
+        "group": "women",
+        "kind": "text",
+        "title": "Text — 100",
+        "initialValue": "100"
+      },
+      {
+        "name": "womenText4",
+        "group": "women",
+        "kind": "text",
+        "title": "Text — women received trade-specific",
+        "initialValue": "women received trade-specific"
+      },
+      {
+        "name": "womenText5",
+        "group": "women",
+        "kind": "text",
+        "title": "Text — livelihood start-up kits",
+        "initialValue": "livelihood start-up kits"
+      },
+      {
+        "name": "womenParagraph3",
+        "group": "women",
+        "kind": "paragraph",
+        "title": "Paragraph — Annual Report",
+        "initialValue": "Annual Report"
+      },
+      {
+        "name": "womenParagraph4",
+        "group": "women",
+        "kind": "paragraph",
+        "title": "Paragraph — , page 16",
+        "initialValue": ", page 16"
+      },
+      {
+        "name": "womenLinkLabel1",
+        "group": "women",
+        "kind": "linkLabel",
+        "title": "Link label — Explore the WE-SING project",
+        "initialValue": "Explore the WE-SING project"
+      },
+      {
+        "name": "enterpriseParagraph1",
+        "group": "enterprise",
+        "kind": "paragraph",
+        "title": "Paragraph — A LIVELIHOOD STORY · MICHIKA",
+        "initialValue": "A LIVELIHOOD STORY · MICHIKA"
+      },
+      {
+        "name": "enterpriseHeading1",
+        "group": "enterprise",
+        "kind": "heading",
+        "title": "Heading — A small start.",
+        "initialValue": "A small start."
+      },
+      {
+        "name": "enterpriseHeading2",
+        "group": "enterprise",
+        "kind": "heading",
+        "title": "Heading — A growing livelihood.",
+        "initialValue": "A growing livelihood."
+      },
+      {
+        "name": "enterpriseText1",
+        "group": "enterprise",
+        "kind": "text",
+        "title": "Text — Bags bought at the start",
+        "initialValue": "Bags bought at the start"
+      },
+      {
+        "name": "enterpriseText2",
+        "group": "enterprise",
+        "kind": "text",
+        "title": "Text — Bags bought at a time as the business grew",
+        "initialValue": "Bags bought at a time as the business grew"
+      },
+      {
+        "name": "enterpriseText3",
+        "group": "enterprise",
+        "kind": "text",
+        "title": "Text — Up to",
+        "initialValue": "Up to"
+      },
+      {
+        "name": "enterpriseText4",
+        "group": "enterprise",
+        "kind": "text",
+        "title": "Text — 20",
+        "initialValue": "20"
+      },
+      {
+        "name": "enterpriseParagraph2",
+        "group": "enterprise",
+        "kind": "paragraph",
+        "title": "Paragraph — One participant’s experience, as described in the report—n…",
+        "initialValue": "One participant’s experience, as described in the report—not an organisation-wide result."
+      },
+      {
+        "name": "storiesParagraph5",
+        "group": "stories",
+        "kind": "paragraph",
+        "title": "Paragraph — Every project is part of a bigger story.",
+        "initialValue": "Every project is part of a bigger story."
+      },
+      {
+        "name": "storiesLinkLabel1",
+        "group": "stories",
+        "kind": "linkLabel",
+        "title": "Link label — Explore all our projects",
+        "initialValue": "Explore all our projects"
+      },
+      {
+        "name": "sectorsParagraph1",
+        "group": "sectors",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR",
+        "initialValue": "OUR"
+      },
+      {
+        "name": "sectorsParagraph2",
+        "group": "sectors",
+        "kind": "paragraph",
+        "title": "Paragraph — RESULTS",
+        "initialValue": "RESULTS"
+      },
+      {
+        "name": "sectorsHeading1",
+        "group": "sectors",
+        "kind": "heading",
+        "title": "Heading — Different needs.",
+        "initialValue": "Different needs."
+      },
+      {
+        "name": "sectorsHeading2",
+        "group": "sectors",
+        "kind": "heading",
+        "title": "Heading — One commitment to dignity.",
+        "initialValue": "One commitment to dignity."
+      },
+      {
+        "name": "sectorsParagraph3",
+        "group": "sectors",
+        "kind": "paragraph",
+        "title": "Paragraph — From essential services to stronger livelihoods,",
+        "initialValue": "From essential services to stronger livelihoods,"
+      },
+      {
+        "name": "sectorsParagraph4",
+        "group": "sectors",
+        "kind": "paragraph",
+        "title": "Paragraph — our programmes respond to the whole community.",
+        "initialValue": "our programmes respond to the whole community."
+      },
+      {
+        "name": "sectorsText1",
+        "group": "sectors",
+        "kind": "text",
+        "title": "Text — A note on these figures.",
+        "initialValue": "A note on these figures."
+      },
+      {
+        "name": "sectorsParagraph5",
+        "group": "sectors",
+        "kind": "paragraph",
+        "title": "Paragraph — Programme counts measure different services and may includ…",
+        "initialValue": "Programme counts measure different services and may include people reached by more than one intervention. They are not added together as a unique-person total."
+      },
+      {
+        "name": "coverageParagraph1",
+        "group": "coverage",
+        "kind": "paragraph",
+        "title": "Paragraph — CLOSE TO THE COMMUNITIES WE SERVE",
+        "initialValue": "CLOSE TO THE COMMUNITIES WE SERVE"
+      },
+      {
+        "name": "coverageHeading1",
+        "group": "coverage",
+        "kind": "heading",
+        "title": "Heading — Rooted in Northeast Nigeria.",
+        "initialValue": "Rooted in Northeast Nigeria."
+      },
+      {
+        "name": "coverageParagraph2",
+        "group": "coverage",
+        "kind": "paragraph",
+        "title": "Paragraph — 3 states · 20 local government areas",
+        "initialValue": "3 states · 20 local government areas"
+      },
+      {
+        "name": "coverageParagraph3",
+        "group": "coverage",
+        "kind": "paragraph",
+        "title": "Paragraph — 114 communities in",
+        "initialValue": "114 communities in"
+      },
+      {
+        "name": "coverageLinkLabel1",
+        "group": "coverage",
+        "kind": "linkLabel",
+        "title": "Link label — Explore each LGA and our locally reported work",
+        "initialValue": "Explore each LGA and our locally reported work"
+      },
+      {
+        "name": "accountabilityParagraph1",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — THE WORK. THE STORIES. THE EVIDENCE.",
+        "initialValue": "THE WORK. THE STORIES. THE EVIDENCE."
+      },
+      {
+        "name": "accountabilityHeading1",
+        "group": "accountability",
+        "kind": "heading",
+        "title": "Heading — Impact you can",
+        "initialValue": "Impact you can"
+      },
+      {
+        "name": "accountabilityText1",
+        "group": "accountability",
+        "kind": "text",
+        "title": "Text — look into.",
+        "initialValue": "look into."
+      },
+      {
+        "name": "accountabilityParagraph2",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — These highlights are only part of the picture. Our",
+        "initialValue": "These highlights are only part of the picture. Our"
+      },
+      {
+        "name": "accountabilityParagraph3",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — annual report brings together programme results, community…",
+        "initialValue": "annual report brings together programme results, community stories and financial reporting."
+      },
+      {
+        "name": "accountabilityLinkLabel1",
+        "group": "accountability",
+        "kind": "linkLabel",
+        "title": "Link label — Read the 2025 annual report",
+        "initialValue": "Read the 2025 annual report"
+      },
+      {
+        "name": "accountabilityLinkLabel2",
+        "group": "accountability",
+        "kind": "linkLabel",
+        "title": "Link label — All reports & resources",
+        "initialValue": "All reports & resources"
+      },
+      {
+        "name": "accountabilityParagraph4",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — JDPI MAIDUGURI",
+        "initialValue": "JDPI MAIDUGURI"
+      },
+      {
+        "name": "accountabilityParagraph5",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — ANNUAL REPORT",
+        "initialValue": "ANNUAL REPORT"
+      },
+      {
+        "name": "accountabilityHeading2",
+        "group": "accountability",
+        "kind": "heading",
+        "title": "Heading — Let’s build what comes next.",
+        "initialValue": "Let’s build what comes next."
+      },
+      {
+        "name": "accountabilityParagraph6",
+        "group": "accountability",
+        "kind": "paragraph",
+        "title": "Paragraph — Talk with our team about supporting community-led change.",
+        "initialValue": "Talk with our team about supporting community-led change."
+      },
+      {
+        "name": "accountabilityLinkLabel3",
+        "group": "accountability",
+        "kind": "linkLabel",
+        "title": "Link label — Contact our team",
+        "initialValue": "Contact our team"
+      }
+    ]
+  },
+  {
+    "route": "where-we-work",
+    "title": "Where We Work",
+    "type": "whereWeWorkPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "whereWork",
+        "title": "Where Work"
+      },
+      {
+        "name": "coverage",
+        "title": "Coverage"
+      },
+      {
+        "name": "bases",
+        "title": "Office Bases"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Explore JDPI’s report-listed LGAs in Borno, Adamawa and Yobe, with interactive maps and locally documented activities."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Where We Work"
+      },
+      {
+        "name": "whereWorkParagraph1",
+        "group": "whereWork",
+        "kind": "paragraph",
+        "title": "Paragraph — WHERE WE WORK",
+        "initialValue": "WHERE WE WORK"
+      },
+      {
+        "name": "whereWorkHeading1",
+        "group": "whereWork",
+        "kind": "heading",
+        "title": "Heading — Local roots.",
+        "initialValue": "Local roots."
+      },
+      {
+        "name": "whereWorkText1",
+        "group": "whereWork",
+        "kind": "text",
+        "title": "Text — Closer to communities.",
+        "initialValue": "Closer to communities."
+      },
+      {
+        "name": "whereWorkParagraph2",
+        "group": "whereWork",
+        "kind": "paragraph",
+        "title": "Paragraph — Across Borno, Adamawa and Yobe, we work alongside communit…",
+        "initialValue": "Across Borno, Adamawa and Yobe, we work alongside communities to protect dignity and strengthen resilience."
+      },
+      {
+        "name": "whereWorkLinkLabel1",
+        "group": "whereWork",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our locations",
+        "initialValue": "Explore our locations"
+      },
+      {
+        "name": "whereWorkImage1",
+        "group": "whereWork",
+        "kind": "image",
+        "title": "Where Work photograph",
+        "initialValue": {
+          "url": "/assets/about/community-dialogue.jpg",
+          "alt": "Community members taking part in an outdoor dialogue session"
+        }
+      },
+      {
+        "name": "whereWorkCaption1",
+        "group": "whereWork",
+        "kind": "caption",
+        "title": "Caption — Community dialogue · JDPI Annual Report 2025, page 39",
+        "initialValue": "Community dialogue · JDPI Annual Report 2025, page 39"
+      },
+      {
+        "name": "introText1",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — Our 2025 footprint",
+        "initialValue": "Our 2025 footprint"
+      },
+      {
+        "name": "introText2",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — January–December · Annual Report, pages 10–12",
+        "initialValue": "January–December · Annual Report, pages 10–12"
+      },
+      {
+        "name": "introText3",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — States",
+        "initialValue": "States"
+      },
+      {
+        "name": "introText4",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — Local government areas",
+        "initialValue": "Local government areas"
+      },
+      {
+        "name": "introText5",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — 20",
+        "initialValue": "20"
+      },
+      {
+        "name": "introText6",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — Communities",
+        "initialValue": "Communities"
+      },
+      {
+        "name": "introText7",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — 114",
+        "initialValue": "114"
+      },
+      {
+        "name": "coverageParagraph1",
+        "group": "coverage",
+        "kind": "paragraph",
+        "title": "Paragraph — EXPLORE THE BAY STATES",
+        "initialValue": "EXPLORE THE BAY STATES"
+      },
+      {
+        "name": "coverageHeading1",
+        "group": "coverage",
+        "kind": "heading",
+        "title": "Heading — Every place has a story.",
+        "initialValue": "Every place has a story."
+      },
+      {
+        "name": "coverageParagraph2",
+        "group": "coverage",
+        "kind": "paragraph",
+        "title": "Paragraph — Select a state, then an LGA hotspot to see the work docume…",
+        "initialValue": "Select a state, then an LGA hotspot to see the work documented there."
+      },
+      {
+        "name": "coverageParagraph3",
+        "group": "coverage",
+        "kind": "paragraph",
+        "title": "Paragraph — This map reflects the",
+        "initialValue": "This map reflects the"
+      },
+      {
+        "name": "coverageText1",
+        "group": "coverage",
+        "kind": "text",
+        "title": "Text — 2025 reporting period",
+        "initialValue": "2025 reporting period"
+      },
+      {
+        "name": "coverageParagraph4",
+        "group": "coverage",
+        "kind": "paragraph",
+        "title": "Paragraph — , not a live directory of active projects. Local activitie…",
+        "initialValue": ", not a live directory of active projects. Local activities are shown where the report or JDPI’s project records identify the LGA; coverage-only locations are clearly labelled."
+      },
+      {
+        "name": "basesParagraph1",
+        "group": "bases",
+        "kind": "paragraph",
+        "title": "Paragraph — PRESENT IN THE NORTHEAST",
+        "initialValue": "PRESENT IN THE NORTHEAST"
+      },
+      {
+        "name": "basesHeading1",
+        "group": "bases",
+        "kind": "heading",
+        "title": "Heading — Our office bases.",
+        "initialValue": "Our office bases."
+      },
+      {
+        "name": "basesLinkLabel1",
+        "group": "bases",
+        "kind": "linkLabel",
+        "title": "Link label — Contact and directions →",
+        "initialValue": "Contact and directions →"
+      },
+      {
+        "name": "basesParagraph2",
+        "group": "bases",
+        "kind": "paragraph",
+        "title": "Paragraph — Office bases: Annual Report 2025, pages 2, 60 and 64. Offi…",
+        "initialValue": "Office bases: Annual Report 2025, pages 2, 60 and 64. Office bases and project locations are different."
+      },
+      {
+        "name": "introParagraph1",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — LOCAL KNOWLEDGE. SHARED COMMITMENT.",
+        "initialValue": "LOCAL KNOWLEDGE. SHARED COMMITMENT."
+      },
+      {
+        "name": "introHeading1",
+        "group": "intro",
+        "kind": "heading",
+        "title": "Heading — Work alongside us.",
+        "initialValue": "Work alongside us."
+      },
+      {
+        "name": "introParagraph2",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — For current activities in a particular community, partners…",
+        "initialValue": "For current activities in a particular community, partnerships or programme enquiries, contact the JDPI team."
+      },
+      {
+        "name": "introLinkLabel1",
+        "group": "intro",
+        "kind": "linkLabel",
+        "title": "Link label — Get in touch",
+        "initialValue": "Get in touch"
+      }
+    ]
+  },
+  {
+    "route": "programmes",
+    "title": "Programmes",
+    "type": "programmesPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "programmes",
+        "title": "Introduction"
+      },
+      {
+        "name": "areas",
+        "title": "Areas"
+      },
+      {
+        "name": "approach",
+        "title": "Our Approach"
+      },
+      {
+        "name": "action",
+        "title": "Action"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Explore JDPI’s integrated programmes in food security, nutrition, water and hygiene, protection, mental well-being, peacebuilding and economic empowerment across Northeast Nigeria."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Programmes"
+      },
+      {
+        "name": "programmesImage1",
+        "group": "programmes",
+        "kind": "image",
+        "title": "Introduction photograph",
+        "initialValue": {
+          "url": "/assets/projects/bmz-greenhouse-monitoring.jpg",
+          "alt": "A JDPI team member inspecting crops in a BMZ-supported greenhouse"
+        }
+      },
+      {
+        "name": "programmesParagraph1",
+        "group": "programmes",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR PROGRAMMES",
+        "initialValue": "OUR PROGRAMMES"
+      },
+      {
+        "name": "programmesHeading1",
+        "group": "programmes",
+        "kind": "heading",
+        "title": "Heading — Different needs.",
+        "initialValue": "Different needs."
+      },
+      {
+        "name": "programmesText1",
+        "group": "programmes",
+        "kind": "text",
+        "title": "Text — One shared dignity.",
+        "initialValue": "One shared dignity."
+      },
+      {
+        "name": "programmesParagraph2",
+        "group": "programmes",
+        "kind": "paragraph",
+        "title": "Paragraph — From meeting urgent needs to strengthening lasting resilie…",
+        "initialValue": "From meeting urgent needs to strengthening lasting resilience, we work alongside communities across Northeast Nigeria."
+      },
+      {
+        "name": "programmesLinkLabel1",
+        "group": "programmes",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our programmes",
+        "initialValue": "Explore our programmes"
+      },
+      {
+        "name": "programmesParagraph3",
+        "group": "programmes",
+        "kind": "paragraph",
+        "title": "Paragraph — BMZ project · JDPI Annual Report 2025",
+        "initialValue": "BMZ project · JDPI Annual Report 2025"
+      },
+      {
+        "name": "areasParagraph1",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — WHAT WE DO",
+        "initialValue": "WHAT WE DO"
+      },
+      {
+        "name": "areasHeading1",
+        "group": "areas",
+        "kind": "heading",
+        "title": "Heading — Integrated programmes.",
+        "initialValue": "Integrated programmes."
+      },
+      {
+        "name": "areasHeading2",
+        "group": "areas",
+        "kind": "heading",
+        "title": "Heading — Stronger communities.",
+        "initialValue": "Stronger communities."
+      },
+      {
+        "name": "areasParagraph2",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — People’s needs are connected. Our programmes bring humanit…",
+        "initialValue": "People’s needs are connected. Our programmes bring humanitarian assistance, development and peacebuilding together, with dignity at the centre."
+      },
+      {
+        "name": "areasParagraph3",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — REPORTED",
+        "initialValue": "REPORTED"
+      },
+      {
+        "name": "areasText1",
+        "group": "areas",
+        "kind": "text",
+        "title": "Text — WE-SING project only · not a programme-wide total",
+        "initialValue": "WE-SING project only · not a programme-wide total"
+      },
+      {
+        "name": "areasParagraph4",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — Verified reach information is awaiting confirmation.",
+        "initialValue": "Verified reach information is awaiting confirmation."
+      },
+      {
+        "name": "areasParagraph5",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — PROGRAMME DETAILS",
+        "initialValue": "PROGRAMME DETAILS"
+      },
+      {
+        "name": "areasParagraph6",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — REPORTED",
+        "initialValue": "REPORTED"
+      },
+      {
+        "name": "areasText2",
+        "group": "areas",
+        "kind": "text",
+        "title": "Text — Annual Report",
+        "initialValue": "Annual Report"
+      },
+      {
+        "name": "areasLinkLabel1",
+        "group": "areas",
+        "kind": "linkLabel",
+        "title": "Link label — View the WE-SING project",
+        "initialValue": "View the WE-SING project"
+      },
+      {
+        "name": "areasHeading3",
+        "group": "areas",
+        "kind": "heading",
+        "title": "Heading — Our interventions",
+        "initialValue": "Our interventions"
+      },
+      {
+        "name": "areasParagraph7",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — Detailed intervention information is awaiting confirmation…",
+        "initialValue": "Detailed intervention information is awaiting confirmation."
+      },
+      {
+        "name": "areasLinkLabel2",
+        "group": "areas",
+        "kind": "linkLabel",
+        "title": "Link label — Contact our team",
+        "initialValue": "Contact our team"
+      },
+      {
+        "name": "areasHeading4",
+        "group": "areas",
+        "kind": "heading",
+        "title": "Heading — Documented locations",
+        "initialValue": "Documented locations"
+      },
+      {
+        "name": "areasLinkLabel3",
+        "group": "areas",
+        "kind": "linkLabel",
+        "title": "Link label — View coverage map",
+        "initialValue": "View coverage map"
+      },
+      {
+        "name": "areasParagraph8",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — Programme-specific locations are awaiting confirmation.",
+        "initialValue": "Programme-specific locations are awaiting confirmation."
+      },
+      {
+        "name": "areasParagraph9",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — RELATED PROJECTS",
+        "initialValue": "RELATED PROJECTS"
+      },
+      {
+        "name": "areasLinkLabel4",
+        "group": "areas",
+        "kind": "linkLabel",
+        "title": "Link label — Explore programme",
+        "initialValue": "Explore programme"
+      },
+      {
+        "name": "areasParagraph10",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — Results are from the",
+        "initialValue": "Results are from the"
+      },
+      {
+        "name": "areasParagraph11",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — Annual Report, not live totals. Measures may overlap and m…",
+        "initialValue": "Annual Report, not live totals. Measures may overlap and must not be added as a unique-person total. Documented locations are examples, not a complete programme footprint; completed-project examples are labelled."
+      },
+      {
+        "name": "areasParagraph12",
+        "group": "areas",
+        "kind": "paragraph",
+        "title": "Paragraph — reported results · measures vary and may overlap.",
+        "initialValue": "reported results · measures vary and may overlap."
+      },
+      {
+        "name": "areasLinkLabel5",
+        "group": "areas",
+        "kind": "linkLabel",
+        "title": "Link label — View reporting context",
+        "initialValue": "View reporting context"
+      },
+      {
+        "name": "approachImage1",
+        "group": "approach",
+        "kind": "image",
+        "title": "Our Approach photograph",
+        "initialValue": {
+          "url": "/assets/about/community-dialogue.jpg",
+          "alt": "Community members participating in a JDPI dialogue session"
+        }
+      },
+      {
+        "name": "approachCaption1",
+        "group": "approach",
+        "kind": "caption",
+        "title": "Caption — Community dialogue · JDPI Annual Report 2025",
+        "initialValue": "Community dialogue · JDPI Annual Report 2025"
+      },
+      {
+        "name": "approachParagraph1",
+        "group": "approach",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR APPROACH",
+        "initialValue": "OUR APPROACH"
+      },
+      {
+        "name": "approachHeading1",
+        "group": "approach",
+        "kind": "heading",
+        "title": "Heading — Working with communities.",
+        "initialValue": "Working with communities."
+      },
+      {
+        "name": "approachText1",
+        "group": "approach",
+        "kind": "text",
+        "title": "Text — Not simply for them.",
+        "initialValue": "Not simply for them."
+      },
+      {
+        "name": "approachParagraph2",
+        "group": "approach",
+        "kind": "paragraph",
+        "title": "Paragraph — Our work is rooted in listening, participation and local k…",
+        "initialValue": "Our work is rooted in listening, participation and local knowledge. We connect support across programme areas so communities can meet today’s needs and shape tomorrow’s possibilities."
+      },
+      {
+        "name": "approachHeading2",
+        "group": "approach",
+        "kind": "heading",
+        "title": "Heading — Locally rooted",
+        "initialValue": "Locally rooted"
+      },
+      {
+        "name": "approachParagraph3",
+        "group": "approach",
+        "kind": "paragraph",
+        "title": "Paragraph — Working across Borno, Adamawa and Yobe.",
+        "initialValue": "Working across Borno, Adamawa and Yobe."
+      },
+      {
+        "name": "approachHeading3",
+        "group": "approach",
+        "kind": "heading",
+        "title": "Heading — Dignity first",
+        "initialValue": "Dignity first"
+      },
+      {
+        "name": "approachParagraph4",
+        "group": "approach",
+        "kind": "paragraph",
+        "title": "Paragraph — Promoting safety, inclusion and the rights of every person…",
+        "initialValue": "Promoting safety, inclusion and the rights of every person."
+      },
+      {
+        "name": "approachLinkLabel1",
+        "group": "approach",
+        "kind": "linkLabel",
+        "title": "Link label — See where we work",
+        "initialValue": "See where we work"
+      },
+      {
+        "name": "actionParagraph1",
+        "group": "action",
+        "kind": "paragraph",
+        "title": "Paragraph — FROM PROGRAMMES TO PROGRESS",
+        "initialValue": "FROM PROGRAMMES TO PROGRESS"
+      },
+      {
+        "name": "actionHeading1",
+        "group": "action",
+        "kind": "heading",
+        "title": "Heading — See the work.",
+        "initialValue": "See the work."
+      },
+      {
+        "name": "actionText1",
+        "group": "action",
+        "kind": "text",
+        "title": "Text — Meet the change.",
+        "initialValue": "Meet the change."
+      },
+      {
+        "name": "actionParagraph2",
+        "group": "action",
+        "kind": "paragraph",
+        "title": "Paragraph — Discover our projects, explore reported results, or talk t…",
+        "initialValue": "Discover our projects, explore reported results, or talk to us about working together."
+      },
+      {
+        "name": "actionLinkLabel1",
+        "group": "action",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our projects",
+        "initialValue": "Explore our projects"
+      },
+      {
+        "name": "actionLinkLabel2",
+        "group": "action",
+        "kind": "linkLabel",
+        "title": "Link label — View our impact",
+        "initialValue": "View our impact"
+      },
+      {
+        "name": "actionLinkLabel3",
+        "group": "action",
+        "kind": "linkLabel",
+        "title": "Link label — Partner with JDPI",
+        "initialValue": "Partner with JDPI"
+      }
+    ]
+  },
+  {
+    "route": "projects",
+    "title": "Projects",
+    "type": "projectsPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "projects",
+        "title": "Introduction"
+      },
+      {
+        "name": "projectImpact",
+        "title": "Project Impact"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Explore JDPI Maiduguri’s humanitarian and development projects supporting communities across Northeast Nigeria."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Projects"
+      },
+      {
+        "name": "projectsParagraph1",
+        "group": "projects",
+        "kind": "paragraph",
+        "title": "Paragraph — OUR PROJECTS",
+        "initialValue": "OUR PROJECTS"
+      },
+      {
+        "name": "projectsHeading1",
+        "group": "projects",
+        "kind": "heading",
+        "title": "Heading — From response",
+        "initialValue": "From response"
+      },
+      {
+        "name": "projectsHeading2",
+        "group": "projects",
+        "kind": "heading",
+        "title": "Heading — to",
+        "initialValue": "to"
+      },
+      {
+        "name": "projectsText1",
+        "group": "projects",
+        "kind": "text",
+        "title": "Text — resilience.",
+        "initialValue": "resilience."
+      },
+      {
+        "name": "projectsParagraph2",
+        "group": "projects",
+        "kind": "paragraph",
+        "title": "Paragraph — Our projects support vulnerable people and communities acr…",
+        "initialValue": "Our projects support vulnerable people and communities across Northeast Nigeria through integrated, community-centred and sustainable interventions."
+      },
+      {
+        "name": "introLinkLabel1",
+        "group": "intro",
+        "kind": "linkLabel",
+        "title": "Link label — VIEW PROJECT",
+        "initialValue": "VIEW PROJECT"
+      },
+      {
+        "name": "introHeading1",
+        "group": "intro",
+        "kind": "heading",
+        "title": "Heading — No projects found",
+        "initialValue": "No projects found"
+      },
+      {
+        "name": "introParagraph1",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — Try a different search or view all projects.",
+        "initialValue": "Try a different search or view all projects."
+      },
+      {
+        "name": "projectImpactHeading1",
+        "group": "projectImpact",
+        "kind": "heading",
+        "title": "Heading — Real people.",
+        "initialValue": "Real people."
+      },
+      {
+        "name": "projectImpactText1",
+        "group": "projectImpact",
+        "kind": "text",
+        "title": "Text — Lasting change.",
+        "initialValue": "Lasting change."
+      },
+      {
+        "name": "projectImpactParagraph1",
+        "group": "projectImpact",
+        "kind": "paragraph",
+        "title": "Paragraph — Discover how our projects are supporting communities acros…",
+        "initialValue": "Discover how our projects are supporting communities across Northeast Nigeria."
+      },
+      {
+        "name": "projectImpactLinkLabel1",
+        "group": "projectImpact",
+        "kind": "linkLabel",
+        "title": "Link label — VIEW OUR IMPACT",
+        "initialValue": "VIEW OUR IMPACT"
+      }
+    ]
+  },
+  {
+    "route": "stories",
+    "title": "Stories & Updates",
+    "type": "storiesPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "updates",
+        "title": "Introduction"
+      },
+      {
+        "name": "updatesLibrary",
+        "title": "Updates Library"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Stories from the field, blog posts, news, events and reports from JDPI Maiduguri and the communities we serve across Northeast Nigeria."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Stories & Updates"
+      },
+      {
+        "name": "updatesImage1",
+        "group": "updates",
+        "kind": "image",
+        "title": "Introduction photograph",
+        "initialValue": {
+          "url": "/assets/about/community-dialogue.jpg",
+          "alt": "Community members taking part in a JDPI dialogue session"
+        }
+      },
+      {
+        "name": "updatesParagraph1",
+        "group": "updates",
+        "kind": "paragraph",
+        "title": "Paragraph — VOICES FROM THE NORTHEAST",
+        "initialValue": "VOICES FROM THE NORTHEAST"
+      },
+      {
+        "name": "updatesHeading1",
+        "group": "updates",
+        "kind": "heading",
+        "title": "Heading — Every story matters.",
+        "initialValue": "Every story matters."
+      },
+      {
+        "name": "updatesText1",
+        "group": "updates",
+        "kind": "text",
+        "title": "Text — Every voice counts.",
+        "initialValue": "Every voice counts."
+      },
+      {
+        "name": "updatesParagraph2",
+        "group": "updates",
+        "kind": "paragraph",
+        "title": "Paragraph — Life in our communities. Lessons from the field. The work …",
+        "initialValue": "Life in our communities. Lessons from the field. The work we share."
+      },
+      {
+        "name": "updatesParagraph3",
+        "group": "updates",
+        "kind": "paragraph",
+        "title": "Paragraph — Explore the people and progress behind our programmes.",
+        "initialValue": "Explore the people and progress behind our programmes."
+      },
+      {
+        "name": "updatesLibraryParagraph1",
+        "group": "updatesLibrary",
+        "kind": "paragraph",
+        "title": "Paragraph — STORIES & UPDATES",
+        "initialValue": "STORIES & UPDATES"
+      },
+      {
+        "name": "updatesLibraryHeading1",
+        "group": "updatesLibrary",
+        "kind": "heading",
+        "title": "Heading — From the field. For a better future.",
+        "initialValue": "From the field. For a better future."
+      },
+      {
+        "name": "updatesLibraryLinkLabel1",
+        "group": "updatesLibrary",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our report library",
+        "initialValue": "Explore our report library"
+      },
+      {
+        "name": "updatesLibraryParagraph2",
+        "group": "updatesLibrary",
+        "kind": "paragraph",
+        "title": "Paragraph — updates",
+        "initialValue": "updates"
+      },
+      {
+        "name": "updatesLibraryParagraph3",
+        "group": "updatesLibrary",
+        "kind": "paragraph",
+        "title": "Paragraph — Stories, news & published documents",
+        "initialValue": "Stories, news & published documents"
+      },
+      {
+        "name": "updatesLibraryText1",
+        "group": "updatesLibrary",
+        "kind": "text",
+        "title": "Text — JDPI ·",
+        "initialValue": "JDPI ·"
+      },
+      {
+        "name": "updatesLibraryText2",
+        "group": "updatesLibrary",
+        "kind": "text",
+        "title": "Text — JUSTICE.",
+        "initialValue": "JUSTICE."
+      },
+      {
+        "name": "updatesLibraryText3",
+        "group": "updatesLibrary",
+        "kind": "text",
+        "title": "Text — DEVELOPMENT.",
+        "initialValue": "DEVELOPMENT."
+      },
+      {
+        "name": "updatesLibraryText4",
+        "group": "updatesLibrary",
+        "kind": "text",
+        "title": "Text — PEACE.",
+        "initialValue": "PEACE."
+      },
+      {
+        "name": "updatesLibraryText5",
+        "group": "updatesLibrary",
+        "kind": "text",
+        "title": "Text — LATEST STORY",
+        "initialValue": "LATEST STORY"
+      },
+      {
+        "name": "updatesLibraryText6",
+        "group": "updatesLibrary",
+        "kind": "text",
+        "title": "Text — Reporting year",
+        "initialValue": "Reporting year"
+      },
+      {
+        "name": "updatesLibraryHeading2",
+        "group": "updatesLibrary",
+        "kind": "heading",
+        "title": "Heading — No updates found.",
+        "initialValue": "No updates found."
+      },
+      {
+        "name": "updatesLibraryParagraph4",
+        "group": "updatesLibrary",
+        "kind": "paragraph",
+        "title": "Paragraph — Try another category or search term.",
+        "initialValue": "Try another category or search term."
+      },
+      {
+        "name": "introParagraph1",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — BEYOND THE HEADLINES",
+        "initialValue": "BEYOND THE HEADLINES"
+      },
+      {
+        "name": "introHeading1",
+        "group": "intro",
+        "kind": "heading",
+        "title": "Heading — See the change.",
+        "initialValue": "See the change."
+      },
+      {
+        "name": "introHeading2",
+        "group": "intro",
+        "kind": "heading",
+        "title": "Heading — Understand the impact.",
+        "initialValue": "Understand the impact."
+      },
+      {
+        "name": "introParagraph2",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — Discover the results behind our community stories and prog…",
+        "initialValue": "Discover the results behind our community stories and programmes."
+      },
+      {
+        "name": "introLinkLabel1",
+        "group": "intro",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our impact",
+        "initialValue": "Explore our impact"
+      }
+    ]
+  },
+  {
+    "route": "resources",
+    "title": "Resources",
+    "type": "resourcesPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "resources",
+        "title": "Introduction"
+      },
+      {
+        "name": "featuredReport",
+        "title": "Featured Report"
+      },
+      {
+        "name": "library",
+        "title": "Library"
+      },
+      {
+        "name": "media",
+        "title": "Media Enquiries"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Explore JDPI Maiduguri’s annual reports and financial reports, read the latest annual report online, and request publications or media assets."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Resources"
+      },
+      {
+        "name": "resourcesParagraph1",
+        "group": "resources",
+        "kind": "paragraph",
+        "title": "Paragraph — RESOURCES & PUBLICATIONS",
+        "initialValue": "RESOURCES & PUBLICATIONS"
+      },
+      {
+        "name": "resourcesHeading1",
+        "group": "resources",
+        "kind": "heading",
+        "title": "Heading — Our work,",
+        "initialValue": "Our work,"
+      },
+      {
+        "name": "resourcesText1",
+        "group": "resources",
+        "kind": "text",
+        "title": "Text — documented.",
+        "initialValue": "documented."
+      },
+      {
+        "name": "resourcesParagraph2",
+        "group": "resources",
+        "kind": "paragraph",
+        "title": "Paragraph — Explore our annual reports and financial reports from Nort…",
+        "initialValue": "Explore our annual reports and financial reports from Northeast Nigeria."
+      },
+      {
+        "name": "featuredReportParagraph1",
+        "group": "featuredReport",
+        "kind": "paragraph",
+        "title": "Paragraph — LATEST ANNUAL REPORT",
+        "initialValue": "LATEST ANNUAL REPORT"
+      },
+      {
+        "name": "featuredReportLinkLabel1",
+        "group": "featuredReport",
+        "kind": "linkLabel",
+        "title": "Link label — Open PDF",
+        "initialValue": "Open PDF"
+      },
+      {
+        "name": "featuredReportLinkLabel2",
+        "group": "featuredReport",
+        "kind": "linkLabel",
+        "title": "Link label — Read online",
+        "initialValue": "Read online"
+      },
+      {
+        "name": "featuredReportText1",
+        "group": "featuredReport",
+        "kind": "text",
+        "title": "Text — ANNUAL REPORT",
+        "initialValue": "ANNUAL REPORT"
+      },
+      {
+        "name": "featuredReportText2",
+        "group": "featuredReport",
+        "kind": "text",
+        "title": "Text — JUSTICE · DEVELOPMENT · PEACE",
+        "initialValue": "JUSTICE · DEVELOPMENT · PEACE"
+      },
+      {
+        "name": "libraryHeading1",
+        "group": "library",
+        "kind": "heading",
+        "title": "Heading — Report library",
+        "initialValue": "Report library"
+      },
+      {
+        "name": "libraryParagraph1",
+        "group": "library",
+        "kind": "paragraph",
+        "title": "Paragraph — documents",
+        "initialValue": "documents"
+      },
+      {
+        "name": "libraryText1",
+        "group": "library",
+        "kind": "text",
+        "title": "Text — Open PDF",
+        "initialValue": "Open PDF"
+      },
+      {
+        "name": "libraryText2",
+        "group": "library",
+        "kind": "text",
+        "title": "Text — PDF",
+        "initialValue": "PDF"
+      },
+      {
+        "name": "libraryParagraph2",
+        "group": "library",
+        "kind": "paragraph",
+        "title": "Paragraph — No documents are available in this category yet.",
+        "initialValue": "No documents are available in this category yet."
+      },
+      {
+        "name": "libraryHeading2",
+        "group": "library",
+        "kind": "heading",
+        "title": "Heading — Looking for an earlier annual report?",
+        "initialValue": "Looking for an earlier annual report?"
+      },
+      {
+        "name": "libraryParagraph3",
+        "group": "library",
+        "kind": "paragraph",
+        "title": "Paragraph — The",
+        "initialValue": "The"
+      },
+      {
+        "name": "libraryParagraph4",
+        "group": "library",
+        "kind": "paragraph",
+        "title": "Paragraph — annual-report",
+        "initialValue": "annual-report"
+      },
+      {
+        "name": "libraryParagraph5",
+        "group": "library",
+        "kind": "paragraph",
+        "title": "Paragraph — not currently available in this library. Please request a …",
+        "initialValue": "not currently available in this library. Please request a copy from our team."
+      },
+      {
+        "name": "libraryLinkLabel1",
+        "group": "library",
+        "kind": "linkLabel",
+        "title": "Link label — Request a report",
+        "initialValue": "Request a report"
+      },
+      {
+        "name": "mediaParagraph1",
+        "group": "media",
+        "kind": "paragraph",
+        "title": "Paragraph — FOR MEDIA & PARTNERS",
+        "initialValue": "FOR MEDIA & PARTNERS"
+      },
+      {
+        "name": "mediaHeading1",
+        "group": "media",
+        "kind": "heading",
+        "title": "Heading — JDPI media kit",
+        "initialValue": "JDPI media kit"
+      },
+      {
+        "name": "mediaParagraph2",
+        "group": "media",
+        "kind": "paragraph",
+        "title": "Paragraph — For approved logos, brand assets, press information or pub…",
+        "initialValue": "For approved logos, brand assets, press information or publication enquiries, contact the JDPI team."
+      },
+      {
+        "name": "mediaLinkLabel1",
+        "group": "media",
+        "kind": "linkLabel",
+        "title": "Link label — Request media assets",
+        "initialValue": "Request media assets"
+      }
+    ]
+  },
+  {
+    "route": "donate",
+    "title": "Donate",
+    "type": "donatePage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "donate",
+        "title": "Introduction"
+      },
+      {
+        "name": "giving",
+        "title": "Giving"
+      },
+      {
+        "name": "purpose",
+        "title": "Purpose"
+      },
+      {
+        "name": "evidence",
+        "title": "Evidence"
+      },
+      {
+        "name": "other",
+        "title": "Other Ways to Give"
+      },
+      {
+        "name": "faq",
+        "title": "Faq"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Support dignity, resilience and peace across Northeast Nigeria. Explore JDPI’s Paystack and Flutterwave giving options, or contact our team about other ways to give."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Donate"
+      },
+      {
+        "name": "donateImage1",
+        "group": "donate",
+        "kind": "image",
+        "title": "Introduction photograph",
+        "initialValue": {
+          "url": "/assets/projects/bmz-greenhouse-monitoring.jpg",
+          "alt": "A farmer and JDPI team member inspecting crops in a community greenhouse"
+        }
+      },
+      {
+        "name": "donateParagraph1",
+        "group": "donate",
+        "kind": "paragraph",
+        "title": "Paragraph — YOUR GENEROSITY. SHARED POSSIBILITY.",
+        "initialValue": "YOUR GENEROSITY. SHARED POSSIBILITY."
+      },
+      {
+        "name": "donateHeading1",
+        "group": "donate",
+        "kind": "heading",
+        "title": "Heading — Give with heart.",
+        "initialValue": "Give with heart."
+      },
+      {
+        "name": "donateText1",
+        "group": "donate",
+        "kind": "text",
+        "title": "Text — Grow lasting change.",
+        "initialValue": "Grow lasting change."
+      },
+      {
+        "name": "donateParagraph2",
+        "group": "donate",
+        "kind": "paragraph",
+        "title": "Paragraph — Stand alongside communities across Northeast Nigeria as th…",
+        "initialValue": "Stand alongside communities across Northeast Nigeria as they build safer, healthier and more resilient lives."
+      },
+      {
+        "name": "donateText2",
+        "group": "donate",
+        "kind": "text",
+        "title": "Text — Borno · Adamawa · Yobe",
+        "initialValue": "Borno · Adamawa · Yobe"
+      },
+      {
+        "name": "donateParagraph3",
+        "group": "donate",
+        "kind": "paragraph",
+        "title": "Paragraph — Community greenhouse visit · JDPI Annual Report 2025",
+        "initialValue": "Community greenhouse visit · JDPI Annual Report 2025"
+      },
+      {
+        "name": "givingParagraph1",
+        "group": "giving",
+        "kind": "paragraph",
+        "title": "Paragraph — A GIFT THAT MATTERS",
+        "initialValue": "A GIFT THAT MATTERS"
+      },
+      {
+        "name": "givingHeading1",
+        "group": "giving",
+        "kind": "heading",
+        "title": "Heading — Choose how to give.",
+        "initialValue": "Choose how to give."
+      },
+      {
+        "name": "givingParagraph2",
+        "group": "giving",
+        "kind": "paragraph",
+        "title": "Paragraph — A simple next step towards dignity and opportunity.",
+        "initialValue": "A simple next step towards dignity and opportunity."
+      },
+      {
+        "name": "givingLinkLabel1",
+        "group": "giving",
+        "kind": "linkLabel",
+        "title": "Link label — Other JDPI donation checkout →",
+        "initialValue": "Other JDPI donation checkout →"
+      },
+      {
+        "name": "givingLinkLabel2",
+        "group": "giving",
+        "kind": "linkLabel",
+        "title": "Link label — Prefer to speak to our team? Other ways to give ↓",
+        "initialValue": "Prefer to speak to our team? Other ways to give ↓"
+      },
+      {
+        "name": "introText1",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — Rooted in human dignity",
+        "initialValue": "Rooted in human dignity"
+      },
+      {
+        "name": "introText2",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — Working across the BAY states",
+        "initialValue": "Working across the BAY states"
+      },
+      {
+        "name": "introLinkLabel1",
+        "group": "intro",
+        "kind": "linkLabel",
+        "title": "Link label — Read our published reports →",
+        "initialValue": "Read our published reports →"
+      },
+      {
+        "name": "purposeParagraph1",
+        "group": "purpose",
+        "kind": "paragraph",
+        "title": "Paragraph — BEHIND EVERY GIFT, PEOPLE",
+        "initialValue": "BEHIND EVERY GIFT, PEOPLE"
+      },
+      {
+        "name": "purposeHeading1",
+        "group": "purpose",
+        "kind": "heading",
+        "title": "Heading — Support that meets real needs.",
+        "initialValue": "Support that meets real needs."
+      },
+      {
+        "name": "purposeParagraph2",
+        "group": "purpose",
+        "kind": "paragraph",
+        "title": "Paragraph — JDPI connects humanitarian assistance, development and pea…",
+        "initialValue": "JDPI connects humanitarian assistance, development and peacebuilding. Discover the work your generosity can help sustain."
+      },
+      {
+        "name": "purposeLinkLabel1",
+        "group": "purpose",
+        "kind": "linkLabel",
+        "title": "Link label — Explore the programme",
+        "initialValue": "Explore the programme"
+      },
+      {
+        "name": "purposeParagraph3",
+        "group": "purpose",
+        "kind": "paragraph",
+        "title": "Paragraph — These are examples of JDPI’s work—not fixed-price donation…",
+        "initialValue": "These are examples of JDPI’s work—not fixed-price donation packages. If you want to support a specific project, please discuss it with our team before giving."
+      },
+      {
+        "name": "evidenceImage1",
+        "group": "evidence",
+        "kind": "image",
+        "title": "Evidence photograph",
+        "initialValue": {
+          "url": "/assets/about/community-dialogue.jpg",
+          "alt": "Community members participating in a JDPI dialogue session"
+        }
+      },
+      {
+        "name": "evidenceText1",
+        "group": "evidence",
+        "kind": "text",
+        "title": "Text — Community dialogue · Annual Report 2025",
+        "initialValue": "Community dialogue · Annual Report 2025"
+      },
+      {
+        "name": "evidenceParagraph1",
+        "group": "evidence",
+        "kind": "paragraph",
+        "title": "Paragraph — GIVE WITH UNDERSTANDING",
+        "initialValue": "GIVE WITH UNDERSTANDING"
+      },
+      {
+        "name": "evidenceHeading1",
+        "group": "evidence",
+        "kind": "heading",
+        "title": "Heading — See the work.",
+        "initialValue": "See the work."
+      },
+      {
+        "name": "evidenceText2",
+        "group": "evidence",
+        "kind": "text",
+        "title": "Text — Understand the impact.",
+        "initialValue": "Understand the impact."
+      },
+      {
+        "name": "evidenceParagraph2",
+        "group": "evidence",
+        "kind": "paragraph",
+        "title": "Paragraph — Your support deserves a clear picture of our work. Explore…",
+        "initialValue": "Your support deserves a clear picture of our work. Explore community experiences, programme results and JDPI’s published annual and financial reports."
+      },
+      {
+        "name": "evidenceLinkLabel1",
+        "group": "evidence",
+        "kind": "linkLabel",
+        "title": "Link label — Explore our impact",
+        "initialValue": "Explore our impact"
+      },
+      {
+        "name": "evidenceLinkLabel2",
+        "group": "evidence",
+        "kind": "linkLabel",
+        "title": "Link label — Read our reports →",
+        "initialValue": "Read our reports →"
+      },
+      {
+        "name": "evidenceParagraph3",
+        "group": "evidence",
+        "kind": "paragraph",
+        "title": "Paragraph — A local commitment to the dignity of every human person.",
+        "initialValue": "A local commitment to the dignity of every human person."
+      },
+      {
+        "name": "otherParagraph1",
+        "group": "other",
+        "kind": "paragraph",
+        "title": "Paragraph — MORE THAN ONE WAY TO HELP",
+        "initialValue": "MORE THAN ONE WAY TO HELP"
+      },
+      {
+        "name": "otherHeading1",
+        "group": "other",
+        "kind": "heading",
+        "title": "Heading — Let’s find the right way to give.",
+        "initialValue": "Let’s find the right way to give."
+      },
+      {
+        "name": "otherLinkLabel1",
+        "group": "other",
+        "kind": "linkLabel",
+        "title": "Link label — Speak to JDPI →",
+        "initialValue": "Speak to JDPI →"
+      },
+      {
+        "name": "otherHeading2",
+        "group": "other",
+        "kind": "heading",
+        "title": "Heading — Bank transfer",
+        "initialValue": "Bank transfer"
+      },
+      {
+        "name": "otherParagraph2",
+        "group": "other",
+        "kind": "paragraph",
+        "title": "Paragraph — Request JDPI’s verified bank details directly from our tea…",
+        "initialValue": "Request JDPI’s verified bank details directly from our team before making a transfer."
+      },
+      {
+        "name": "otherLinkLabel2",
+        "group": "other",
+        "kind": "linkLabel",
+        "title": "Link label — Request bank details",
+        "initialValue": "Request bank details"
+      },
+      {
+        "name": "otherHeading3",
+        "group": "other",
+        "kind": "heading",
+        "title": "Heading — Partnerships & larger gifts",
+        "initialValue": "Partnerships & larger gifts"
+      },
+      {
+        "name": "otherParagraph3",
+        "group": "other",
+        "kind": "paragraph",
+        "title": "Paragraph — Talk with us about supporting a programme, a community or …",
+        "initialValue": "Talk with us about supporting a programme, a community or a shared long-term commitment."
+      },
+      {
+        "name": "otherLinkLabel3",
+        "group": "other",
+        "kind": "linkLabel",
+        "title": "Link label — Start a conversation",
+        "initialValue": "Start a conversation"
+      },
+      {
+        "name": "otherHeading4",
+        "group": "other",
+        "kind": "heading",
+        "title": "Heading — In-kind support",
+        "initialValue": "In-kind support"
+      },
+      {
+        "name": "otherParagraph4",
+        "group": "other",
+        "kind": "paragraph",
+        "title": "Paragraph — Discuss useful goods or professional services with JDPI be…",
+        "initialValue": "Discuss useful goods or professional services with JDPI before organising a contribution."
+      },
+      {
+        "name": "otherLinkLabel4",
+        "group": "other",
+        "kind": "linkLabel",
+        "title": "Link label — Discuss your contribution",
+        "initialValue": "Discuss your contribution"
+      },
+      {
+        "name": "faqParagraph1",
+        "group": "faq",
+        "kind": "paragraph",
+        "title": "Paragraph — A LITTLE CLARITY",
+        "initialValue": "A LITTLE CLARITY"
+      },
+      {
+        "name": "faqHeading1",
+        "group": "faq",
+        "kind": "heading",
+        "title": "Heading — Questions about giving?",
+        "initialValue": "Questions about giving?"
+      },
+      {
+        "name": "faqParagraph2",
+        "group": "faq",
+        "kind": "paragraph",
+        "title": "Paragraph — We’re here to help you take the next step.",
+        "initialValue": "We’re here to help you take the next step."
+      },
+      {
+        "name": "faqLinkLabel1",
+        "group": "faq",
+        "kind": "linkLabel",
+        "title": "Link label — Contact our team →",
+        "initialValue": "Contact our team →"
+      }
+    ]
+  },
+  {
+    "route": "contact",
+    "title": "Contact",
+    "type": "contactPage",
+    "groups": [
+      {
+        "name": "intro",
+        "title": "Introduction"
+      },
+      {
+        "name": "contactDetails",
+        "title": "Contact Details"
+      },
+      {
+        "name": "enquiry",
+        "title": "Enquiry"
+      },
+      {
+        "name": "office",
+        "title": "Office"
+      }
+    ],
+    "fields": [
+      {
+        "name": "seoDescription",
+        "group": "intro",
+        "kind": "text",
+        "title": "Search description",
+        "initialValue": "Send JDPI Maiduguri a message, get a response within 24 hours, and find directions to our Maiduguri office."
+      },
+      {
+        "name": "seoTitle",
+        "group": "intro",
+        "kind": "string",
+        "title": "Search title",
+        "initialValue": "Contact"
+      },
+      {
+        "name": "introParagraph1",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — CONTACT JDPI",
+        "initialValue": "CONTACT JDPI"
+      },
+      {
+        "name": "introHeading1",
+        "group": "intro",
+        "kind": "heading",
+        "title": "Heading — Get in",
+        "initialValue": "Get in"
+      },
+      {
+        "name": "introText1",
+        "group": "intro",
+        "kind": "text",
+        "title": "Text — touch.",
+        "initialValue": "touch."
+      },
+      {
+        "name": "introParagraph2",
+        "group": "intro",
+        "kind": "paragraph",
+        "title": "Paragraph — Have a question, a partnership idea or something to share?…",
+        "initialValue": "Have a question, a partnership idea or something to share? We’d like to hear from you."
+      },
+      {
+        "name": "contactDetailsParagraph1",
+        "group": "contactDetails",
+        "kind": "paragraph",
+        "title": "Paragraph — LET’S CONNECT",
+        "initialValue": "LET’S CONNECT"
+      },
+      {
+        "name": "contactDetailsHeading1",
+        "group": "contactDetails",
+        "kind": "heading",
+        "title": "Heading — Here to listen.",
+        "initialValue": "Here to listen."
+      },
+      {
+        "name": "contactDetailsHeading2",
+        "group": "contactDetails",
+        "kind": "heading",
+        "title": "Heading — Ready to collaborate.",
+        "initialValue": "Ready to collaborate."
+      },
+      {
+        "name": "contactDetailsParagraph2",
+        "group": "contactDetails",
+        "kind": "paragraph",
+        "title": "Paragraph — Connect with our team about our work with communities acro…",
+        "initialValue": "Connect with our team about our work with communities across Northeast Nigeria."
+      },
+      {
+        "name": "contactDetailsHeading3",
+        "group": "contactDetails",
+        "kind": "heading",
+        "title": "Heading — Email us",
+        "initialValue": "Email us"
+      },
+      {
+        "name": "contactDetailsHeading4",
+        "group": "contactDetails",
+        "kind": "heading",
+        "title": "Heading — Call our team",
+        "initialValue": "Call our team"
+      },
+      {
+        "name": "contactDetailsHeading5",
+        "group": "contactDetails",
+        "kind": "heading",
+        "title": "Heading — Visit our office",
+        "initialValue": "Visit our office"
+      },
+      {
+        "name": "contactDetailsLinkLabel1",
+        "group": "contactDetails",
+        "kind": "linkLabel",
+        "title": "Link label — Map & directions",
+        "initialValue": "Map & directions"
+      },
+      {
+        "name": "enquiryHeading1",
+        "group": "enquiry",
+        "kind": "heading",
+        "title": "Heading — Send us a message",
+        "initialValue": "Send us a message"
+      },
+      {
+        "name": "enquiryParagraph1",
+        "group": "enquiry",
+        "kind": "paragraph",
+        "title": "Paragraph — We respond to general enquiries within 24 hours.",
+        "initialValue": "We respond to general enquiries within 24 hours."
+      },
+      {
+        "name": "enquiryParagraph2",
+        "group": "enquiry",
+        "kind": "paragraph",
+        "title": "Paragraph — Fields marked",
+        "initialValue": "Fields marked"
+      },
+      {
+        "name": "enquiryParagraph3",
+        "group": "enquiry",
+        "kind": "paragraph",
+        "title": "Paragraph — are required.",
+        "initialValue": "are required."
+      },
+      {
+        "name": "officeParagraph1",
+        "group": "office",
+        "kind": "paragraph",
+        "title": "Paragraph — FIND US IN MAIDUGURI",
+        "initialValue": "FIND US IN MAIDUGURI"
+      },
+      {
+        "name": "officeHeading1",
+        "group": "office",
+        "kind": "heading",
+        "title": "Heading — Plan your visit.",
+        "initialValue": "Plan your visit."
+      },
+      {
+        "name": "officeParagraph2",
+        "group": "office",
+        "kind": "paragraph",
+        "title": "Paragraph — JDPI has confirmed this map location for our Maiduguri off…",
+        "initialValue": "JDPI has confirmed this map location for our Maiduguri office at St. Patrick’s Catholic Church. Contact us to arrange your visit."
+      },
+      {
+        "name": "officeLinkLabel1",
+        "group": "office",
+        "kind": "linkLabel",
+        "title": "Link label — Get directions",
+        "initialValue": "Get directions"
+      },
+      {
+        "name": "officeLinkLabel2",
+        "group": "office",
+        "kind": "linkLabel",
+        "title": "Link label — Arrange a visit",
+        "initialValue": "Arrange a visit"
+      }
+    ]
+  }
+]

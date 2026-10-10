@@ -55,6 +55,1085 @@
     },
     "supportIntro": "Your generosity helps us work alongside vulnerable communities to strengthen livelihoods, improve access to essential services, promote peace and restore dignity."
   },
+  "pages": [
+    {
+      "_id": "aboutPage",
+      "data": {
+        "accountability": {
+          "community": {
+            "text": "Listening, learning and responding.",
+            "title": "Community accountability"
+          },
+          "feedback": {
+            "text": "Get in touch with our team.",
+            "title": "Feedback & enquiries"
+          },
+          "safeguarding": {
+            "text": "Protecting dignity, safety and wellbeing.",
+            "title": "Safeguarding"
+          },
+          "transparency": {
+            "text": "Explore our published reports.",
+            "title": "Financial transparency"
+          }
+        },
+        "approach": [
+          {
+            "text": "Local knowledge, participation and priorities inform how we design and deliver programmes.",
+            "title": "Community-led"
+          },
+          {
+            "text": "We respond to interconnected needs, linking immediate assistance with longer-term recovery.",
+            "title": "Integrated"
+          },
+          {
+            "text": "Women, children, persons with disabilities and other vulnerable groups are considered in programme design.",
+            "title": "Inclusive"
+          },
+          {
+            "text": "We strengthen local skills, livelihoods and community structures that can outlast a project.",
+            "title": "Sustainable"
+          }
+        ],
+        "leadership": [
+          {
+            "detail": "Bishop of Maiduguri Diocese",
+            "image": {
+              "alt": "Most Rev. Dr. Oliver Dashe Doeme",
+              "assetId": "image-1a540c066fdd36d2dd965aea04708d6b332cf068-626x874-jpg",
+              "url": "/assets/sanity/image-1a540c066fdd36d2dd965aea04708d6b332cf068-626x874-jpg.jpg"
+            },
+            "name": "Most Rev. Dr. Oliver Dashe Doeme",
+            "role": "Chairman, Board of Trustees"
+          },
+          {
+            "detail": "Management team",
+            "image": {
+              "alt": "Rev. Fr. Vincent Okoye",
+              "assetId": "image-5d7f0fb74644d64257e0b882c96725ade22bfae6-448x446-jpg",
+              "url": "/assets/sanity/image-5d7f0fb74644d64257e0b882c96725ade22bfae6-448x446-jpg.jpg"
+            },
+            "name": "Rev. Fr. Vincent Okoye",
+            "role": "Executive Director"
+          },
+          {
+            "detail": "Management team",
+            "image": {
+              "alt": "Adowuyi Farindo",
+              "assetId": "image-c062c9579542675a17e33dd700b92e4257194fe6-383x381-jpg",
+              "url": "/assets/sanity/image-c062c9579542675a17e33dd700b92e4257194fe6-383x381-jpg.jpg"
+            },
+            "name": "Adowuyi Farindo",
+            "role": "Head of Programmes"
+          },
+          {
+            "detail": "Management team",
+            "image": {
+              "alt": "Chioma Onuoha",
+              "assetId": "image-15174f0c8de1e5d92585804e90c1e872d86e0b06-381x381-jpg",
+              "url": "/assets/sanity/image-15174f0c8de1e5d92585804e90c1e872d86e0b06-381x381-jpg.jpg"
+            },
+            "name": "Chioma Onuoha",
+            "role": "HR / Admin Lead"
+          }
+        ],
+        "timeline": [
+          {
+            "text": "Established in March as the Social Welfare Apostolate of the Catholic Diocese of Maiduguri.",
+            "title": "A beginning in service",
+            "year": "1971"
+          },
+          {
+            "text": "The Social Welfare Apostolate became the Justice Development and Peace Commission (JDPC).",
+            "title": "Justice, development, peace",
+            "year": "1988"
+          },
+          {
+            "text": "Justice Development and Peace Initiative became the name recognised by the Corporate Affairs Commission.",
+            "title": "Our registered identity",
+            "year": "2015"
+          },
+          {
+            "text": "Our public identity was aligned with our registered name, JDPI Maiduguri, with continuity of purpose and partnerships.",
+            "title": "One identity. Same mission.",
+            "year": "2025"
+          }
+        ],
+        "values": [
+          {
+            "text": "Every person deserves respect, protection and the opportunity to thrive.",
+            "title": "Human dignity"
+          },
+          {
+            "text": "We stand for fair opportunities and the rights of people facing exclusion.",
+            "title": "Justice"
+          },
+          {
+            "text": "We nurture dialogue, reconciliation and peaceful coexistence.",
+            "title": "Peace"
+          },
+          {
+            "text": "We stand alongside vulnerable communities and listen to their voices.",
+            "title": "Solidarity"
+          },
+          {
+            "text": "We use entrusted resources responsibly and learn from communities.",
+            "title": "Accountability"
+          },
+          {
+            "text": "Compassion and practical action are at the heart of our work.",
+            "title": "Service"
+          }
+        ]
+      },
+      "fields": {
+        "aboutHeading1": "Rooted in service.",
+        "aboutImage1": {
+          "alt": "Community members and partners gathered at JDPI’s 2025 peace conference",
+          "assetId": "image-fe10da89f62f89a498f811723231289e067509e3-1400x630-jpg",
+          "url": "/assets/sanity/image-fe10da89f62f89a498f811723231289e067509e3-1400x630-jpg.jpg"
+        },
+        "aboutParagraph1": "ABOUT JDPI",
+        "aboutParagraph2": "Working alongside communities across Northeast Nigeria to strengthen resilience, promote peace and create a more dignified future.",
+        "aboutText1": "Committed to",
+        "aboutText2": "human dignity.",
+        "accountabilityHeading1": "Our commitment to accountability.",
+        "accountabilityParagraph1": "RESPONSIBILITY & TRUST",
+        "accountabilityParagraph2": "Responsible, transparent programming protects the dignity, rights and safety of the people and communities we work with.",
+        "accountabilityParagraph3": "For general feedback, use our contact page. Please do not submit confidential case details through the website form.",
+        "approachHeading1": "Working with communities,",
+        "approachHeading2": "not simply for them.",
+        "approachParagraph1": "OUR APPROACH",
+        "ctaHeading1": "Together, dignity",
+        "ctaHeading2": "becomes action.",
+        "ctaImage1": {
+          "alt": "Participants coming together at the JDPI peace conference",
+          "assetId": "image-fe10da89f62f89a498f811723231289e067509e3-1400x630-jpg",
+          "url": "/assets/sanity/image-fe10da89f62f89a498f811723231289e067509e3-1400x630-jpg.jpg"
+        },
+        "ctaLinkLabel1": "Explore our work",
+        "ctaLinkLabel2": "View our impact",
+        "ctaParagraph1": "TOGETHER, WE GO FURTHER",
+        "ctaParagraph2": "Discover how we are working alongside communities across Northeast Nigeria.",
+        "guidesHeading1": "One purpose.",
+        "guidesHeading2": "Every person matters.",
+        "guidesHeading3": "Our mission",
+        "guidesHeading4": "Our vision",
+        "guidesHeading5": "Our values",
+        "guidesParagraph1": "WHAT GUIDES US",
+        "guidesParagraph2": "To deliver life-saving, life-sustaining and life-building interventions to the most vulnerable.",
+        "guidesParagraph3": "A just and peaceful society where every person lives with dignity.",
+        "identityCaption1": "JDPI’s Maiduguri team · Annual Report 2025",
+        "identityHeading1": "Faith expressed",
+        "identityHeading2": "through service.",
+        "identityImage1": {
+          "alt": "JDPI staff at the headquarters in Maiduguri",
+          "assetId": "image-79fd8aabd8fabfbb2463a788653acdabdb6c7d6f-1200x574-jpg",
+          "url": "/assets/sanity/image-79fd8aabd8fabfbb2463a788653acdabdb6c7d6f-1200x574-jpg.jpg"
+        },
+        "identityParagraph1": "OUR IDENTITY",
+        "identityParagraph2": "As the social development arm of the Catholic Diocese of Maiduguri, our work is inspired by Catholic Social Teaching and the inherent dignity of every human person.",
+        "identityParagraph3": "This calls us to stand with people experiencing vulnerability, promote justice and peace, and serve communities with compassion.",
+        "identityText1": "Justice · Development · Peace",
+        "leadershipHeading1": "Leadership in service.",
+        "leadershipHeading2": "A dedicated team.",
+        "leadershipHeading3": "A shared commitment.",
+        "leadershipImage1": {
+          "alt": "JDPI colleagues collaborating at an ALLRight stakeholder workshop",
+          "assetId": "image-c96f23205325505f1f97ede4d7c3d564dbfa1892-762x408-jpg",
+          "url": "/assets/sanity/image-c96f23205325505f1f97ede4d7c3d564dbfa1892-762x408-jpg.jpg"
+        },
+        "leadershipLinkLabel1": "Meet our team",
+        "leadershipParagraph1": "OUR PEOPLE",
+        "leadershipParagraph2": "Our Board of Trustees and management team guide our programmes, people and organisational systems.",
+        "leadershipParagraph3": "Behind every programme are people bringing local knowledge, skills and care to the communities we serve.",
+        "leadershipText1": "As listed in our",
+        "leadershipText2": "2025 Annual Report",
+        "partnershipHeading1": "Stronger through partnership.",
+        "partnershipLinkLabel1": "Our partners",
+        "partnershipParagraph1": "WORKING TOGETHER",
+        "partnershipParagraph2": "Our work is strengthened by communities, Church structures, government institutions, civil society, humanitarian actors and development partners.",
+        "seoDescription": "Meet JDPI Maiduguri: our story since 1971, our mission, values and people, and our commitment to human dignity across Northeast Nigeria.",
+        "seoTitle": "About Us",
+        "storyHeading1": "A legacy of service.",
+        "storyHeading2": "A continuing journey.",
+        "storyParagraph1": "OUR STORY",
+        "storyParagraph2": "Our journey is rooted in the Church’s commitment to justice, peace and the service of people experiencing poverty, conflict and marginalisation.",
+        "whereCaption1": "State boundaries: GRID3 via geoBoundaries, 2022 ·",
+        "whereHeading1": "Rooted in the Northeast.",
+        "whereHeading2": "Our offices",
+        "whereLinkLabel1": "CC BY 4.0",
+        "whereLinkLabel2": "Visit or contact us",
+        "whereLinkLabel3": "Explore our coverage",
+        "whereParagraph1": "WHERE WE WORK",
+        "whereParagraph2": "Our programmes work alongside communities across Borno, Adamawa and Yobe—the BAY states.",
+        "whereParagraph3": "We implement humanitarian and development programmes with local structures, community groups and partners—connecting essential support with longer-term opportunities.",
+        "whereParagraph4": "Explore the locations and locally reported activities in our Where We Work page.",
+        "whoCaption1": "Community dialogue · JDPI Annual Report 2025",
+        "whoHeading1": "Local roots.",
+        "whoHeading2": "A shared purpose.",
+        "whoImage1": {
+          "alt": "Community members participating in an outdoor dialogue session under a tree",
+          "assetId": "image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg",
+          "url": "/assets/sanity/image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg.jpg"
+        },
+        "whoParagraph1": "WHO WE ARE",
+        "whoParagraph2": "Justice Development and Peace Initiative in Maiduguri Diocese (JDPI Maiduguri) is the faith-based, non-profit humanitarian and development organisation of the Catholic Diocese of Maiduguri.",
+        "whoParagraph3": "Across Borno, Adamawa and Yobe, we work with people affected by conflict, displacement and poverty—meeting immediate needs while supporting recovery, resilience and peaceful coexistence.",
+        "whoParagraph4": "We accompany communities, working with local structures, government institutions, civil society and development partners to address both urgent needs and the causes of vulnerability.",
+        "whoText1": "Upholding the dignity of every human person.",
+        "whoText2": "Since 1971",
+        "whoText3": "A commitment to service."
+      }
+    },
+    {
+      "_id": "teamPage",
+      "data": {
+        "board": [
+          {
+            "detail": "Bishop of Maiduguri Diocese",
+            "image": {
+              "alt": "Most Rev. Dr. Oliver Dashe Doeme",
+              "assetId": "image-d37fc1bf21ef5b8afce4aa43e590a9d39dc4288d-626x874-jpg",
+              "url": "/assets/sanity/image-d37fc1bf21ef5b8afce4aa43e590a9d39dc4288d-626x874-jpg.jpg"
+            },
+            "name": "Most Rev. Dr. Oliver Dashe Doeme",
+            "role": "Chairman, Board of Trustees"
+          },
+          {
+            "detail": "Auxiliary Bishop of Maiduguri Diocese",
+            "image": {
+              "alt": "Most Rev. Dr. John Bogna Bakeni",
+              "assetId": "image-1626c93bf165e3858426eaea289299750c5de667-631x874-jpg",
+              "url": "/assets/sanity/image-1626c93bf165e3858426eaea289299750c5de667-631x874-jpg.jpg"
+            },
+            "name": "Most Rev. Dr. John Bogna Bakeni",
+            "role": "Secretary, Board of Trustees"
+          },
+          {
+            "detail": "",
+            "image": {
+              "alt": "Lady Jemimah Abdulateef",
+              "assetId": "image-9a95a80bf254da87c4990bdc4f3e166aa14e1491-627x624-jpg",
+              "url": "/assets/sanity/image-9a95a80bf254da87c4990bdc4f3e166aa14e1491-627x624-jpg.jpg"
+            },
+            "name": "Lady Jemimah Abdulateef",
+            "role": "Member, Board of Trustees"
+          },
+          {
+            "detail": "",
+            "image": {
+              "alt": "Mr. Elias Dawa",
+              "assetId": "image-05b312120e70a1a78498e1a11fcfb775272bfc47-621x624-jpg",
+              "url": "/assets/sanity/image-05b312120e70a1a78498e1a11fcfb775272bfc47-621x624-jpg.jpg"
+            },
+            "name": "Mr. Elias Dawa",
+            "role": "Member, Board of Trustees"
+          },
+          {
+            "detail": "",
+            "image": {
+              "alt": "Barr. (Mrs) Habiba Gana",
+              "assetId": "image-62ac66d7550a62094d149f019c9cff6701561768-624x624-jpg",
+              "url": "/assets/sanity/image-62ac66d7550a62094d149f019c9cff6701561768-624x624-jpg.jpg"
+            },
+            "name": "Barr. (Mrs) Habiba Gana",
+            "role": "Member, Board of Trustees"
+          }
+        ],
+        "management": [
+          {
+            "image": {
+              "alt": "Rev. Fr. Vincent Okoye",
+              "assetId": "image-de172757c5068dc111c8a359e8bd4e17c9e8bec5-448x446-jpg",
+              "url": "/assets/sanity/image-de172757c5068dc111c8a359e8bd4e17c9e8bec5-448x446-jpg.jpg"
+            },
+            "name": "Rev. Fr. Vincent Okoye",
+            "role": "Executive Director"
+          },
+          {
+            "image": {
+              "alt": "Rev. Fr. Alphonsus Afina",
+              "assetId": "image-054872c099b350601a81ccdcb79e6e2e106de54f-449x446-jpg",
+              "url": "/assets/sanity/image-054872c099b350601a81ccdcb79e6e2e106de54f-449x446-jpg.jpg"
+            },
+            "name": "Rev. Fr. Alphonsus Afina",
+            "role": "Deputy Executive Director"
+          },
+          {
+            "image": {
+              "alt": "Rev. Fr. Joseph F. Bature",
+              "assetId": "image-3747145604466e425174d0db5c1f447c5c600460-446x446-jpg",
+              "url": "/assets/sanity/image-3747145604466e425174d0db5c1f447c5c600460-446x446-jpg.jpg"
+            },
+            "name": "Rev. Fr. Joseph F. Bature",
+            "role": "Director / MHPSS Advisor"
+          },
+          {
+            "image": {
+              "alt": "Adowuyi Farindo",
+              "assetId": "image-92d6246bfa229ff9c18c75a965534253791901ce-383x381-jpg",
+              "url": "/assets/sanity/image-92d6246bfa229ff9c18c75a965534253791901ce-383x381-jpg.jpg"
+            },
+            "name": "Adowuyi Farindo",
+            "role": "Head of Programmes"
+          },
+          {
+            "image": {
+              "alt": "Chioma Onuoha",
+              "assetId": "image-9d2a53e0e3b59b56e7b9eadbceab132d15cabf4c-381x381-jpg",
+              "url": "/assets/sanity/image-9d2a53e0e3b59b56e7b9eadbceab132d15cabf4c-381x381-jpg.jpg"
+            },
+            "name": "Chioma Onuoha",
+            "role": "HR / Admin Lead"
+          },
+          {
+            "image": {
+              "alt": "Christopher Ani",
+              "assetId": "image-e53196ebb2e4a37f201bfea607b20d970bf28f55-384x381-jpg",
+              "url": "/assets/sanity/image-e53196ebb2e4a37f201bfea607b20d970bf28f55-384x381-jpg.jpg"
+            },
+            "name": "Christopher Ani",
+            "role": "Finance Manager"
+          },
+          {
+            "image": {
+              "alt": "Ueiju Simon",
+              "assetId": "image-ec1beb57c73cbc6e33619f873ead2591a1ec159d-381x381-jpg",
+              "url": "/assets/sanity/image-ec1beb57c73cbc6e33619f873ead2591a1ec159d-381x381-jpg.jpg"
+            },
+            "name": "Ueiju Simon",
+            "role": "MEAL Manager"
+          },
+          {
+            "image": {
+              "alt": "Gabriel Audu",
+              "assetId": "image-59a543ccbc2595941f89630fc0bdf5f0b7d2b748-383x381-jpg",
+              "url": "/assets/sanity/image-59a543ccbc2595941f89630fc0bdf5f0b7d2b748-383x381-jpg.jpg"
+            },
+            "name": "Gabriel Audu",
+            "role": "Potiskum Office Base Lead"
+          },
+          {
+            "image": {
+              "alt": "Thomas Patrick",
+              "assetId": "image-7653a1d3d5f7423291b58dc24d6ac4b8eaacc34f-381x381-jpg",
+              "url": "/assets/sanity/image-7653a1d3d5f7423291b58dc24d6ac4b8eaacc34f-381x381-jpg.jpg"
+            },
+            "name": "Thomas Patrick",
+            "role": "Mubi Office Base Lead"
+          },
+          {
+            "image": {
+              "alt": "Jagila Ali Hamman",
+              "assetId": "image-96af0b842389fbd021cf887c0894c7f6e3a2b49d-384x381-jpg",
+              "url": "/assets/sanity/image-96af0b842389fbd021cf887c0894c7f6e3a2b49d-384x381-jpg.jpg"
+            },
+            "name": "Jagila Ali Hamman",
+            "role": "Safeguarding Lead"
+          },
+          {
+            "image": {
+              "alt": "Monica Peter Zadva",
+              "assetId": "image-d1afa95b0ead8abc33cad658ca3944e806bf0731-381x381-jpg",
+              "url": "/assets/sanity/image-d1afa95b0ead8abc33cad658ca3944e806bf0731-381x381-jpg.jpg"
+            },
+            "name": "Monica Peter Zadva",
+            "role": "Agriculture Specialist"
+          }
+        ]
+      },
+      "fields": {
+        "boardHeading1": "Our Board of Trustees.",
+        "boardParagraph1": "GOVERNANCE & OVERSIGHT",
+        "boardParagraph2": "Providing strategic direction, governance and accountability to JDPI’s mission and the communities we serve.",
+        "boardParagraph3": "Names, roles and portraits: JDPI Annual Report 2025, page 63.",
+        "introHeading1": "Upholding the dignity",
+        "introHeading2": "of every human person.",
+        "introLinkLabel1": "Read the source ↗",
+        "introLinkLabel2": "Where we work",
+        "introParagraph1": "Names, roles and portraits below reflect the report’s roster, rather than an independently confirmed current staff directory.",
+        "introParagraph2": "ONE TEAM. ONE COMMITMENT.",
+        "introText1": "As listed in the 2025 Annual Report.",
+        "managementHeading1": "Management & key staff.",
+        "managementParagraph1": "LEADERSHIP IN ACTION",
+        "managementParagraph2": "Connecting programmes, operations and organisational systems so that commitments become practical, accountable action.",
+        "managementParagraph3": "Names, roles and portraits: JDPI Annual Report 2025, page 64.",
+        "peopleCaption1": "Collaboration at an ALLRight stakeholder workshop · Annual Report 2025",
+        "peopleHeading1": "People make the difference.",
+        "peopleImage1": {
+          "alt": "JDPI colleagues and stakeholders working together at an ALLRight workshop",
+          "assetId": "image-c96f23205325505f1f97ede4d7c3d564dbfa1892-762x408-jpg",
+          "url": "/assets/sanity/image-c96f23205325505f1f97ede4d7c3d564dbfa1892-762x408-jpg.jpg"
+        },
+        "peopleLinkLabel1": "Contact our team →",
+        "peopleParagraph1": "BEYOND THE DIRECTORY",
+        "peopleParagraph2": "Our wider team works across programmes, office bases and communities. The report describes investment in technical training, safeguarding, staff wellbeing and continuous learning.",
+        "peopleParagraph3": "Annual Report 2025, page 60 · historical staff snapshot.",
+        "peopleText1": "Staff in 2025",
+        "peopleText2": "123",
+        "peopleText3": "Staff trained during the year",
+        "peopleText4": "47",
+        "seoDescription": "Meet JDPI’s Board of Trustees and management team, as listed in the 2025 annual report.",
+        "seoTitle": "Our Team",
+        "teamCaption1": "JDPI head-office staff · Annual Report 2025, page 60",
+        "teamHeading1": "A shared purpose.",
+        "teamImage1": {
+          "alt": "JDPI staff gathered at the head office in Maiduguri",
+          "assetId": "image-79fd8aabd8fabfbb2463a788653acdabdb6c7d6f-1200x574-jpg",
+          "url": "/assets/sanity/image-79fd8aabd8fabfbb2463a788653acdabdb6c7d6f-1200x574-jpg.jpg"
+        },
+        "teamLinkLabel1": "Meet our people",
+        "teamParagraph1": "OUR PEOPLE",
+        "teamParagraph2": "From strategic oversight to work in the field, our people bring commitment, local knowledge and care to JDPI’s mission.",
+        "teamText1": "A team in service."
+      }
+    },
+    {
+      "_id": "impactPage",
+      "data": {
+        "impactOverview": [
+          {
+            "label": "Households supported",
+            "source": "Page 10",
+            "value": "20,229"
+          },
+          {
+            "label": "Communities reached",
+            "source": "Page 12",
+            "value": "114"
+          },
+          {
+            "label": "Projects implemented",
+            "source": "Page 10",
+            "value": "10"
+          },
+          {
+            "label": "States covered",
+            "source": "Page 12",
+            "value": "3"
+          }
+        ],
+        "impactYear": 2025,
+        "photos": [
+          {
+            "image": {
+              "alt": "A farmer and JDPI staff checking crops in a community greenhouse",
+              "assetId": "image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg",
+              "url": "/assets/sanity/image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg.jpg"
+            },
+            "name": "bmz-greenhouse-monitoring"
+          },
+          {
+            "image": {
+              "alt": "Vegetable crops growing in a JDPI-supported community greenhouse",
+              "assetId": "image-13fae64609a671362605882b977c8df4e8c48f1d-831x1150-jpg",
+              "url": "/assets/sanity/image-13fae64609a671362605882b977c8df4e8c48f1d-831x1150-jpg.jpg"
+            },
+            "name": "bmz-greenhouse-crops"
+          },
+          {
+            "image": {
+              "alt": "Peppers harvested from a community greenhouse",
+              "assetId": "image-270d62207115aa619e7a51279593ae819d1d3f26-782x394-jpg",
+              "url": "/assets/sanity/image-270d62207115aa619e7a51279593ae819d1d3f26-782x394-jpg.jpg"
+            },
+            "name": "bmz-greenhouse-harvest"
+          },
+          {
+            "image": {
+              "alt": "A participant receiving a sewing-machine livelihood kit at the WE-SING distribution",
+              "assetId": "image-8d9ad524c47f8422f654a98fc8b048a3b5252d5f-762x442-jpg",
+              "url": "/assets/sanity/image-8d9ad524c47f8422f654a98fc8b048a3b5252d5f-762x442-jpg.jpg"
+            },
+            "name": "we-sing-startup-kits"
+          }
+        ],
+        "sectorImpact": [
+          {
+            "description": "Agricultural support, livelihoods and food assistance helped households meet immediate needs and build resilience.",
+            "estimated": null,
+            "label": "People reached",
+            "slug": "food-security-and-livelihoods",
+            "source": "Pages 6 and 11",
+            "title": "Food Security & Livelihoods",
+            "value": "48,016"
+          },
+          {
+            "description": "Lifesaving nutrition support included community-based care, referrals and nutrition education.",
+            "estimated": null,
+            "label": "Children and caregivers supported",
+            "slug": "nutrition",
+            "source": "Pages 6 and 11",
+            "title": "Nutrition",
+            "value": "10,317"
+          },
+          {
+            "description": "An estimated 22,000 people gained improved access to safe water. JDPI completed 22 boreholes: 15 constructed and 7 rehabilitated.",
+            "estimated": true,
+            "label": "People with improved safe-water access",
+            "slug": "water-sanitation-and-hygiene",
+            "source": "Pages 6 and 11",
+            "title": "Water, Sanitation & Hygiene",
+            "value": "22,000"
+          },
+          {
+            "description": "Mental health and psychosocial support messages expanded awareness. This figure is not a count of people receiving individual counselling.",
+            "estimated": null,
+            "label": "People reached through messaging",
+            "slug": "mental-health-and-psychosocial-support",
+            "source": "Pages 6 and 11",
+            "title": "Mental Health & Psychosocial Support",
+            "value": "21,729"
+          },
+          {
+            "description": "Awareness sessions and messages shared information on safety, dignity, rights and available support services.",
+            "estimated": null,
+            "label": "People reached through awareness activities",
+            "slug": "protection",
+            "source": "Pages 6 and 11",
+            "title": "Protection",
+            "value": "22,182"
+          },
+          {
+            "description": "Community-led peacebuilding mechanisms helped resolve conflicts and strengthen peaceful coexistence.",
+            "estimated": null,
+            "label": "Community conflicts resolved",
+            "slug": "peacebuilding-and-social-cohesion",
+            "source": "Page 11",
+            "title": "Social Cohesion & Peacebuilding",
+            "value": "13"
+          }
+        ]
+      },
+      "fields": {
+        "accountabilityHeading1": "Impact you can",
+        "accountabilityHeading2": "Let’s build what comes next.",
+        "accountabilityLinkLabel1": "Read the 2025 annual report",
+        "accountabilityLinkLabel2": "All reports & resources",
+        "accountabilityLinkLabel3": "Contact our team",
+        "accountabilityParagraph1": "THE WORK. THE STORIES. THE EVIDENCE.",
+        "accountabilityParagraph2": "These highlights are only part of the picture. Our",
+        "accountabilityParagraph3": "annual report brings together programme results, community stories and financial reporting.",
+        "accountabilityParagraph4": "JDPI MAIDUGURI",
+        "accountabilityParagraph5": "ANNUAL REPORT",
+        "accountabilityParagraph6": "Talk with our team about supporting community-led change.",
+        "accountabilityText1": "look into.",
+        "coverageHeading1": "Rooted in Northeast Nigeria.",
+        "coverageLinkLabel1": "Explore each LGA and our locally reported work",
+        "coverageParagraph1": "CLOSE TO THE COMMUNITIES WE SERVE",
+        "coverageParagraph2": "3 states · 20 local government areas",
+        "coverageParagraph3": "114 communities in",
+        "enterpriseHeading1": "A small start.",
+        "enterpriseHeading2": "A growing livelihood.",
+        "enterpriseParagraph1": "A LIVELIHOOD STORY · MICHIKA",
+        "enterpriseParagraph2": "One participant’s experience, as described in the report—not an organisation-wide result.",
+        "enterpriseText1": "Bags bought at the start",
+        "enterpriseText2": "Bags bought at a time as the business grew",
+        "enterpriseText3": "Up to",
+        "enterpriseText4": "20",
+        "growingCaption1": "Community greenhouse crops · Annual Report, page 18",
+        "growingCaption2": "A greenhouse harvest · Report, page 17",
+        "growingHeading1": "More than a harvest.",
+        "growingLinkLabel1": "Explore the BMZ project",
+        "growingParagraph1": "LIVELIHOODS · HONG & MICHIKA",
+        "growingParagraph2": "For families in Hong and Michika, community greenhouses created opportunities to grow vegetables throughout the year. Climate-smart agricultural support connected food production with nutrition and livelihoods.",
+        "growingParagraph3": "The BMZ Multisectoral Resilience Project supported 263 households through 20 community greenhouses—building resilience, season after season.",
+        "growingParagraph4": "Annual Report",
+        "growingParagraph5": ", pages 17–18",
+        "growingText1": "A way forward.",
+        "growingText2": "Households supported",
+        "growingText3": "263",
+        "growingText4": "Community greenhouses",
+        "growingText5": "20",
+        "impactCaption1": "Community greenhouse monitoring · Report, page 17",
+        "impactHeading1": "Real people.",
+        "impactLinkLabel1": "Discover the stories",
+        "impactParagraph1": "OUR IMPACT ·",
+        "impactParagraph2": "IN FOCUS",
+        "impactParagraph3": "A livelihood rebuilt. A community strengthened. A new possibility for tomorrow.",
+        "impactParagraph4": "Behind every result are people shaping their own futures. Discover how JDPI supports that journey across Northeast Nigeria.",
+        "impactText1": "Lasting",
+        "impactText2": "change.",
+        "impactText3": "Growing resilience, together.",
+        "overviewHeading1": "A year of working",
+        "overviewHeading2": "alongside communities.",
+        "overviewParagraph1": "January–December",
+        "overviewParagraph2": "Reported results · Annual Report, pages 10–12",
+        "sectorsHeading1": "Different needs.",
+        "sectorsHeading2": "One commitment to dignity.",
+        "sectorsParagraph1": "OUR",
+        "sectorsParagraph2": "RESULTS",
+        "sectorsParagraph3": "From essential services to stronger livelihoods,",
+        "sectorsParagraph4": "our programmes respond to the whole community.",
+        "sectorsParagraph5": "Programme counts measure different services and may include people reached by more than one intervention. They are not added together as a unique-person total.",
+        "sectorsText1": "A note on these figures.",
+        "seoDescription": "The people, communities and stories behind JDPI Maiduguri’s 2025 results. Explore livelihoods, safe water, wellbeing and peace across Northeast Nigeria.",
+        "seoTitle": "Our Impact",
+        "storiesHeading1": "This is what change looks like.",
+        "storiesLinkLabel1": "Explore all our projects",
+        "storiesParagraph1": "BEHIND THE NUMBERS",
+        "storiesParagraph2": "Practical support. Community ambition.",
+        "storiesParagraph3": "Stories from our",
+        "storiesParagraph4": "annual report.",
+        "storiesParagraph5": "Every project is part of a bigger story.",
+        "womenCaption1": "WE-SING livelihood kit distribution · Annual Report, page 16",
+        "womenHeading1": "Her skills.",
+        "womenLinkLabel1": "Explore the WE-SING project",
+        "womenParagraph1": "WOMEN’S LIVELIHOODS · BORNO",
+        "womenParagraph2": "One hundred women received start-up kits aligned with their chosen trades, including tailoring, petty trading and food processing.",
+        "womenParagraph3": "Annual Report",
+        "womenParagraph4": ", page 16",
+        "womenText1": "Her ambitions.",
+        "womenText2": "Her next chapter.",
+        "womenText3": "100",
+        "womenText4": "women received trade-specific",
+        "womenText5": "livelihood start-up kits"
+      }
+    },
+    {
+      "_id": "whereWeWorkPage",
+      "data": {
+        "lgaActivities": [
+          {
+            "activities": [
+              {
+                "page": null,
+                "project": "echf-into-mami-project",
+                "source": "JDPI INTO-MAMI project brief and public closeout update",
+                "text": "INTO-MAMI supported mothers, infants and community water services in Jere and Magumeri. The public closeout update confirms completion; it does not establish 2025-only LGA totals.",
+                "title": "Nutrition and WaSH"
+              }
+            ],
+            "lga": "Jere",
+            "state": "Borno"
+          },
+          {
+            "activities": [
+              {
+                "page": 53,
+                "project": null,
+                "source": "Annual Report 2025, page 53",
+                "text": "The report describes screening, referral, growth monitoring and caregiver nutrition counselling for a child in Magumeri through a CRS-supported programme.",
+                "title": "Community nutrition"
+              },
+              {
+                "page": null,
+                "project": "echf-into-mami-project",
+                "source": "JDPI INTO-MAMI project brief and public closeout update",
+                "text": "Magumeri was also a location of the completed INTO-MAMI project with CRS. Project details are recorded separately from the report’s 2025 results.",
+                "title": "Nutrition and WaSH"
+              }
+            ],
+            "lga": "Magumeri",
+            "state": "Borno"
+          },
+          {
+            "activities": [
+              {
+                "page": 52,
+                "project": "gffo-food-security-humanitarian-protection-lake-chad",
+                "source": "Annual Report 2025, page 52",
+                "text": "In Tsallake, counselling and appropriate medical support helped a conflict-affected child recover under the GFFO-funded Food Security and Humanitarian Protection for Victims of Lake Chad project.",
+                "title": "Mental health and psychosocial support"
+              }
+            ],
+            "lga": "Kaga",
+            "state": "Borno"
+          },
+          {
+            "activities": [
+              {
+                "page": 17,
+                "project": "bmz-multisectoral-resilience-project",
+                "source": "Annual Report 2025, pages 17 and 45",
+                "text": "Hong and Michika hosted community greenhouses. The report also describes irrigation equipment, seeds and farmer training in Kwatau, Hong.",
+                "title": "Climate-smart agriculture"
+              },
+              {
+                "page": 51,
+                "project": "bmz-multisectoral-resilience-project",
+                "source": "Annual Report 2025, page 51",
+                "text": "A motorised solar-powered borehole in Kilamada reduced reliance on river water and brought safer water collection closer to households.",
+                "title": "Safe water"
+              }
+            ],
+            "lga": "Hong",
+            "state": "Adamawa"
+          },
+          {
+            "activities": [
+              {
+                "page": 17,
+                "project": "bmz-multisectoral-resilience-project",
+                "source": "Annual Report 2025, page 17",
+                "text": "Community greenhouse farming in Hong and Michika supported year-round vegetable production under the BMZ-funded resilience project.",
+                "title": "Climate-smart agriculture"
+              },
+              {
+                "page": 47,
+                "project": "bmz-multisectoral-resilience-project",
+                "source": "Annual Report 2025, pages 47 and 49",
+                "text": "Reported experiences in Michika describe income-generating grants, restarting small businesses and savings-group participation.",
+                "title": "Livelihood recovery and savings"
+              }
+            ],
+            "lga": "Michika",
+            "state": "Adamawa"
+          },
+          {
+            "activities": [
+              {
+                "page": 55,
+                "project": "strengthening-protection-gbv-response-madagali",
+                "source": "Annual Report 2025, page 55",
+                "text": "In Dar community, a participant received barbering training and a start-up kit through Strengthening Protection and GBV Response in Madagali.",
+                "title": "Vocational skills and livelihoods"
+              },
+              {
+                "page": null,
+                "project": "nhf-integrated-nutrition-and-protection",
+                "source": "Organisation-supplied NHF project brief",
+                "text": "JDPI’s supplied project brief also lists the NHF nutrition and protection project in Madagali. Whether it is the same award as the report-listed GBV project remains under review; the two are not combined here.",
+                "title": "Integrated nutrition and protection"
+              }
+            ],
+            "lga": "Madagali",
+            "state": "Adamawa"
+          }
+        ],
+        "offices": [
+          {
+            "state": "Borno State",
+            "town": "Maiduguri",
+            "type": "Headquarters"
+          },
+          {
+            "state": "Adamawa State",
+            "town": "Mubi",
+            "type": "Office base"
+          },
+          {
+            "state": "Yobe State",
+            "town": "Potiskum",
+            "type": "Office base"
+          }
+        ]
+      },
+      "fields": {
+        "basesHeading1": "Our office bases.",
+        "basesLinkLabel1": "Contact and directions →",
+        "basesParagraph1": "PRESENT IN THE NORTHEAST",
+        "basesParagraph2": "Office bases: Annual Report 2025, pages 2, 60 and 64. Office bases and project locations are different.",
+        "coverageHeading1": "Every place has a story.",
+        "coverageParagraph1": "EXPLORE THE BAY STATES",
+        "coverageParagraph2": "Select a state, then an LGA hotspot to see the work documented there.",
+        "coverageParagraph3": "This map reflects the",
+        "coverageParagraph4": ", not a live directory of active projects. Local activities are shown where the report or JDPI’s project records identify the LGA; coverage-only locations are clearly labelled.",
+        "coverageText1": "2025 reporting period",
+        "introHeading1": "Work alongside us.",
+        "introLinkLabel1": "Get in touch",
+        "introParagraph1": "LOCAL KNOWLEDGE. SHARED COMMITMENT.",
+        "introParagraph2": "For current activities in a particular community, partnerships or programme enquiries, contact the JDPI team.",
+        "introText1": "Our 2025 footprint",
+        "introText2": "January–December · Annual Report, pages 10–12",
+        "introText3": "States",
+        "introText4": "Local government areas",
+        "introText5": "20",
+        "introText6": "Communities",
+        "introText7": "114",
+        "seoDescription": "Explore JDPI’s report-listed LGAs in Borno, Adamawa and Yobe, with interactive maps and locally documented activities.",
+        "seoTitle": "Where We Work",
+        "whereWorkCaption1": "Community dialogue · JDPI Annual Report 2025, page 39",
+        "whereWorkHeading1": "Local roots.",
+        "whereWorkImage1": {
+          "alt": "Community members taking part in an outdoor dialogue session",
+          "assetId": "image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg",
+          "url": "/assets/sanity/image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg.jpg"
+        },
+        "whereWorkLinkLabel1": "Explore our locations",
+        "whereWorkParagraph1": "WHERE WE WORK",
+        "whereWorkParagraph2": "Across Borno, Adamawa and Yobe, we work alongside communities to protect dignity and strengthen resilience.",
+        "whereWorkText1": "Closer to communities."
+      }
+    },
+    {
+      "_id": "programmesPage",
+      "data": null,
+      "fields": {
+        "actionHeading1": "See the work.",
+        "actionLinkLabel1": "Explore our projects",
+        "actionLinkLabel2": "View our impact",
+        "actionLinkLabel3": "Partner with JDPI",
+        "actionParagraph1": "FROM PROGRAMMES TO PROGRESS",
+        "actionParagraph2": "Discover our projects, explore reported results, or talk to us about working together.",
+        "actionText1": "Meet the change.",
+        "approachCaption1": "Community dialogue · JDPI Annual Report 2025",
+        "approachHeading1": "Working with communities.",
+        "approachHeading2": "Locally rooted",
+        "approachHeading3": "Dignity first",
+        "approachImage1": {
+          "alt": "Community members participating in a JDPI dialogue session",
+          "assetId": "image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg",
+          "url": "/assets/sanity/image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg.jpg"
+        },
+        "approachLinkLabel1": "See where we work",
+        "approachParagraph1": "OUR APPROACH",
+        "approachParagraph2": "Our work is rooted in listening, participation and local knowledge. We connect support across programme areas so communities can meet today’s needs and shape tomorrow’s possibilities.",
+        "approachParagraph3": "Working across Borno, Adamawa and Yobe.",
+        "approachParagraph4": "Promoting safety, inclusion and the rights of every person.",
+        "approachText1": "Not simply for them.",
+        "areasHeading1": "Integrated programmes.",
+        "areasHeading2": "Stronger communities.",
+        "areasHeading3": "Our interventions",
+        "areasHeading4": "Documented locations",
+        "areasLinkLabel1": "View the WE-SING project",
+        "areasLinkLabel2": "Contact our team",
+        "areasLinkLabel3": "View coverage map",
+        "areasLinkLabel4": "Explore programme",
+        "areasLinkLabel5": "View reporting context",
+        "areasParagraph1": "WHAT WE DO",
+        "areasParagraph10": "Results are from the",
+        "areasParagraph11": "Annual Report, not live totals. Measures may overlap and must not be added as a unique-person total. Documented locations are examples, not a complete programme footprint; completed-project examples are labelled.",
+        "areasParagraph12": "reported results · measures vary and may overlap.",
+        "areasParagraph2": "People’s needs are connected. Our programmes bring humanitarian assistance, development and peacebuilding together, with dignity at the centre.",
+        "areasParagraph3": "REPORTED",
+        "areasParagraph4": "Verified reach information is awaiting confirmation.",
+        "areasParagraph5": "PROGRAMME DETAILS",
+        "areasParagraph6": "REPORTED",
+        "areasParagraph7": "Detailed intervention information is awaiting confirmation.",
+        "areasParagraph8": "Programme-specific locations are awaiting confirmation.",
+        "areasParagraph9": "RELATED PROJECTS",
+        "areasText1": "WE-SING project only · not a programme-wide total",
+        "areasText2": "Annual Report",
+        "programmesHeading1": "Different needs.",
+        "programmesImage1": {
+          "alt": "A JDPI team member inspecting crops in a BMZ-supported greenhouse",
+          "assetId": "image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg",
+          "url": "/assets/sanity/image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg.jpg"
+        },
+        "programmesLinkLabel1": "Explore our programmes",
+        "programmesParagraph1": "OUR PROGRAMMES",
+        "programmesParagraph2": "From meeting urgent needs to strengthening lasting resilience, we work alongside communities across Northeast Nigeria.",
+        "programmesParagraph3": "BMZ project · JDPI Annual Report 2025",
+        "programmesText1": "One shared dignity.",
+        "seoDescription": "Explore JDPI’s integrated programmes in food security, nutrition, water and hygiene, protection, mental well-being, peacebuilding and economic empowerment across Northeast Nigeria.",
+        "seoTitle": "Programmes"
+      }
+    },
+    {
+      "_id": "projectsPage",
+      "data": null,
+      "fields": {
+        "introHeading1": "No projects found",
+        "introLinkLabel1": "VIEW PROJECT",
+        "introParagraph1": "Try a different search or view all projects.",
+        "projectImpactHeading1": "Real people.",
+        "projectImpactLinkLabel1": "VIEW OUR IMPACT",
+        "projectImpactParagraph1": "Discover how our projects are supporting communities across Northeast Nigeria.",
+        "projectImpactText1": "Lasting change.",
+        "projectsHeading1": "From response",
+        "projectsHeading2": "to",
+        "projectsParagraph1": "OUR PROJECTS",
+        "projectsParagraph2": "Our projects support vulnerable people and communities across Northeast Nigeria through integrated, community-centred and sustainable interventions.",
+        "projectsText1": "resilience.",
+        "seoDescription": "Explore JDPI Maiduguri’s humanitarian and development projects supporting communities across Northeast Nigeria.",
+        "seoTitle": "Projects"
+      }
+    },
+    {
+      "_id": "storiesPage",
+      "data": null,
+      "fields": {
+        "introHeading1": "See the change.",
+        "introHeading2": "Understand the impact.",
+        "introLinkLabel1": "Explore our impact",
+        "introParagraph1": "BEYOND THE HEADLINES",
+        "introParagraph2": "Discover the results behind our community stories and programmes.",
+        "seoDescription": "Stories from the field, blog posts, news, events and reports from JDPI Maiduguri and the communities we serve across Northeast Nigeria.",
+        "seoTitle": "Stories & Updates",
+        "updatesHeading1": "Every story matters.",
+        "updatesImage1": {
+          "alt": "Community members taking part in a JDPI dialogue session",
+          "assetId": "image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg",
+          "url": "/assets/sanity/image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg.jpg"
+        },
+        "updatesLibraryHeading1": "From the field. For a better future.",
+        "updatesLibraryHeading2": "No updates found.",
+        "updatesLibraryLinkLabel1": "Explore our report library",
+        "updatesLibraryParagraph1": "STORIES & UPDATES",
+        "updatesLibraryParagraph2": "updates",
+        "updatesLibraryParagraph3": "Stories, news & published documents",
+        "updatesLibraryParagraph4": "Try another category or search term.",
+        "updatesLibraryText1": "JDPI ·",
+        "updatesLibraryText2": "JUSTICE.",
+        "updatesLibraryText3": "DEVELOPMENT.",
+        "updatesLibraryText4": "PEACE.",
+        "updatesLibraryText5": "LATEST STORY",
+        "updatesLibraryText6": "Reporting year",
+        "updatesParagraph1": "VOICES FROM THE NORTHEAST",
+        "updatesParagraph2": "Life in our communities. Lessons from the field. The work we share.",
+        "updatesParagraph3": "Explore the people and progress behind our programmes.",
+        "updatesText1": "Every voice counts."
+      }
+    },
+    {
+      "_id": "resourcesPage",
+      "data": {
+        "legacyReports": [
+          {
+            "category": "Annual reports",
+            "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/JDPI-Maiduguri-2025-Annual-Report-Protected.pdf",
+            "onlineUrl": "https://heyzine.com/flip-book/fbc150516f.html",
+            "summary": "Programme activities, outcomes and community stories from January to December 2025 across Northeast Nigeria.",
+            "title": "JDPI Annual Report 2025",
+            "year": 2025
+          },
+          {
+            "category": "Financial reports",
+            "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/AUDIT-REPORT-AS-AT-SEPT-2025.pdf",
+            "onlineUrl": null,
+            "summary": "The 2025 financial-report document published in JDPI’s audited financial reports collection.",
+            "title": "JDPI Financial Report 2025",
+            "year": 2025
+          },
+          {
+            "category": "Financial reports",
+            "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/JDPC-Audit-report-Sept.-2024.pdf",
+            "onlineUrl": null,
+            "summary": "The 2024 financial-report document published in JDPI’s audited financial reports collection.",
+            "title": "JDPI Financial Report 2024",
+            "year": 2024
+          },
+          {
+            "category": "Financial reports",
+            "fileUrl": "https://jdpimaiduguri.org/wp-content/uploads/2026/09/AUDIT-REPORT-2023-1.pdf",
+            "onlineUrl": null,
+            "summary": "The 2023 financial-report document published in JDPI’s audited financial reports collection.",
+            "title": "JDPI Financial Report 2023",
+            "year": 2023
+          }
+        ]
+      },
+      "fields": {
+        "featuredReportLinkLabel1": "Open PDF",
+        "featuredReportLinkLabel2": "Read online",
+        "featuredReportParagraph1": "LATEST ANNUAL REPORT",
+        "featuredReportText1": "ANNUAL REPORT",
+        "featuredReportText2": "JUSTICE · DEVELOPMENT · PEACE",
+        "libraryHeading1": "Report library",
+        "libraryHeading2": "Looking for an earlier annual report?",
+        "libraryLinkLabel1": "Request a report",
+        "libraryParagraph1": "documents",
+        "libraryParagraph2": "No documents are available in this category yet.",
+        "libraryParagraph3": "The",
+        "libraryParagraph4": "annual-report",
+        "libraryParagraph5": "not currently available in this library. Please request a copy from our team.",
+        "libraryText1": "Open PDF",
+        "libraryText2": "PDF",
+        "mediaHeading1": "JDPI media kit",
+        "mediaLinkLabel1": "Request media assets",
+        "mediaParagraph1": "FOR MEDIA & PARTNERS",
+        "mediaParagraph2": "For approved logos, brand assets, press information or publication enquiries, contact the JDPI team.",
+        "resourcesHeading1": "Our work,",
+        "resourcesParagraph1": "RESOURCES & PUBLICATIONS",
+        "resourcesParagraph2": "Explore our annual reports and financial reports from Northeast Nigeria.",
+        "resourcesText1": "documented.",
+        "seoDescription": "Explore JDPI Maiduguri’s annual reports and financial reports, read the latest annual report online, and request publications or media assets.",
+        "seoTitle": "Resources"
+      }
+    },
+    {
+      "_id": "donatePage",
+      "data": null,
+      "fields": {
+        "donateHeading1": "Give with heart.",
+        "donateImage1": {
+          "alt": "A farmer and JDPI team member inspecting crops in a community greenhouse",
+          "assetId": "image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg",
+          "url": "/assets/sanity/image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg.jpg"
+        },
+        "donateParagraph1": "YOUR GENEROSITY. SHARED POSSIBILITY.",
+        "donateParagraph2": "Stand alongside communities across Northeast Nigeria as they build safer, healthier and more resilient lives.",
+        "donateParagraph3": "Community greenhouse visit · JDPI Annual Report 2025",
+        "donateText1": "Grow lasting change.",
+        "donateText2": "Borno · Adamawa · Yobe",
+        "evidenceHeading1": "See the work.",
+        "evidenceImage1": {
+          "alt": "Community members participating in a JDPI dialogue session",
+          "assetId": "image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg",
+          "url": "/assets/sanity/image-b7345fe6fcfaf11eda114fe792cd665d34aad8fa-989x541-jpg.jpg"
+        },
+        "evidenceLinkLabel1": "Explore our impact",
+        "evidenceLinkLabel2": "Read our reports →",
+        "evidenceParagraph1": "GIVE WITH UNDERSTANDING",
+        "evidenceParagraph2": "Your support deserves a clear picture of our work. Explore community experiences, programme results and JDPI’s published annual and financial reports.",
+        "evidenceParagraph3": "A local commitment to the dignity of every human person.",
+        "evidenceText1": "Community dialogue · Annual Report 2025",
+        "evidenceText2": "Understand the impact.",
+        "faqHeading1": "Questions about giving?",
+        "faqLinkLabel1": "Contact our team →",
+        "faqParagraph1": "A LITTLE CLARITY",
+        "faqParagraph2": "We’re here to help you take the next step.",
+        "givingHeading1": "Choose how to give.",
+        "givingLinkLabel1": "Other JDPI donation checkout →",
+        "givingLinkLabel2": "Prefer to speak to our team? Other ways to give ↓",
+        "givingParagraph1": "A GIFT THAT MATTERS",
+        "givingParagraph2": "A simple next step towards dignity and opportunity.",
+        "introLinkLabel1": "Read our published reports →",
+        "introText1": "Rooted in human dignity",
+        "introText2": "Working across the BAY states",
+        "otherHeading1": "Let’s find the right way to give.",
+        "otherHeading2": "Bank transfer",
+        "otherHeading3": "Partnerships & larger gifts",
+        "otherHeading4": "In-kind support",
+        "otherLinkLabel1": "Speak to JDPI →",
+        "otherLinkLabel2": "Request bank details",
+        "otherLinkLabel3": "Start a conversation",
+        "otherLinkLabel4": "Discuss your contribution",
+        "otherParagraph1": "MORE THAN ONE WAY TO HELP",
+        "otherParagraph2": "Request JDPI’s verified bank details directly from our team before making a transfer.",
+        "otherParagraph3": "Talk with us about supporting a programme, a community or a shared long-term commitment.",
+        "otherParagraph4": "Discuss useful goods or professional services with JDPI before organising a contribution.",
+        "purposeHeading1": "Support that meets real needs.",
+        "purposeLinkLabel1": "Explore the programme",
+        "purposeParagraph1": "BEHIND EVERY GIFT, PEOPLE",
+        "purposeParagraph2": "JDPI connects humanitarian assistance, development and peacebuilding. Discover the work your generosity can help sustain.",
+        "purposeParagraph3": "These are examples of JDPI’s work—not fixed-price donation packages. If you want to support a specific project, please discuss it with our team before giving.",
+        "seoDescription": "Support dignity, resilience and peace across Northeast Nigeria. Explore JDPI’s Paystack and Flutterwave giving options, or contact our team about other ways to give.",
+        "seoTitle": "Donate"
+      }
+    },
+    {
+      "_id": "contactPage",
+      "data": null,
+      "fields": {
+        "contactDetailsHeading1": "Here to listen.",
+        "contactDetailsHeading2": "Ready to collaborate.",
+        "contactDetailsHeading3": "Email us",
+        "contactDetailsHeading4": "Call our team",
+        "contactDetailsHeading5": "Visit our office",
+        "contactDetailsLinkLabel1": "Map & directions",
+        "contactDetailsParagraph1": "LET’S CONNECT",
+        "contactDetailsParagraph2": "Connect with our team about our work with communities across Northeast Nigeria.",
+        "enquiryHeading1": "Send us a message",
+        "enquiryParagraph1": "We respond to general enquiries within 24 hours.",
+        "enquiryParagraph2": "Fields marked",
+        "enquiryParagraph3": "are required.",
+        "introHeading1": "Get in",
+        "introParagraph1": "CONTACT JDPI",
+        "introParagraph2": "Have a question, a partnership idea or something to share? We’d like to hear from you.",
+        "introText1": "touch.",
+        "officeHeading1": "Plan your visit.",
+        "officeLinkLabel1": "Get directions",
+        "officeLinkLabel2": "Arrange a visit",
+        "officeParagraph1": "FIND US IN MAIDUGURI",
+        "officeParagraph2": "JDPI has confirmed this map location for our Maiduguri office at St. Patrick’s Catholic Church. Contact us to arrange your visit.",
+        "seoDescription": "Send JDPI Maiduguri a message, get a response within 24 hours, and find directions to our Maiduguri office.",
+        "seoTitle": "Contact"
+      }
+    }
+  ],
   "partners": [
     {
       "logo": {
@@ -133,6 +1212,33 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvSh2",
       "body": [],
+      "details": {
+        "interventions": [
+          "Climate-smart greenhouse farming, irrigation equipment, seeds and farmer training.",
+          "Cash assistance that enables households to meet food and essential needs.",
+          "Livelihood recovery, small-business support and savings-group participation."
+        ],
+        "locationNote": null,
+        "locations": [
+          {
+            "detail": "BMZ greenhouse farming; irrigation and farmer training are also documented in Kwatau, Hong.",
+            "label": "Hong & Michika · Adamawa",
+            "source": "Annual Report 2025, pages 17 and 45"
+          },
+          {
+            "detail": "ECHO SAHaRA cash assistance. The available project summary does not name its individual LGAs.",
+            "label": "Borno & Adamawa",
+            "source": "Annual Report 2025, page 16"
+          }
+        ],
+        "projectReach": null,
+        "projectSlugs": [
+          "bmz-multisectoral-resilience-project",
+          "echo-sahara-project",
+          "gffo-food-security-humanitarian-protection-lake-chad"
+        ],
+        "source": "Annual Report 2025, pages 16–17, 45, 47 and 49"
+      },
       "image": {
         "alt": "African farmers harvesting wheat in a rural field in Makurdi, Nigeria",
         "assetId": "image-d5fe5c00437d2709907f2ebac13c1ea3009304e9-800x533-jpg",
@@ -148,10 +1254,35 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvTRo",
       "body": [],
+      "details": {
+        "interventions": [
+          "Nutrition screening, growth monitoring and referral to appropriate care.",
+          "Caregiver nutrition counselling and community education.",
+          "Integrated support for mothers and infants through the INTO-MAMI nutrition and WaSH project."
+        ],
+        "locationNote": null,
+        "locations": [
+          {
+            "detail": "Screening, referral, growth monitoring and caregiver counselling are documented in the report.",
+            "label": "Magumeri · Borno",
+            "source": "Annual Report 2025, page 53"
+          },
+          {
+            "detail": "Locations of the completed INTO-MAMI project; this is project coverage, not a 2025-only reach breakdown.",
+            "label": "Jere & Magumeri · Borno",
+            "source": "JDPI INTO-MAMI project brief and public close-out update"
+          }
+        ],
+        "projectReach": null,
+        "projectSlugs": [
+          "echf-into-mami-project"
+        ],
+        "source": "Annual Report 2025, pages 6, 11 and 53; JDPI INTO-MAMI project brief and close-out update"
+      },
       "image": {
-        "alt": "Community nutrition activity",
-        "assetId": "image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg",
-        "url": "/assets/sanity/image-6e84b0743d7530d682cf4caee43e97e94102cd1d-800x400-jpg.jpg"
+        "alt": "Participants at the ECHF INTO-MAMI nutrition project close-out meeting, pictured in JDPI’s 2025 Annual Report",
+        "assetId": "image-a1f1a482f438d17c01aa4138706ddab3f3f100f2-590x393-jpg",
+        "url": "/assets/sanity/image-a1f1a482f438d17c01aa4138706ddab3f3f100f2-590x393-jpg.jpg"
       },
       "seoDescription": null,
       "seoTitle": null,
@@ -163,6 +1294,33 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvTts",
       "body": [],
+      "details": {
+        "interventions": [
+          "Construction and rehabilitation of boreholes to improve safe-water access.",
+          "Community hygiene promotion and cholera-prevention supplies.",
+          "Integrated nutrition and community water-service support through INTO-MAMI."
+        ],
+        "locationNote": null,
+        "locations": [
+          {
+            "detail": "A solar-powered borehole in Kilamada reduced reliance on river water.",
+            "label": "Hong · Adamawa",
+            "source": "Annual Report 2025, page 51"
+          },
+          {
+            "detail": "Community water services under the completed INTO-MAMI project; not a 2025-only reach breakdown.",
+            "label": "Jere & Magumeri · Borno",
+            "source": "JDPI INTO-MAMI project brief and public close-out update"
+          }
+        ],
+        "projectReach": null,
+        "projectSlugs": [
+          "bmz-multisectoral-resilience-project",
+          "echf-into-mami-project",
+          "echo-sahara-project"
+        ],
+        "source": "Annual Report 2025, pages 6, 11, 27 and 51; JDPI INTO-MAMI project brief"
+      },
       "image": {
         "alt": "A child gathers clean water from an outdoor tap",
         "assetId": "image-26b85dc83800da2f89ffb88b58e6dd765c71ff44-800x1200-jpg",
@@ -178,6 +1336,24 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvVYm",
       "body": [],
+      "details": {
+        "interventions": [
+          "Awareness activities sharing information on safety, dignity, rights and support services.",
+          "Child protection, caregiver engagement and learning-material support.",
+          "Vocational training and start-up support within the Madagali protection and GBV-response project."
+        ],
+        "locationNote": "The report also describes GFFO child-protection work without a verified LGA assignment in the available summary; no location is inferred here.",
+        "locations": [
+          {
+            "detail": "Barbering training and livelihood equipment are documented in Dar community.",
+            "label": "Madagali · Adamawa",
+            "source": "Annual Report 2025, page 55"
+          }
+        ],
+        "projectReach": null,
+        "projectSlugs": null,
+        "source": "Annual Report 2025, pages 6, 11 and 54–55"
+      },
       "image": {
         "alt": "A touching moment of family love and connection",
         "assetId": "image-0a1093aeb3c34fce9a298b413693230a97f7311a-800x533-jpg",
@@ -193,6 +1369,29 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvW0q",
       "body": [],
+      "details": {
+        "interventions": [
+          "Mental-health and psychosocial awareness messages.",
+          "Individual counselling for women through WE-SING.",
+          "Counselling and appropriate medical support for a conflict-affected child under the GFFO project."
+        ],
+        "locationNote": null,
+        "locations": [
+          {
+            "detail": "The report documents psychosocial support in Tsallake community through GFFO.",
+            "label": "Kaga · Borno",
+            "source": "Annual Report 2025, page 52"
+          },
+          {
+            "detail": "WE-SING counselling for women; individual LGAs are not named in the available project summary.",
+            "label": "Borno State",
+            "source": "Annual Report 2025, page 31"
+          }
+        ],
+        "projectReach": null,
+        "projectSlugs": null,
+        "source": "Annual Report 2025, pages 6, 11, 31 and 52"
+      },
       "image": {
         "alt": "A supportive therapy session",
         "assetId": "image-09b1d1117cecfd4dc9a01952edf60cf8f954ffd6-800x533-jpg",
@@ -208,6 +1407,18 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvWXa",
       "body": [],
+      "details": {
+        "interventions": [
+          "Community-led mechanisms for resolving conflicts.",
+          "Dialogue and reconciliation to strengthen peaceful coexistence.",
+          "Strengthening social cohesion and community conflict resilience."
+        ],
+        "locationNote": "Programme-specific LGAs are not confirmed in the verified data used for this page. Our coverage map shows organisation-wide locations, not a peacebuilding-only footprint.",
+        "locations": [],
+        "projectReach": null,
+        "projectSlugs": null,
+        "source": "Annual Report 2025, page 11; published JDPI programme introduction"
+      },
       "image": {
         "alt": "A vibrant community meeting",
         "assetId": "image-5be8e380d5a08d8ee29f62c2f400d6b45da31118-800x533-jpg",
@@ -223,6 +1434,39 @@
     {
       "_id": "pd7BC9mehWAqIUtnYAvX4K",
       "body": [],
+      "details": {
+        "interventions": [
+          "Trade-specific start-up kits for tailoring, petty trading and food processing through WE-SING.",
+          "Vocational and practical business training, including barbering in Madagali.",
+          "Livelihood recovery grants, restarting small businesses and savings-group participation in Michika."
+        ],
+        "locationNote": null,
+        "locations": [
+          {
+            "detail": "WE-SING start-up support for women. The available summary does not name individual LGAs.",
+            "label": "Borno State",
+            "source": "Annual Report 2025, page 16"
+          },
+          {
+            "detail": "Dar, Madagali: vocational training and start-up equipment. Michika: livelihood recovery and savings.",
+            "label": "Madagali & Michika · Adamawa",
+            "source": "Annual Report 2025, pages 47, 49 and 55"
+          }
+        ],
+        "projectReach": {
+          "description": "WE-SING project result in Borno State, reported for 2025. This is not a total for all economic-empowerment activities.",
+          "label": "Women receiving start-up kits",
+          "project": "we-sing-project",
+          "source": "Page 16",
+          "value": "100"
+        },
+        "projectSlugs": [
+          "we-sing-project",
+          "strengthening-protection-gbv-response-madagali",
+          "bmz-multisectoral-resilience-project"
+        ],
+        "source": "Annual Report 2025, pages 16, 47, 49 and 55"
+      },
       "image": {
         "alt": "A smiling African woman vendor at her outdoor market stall",
         "assetId": "image-44e4a589aea2bb7591f37a1b2a7adef4e24f475c-800x533-jpg",
@@ -239,89 +1483,1099 @@
   "projects": [
     {
       "_id": "pd7BC9mehWAqIUtnYAvXRi",
-      "body": [],
-      "endDate": null,
+      "body": [
+        {
+          "_key": "report-bmz-multisectoral-resilience-project-0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-0",
+              "_type": "span",
+              "marks": [],
+              "text": "The 2025 annual report highlights community greenhouses established through the BMZ-supported resilience project in Hong and Michika, Adamawa State. Twenty greenhouses supported 263 vulnerable households with opportunities for climate-smart production and stronger livelihoods."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-bmz-multisectoral-resilience-project-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-1",
+              "_type": "span",
+              "marks": [],
+              "text": "Source: JDPI Annual Report 2025, page 17. These figures describe the report's 2025 greenhouse intervention, not the project's lifetime reach."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "endDate": "2026-08-31",
       "image": {
-        "alt": "African farmer in greenhouse holding a melon",
-        "assetId": "image-16894dacea0084fc16749493bf2b7517509de332-1000x666-jpg",
-        "url": "/assets/sanity/image-16894dacea0084fc16749493bf2b7517509de332-1000x666-jpg.jpg"
+        "alt": "A farmer and JDPI staff inspecting crops in a BMZ-supported community greenhouse",
+        "assetId": "image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg",
+        "url": "/assets/sanity/image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg.jpg"
       },
-      "impactFacts": null,
-      "location": null,
-      "projectProgrammes": null,
+      "imageCaption": null,
+      "impactFacts": [
+        {
+          "_key": "greenhouses-2025",
+          "label": "Community greenhouses (2025)",
+          "value": "20"
+        },
+        {
+          "_key": "households-2025",
+          "label": "Households supported (2025)",
+          "value": "263"
+        }
+      ],
+      "location": "Hong & Michika, Adamawa State",
+      "profile": {
+        "activities": [
+          {
+            "text": "Established 20 community greenhouses in Hong and Michika, supporting 263 households with year-round vegetable production.",
+            "title": "Climate-smart production"
+          },
+          {
+            "text": "BMZ-supported work through Caritas Germany distributed 8,000 PICS storage bags to 4,000 farmers, with training on safer crop storage.",
+            "title": "Post-harvest support"
+          },
+          {
+            "text": "A nutrition conference supported lead mothers and peer learning. The report also describes a solar-powered borehole improving water access in Kilamada.",
+            "title": "Nutrition and safe water"
+          },
+          {
+            "text": "Income-generating support, savings-group participation and a peace conference helped communities build economic and social resilience.",
+            "title": "Livelihoods and social cohesion"
+          }
+        ],
+        "context": "Households in Northeast Nigeria face the combined pressures of conflict, displacement, climate variability and limited livelihood opportunities. Dependence on seasonal rain makes production vulnerable to long dry periods. The project links practical support with local skills and community structures to strengthen recovery.",
+        "donor": "BMZ, through Caritas Germany",
+        "facts": [
+          {
+            "label": "Community greenhouses",
+            "value": "20"
+          },
+          {
+            "label": "Households supported by greenhouses",
+            "value": "263"
+          },
+          {
+            "label": "PICS storage bags distributed",
+            "value": "8,000"
+          },
+          {
+            "label": "Farmers receiving storage bags",
+            "value": "4,000"
+          }
+        ],
+        "gallery": [
+          {
+            "caption": "JDPI monitoring visit • Report, page 17",
+            "image": {
+              "alt": "A farmer and JDPI staff inspecting greenhouse crops",
+              "assetId": "image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg",
+              "url": "/assets/sanity/image-ac22eedc1e5eb83abd20c237fdb7fc5c7faf225d-802x394-jpg.jpg"
+            }
+          },
+          {
+            "caption": "Completed community greenhouse • Report, page 17",
+            "image": {
+              "alt": "A completed community greenhouse viewed from above",
+              "assetId": "image-584bb056efebc923e6ecf46de66d8b9c27e2f82f-802x360-jpg",
+              "url": "/assets/sanity/image-584bb056efebc923e6ecf46de66d8b9c27e2f82f-802x360-jpg.jpg"
+            }
+          },
+          {
+            "caption": "Produce from the greenhouse • Report, page 17",
+            "image": {
+              "alt": "Boxes of bell peppers harvested from the greenhouse",
+              "assetId": "image-270d62207115aa619e7a51279593ae819d1d3f26-782x394-jpg",
+              "url": "/assets/sanity/image-270d62207115aa619e7a51279593ae819d1d3f26-782x394-jpg.jpg"
+            }
+          }
+        ],
+        "outcomes": null,
+        "overview": [
+          "The BMZ-funded Multisectoral Strengthening of Resilience project supports vulnerable households in conflict-affected communities of Northeastern Nigeria and Northern Cameroon. JDPI’s reported work in Hong and Michika combines livelihood recovery with community-led approaches to nutrition, water access and peacebuilding.",
+          "In 2025, community greenhouses helped households grow vegetables beyond the rainy season. Alongside agricultural support, the report highlights nutrition learning, income-generating activities and dialogue that strengthen resilience across everyday life."
+        ],
+        "overviewCaption": "Year-round vegetable production • Annual Report 2025, page 18",
+        "overviewImage": {
+          "alt": "Vegetables growing inside a BMZ-supported community greenhouse",
+          "assetId": "image-13fae64609a671362605882b977c8df4e8c48f1d-831x1150-jpg",
+          "url": "/assets/sanity/image-13fae64609a671362605882b977c8df4e8c48f1d-831x1150-jpg.jpg"
+        },
+        "partners": "Caritas Germany",
+        "photoNote": null,
+        "resultsIntro": "Selected BMZ-supported outputs reported in 2025. The greenhouse and storage-bag figures describe different activities; they are not a combined unique-beneficiary total.",
+        "reviewNote": null,
+        "sources": [
+          {
+            "detail": "Pages 15, 17–18, 24, 41, 47 and 51. Results relate to the 2025 reporting period unless otherwise stated.",
+            "title": "JDPI Annual Report 2025",
+            "url": null
+          },
+          {
+            "detail": "The organisation-supplied project-page reference provides the duration, completed status and project figures. These are not separately verified annual-report totals.",
+            "title": "JDPI project brief",
+            "url": null
+          }
+        ],
+        "stories": [
+          {
+            "source": "Annual Report 2025, page 47",
+            "text": "In Michika, a participant used income-generating support to start a groundnut business. Reinvesting earnings and joining a savings group helped her expand from buying two bags to up to twenty at a time.",
+            "title": "A small start, a growing livelihood"
+          },
+          {
+            "source": "Annual Report 2025, page 51",
+            "text": "In Kilamada, Hong LGA, a solar-powered borehole reduced reliance on river water. The report describes safer water collection and less time spent searching for water.",
+            "title": "Safe water, closer to home"
+          }
+        ],
+        "storyNote": null
+      },
+      "projectProgrammes": [
+        {
+          "slug": "food-security-and-livelihoods",
+          "title": "FOOD SECURITY & LIVELIHOODS"
+        },
+        {
+          "slug": "nutrition",
+          "title": "NUTRITION"
+        },
+        {
+          "slug": "water-sanitation-and-hygiene",
+          "title": "WATER, SANITATION & HYGIENE"
+        },
+        {
+          "slug": "protection",
+          "title": "PROTECTION"
+        },
+        {
+          "slug": "mental-health-and-psychosocial-support",
+          "title": "MENTAL HEALTH & PSYCHOSOCIAL SUPPORT"
+        },
+        {
+          "slug": "peacebuilding-and-social-cohesion",
+          "title": "PEACEBUILDING & SOCIAL COHESION"
+        }
+      ],
+      "reportingYear": 2025,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "bmz-multisectoral-resilience-project",
       "sortOrder": 0,
-      "startDate": null,
-      "status": null,
+      "startDate": "2022-11-01",
+      "status": "completed",
       "summary": "Strengthening the resilience of vulnerable households through integrated multisectoral support.",
       "title": "BMZ Multisectoral Resilience Project"
     },
     {
       "_id": "pd7BC9mehWAqIUtnYAvYHA",
-      "body": [],
-      "endDate": null,
+      "body": [
+        {
+          "_key": "report-echf-into-mami-project-0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-0",
+              "_type": "span",
+              "marks": [],
+              "text": "JDPI's public project closeout update confirms that the ECHF-funded INTO-MAMI project, implemented with Catholic Relief Services, concluded its nutrition and water, sanitation and hygiene work in Jere and Magumeri LGAs. The photograph shows the closeout meeting."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "endDate": "2026-09-30",
       "image": {
-        "alt": "A mother carrying her child in a traditional wrap",
-        "assetId": "image-e09189b8cf14fbe6f98337208b1806bb631a1687-1000x1500-jpg",
-        "url": "/assets/sanity/image-e09189b8cf14fbe6f98337208b1806bb631a1687-1000x1500-jpg.jpg"
+        "alt": "JDPI and partner representatives at the ECHF INTO-MAMI project closeout meeting",
+        "assetId": "image-a1f1a482f438d17c01aa4138706ddab3f3f100f2-590x393-jpg",
+        "url": "/assets/sanity/image-a1f1a482f438d17c01aa4138706ddab3f3f100f2-590x393-jpg.jpg"
       },
+      "imageCaption": null,
       "impactFacts": null,
-      "location": null,
-      "projectProgrammes": null,
+      "location": "Jere & Magumeri, Borno State",
+      "profile": {
+        "activities": [
+          {
+            "text": "Supported improved nutrition outcomes for mothers and children, as described in JDPI’s project brief and closeout update.",
+            "title": "Nutrition support"
+          },
+          {
+            "text": "Delivered WaSH support, with 10 rehabilitated boreholes recorded in the organisation’s project brief.",
+            "title": "Water and hygiene"
+          },
+          {
+            "text": "Brought JDPI and partner representatives together to review the completed project and reflect on its work.",
+            "title": "Learning and closeout"
+          }
+        ],
+        "context": "The project addressed nutrition and WaSH needs in conflict-affected communities. Its integrated approach linked support for mothers and children with improvements in community water services.",
+        "donor": "ECHF",
+        "facts": null,
+        "gallery": [
+          {
+            "caption": "INTO-MAMI closeout meeting • JDPI Facebook",
+            "image": {
+              "alt": "JDPI and partner representatives at the INTO-MAMI closeout meeting",
+              "assetId": "image-a1f1a482f438d17c01aa4138706ddab3f3f100f2-590x393-jpg",
+              "url": "/assets/sanity/image-a1f1a482f438d17c01aa4138706ddab3f3f100f2-590x393-jpg.jpg"
+            }
+          }
+        ],
+        "outcomes": null,
+        "overview": [
+          "INTO-MAMI focused on nutrition and water, sanitation and hygiene support for mothers, infants and communities in Jere and Magumeri LGAs of Borno State. JDPI implemented the ECHF-funded project with Catholic Relief Services.",
+          "JDPI’s public closeout update confirms that the project concluded. Partners came together to reflect on the nutrition and WaSH work delivered in the two local government areas."
+        ],
+        "overviewCaption": null,
+        "overviewImage": null,
+        "partners": "Catholic Relief Services (CRS)",
+        "photoNote": null,
+        "resultsIntro": "Project figures from JDPI’s supplied brief. The annual report does not separately itemise INTO-MAMI totals; these figures are not presented as 2025-only outputs.",
+        "reviewNote": null,
+        "sources": [
+          {
+            "detail": "The organisation-supplied project-page reference provides the duration, completed status and project figures. These are not separately verified annual-report totals.",
+            "title": "JDPI project brief",
+            "url": null
+          },
+          {
+            "detail": "Public post confirming project closure and describing nutrition and WaSH work with CRS. The displayed post date did not establish a year.",
+            "title": "JDPI INTO-MAMI closeout update",
+            "url": "https://www.facebook.com/permalink.php?story_fbid=pfbid0bsKzGMpabgXBVGrWGh2AZtJEhegYSNMkiVvgtrq9zykeWz8NZrCCffGw3k1fF7Grl&id=100081401777454"
+          }
+        ],
+        "stories": [
+          {
+            "source": "JDPI’s public INTO-MAMI closeout update",
+            "text": "JDPI’s closeout update describes partners coming together after project activities in Jere and Magumeri. The public meeting photograph records this final project reflection.",
+            "title": "Reflecting on a completed partnership"
+          }
+        ],
+        "storyNote": null
+      },
+      "projectProgrammes": [
+        {
+          "slug": "nutrition",
+          "title": "NUTRITION"
+        },
+        {
+          "slug": "water-sanitation-and-hygiene",
+          "title": "WATER, SANITATION & HYGIENE"
+        }
+      ],
+      "reportingYear": null,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "echf-into-mami-project",
       "sortOrder": 1,
-      "startDate": null,
-      "status": null,
+      "startDate": "2024-04-01",
+      "status": "completed",
       "summary": "Improving nutrition and WaSH outcomes for mothers and children in conflict-affected communities.",
       "title": "ECHF INTO-MAMI Project"
     },
     {
       "_id": "pd7BC9mehWAqIUtnYAvZi2",
       "body": [],
-      "endDate": null,
+      "endDate": "2026-05-31",
       "image": {
         "alt": "African women seated with rice aid packages",
         "assetId": "image-f3ca936e00c23988338afeedf205063904cd42be-1000x667-jpg",
         "url": "/assets/sanity/image-f3ca936e00c23988338afeedf205063904cd42be-1000x667-jpg.jpg"
       },
+      "imageCaption": null,
       "impactFacts": null,
-      "location": null,
-      "projectProgrammes": null,
+      "location": "Madagali, Adamawa State",
+      "profile": {
+        "activities": [
+          {
+            "text": "Nutrition support is identified as a core sector in the organisation’s project brief.",
+            "title": "Integrated nutrition assistance"
+          },
+          {
+            "text": "Community protection assistance is identified alongside nutrition in the project’s scope.",
+            "title": "Protection support"
+          },
+          {
+            "text": "The organisation’s brief records 900 birth registrations across the project.",
+            "title": "Birth registration"
+          }
+        ],
+        "context": "The project combines nutrition assistance with protection support in crisis-affected communities. Its community focus reflects the need to connect essential services with practical protection measures.",
+        "donor": "Nigeria Humanitarian Fund (NHF)",
+        "facts": null,
+        "gallery": [],
+        "outcomes": null,
+        "overview": [
+          "The NHF Integrated Nutrition and Protection project supported crisis-affected communities in Madagali, Adamawa State. JDPI’s supplied project brief describes an integrated approach to nutrition and protection assistance.",
+          "The brief records work across four communities and 900 birth registrations. These project figures are retained separately from JDPI’s organisation-wide 2025 programme results."
+        ],
+        "overviewCaption": null,
+        "overviewImage": null,
+        "partners": null,
+        "photoNote": "Illustrative image from the existing JDPI website; project-specific photography awaits confirmation.",
+        "resultsIntro": "Project figures from JDPI’s supplied brief, not independently attributed 2025 annual-report totals.",
+        "reviewNote": "For review: the relationship between this award and the separately listed Madagali protection and GBV-response project remains to be confirmed by JDPI.",
+        "sources": [
+          {
+            "detail": "The organisation-supplied project-page reference provides the duration, completed status and project figures. These are not separately verified annual-report totals.",
+            "title": "JDPI project brief",
+            "url": null
+          },
+          {
+            "detail": "Page 4 identifies NHF as the Nigeria Humanitarian Fund. The report does not separately itemise this award’s project figures.",
+            "title": "JDPI Annual Report 2025",
+            "url": null
+          }
+        ],
+        "stories": [],
+        "storyNote": "The supplied material does not include a beneficiary story specifically attributed to this NHF award. Approved project stories can be added when available."
+      },
+      "projectProgrammes": [
+        {
+          "slug": "nutrition",
+          "title": "NUTRITION"
+        },
+        {
+          "slug": "protection",
+          "title": "PROTECTION"
+        }
+      ],
+      "reportingYear": null,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "nhf-integrated-nutrition-and-protection",
       "sortOrder": 2,
-      "startDate": null,
-      "status": null,
+      "startDate": "2025-11-01",
+      "status": "completed",
       "summary": "Supporting vulnerable communities through integrated nutrition and protection assistance.",
       "title": "NHF Integrated Nutrition & Protection"
     },
     {
       "_id": "y1w8dVIjCl03DcdWQ5app2",
-      "body": [],
+      "body": [
+        {
+          "_key": "report-allright-project-0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-0",
+              "_type": "span",
+              "marks": [],
+              "text": "Advancing Local Leadership in the Right Way (ALLRight) is an organisational-strengthening project funded by Catholic Relief Services, with technical assistance from CRS. It supports JDPI's systems, leadership, accountability and sustainability so the organisation can deliver stronger community services."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-allright-project-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-1",
+              "_type": "span",
+              "marks": [],
+              "text": "The 2025 report describes the rollout of JDPI's Resource Mobilisation Strategy, helping staff strengthen fundraising and diversify funding opportunities. It also records the development of a comprehensive monitoring, evaluation, accountability and learning (MEAL) policy and a five-day policy rollout training for staff."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-allright-project-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-2",
+              "_type": "span",
+              "marks": [],
+              "text": "Source: JDPI Annual Report 2025, page 58. The report does not provide the project's start or end date."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
       "endDate": null,
       "image": {
-        "alt": "Teacher reading to preschool children",
-        "assetId": "image-2ddec70dfd89f9c99bf020bbab6e6f73bb88f4ba-1000x667-jpg",
-        "url": "/assets/sanity/image-2ddec70dfd89f9c99bf020bbab6e6f73bb88f4ba-1000x667-jpg.jpg"
+        "alt": "JDPI staff and donors at the ALLRight resource mobilisation strategy rollout",
+        "assetId": "image-7bed47bd070ff2341a155a808b05325ebf224d63-762x474-jpg",
+        "url": "/assets/sanity/image-7bed47bd070ff2341a155a808b05325ebf224d63-762x474-jpg.jpg"
       },
-      "impactFacts": null,
-      "location": null,
-      "projectProgrammes": null,
+      "imageCaption": null,
+      "impactFacts": [],
+      "location": "JDPI Maiduguri, Borno State",
+      "profile": {
+        "activities": [
+          {
+            "text": "Rolled out and disseminated JDPI’s Resource Mobilisation Strategy to strengthen fundraising and diversify funding opportunities.",
+            "title": "Resource mobilisation"
+          },
+          {
+            "text": "Developed a comprehensive monitoring, evaluation, accountability and learning policy with support from CRS.",
+            "title": "MEAL policy development"
+          },
+          {
+            "text": "Delivered a five-day policy rollout training focused on shared approaches to data collection, analysis, reporting and use.",
+            "title": "Staff capacity"
+          }
+        ],
+        "context": "Community impact depends on strong local institutions as well as direct assistance. ALLRight addresses the organisational systems and skills JDPI needs to sustain its work, mobilise resources and make evidence-informed decisions.",
+        "donor": "Catholic Relief Services (CRS)",
+        "facts": [
+          {
+            "label": "MEAL policy rollout training",
+            "value": "5 days"
+          }
+        ],
+        "gallery": [
+          {
+            "caption": "Staff and donors at the strategy rollout • Report, page 58",
+            "image": {
+              "alt": "JDPI staff and donors at the resource mobilisation strategy rollout",
+              "assetId": "image-7bed47bd070ff2341a155a808b05325ebf224d63-762x474-jpg",
+              "url": "/assets/sanity/image-7bed47bd070ff2341a155a808b05325ebf224d63-762x474-jpg.jpg"
+            }
+          },
+          {
+            "caption": "Stakeholder engagement workshop • Report, page 58",
+            "image": {
+              "alt": "Participants working together during an ALLRight stakeholder workshop",
+              "assetId": "image-c96f23205325505f1f97ede4d7c3d564dbfa1892-762x408-jpg",
+              "url": "/assets/sanity/image-c96f23205325505f1f97ede4d7c3d564dbfa1892-762x408-jpg.jpg"
+            }
+          }
+        ],
+        "outcomes": [
+          "Resource Mobilisation Strategy rolled out",
+          "Comprehensive MEAL policy developed",
+          "Staff trained in common data and reporting approaches"
+        ],
+        "overview": [
+          "Advancing Local Leadership in the Right Way (ALLRight) strengthens JDPI’s organisational systems, leadership, accountability and long-term sustainability. The project is funded by Catholic Relief Services, with technical assistance from CRS.",
+          "By investing in the institution behind the programmes, ALLRight supports more effective services and stronger locally led development for the communities JDPI serves."
+        ],
+        "overviewCaption": null,
+        "overviewImage": null,
+        "partners": "CRS technical assistance",
+        "photoNote": null,
+        "resultsIntro": "Institutional-strengthening outputs documented in the 2025 report. These are staff and systems improvements, not community beneficiary totals.",
+        "reviewNote": null,
+        "sources": [
+          {
+            "detail": "Page 58. Results relate to the 2025 reporting period unless otherwise stated.",
+            "title": "JDPI Annual Report 2025",
+            "url": null
+          }
+        ],
+        "stories": [
+          {
+            "source": "Annual Report 2025, page 58",
+            "text": "The strategy rollout brought staff and donors together around resource mobilisation. Alongside the MEAL policy, it strengthened JDPI’s shared approach to sustainability, accountability and organisational learning.",
+            "title": "Building the systems behind the services"
+          }
+        ],
+        "storyNote": null
+      },
+      "projectProgrammes": [],
+      "reportingYear": 2025,
       "seoDescription": null,
       "seoTitle": null,
       "slug": "allright-project",
       "sortOrder": 3,
       "startDate": null,
-      "status": null,
-      "summary": "Supporting children and communities through protection, education and resilience-focused engagement.",
+      "status": "ongoing",
+      "summary": "Strengthening JDPI's local leadership, organisational systems, accountability and long-term sustainability with support from Catholic Relief Services.",
       "title": "ALLRight Project"
+    },
+    {
+      "_id": "editorial-project-c5167ed70878c55d9c700473",
+      "body": [
+        {
+          "_key": "report-echo-sahara-project-0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-0",
+              "_type": "span",
+              "marks": [],
+              "text": "The ECHO-funded SAHaRA project provided unrestricted cash assistance to 15,466 individuals across Borno and Adamawa States in 2025. This enabled households to access food and essential supplies according to their own priorities."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-echo-sahara-project-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-1",
+              "_type": "span",
+              "marks": [],
+              "text": "The report also attributes 2,675 cholera and hygiene kits and menstrual hygiene kits for 1,115 people to the ECHO Sahara project. These interventions complemented hygiene awareness and cholera prevention work."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-echo-sahara-project-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-2",
+              "_type": "span",
+              "marks": [],
+              "text": "Source: JDPI Annual Report 2025, pages 16 and 27. The accompanying photograph illustrates JDPI hygiene promotion from the report's WaSH section; its caption does not identify it as a SAHaRA-specific event. The report does not provide the project's start or end date."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "endDate": null,
+      "image": {
+        "alt": "A JDPI hygiene promotion session pictured in the 2025 annual report",
+        "assetId": "image-c7cae02c1948c61d41c65ea2feb9efb7f7e7d626-546x384-jpg",
+        "url": "/assets/sanity/image-c7cae02c1948c61d41c65ea2feb9efb7f7e7d626-546x384-jpg.jpg"
+      },
+      "imageCaption": "Illustrative: JDPI hygiene promotion, 2025 report",
+      "impactFacts": [
+        {
+          "_key": "cash-2025",
+          "label": "People receiving cash support (2025)",
+          "value": "15,466"
+        },
+        {
+          "_key": "kits-2025",
+          "label": "Cholera & hygiene kits (2025)",
+          "value": "2,675"
+        }
+      ],
+      "location": "Borno & Adamawa States",
+      "profile": {
+        "activities": [
+          {
+            "text": "Enabled 15,466 people in Borno and Adamawa to access food and other essential household needs.",
+            "title": "Unrestricted cash assistance"
+          },
+          {
+            "text": "Distributed 2,675 cholera and hygiene kits to vulnerable individuals.",
+            "title": "Cholera and hygiene supplies"
+          },
+          {
+            "text": "Reached 1,115 people with menstrual hygiene kits, complementing hygiene promotion and prevention work.",
+            "title": "Menstrual hygiene support"
+          }
+        ],
+        "context": "Conflict, displacement and rising living costs put pressure on household food security. Cash support preserves families’ ability to choose what they need, while hygiene supplies complement efforts to prevent disease and strengthen community resilience.",
+        "donor": "ECHO",
+        "facts": [
+          {
+            "label": "People receiving cash support",
+            "value": "15,466"
+          },
+          {
+            "label": "Cholera and hygiene kits",
+            "value": "2,675"
+          },
+          {
+            "label": "People receiving menstrual hygiene kits",
+            "value": "1,115"
+          }
+        ],
+        "gallery": [
+          {
+            "caption": "Illustrative JDPI hygiene promotion • Report, page 27",
+            "image": {
+              "alt": "A JDPI hygiene promotion session from the annual report",
+              "assetId": "image-c7cae02c1948c61d41c65ea2feb9efb7f7e7d626-546x384-jpg",
+              "url": "/assets/sanity/image-c7cae02c1948c61d41c65ea2feb9efb7f7e7d626-546x384-jpg.jpg"
+            }
+          }
+        ],
+        "outcomes": null,
+        "overview": [
+          "The ECHO-funded SAHaRA project provided unrestricted cash assistance to vulnerable households across Borno and Adamawa States. It helped families obtain food and essential household supplies according to their own priorities.",
+          "The 2025 report also describes cholera and hygiene kits, including menstrual hygiene supplies, distributed under the project to help households manage heightened public-health risks."
+        ],
+        "overviewCaption": null,
+        "overviewImage": null,
+        "partners": null,
+        "photoNote": "Illustrative JDPI hygiene-promotion photo from the report; the caption does not identify a SAHaRA-specific event.",
+        "resultsIntro": "SAHaRA outputs explicitly reported for 2025. Service counts are presented separately and should not be summed as unique beneficiaries.",
+        "reviewNote": null,
+        "sources": [
+          {
+            "detail": "Pages 16 and 27. Results relate to the 2025 reporting period unless otherwise stated.",
+            "title": "JDPI Annual Report 2025",
+            "url": null
+          }
+        ],
+        "stories": [],
+        "storyNote": "The report describes household support under SAHaRA but does not include an individually attributed project story. Its documented approach puts families’ own priorities at the centre of cash assistance."
+      },
+      "projectProgrammes": [
+        {
+          "slug": "food-security-and-livelihoods",
+          "title": "FOOD SECURITY & LIVELIHOODS"
+        },
+        {
+          "slug": "water-sanitation-and-hygiene",
+          "title": "WATER, SANITATION & HYGIENE"
+        }
+      ],
+      "reportingYear": 2025,
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "echo-sahara-project",
+      "sortOrder": null,
+      "startDate": null,
+      "status": "ongoing",
+      "summary": "Cash assistance and essential hygiene supplies helping vulnerable households meet immediate needs across Borno and Adamawa States.",
+      "title": "ECHO SAHaRA Project"
+    },
+    {
+      "_id": "editorial-project-7e59cc50bdb90273a13959a5",
+      "body": [
+        {
+          "_key": "report-gffo-food-security-humanitarian-protection-lake-chad-0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-0",
+              "_type": "span",
+              "marks": [],
+              "text": "The Food Security and Humanitarian Protection for Victims of Lake Chad project is funded by the German Federal Foreign Office (GFFO), through Caritas Germany, and implemented by JDPI Maiduguri in partnership with Caritas Nigeria."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-gffo-food-security-humanitarian-protection-lake-chad-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-1",
+              "_type": "span",
+              "marks": [],
+              "text": "The 2025 annual report describes mental health and psychosocial support in Tsallake community, Kaga LGA, Borno State. It also highlights child protection work, caregiver engagement and learning-material support that helped a child return to school."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-gffo-food-security-humanitarian-protection-lake-chad-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-2",
+              "_type": "span",
+              "marks": [],
+              "text": "Source: JDPI Annual Report 2025, pages 52 and 54. The report does not provide the project's start or end date."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "endDate": null,
+      "image": {
+        "alt": "Family pictured in the GFFO project section, with identities obscured as in the annual report",
+        "assetId": "image-9d6ac8ced4e8dcf54e6b7dac1a6518ad24f7b5df-746x428-jpg",
+        "url": "/assets/sanity/image-9d6ac8ced4e8dcf54e6b7dac1a6518ad24f7b5df-746x428-jpg.jpg"
+      },
+      "imageCaption": "Identities protected in the original report",
+      "impactFacts": [],
+      "location": "Reported activity: Kaga, Borno State",
+      "profile": {
+        "activities": [
+          {
+            "text": "Provided counselling and appropriate medical support in a documented child-support case in Tsallake, Kaga LGA.",
+            "title": "Psychosocial care"
+          },
+          {
+            "text": "Used household visits and awareness sessions to discuss child labour, education and positive parenting.",
+            "title": "Caregiver engagement"
+          },
+          {
+            "text": "Provided essential learning materials that helped a child return to school.",
+            "title": "School reintegration"
+          }
+        ],
+        "context": "Conflict and household vulnerability can affect children’s wellbeing and access to education. The reported protection work connects families with counselling, caregiver engagement and practical support so children can recover and participate in everyday community life.",
+        "donor": "German Federal Foreign Office (GFFO)",
+        "facts": null,
+        "gallery": [
+          {
+            "caption": "Family support • Report, page 52. Original identity protections retained.",
+            "image": {
+              "alt": "Family pictured with identity-protecting redactions in the GFFO report section",
+              "assetId": "image-9d6ac8ced4e8dcf54e6b7dac1a6518ad24f7b5df-746x428-jpg",
+              "url": "/assets/sanity/image-9d6ac8ced4e8dcf54e6b7dac1a6518ad24f7b5df-746x428-jpg.jpg"
+            }
+          }
+        ],
+        "outcomes": [
+          "Recovery and renewed participation in everyday life in a reported psychosocial-support case",
+          "Return to school in a reported child-protection case"
+        ],
+        "overview": [
+          "The Food Security and Humanitarian Protection for Victims of Lake Chad project is funded by GFFO through Caritas Germany and implemented by JDPI Maiduguri in partnership with Caritas Nigeria.",
+          "The report illustrates its protection work through psychosocial support in Tsallake, Kaga LGA, and child-protection interventions that helped a young person return to school."
+        ],
+        "overviewCaption": null,
+        "overviewImage": null,
+        "partners": "Caritas Germany and Caritas Nigeria",
+        "photoNote": "Identities are obscured exactly as in the original annual report.",
+        "resultsIntro": "The report documents individual case outcomes but does not provide a separate project-wide beneficiary total. No organisation-wide protection or psychosocial totals are attributed to this award.",
+        "reviewNote": null,
+        "sources": [
+          {
+            "detail": "Pages 52 and 54. Results relate to the 2025 reporting period unless otherwise stated.",
+            "title": "JDPI Annual Report 2025",
+            "url": null
+          }
+        ],
+        "stories": [
+          {
+            "source": "Annual Report 2025, page 52",
+            "text": "A family in Tsallake received psychosocial and appropriate medical support for a child affected by conflict. The report describes the child returning to play, school and daily family life. Identifying details are not reproduced.",
+            "title": "Support for recovery"
+          },
+          {
+            "source": "Annual Report 2025, page 54",
+            "text": "Caregiver engagement and learning materials helped a young person leave farm work and resume daily school attendance. The account illustrates child-protection support, not a project-wide outcome rate.",
+            "title": "Back to learning"
+          }
+        ],
+        "storyNote": null
+      },
+      "projectProgrammes": [
+        {
+          "slug": "food-security-and-livelihoods",
+          "title": "FOOD SECURITY & LIVELIHOODS"
+        },
+        {
+          "slug": "protection",
+          "title": "PROTECTION"
+        },
+        {
+          "slug": "mental-health-and-psychosocial-support",
+          "title": "MENTAL HEALTH & PSYCHOSOCIAL SUPPORT"
+        }
+      ],
+      "reportingYear": 2025,
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "gffo-food-security-humanitarian-protection-lake-chad",
+      "sortOrder": null,
+      "startDate": null,
+      "status": "ongoing",
+      "summary": "Integrated food security and protection support, including child protection and psychosocial care for conflict-affected communities.",
+      "title": "GFFO Food Security and Humanitarian Protection for Victims of Lake Chad"
+    },
+    {
+      "_id": "editorial-project-0f76c608df05eba261b9dc98",
+      "body": [
+        {
+          "_key": "report-strengthening-protection-gbv-response-madagali-0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-0",
+              "_type": "span",
+              "marks": [],
+              "text": "JDPI's Strengthening Protection and GBV Response in Madagali project includes vocational skills training and start-up support to expand livelihood opportunities for young people."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-strengthening-protection-gbv-response-madagali-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-1",
+              "_type": "span",
+              "marks": [],
+              "text": "The annual report illustrates this component through barbering training, practical business skills and an equipment kit containing a solar power station, clippers and other tools. Skills and start-up equipment help participants establish small businesses and strengthen their livelihoods."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-strengthening-protection-gbv-response-madagali-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-2",
+              "_type": "span",
+              "marks": [],
+              "text": "Source: JDPI Annual Report 2025, page 55. The report does not provide the project's start or end date."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "endDate": null,
+      "image": {
+        "alt": "Livelihood start-up equipment distributed through the Madagali protection project's vocational skills component",
+        "assetId": "image-4443521da49912a4cbfd11e3cb5d29de50538925-624x452-jpg",
+        "url": "/assets/sanity/image-4443521da49912a4cbfd11e3cb5d29de50538925-624x452-jpg.jpg"
+      },
+      "imageCaption": null,
+      "impactFacts": [],
+      "location": "Madagali, Adamawa State",
+      "profile": {
+        "activities": [
+          {
+            "text": "Provided barbering training covering haircutting, customer service and equipment maintenance in the reported example.",
+            "title": "Vocational skills"
+          },
+          {
+            "text": "Included basic business management to support participants starting a small enterprise.",
+            "title": "Business skills"
+          },
+          {
+            "text": "Provided a start-up kit including a solar power station, clippers, combs, brushes and other barbering tools.",
+            "title": "Livelihood equipment"
+          }
+        ],
+        "context": "Young people with limited access to education, employment and start-up resources can struggle to find a sustainable livelihood. The documented skills component expands practical income opportunities as part of the project’s protection work.",
+        "donor": "Not specified for this project in the supplied report",
+        "facts": null,
+        "gallery": [
+          {
+            "caption": "Livelihood start-up equipment • Report, page 55",
+            "image": {
+              "alt": "Start-up equipment distributed through the Madagali project’s vocational component",
+              "assetId": "image-4443521da49912a4cbfd11e3cb5d29de50538925-624x452-jpg",
+              "url": "/assets/sanity/image-4443521da49912a4cbfd11e3cb5d29de50538925-624x452-jpg.jpg"
+            }
+          }
+        ],
+        "outcomes": [
+          "Practical vocational and business skills acquired in the reported example",
+          "A small barbering enterprise established after training and start-up support"
+        ],
+        "overview": [
+          "JDPI’s Strengthening Protection and GBV Response in Madagali project includes vocational skills training and livelihood start-up support for young people in Madagali, Adamawa State.",
+          "The annual report shows how practical training and business equipment can help participants establish small enterprises and build more secure livelihoods."
+        ],
+        "overviewCaption": null,
+        "overviewImage": null,
+        "partners": null,
+        "photoNote": null,
+        "resultsIntro": "The report describes an individual livelihood example, not a project-wide beneficiary total. No participant is labelled as a GBV survivor here.",
+        "reviewNote": "For review: JDPI has not yet confirmed whether this is the same award as the separately listed NHF Integrated Nutrition and Protection project. Both remain separate for review.",
+        "sources": [
+          {
+            "detail": "Page 55. Results relate to the 2025 reporting period unless otherwise stated.",
+            "title": "JDPI Annual Report 2025",
+            "url": null
+          }
+        ],
+        "stories": [
+          {
+            "source": "Annual Report 2025, page 55",
+            "text": "A participant in Dar community used barbering training and start-up equipment to open a local salon. The report describes the business serving customers and contributing to household income.",
+            "title": "Skills that become a livelihood"
+          }
+        ],
+        "storyNote": null
+      },
+      "projectProgrammes": [
+        {
+          "slug": "protection",
+          "title": "PROTECTION"
+        },
+        {
+          "slug": "economic-empowerment",
+          "title": "ECONOMIC EMPOWERMENT"
+        }
+      ],
+      "reportingYear": 2025,
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "strengthening-protection-gbv-response-madagali",
+      "sortOrder": null,
+      "startDate": null,
+      "status": "ongoing",
+      "summary": "Vocational skills and livelihood start-up support helping young people reduce vulnerability and build more secure futures in Madagali.",
+      "title": "Strengthening Protection and GBV Response in Madagali"
+    },
+    {
+      "_id": "editorial-project-14b181f4eb90963d1aef3438",
+      "body": [
+        {
+          "_key": "report-we-sing-project-0",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-0",
+              "_type": "span",
+              "marks": [],
+              "text": "Under WE-SING, 100 women in Borno State received livelihood start-up kits in 2025. Support was tailored to participants' chosen activities, including tailoring, petty trading and food processing, helping them establish or expand small enterprises."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-we-sing-project-1",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-1",
+              "_type": "span",
+              "marks": [],
+              "text": "The annual report also records individual counselling for 30 women under WE-SING. Together, these livelihood and psychosocial activities support women's wellbeing, confidence and economic resilience."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        },
+        {
+          "_key": "report-we-sing-project-2",
+          "_type": "block",
+          "children": [
+            {
+              "_key": "text-2",
+              "_type": "span",
+              "marks": [],
+              "text": "Source: JDPI Annual Report 2025, pages 16 and 31. The report does not provide the project's start or end date."
+            }
+          ],
+          "markDefs": [],
+          "style": "normal"
+        }
+      ],
+      "endDate": null,
+      "image": {
+        "alt": "A woman receiving a livelihood start-up kit at a WE-SING project distribution",
+        "assetId": "image-8d9ad524c47f8422f654a98fc8b048a3b5252d5f-762x442-jpg",
+        "url": "/assets/sanity/image-8d9ad524c47f8422f654a98fc8b048a3b5252d5f-762x442-jpg.jpg"
+      },
+      "imageCaption": null,
+      "impactFacts": [
+        {
+          "_key": "startup-2025",
+          "label": "Women receiving start-up kits (2025)",
+          "value": "100"
+        },
+        {
+          "_key": "counselling-2025",
+          "label": "Women receiving counselling (2025)",
+          "value": "30"
+        }
+      ],
+      "location": "Borno State",
+      "profile": {
+        "activities": [
+          {
+            "text": "Provided livelihood kits for 100 women, covering activities such as tailoring, petty trading and food processing.",
+            "title": "Trade-specific start-up kits"
+          },
+          {
+            "text": "Provided specialised one-to-one counselling for 30 women in Borno State.",
+            "title": "Individual counselling"
+          },
+          {
+            "text": "The report describes WE-SING psychosocial sessions where women found mutual encouragement and support.",
+            "title": "Supportive group spaces"
+          }
+        ],
+        "context": "Limited start-up capital and economic pressures can constrain women’s livelihood opportunities. WE-SING pairs tools for income generation with support for emotional wellbeing, building on participants’ own skills, interests and aspirations.",
+        "donor": "Manos Unidas",
+        "facts": null,
+        "gallery": [
+          {
+            "caption": "Livelihood start-up kit distribution • Report, page 16",
+            "image": {
+              "alt": "A participant receiving a livelihood kit at the WE-SING distribution",
+              "assetId": "image-8d9ad524c47f8422f654a98fc8b048a3b5252d5f-762x442-jpg",
+              "url": "/assets/sanity/image-8d9ad524c47f8422f654a98fc8b048a3b5252d5f-762x442-jpg.jpg"
+            }
+          },
+          {
+            "caption": "WE-SING distribution event • Report, page 16",
+            "image": {
+              "alt": "Representatives at the WE-SING livelihood kit distribution",
+              "assetId": "image-08f1a7d4c4669401080195a13905261107184169-820x442-jpg",
+              "url": "/assets/sanity/image-08f1a7d4c4669401080195a13905261107184169-820x442-jpg.jpg"
+            }
+          }
+        ],
+        "outcomes": null,
+        "overview": [
+          "WE-SING supports women’s livelihoods and psychosocial wellbeing in Borno State. Participants received start-up kits tailored to their chosen trades, helping them establish or expand small enterprises.",
+          "The project also provided individual counselling. Economic opportunities and tailored psychosocial support helped women rebuild confidence and strengthen their resilience."
+        ],
+        "overviewCaption": null,
+        "overviewImage": null,
+        "partners": null,
+        "photoNote": null,
+        "resultsIntro": "Project-specific outputs reported in 2025. The kit and counselling figures describe separate services, not an additive unique-beneficiary total.",
+        "reviewNote": null,
+        "sources": [
+          {
+            "detail": "Pages 16 and 31–32. Results relate to the 2025 reporting period unless otherwise stated.",
+            "title": "JDPI Annual Report 2025",
+            "url": null
+          },
+          {
+            "detail": "Page 16’s project event banner identifies Manos Unidas.",
+            "title": "WE-SING distribution photograph",
+            "url": null
+          }
+        ],
+        "stories": [
+          {
+            "source": "Annual Report 2025, page 16",
+            "text": "The report describes women starting new businesses or expanding existing enterprises after receiving kits aligned with their chosen trades. Support was tailored to their skills, interests and livelihood aspirations.",
+            "title": "Tools for women’s own ambitions"
+          }
+        ],
+        "storyNote": null
+      },
+      "projectProgrammes": [
+        {
+          "slug": "economic-empowerment",
+          "title": "ECONOMIC EMPOWERMENT"
+        },
+        {
+          "slug": "mental-health-and-psychosocial-support",
+          "title": "MENTAL HEALTH & PSYCHOSOCIAL SUPPORT"
+        }
+      ],
+      "reportingYear": 2025,
+      "seoDescription": null,
+      "seoTitle": null,
+      "slug": "we-sing-project",
+      "sortOrder": null,
+      "startDate": null,
+      "status": "ongoing",
+      "summary": "Supporting women's livelihoods and wellbeing through trade-specific start-up kits and individual psychosocial counselling in Borno State.",
+      "title": "WE-SING Project"
     }
   ],
+  "projectsManaged": true,
   "reports": [],
   "schemaVersion": 1,
   "settings": {

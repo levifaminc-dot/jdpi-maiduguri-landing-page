@@ -4,6 +4,9 @@ import {createClient} from '@sanity/client';
 import {CONTENT_QUERY} from './queries';
 import settings from '../../config/sanity.json';
 import {applyReportProjects} from './report-projects';
+import type {EditorialPage} from './page-editor';
+import type {ProjectProfile} from './project-profiles';
+import type {ProgrammeDetails} from './programme-details';
 
 export interface ContentImage {url: string; alt: string; assetId?: string}
 export interface ContentItem {
@@ -14,9 +17,12 @@ export interface ContentItem {
   projectProgrammes?: {title:string; slug:string}[];
   impactFacts?: {_key:string; value:string; label:string}[];
   reportingYear?: number; imageCaption?: string;
+  profile?: ProjectProfile; details?: ProgrammeDetails;
 }
 export interface SiteContent {
   schemaVersion: number;
+  pages?: EditorialPage[];
+  projectsManaged?:boolean;
   settings: {organisationName: string; shortName: string; diocese: string; tagline: string;
     email: string; phone: string; address: string; country: string; donationUrl: string;
     socialLinks: {label: string; url: string}[]; seoTitle: string; seoDescription: string};

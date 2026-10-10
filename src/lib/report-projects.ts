@@ -12,11 +12,17 @@ function blocks(paragraphs: string[], prefix: string): PortableTextBlock[] {
 // An explicit, reviewable local supplement. Never writes to the live CMS.
 // Apply to both content sources so taking a fresh CMS snapshot cannot erase it.
 export function applyReportProjects(content: SiteContent): SiteContent {
+  // Once migrated, Sanity owns deletions as well as edits. Never resurrect
+  // an intentionally removed or unpublished report-derived project.
+  if(content.projectsManaged)return content;
   const projects = [...content.projects];
   for (const entry of report.projects) {
     const {paragraphs, appendParagraphs, reportPages, clearDates, ...fields} = entry;
     const index = projects.findIndex(project => project.slug === entry.slug);
     const previous = index >= 0 ? projects[index] : undefined;
+    // Once seeded into Sanity, the editor owns the full project. The historical
+    // report supplement is only a fallback, never an override of CMS publication.
+    if(previous?.profile) continue;
     // Corrections must not accidentally create incomplete existing projects.
     if (!previous && !entry.title) continue;
     const project = {

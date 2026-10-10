@@ -1,9 +1,9 @@
 ---
 import mapData from '../data/impact-maps.json';
-import {impactYear} from '../lib/impact';
-import lgaActivities from '../data/lga-activities.json';
-interface Props {showActivities?:boolean; reportUrl?:string; projectSlugs?:string[]}
-const {showActivities=false,reportUrl='/resources/',projectSlugs=[]}=Astro.props;
+import {impactYear as defaultYear} from '../lib/impact';
+import defaultActivities from '../data/lga-activities.json';
+interface Props {showActivities?:boolean; reportUrl?:string; projectSlugs?:string[];lgaActivities?:typeof defaultActivities;impactYear?:number}
+const {showActivities=false,reportUrl='/resources/',projectSlugs=[],lgaActivities=defaultActivities,impactYear=defaultYear}=Astro.props;
 const initialLga=(state:typeof mapData.states[number])=>showActivities ? state.covered.find(area=>lgaActivities.some(item=>item.state===state.state&&item.lga===area.name))?.name || state.covered[0].name : state.covered[0].name;
 ---
 <div class="im-tabs" data-tabs>

@@ -1,6 +1,7 @@
 import {readFileSync,existsSync} from 'node:fs';
 import path from 'node:path';
 import {applyReportProjects} from '../src/lib/report-projects.ts';
+import {validatePageContent} from './validate-page-content.mjs';
 const file=process.argv[2]||'content/snapshot.json';
 const data=JSON.parse(readFileSync(file,'utf8'));
 export function validateContent(data){
@@ -31,6 +32,7 @@ export function validateContent(data){
       }
     }
   }
+  validatePageContent(data,asset);
   if(errors.length)throw new Error(errors.join('\n'));
   return data;
 }

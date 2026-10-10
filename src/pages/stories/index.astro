@@ -1,33 +1,35 @@
 ---
+import {pageEditor} from "../../lib/page-editor";
 import {getContent,formatDate} from '../../lib/content';
-import {getUpdates,updateFilters} from '../../lib/stories';
+import {getWebsiteUpdates,updateFilters} from '../../lib/stories';
 import Layout from '../../layouts/SiteLayout.astro';
 import ContentImage from '../../components/ContentImage.astro';
 import '../../styles/project-directory.css';
 import '../../styles/stories.css';
 const content=await getContent();
-const updates=getUpdates(content.stories,content.reports);
+const page=pageEditor(content,"stories");
+const updates=getWebsiteUpdates(content);
 const featured=updates.find(item=>!item.document&&item.image);
 ---
-<Layout content={content} title={`Stories & Updates | ${content.settings.shortName}`} description="Stories from the field, blog posts, news, events and reports from JDPI Maiduguri and the communities we serve across Northeast Nigeria." pageClass="projects-page updates-page">
+<Layout content={content} title={`${page.text("seoTitle")} | ${content.settings.shortName}`} description={page.text("seoDescription")} pageClass="projects-page updates-page">
   <section class="updates-hero" aria-labelledby="updates-heading">
-    <img class="updates-hero-photo" src="/assets/about/community-dialogue.jpg" alt="Community members taking part in a JDPI dialogue session" width="1200" height="656" fetchpriority="high"/>
-    <div class="project-shell"><nav class="updates-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Stories &amp; Updates</span></nav><p class="updates-eyebrow">VOICES FROM THE NORTHEAST</p><h1 id="updates-heading">Every story matters.<br/><span>Every voice counts.</span></h1><p class="updates-hero-intro">Life in our communities. Lessons from the field. The work we share.<br/>Explore the people and progress behind our programmes.</p></div>
+    <img class="updates-hero-photo" src={page.image("updatesImage1").url} alt={page.image("updatesImage1").alt} width="1200" height="656" fetchpriority="high"/>
+    <div class="project-shell"><nav class="updates-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Stories &amp; Updates</span></nav><p class="updates-eyebrow">{page.text("updatesParagraph1")}</p><h1 id="updates-heading">{page.text("updatesHeading1")}<br/><span>{page.text("updatesText1")}</span></h1><p class="updates-hero-intro">{page.text("updatesParagraph2")}<br/>{page.text("updatesParagraph3")}</p></div>
   </section>
   <section class="updates-library project-shell" aria-labelledby="updates-library-heading">
-    <div class="updates-library-top"><div><p class="updates-eyebrow">STORIES &amp; UPDATES</p><h2 id="updates-library-heading">From the field. For a better future.</h2></div><a class="updates-library-link" href="/resources/">Explore our report library <span aria-hidden="true">↗</span></a></div>
+    <div class="updates-library-top"><div><p class="updates-eyebrow">{page.text("updatesLibraryParagraph1")}</p><h2 id="updates-library-heading">{page.text("updatesLibraryHeading1")}</h2></div><a class="updates-library-link" href="/resources/">{page.text("updatesLibraryLinkLabel1")} <span aria-hidden="true">↗</span></a></div>
     <div class="updates-controls" data-updates-controls hidden>
       <div class="updates-tabs" role="group" aria-label="Filter stories and updates">{updateFilters.map((filter,i)=><button type="button" data-update-filter={filter.value} aria-pressed={i===0} aria-controls="updates-list">{filter.label}<span aria-hidden="true">{filter.value==='all'?updates.length:updates.filter(item=>item.category===filter.value).length}</span></button>)}</div>
       <div class="updates-search"><label for="updates-search">Search updates</label><input id="updates-search" type="search" placeholder="Search stories, posts, reports…" aria-controls="updates-list"/></div>
     </div>
-    <div class="updates-result-line"><p id="updates-count" role="status" aria-live="polite" aria-atomic="true">{updates.length} updates</p><p>Stories, news &amp; published documents</p></div>
+    <div class="updates-result-line"><p id="updates-count" role="status" aria-live="polite" aria-atomic="true">{updates.length} {page.text("updatesLibraryParagraph2")}</p><p>{page.text("updatesLibraryParagraph3")}</p></div>
     <div class="updates-grid" id="updates-list">{updates.map(item=><article class:list={['update-card',{'update-featured':item===featured,'update-document':item.document}]} data-update-category={item.category} data-update-search={`${item.title} ${item.summary||''} ${item.label} ${item.year||''}`}>
-      <div class="update-visual">{item.image?<ContentImage image={item.image}/>:item.document?<div class="update-document-art" aria-hidden="true"><svg viewBox="0 0 48 56" fill="none"><path d="M8 2h22l10 10v42H8zM30 2v12h10M16 27h16M16 34h16M16 41h10" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>JDPI · {item.label}</span><strong>{item.year||'PUBLICATION'}</strong></div>:<div class="update-fallback" aria-hidden="true">JUSTICE.<br/>DEVELOPMENT.<br/>PEACE.</div>}{item===featured&&<span class="update-feature-label">LATEST STORY</span>}</div>
-      <div class="update-copy"><div class="update-meta"><span class="update-category">{item.label}</span>{item.publishedAt?<time datetime={item.publishedAt}>{formatDate(item.publishedAt)}</time>:item.year&&<span>Reporting year {item.year}</span>}</div><h3><a href={item.url} target={item.document?'_blank':undefined} rel={item.document?'noopener noreferrer':undefined}>{item.title}{item.document&&<span class="updates-sr"> (PDF, opens in a new tab)</span>}</a></h3>{item.summary&&<p>{item.summary}</p>}<a class="update-read" href={item.url} target={item.document?'_blank':undefined} rel={item.document?'noopener noreferrer':undefined}>{item.document?'Open document PDF':item.category==='blog'?'Read blog post':item.category==='field'?'Read the story':'Read update'} <span aria-hidden="true">↗</span><span class="updates-sr"> — {item.title}{item.document?' (opens in a new tab)':''}</span></a></div>
+      <div class="update-visual">{item.image?<ContentImage image={item.image}/>:item.document?<div class="update-document-art" aria-hidden="true"><svg viewBox="0 0 48 56" fill="none"><path d="M8 2h22l10 10v42H8zM30 2v12h10M16 27h16M16 34h16M16 41h10" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>{page.text("updatesLibraryText1")} {item.label}</span><strong>{item.year||'PUBLICATION'}</strong></div>:<div class="update-fallback" aria-hidden="true">{page.text("updatesLibraryText2")}<br/>{page.text("updatesLibraryText3")}<br/>{page.text("updatesLibraryText4")}</div>}{item===featured&&<span class="update-feature-label">{page.text("updatesLibraryText5")}</span>}</div>
+      <div class="update-copy"><div class="update-meta"><span class="update-category">{item.label}</span>{item.publishedAt?<time datetime={item.publishedAt}>{formatDate(item.publishedAt)}</time>:item.year&&<span>{page.text("updatesLibraryText6")} {item.year}</span>}</div><h3><a href={item.url} target={item.document?'_blank':undefined} rel={item.document?'noopener noreferrer':undefined}>{item.title}{item.document&&<span class="updates-sr"> (PDF, opens in a new tab)</span>}</a></h3>{item.summary&&<p>{item.summary}</p>}<a class="update-read" href={item.url} target={item.document?'_blank':undefined} rel={item.document?'noopener noreferrer':undefined}>{item.document?'Open document PDF':item.category==='blog'?'Read blog post':item.category==='field'?'Read the story':'Read update'} <span aria-hidden="true">↗</span><span class="updates-sr"> — {item.title}{item.document?' (opens in a new tab)':''}</span></a></div>
     </article>)}</div>
-    <div class="updates-empty" data-updates-empty hidden><h3>No updates found.</h3><p data-updates-empty-message>Try another category or search term.</p><button type="button" data-updates-reset>Show all updates <span aria-hidden="true">→</span></button></div>
+    <div class="updates-empty" data-updates-empty hidden><h3>{page.text("updatesLibraryHeading2")}</h3><p data-updates-empty-message>{page.text("updatesLibraryParagraph4")}</p><button type="button" data-updates-reset>Show all updates <span aria-hidden="true">→</span></button></div>
     <noscript><p class="updates-noscript">All updates are shown. Enable JavaScript to filter and search them.</p></noscript>
   </section>
-  <section class="updates-cta"><div class="project-shell"><div><p class="updates-eyebrow">BEYOND THE HEADLINES</p><h2>See the change.<br/>Understand the impact.</h2><p>Discover the results behind our community stories and programmes.</p></div><a href="/impact/">Explore our impact <span aria-hidden="true">→</span></a></div></section>
+  <section class="updates-cta"><div class="project-shell"><div><p class="updates-eyebrow">{page.text("introParagraph1")}</p><h2>{page.text("introHeading1")}<br/>{page.text("introHeading2")}</h2><p>{page.text("introParagraph2")}</p></div><a href="/impact/">{page.text("introLinkLabel1")} <span aria-hidden="true">→</span></a></div></section>
   <script>import '../../scripts/stories-filter';</script>
 </Layout>

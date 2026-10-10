@@ -1,0 +1,756 @@
+{
+  "pages": {
+    "about": {
+      "kind": "object",
+      "fields": [
+        {
+          "name": "timeline",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "year",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "title",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "text",
+                "required": true,
+                "kind": "string"
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "values",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "title",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "text",
+                "required": true,
+                "kind": "string"
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "approach",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "title",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "text",
+                "required": true,
+                "kind": "string"
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "leadership",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "name",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "role",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "detail",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "image",
+                "required": true,
+                "kind": "image"
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "accountability",
+          "required": true,
+          "kind": "object",
+          "fields": [
+            {
+              "name": "safeguarding",
+              "required": true,
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "required": true,
+                  "kind": "string"
+                },
+                {
+                  "name": "text",
+                  "required": true,
+                  "kind": "string"
+                }
+              ]
+            },
+            {
+              "name": "community",
+              "required": true,
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "required": true,
+                  "kind": "string"
+                },
+                {
+                  "name": "text",
+                  "required": true,
+                  "kind": "string"
+                }
+              ]
+            },
+            {
+              "name": "feedback",
+              "required": true,
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "required": true,
+                  "kind": "string"
+                },
+                {
+                  "name": "text",
+                  "required": true,
+                  "kind": "string"
+                }
+              ]
+            },
+            {
+              "name": "transparency",
+              "required": true,
+              "kind": "object",
+              "fields": [
+                {
+                  "name": "title",
+                  "required": true,
+                  "kind": "string"
+                },
+                {
+                  "name": "text",
+                  "required": true,
+                  "kind": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "team": {
+      "kind": "object",
+      "fields": [
+        {
+          "name": "board",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "name",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "role",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "detail",
+                "required": false,
+                "kind": "string"
+              },
+              {
+                "name": "image",
+                "required": true,
+                "kind": "image"
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "management",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "name",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "role",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "image",
+                "required": true,
+                "kind": "image"
+              }
+            ]
+          },
+          "max": 100
+        }
+      ]
+    },
+    "impact": {
+      "kind": "object",
+      "fields": [
+        {
+          "name": "impactYear",
+          "required": true,
+          "kind": "number"
+        },
+        {
+          "name": "impactOverview",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "value",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "label",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "source",
+                "required": true,
+                "kind": "string"
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "sectorImpact",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "title",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "slug",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "value",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "label",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "description",
+                "required": true,
+                "kind": "text"
+              },
+              {
+                "name": "source",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "estimated",
+                "required": false,
+                "kind": "boolean"
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "photos",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "name",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "image",
+                "required": true,
+                "kind": "image"
+              }
+            ]
+          },
+          "max": 100
+        }
+      ]
+    },
+    "where-we-work": {
+      "kind": "object",
+      "fields": [
+        {
+          "name": "lgaActivities",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "state",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "lga",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "activities",
+                "required": true,
+                "kind": "array",
+                "item": {
+                  "kind": "object",
+                  "fields": [
+                    {
+                      "name": "title",
+                      "required": true,
+                      "kind": "string"
+                    },
+                    {
+                      "name": "text",
+                      "required": true,
+                      "kind": "text"
+                    },
+                    {
+                      "name": "source",
+                      "required": true,
+                      "kind": "string"
+                    },
+                    {
+                      "name": "project",
+                      "required": false,
+                      "kind": "string"
+                    },
+                    {
+                      "name": "page",
+                      "required": false,
+                      "kind": "number"
+                    }
+                  ]
+                },
+                "max": 100
+              }
+            ]
+          },
+          "max": 100
+        },
+        {
+          "name": "offices",
+          "required": true,
+          "kind": "array",
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "town",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "state",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "type",
+                "required": true,
+                "kind": "string"
+              }
+            ]
+          },
+          "max": 100
+        }
+      ]
+    },
+    "resources": {
+      "kind": "object",
+      "fields": [
+        {
+          "name": "legacyReports",
+          "required": true,
+          "kind": "array",
+          "max": 30,
+          "item": {
+            "kind": "object",
+            "fields": [
+              {
+                "name": "title",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "category",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "year",
+                "required": true,
+                "kind": "number"
+              },
+              {
+                "name": "summary",
+                "required": true,
+                "kind": "text"
+              },
+              {
+                "name": "fileUrl",
+                "required": true,
+                "kind": "string"
+              },
+              {
+                "name": "onlineUrl",
+                "required": false,
+                "kind": "string"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "projectProfile": {
+    "kind": "object",
+    "fields": [
+      {
+        "name": "donor",
+        "required": true,
+        "kind": "string"
+      },
+      {
+        "name": "partners",
+        "required": false,
+        "kind": "string"
+      },
+      {
+        "name": "overview",
+        "required": true,
+        "kind": "array",
+        "item": {
+          "kind": "text"
+        },
+        "max": 100
+      },
+      {
+        "name": "context",
+        "required": true,
+        "kind": "text"
+      },
+      {
+        "name": "activities",
+        "required": true,
+        "kind": "array",
+        "item": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "title",
+              "required": true,
+              "kind": "string"
+            },
+            {
+              "name": "text",
+              "required": true,
+              "kind": "text"
+            }
+          ]
+        },
+        "max": 100
+      },
+      {
+        "name": "facts",
+        "required": false,
+        "kind": "array",
+        "item": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "value",
+              "required": true,
+              "kind": "string"
+            },
+            {
+              "name": "label",
+              "required": true,
+              "kind": "string"
+            }
+          ]
+        },
+        "max": 100
+      },
+      {
+        "name": "resultsIntro",
+        "required": true,
+        "kind": "text"
+      },
+      {
+        "name": "stories",
+        "required": true,
+        "kind": "array",
+        "item": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "title",
+              "required": true,
+              "kind": "string"
+            },
+            {
+              "name": "text",
+              "required": true,
+              "kind": "text"
+            },
+            {
+              "name": "source",
+              "required": true,
+              "kind": "string"
+            }
+          ]
+        },
+        "max": 100
+      },
+      {
+        "name": "overviewImage",
+        "required": false,
+        "kind": "image"
+      },
+      {
+        "name": "overviewCaption",
+        "required": false,
+        "kind": "string"
+      },
+      {
+        "name": "gallery",
+        "required": true,
+        "kind": "array",
+        "item": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "image",
+              "required": true,
+              "kind": "image"
+            },
+            {
+              "name": "caption",
+              "required": true,
+              "kind": "string"
+            }
+          ]
+        },
+        "max": 100
+      },
+      {
+        "name": "sources",
+        "required": true,
+        "kind": "array",
+        "item": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "title",
+              "required": true,
+              "kind": "string"
+            },
+            {
+              "name": "detail",
+              "required": true,
+              "kind": "text"
+            },
+            {
+              "name": "url",
+              "required": false,
+              "kind": "text"
+            }
+          ]
+        },
+        "max": 100
+      },
+      {
+        "name": "storyNote",
+        "required": false,
+        "kind": "text"
+      },
+      {
+        "name": "photoNote",
+        "required": false,
+        "kind": "string"
+      },
+      {
+        "name": "reviewNote",
+        "required": false,
+        "kind": "text"
+      },
+      {
+        "name": "outcomes",
+        "required": false,
+        "kind": "array",
+        "item": {
+          "kind": "string"
+        },
+        "max": 100
+      }
+    ]
+  },
+  "programmeDetails": {
+    "kind": "object",
+    "fields": [
+      {
+        "name": "projectSlugs",
+        "required": false,
+        "kind": "array",
+        "item": {
+          "kind": "string"
+        },
+        "max": 100
+      },
+      {
+        "name": "interventions",
+        "required": true,
+        "kind": "array",
+        "item": {
+          "kind": "string"
+        },
+        "max": 100
+      },
+      {
+        "name": "source",
+        "required": true,
+        "kind": "string"
+      },
+      {
+        "name": "locations",
+        "required": true,
+        "kind": "array",
+        "item": {
+          "kind": "object",
+          "fields": [
+            {
+              "name": "label",
+              "required": true,
+              "kind": "string"
+            },
+            {
+              "name": "detail",
+              "required": true,
+              "kind": "string"
+            },
+            {
+              "name": "source",
+              "required": true,
+              "kind": "string"
+            }
+          ]
+        },
+        "max": 100
+      },
+      {
+        "name": "locationNote",
+        "required": false,
+        "kind": "text"
+      },
+      {
+        "name": "projectReach",
+        "required": false,
+        "kind": "object",
+        "fields": [
+          {
+            "name": "value",
+            "required": true,
+            "kind": "string"
+          },
+          {
+            "name": "label",
+            "required": true,
+            "kind": "string"
+          },
+          {
+            "name": "description",
+            "required": true,
+            "kind": "string"
+          },
+          {
+            "name": "source",
+            "required": true,
+            "kind": "string"
+          },
+          {
+            "name": "project",
+            "required": true,
+            "kind": "string"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -26,7 +26,7 @@ const programmeTags: Record<string,string> = {
 };
 const month=(date:string)=>new Intl.DateTimeFormat('en-GB',{month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(date));
 export function directoryDetails(project:ContentItem){
-  const fallback=templateDetails[project.slug];
+  const fallback=project.profile?undefined:templateDetails[project.slug];
   const startDate=project.startDate || fallback?.startDate;
   const endDate=project.endDate || fallback?.endDate;
   return {

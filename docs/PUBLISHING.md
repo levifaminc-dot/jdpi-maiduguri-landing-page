@@ -2,7 +2,7 @@
 
 ## Code revisions
 
-Every implementation milestone is committed and pushed to `main` in the private repository. GitHub Actions runs content validation, Astro and Studio type checks, the production build and local-link verification. A versioned `jdpi-release-<run number>` artifact contains the deployment archive and exact source commit.
+Every implementation milestone is committed and pushed to `main` in the public repository. GitHub Actions runs content validation, Astro and Studio type checks, the production build and local-link verification. A versioned `jdpi-release-<run number>` artifact contains the deployment archive and exact source commit. Private credentials and staff operational records are never included.
 
 ## Approved Sanity updates
 
@@ -28,7 +28,7 @@ Method: `POST`. Headers: `Accept: application/vnd.github+json`, `Content-Type: a
 Filter:
 
 ```groq
-_type in ["siteSettings", "homePage", "programme", "project", "story", "report", "partner"]
+_type in ["siteSettings", "homePage", "programme", "project", "story", "report", "partner", "aboutPage", "teamPage", "impactPage", "whereWeWorkPage", "programmesPage", "projectsPage", "storiesPage", "resourcesPage", "donatePage", "contactPage"]
 && !(_id in path("drafts.**"))
 && !(_id in path("versions.**"))
 ```
@@ -46,7 +46,7 @@ The workflow exports the published content and original asset bytes, verifies th
 
 ## Current production host
 
-Production is now [Vercel](https://jdpi-maiduguri-landing-page.vercel.app/), connected to the private GitHub repository's `main` branch. New source and content-snapshot commits trigger Vercel builds. Verify the Vercel deployment is Ready and the changed public page is visible; a green GitHub check alone is not proof of publication.
+Production is now [Vercel](https://www.jdpimaiduguri.org/), connected to the GitHub repository's `main` branch. New source and content-snapshot commits trigger Vercel builds. Verify the Vercel deployment is Ready and the changed public page is visible; a green GitHub check alone is not proof of publication.
 
 The content path is **Sanity Publish → scheduled/manual snapshot → verified Git commit → connected Vercel build**. Scheduled checks request an hourly run, but GitHub can delay them. No instant publish webhook is configured or promised by this repository. Immediate unattended syncing would require an explicitly authorised webhook credential/setup; do not add broad GitHub or Vercel credentials for convenience.
 

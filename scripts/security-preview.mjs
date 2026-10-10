@@ -4,12 +4,14 @@ import {readFile,stat} from 'node:fs/promises';
 import path from 'node:path';
 const editor=process.argv.includes('--studio');
 const root=path.resolve(editor?'studio/dist':'dist');
-const port=editor?4332:4322;
+const portArg=process.argv.find(arg=>arg.startsWith('--port='));
+const port=portArg?Number(portArg.slice(7)):editor?4332:4322;
+if(!Number.isInteger(port)||port<1024||port>65535)throw Error('Choose a valid local preview port.');
 const config=JSON.parse(await readFile(editor?'studio/vercel.json':'vercel.json','utf8'));
 const headers=Object.fromEntries(config.headers[0].headers.map(h=>[h.key,h.value]));
 const types={'.html':'text/html; charset=utf-8','.js':'text/javascript','.mjs':'text/javascript','.css':'text/css','.json':'application/json','.svg':'image/svg+xml','.avif':'image/avif','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.woff2':'font/woff2','.pdf':'application/pdf'};
 createServer(async(req,res)=>{
-  if(!/^(127\.0\.0\.1|localhost):(?:4322|4332)$/.test(req.headers.host||'') || !['GET','HEAD'].includes(req.method)){res.writeHead(403).end();return;}
+  if(![`127.0.0.1:${port}`,`localhost:${port}`].includes(req.headers.host||'') || !['GET','HEAD'].includes(req.method)){res.writeHead(403).end();return;}
   try{
     const requested=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
     let file=path.resolve(root,`.${requested}`);

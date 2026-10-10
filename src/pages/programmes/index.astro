@@ -1,8 +1,9 @@
 ---
+import {pageEditor} from "../../lib/page-editor";
 import {getContent} from '../../lib/content';
 import {PortableText} from 'astro-portabletext';
 import EditorialLink from '../../components/EditorialLink.astro';
-import {sectorImpact,impactYear} from '../../lib/impact';
+import {getImpact} from '../../lib/impact';
 import {programmeImage} from '../../lib/programmes';
 import interventionData from '../../data/programme-interventions.json';
 import Layout from '../../layouts/SiteLayout.astro';
@@ -11,6 +12,8 @@ import ProjectIcon from '../../components/ProjectIcon.astro';
 import '../../styles/project-directory.css';
 import '../../styles/programmes.css';
 const content=await getContent();
+const page=pageEditor(content,"programmes");
+const {sectorImpact,impactYear}=getImpact(content);
 const icons:Record<string,'food'|'nutrition'|'water'|'protection'|'wellbeing'|'peace'|'income'>={
   'food-security-and-livelihoods':'food',nutrition:'nutrition','water-sanitation-and-hygiene':'water',
   protection:'protection','mental-health-and-psychosocial-support':'wellbeing',
@@ -28,57 +31,57 @@ const details=interventionData as Record<string,ProgrammeDetails>;
 const programmes=content.programmes.map(item=>({
   ...item,image:programmeImage(item),displayTitle:displayTitle(item.title),icon:icons[item.slug]||'food',
   shortLabel:shortLabels[item.slug]||displayTitle(item.title),
-  result:sectorImpact.find(result=>result.slug===item.slug),details:details[item.slug],
-  projects:content.projects.filter(project=>project.projectProgrammes?.some(programme=>programme.slug===item.slug)||details[item.slug]?.projectSlugs?.includes(project.slug)),
+  result:sectorImpact.find(result=>result.slug===item.slug),details:item.details||details[item.slug],
+  projects:content.projects.filter(project=>project.projectProgrammes?.some(programme=>programme.slug===item.slug)||(item.details||details[item.slug])?.projectSlugs?.includes(project.slug)),
 }));
 ---
-<Layout content={content} title={`Our Programmes | ${content.settings.shortName}`} description="Explore JDPI’s integrated programmes in food security, nutrition, water and hygiene, protection, mental well-being, peacebuilding and economic empowerment across Northeast Nigeria." pageClass="projects-page programmes-page">
+<Layout content={content} title={`${page.text("seoTitle")} | ${content.settings.shortName}`} description={page.text("seoDescription")} pageClass="projects-page programmes-page">
   <section class="pg-hero" aria-labelledby="programmes-heading">
-    <img class="pg-hero-image" src="/assets/projects/bmz-greenhouse-monitoring.jpg" alt="A JDPI team member inspecting crops in a BMZ-supported greenhouse" fetchpriority="high"/>
+    <img class="pg-hero-image" src={page.image("programmesImage1").url} alt={page.image("programmesImage1").alt} fetchpriority="high"/>
     <div class="project-shell pg-hero-copy">
       <nav class="pg-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Programmes</span></nav>
-      <p class="pg-eyebrow">OUR PROGRAMMES</p>
-      <h1 id="programmes-heading">Different needs.<br/><span>One shared dignity.</span></h1>
-      <p>From meeting urgent needs to strengthening lasting resilience, we work alongside communities across Northeast Nigeria.</p>
-      <a class="pg-button pg-button-light" href="#programme-areas">Explore our programmes <ProjectIcon name="arrow"/></a>
+      <p class="pg-eyebrow">{page.text("programmesParagraph1")}</p>
+      <h1 id="programmes-heading">{page.text("programmesHeading1")}<br/><span>{page.text("programmesText1")}</span></h1>
+      <p>{page.text("programmesParagraph2")}</p>
+      <a class="pg-button pg-button-light" href="#programme-areas">{page.text("programmesLinkLabel1")} <ProjectIcon name="arrow"/></a>
     </div>
-    <p class="pg-photo-note">BMZ project · JDPI Annual Report 2025</p>
+    <p class="pg-photo-note">{page.text("programmesParagraph3")}</p>
   </section>
   <div data-programme-tabs>
   <nav class="pg-section-nav" aria-label="Programme areas"><div class="project-shell pg-mobile-picker" data-programme-picker hidden><label for="programme-picker">Choose a programme</label><select id="programme-picker" data-programme-select aria-controls="programme-areas">{programmes.map(programme=><option value={programme.slug}>{programme.displayTitle}</option>)}</select></div><div class="project-shell" data-programme-tablist>{programmes.map(programme=><a id={`programme-tab-${programme.slug}`} href={`#programme-${programme.slug}`} data-programme-tab={programme.slug}><ProjectIcon name={programme.icon}/>{programme.shortLabel}</a>)}</div></nav>
   <section class="pg-directory project-shell" id="programme-areas" aria-labelledby="areas-heading">
-    <div class="pg-section-head"><div><p class="pg-eyebrow">WHAT WE DO</p><h2 id="areas-heading">Integrated programmes.<br/>Stronger communities.</h2></div><p>People’s needs are connected. Our programmes bring humanitarian assistance, development and peacebuilding together, with dignity at the centre.</p></div>
+    <div class="pg-section-head"><div><p class="pg-eyebrow">{page.text("areasParagraph1")}</p><h2 id="areas-heading">{page.text("areasHeading1")}<br/>{page.text("areasHeading2")}</h2></div><p>{page.text("areasParagraph2")}</p></div>
     <div class="pg-panels">{programmes.map((programme,index)=>{
       const reach=programme.result||programme.details?.projectReach;
       return <article class:list={['pg-card',`pg-${programme.icon}`]} id={`programme-${programme.slug}`} data-programme={programme.slug} aria-labelledby={`programme-heading-${programme.slug}`}>
       <div class="pg-card-title"><div class="pg-card-heading"><span class="pg-icon"><ProjectIcon name={programme.icon}/></span><h3 id={`programme-heading-${programme.slug}`}>{programme.displayTitle}</h3></div>{programme.summary&&<p class="pg-summary">{programme.summary}</p>}</div>
       <div class="pg-card-visual"><div class="pg-card-photo"><ContentImage image={programme.image}/><span class="pg-card-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</span></div></div>
       <div class="pg-card-body">
-        {reach?<div class="pg-result pg-result-summary"><p class="pg-result-year">{impactYear} REPORTED {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span>{programme.details?.projectReach&&<small>WE-SING project only · not a programme-wide total</small>}</div>:<p class="pg-summary">Verified reach information is awaiting confirmation.</p>}
+        {reach?<div class="pg-result pg-result-summary"><p class="pg-result-year">{impactYear} {page.text("areasParagraph3")} {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span>{programme.details?.projectReach&&<small>{page.text("areasText1")}</small>}</div>:<p class="pg-summary">{page.text("areasParagraph4")}</p>}
         <details class="pg-more" data-programme-details data-programme-tone={`pg-${programme.icon}`} data-dialog-id={`programme-dialog-${programme.slug}`}>
           <summary class="pg-button">More details <ProjectIcon name="arrow"/></summary>
           <div class="pg-detail-content">
-          <header class="pg-modal-header"><div><p class="pg-eyebrow">PROGRAMME DETAILS</p><h2 id={`programme-dialog-heading-${programme.slug}`} tabindex="-1">{programme.displayTitle}</h2></div><button type="button" class="pg-modal-close" data-close-programme-dialog aria-label="Close programme details" hidden><span aria-hidden="true">×</span></button></header>
+          <header class="pg-modal-header"><div><p class="pg-eyebrow">{page.text("areasParagraph5")}</p><h2 id={`programme-dialog-heading-${programme.slug}`} tabindex="-1">{programme.displayTitle}</h2></div><button type="button" class="pg-modal-close" data-close-programme-dialog aria-label="Close programme details" hidden><span aria-hidden="true">×</span></button></header>
           <div class="pg-modal-body">
           {programme.summary&&<p class="pg-modal-intro">{programme.summary}</p>}
-          {reach&&<div class="pg-result"><p class="pg-result-year">{impactYear} REPORTED {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span><p>{reach.description}</p><small>Annual Report {impactYear} · {reach.source}</small>{programme.details?.projectReach&&<a class="pg-reach-link" href={`/projects/${programme.details.projectReach.project}/`}>View the WE-SING project <span aria-hidden="true">→</span></a>}</div>}
+          {reach&&<div class="pg-result"><p class="pg-result-year">{impactYear} {page.text("areasParagraph6")} {programme.result?'REACH / RESULT':'PROJECT REACH'}{programme.result?.estimated?' · ESTIMATED':''}</p><strong>{reach.value}</strong><span>{reach.label}</span><p>{reach.description}</p><small>{page.text("areasText2")} {impactYear} · {reach.source}</small>{programme.details?.projectReach&&<a class="pg-reach-link" href={`/projects/${programme.details.projectReach.project}/`}>{page.text("areasLinkLabel1")} <span aria-hidden="true">→</span></a>}</div>}
           {programme.body?.length>0&&<div class="prose pg-modal-overview"><PortableText value={programme.body} components={{mark:{link:EditorialLink}}}/></div>}
-        <section class="pg-interventions" aria-labelledby={`interventions-${programme.slug}`}><h3 id={`interventions-${programme.slug}`}>Our interventions</h3>{programme.details?<><ul>{programme.details.interventions.map(text=><li>{text}</li>)}</ul><p class="pg-detail-source">{programme.details.source}</p></>:<p>Detailed intervention information is awaiting confirmation. <a href="/contact/">Contact our team</a>.</p>}</section>
-        <section class="pg-locations" aria-labelledby={`locations-${programme.slug}`}><div class="pg-location-heading"><h3 id={`locations-${programme.slug}`}>Documented locations</h3><a href="/where-we-work/">View coverage map <span aria-hidden="true">↗</span></a></div>{programme.details?.locations.length>0&&<ul>{programme.details.locations.map(location=><li><span class="pg-location-label"><ProjectIcon name="location"/>{location.label}</span><p>{location.detail}</p><small>{location.source}</small></li>)}</ul>}{programme.details?.locationNote&&<p class="pg-location-note">{programme.details.locationNote}</p>}{!programme.details&&<p class="pg-location-note">Programme-specific locations are awaiting confirmation.</p>}</section>
-        {programme.projects.length>0&&<div class="pg-project-links"><p>RELATED PROJECTS</p><ul>{programme.projects.map(project=><li><a href={`/projects/${project.slug}/`}>{project.title} <span aria-hidden="true">↗</span></a></li>)}</ul></div>}
-        <a class="pg-card-link" href={`/programmes/${programme.slug}/`}>Explore programme <ProjectIcon name="arrow"/><span class="sr-only"> — {programme.displayTitle}</span></a>
-          <p class="pg-report-note">Results are from the {impactYear} Annual Report, not live totals. Measures may overlap and must not be added as a unique-person total. Documented locations are examples, not a complete programme footprint; completed-project examples are labelled.</p>
+        <section class="pg-interventions" aria-labelledby={`interventions-${programme.slug}`}><h3 id={`interventions-${programme.slug}`}>{page.text("areasHeading3")}</h3>{programme.details?<><ul>{programme.details.interventions.map(text=><li>{text}</li>)}</ul><p class="pg-detail-source">{programme.details.source}</p></>:<p>{page.text("areasParagraph7")} <a href="/contact/">{page.text("areasLinkLabel2")}</a>.</p>}</section>
+        <section class="pg-locations" aria-labelledby={`locations-${programme.slug}`}><div class="pg-location-heading"><h3 id={`locations-${programme.slug}`}>{page.text("areasHeading4")}</h3><a href="/where-we-work/">{page.text("areasLinkLabel3")} <span aria-hidden="true">↗</span></a></div>{programme.details?.locations.length>0&&<ul>{programme.details.locations.map(location=><li><span class="pg-location-label"><ProjectIcon name="location"/>{location.label}</span><p>{location.detail}</p><small>{location.source}</small></li>)}</ul>}{programme.details?.locationNote&&<p class="pg-location-note">{programme.details.locationNote}</p>}{!programme.details&&<p class="pg-location-note">{page.text("areasParagraph8")}</p>}</section>
+        {programme.projects.length>0&&<div class="pg-project-links"><p>{page.text("areasParagraph9")}</p><ul>{programme.projects.map(project=><li><a href={`/projects/${project.slug}/`}>{project.title} <span aria-hidden="true">↗</span></a></li>)}</ul></div>}
+        <a class="pg-card-link" href={`/programmes/${programme.slug}/`}>{page.text("areasLinkLabel4")} <ProjectIcon name="arrow"/><span class="sr-only"> — {programme.displayTitle}</span></a>
+          <p class="pg-report-note">{page.text("areasParagraph10")} {impactYear} {page.text("areasParagraph11")}</p>
           </div></div>
         </details>
       </div>
     </article>})}</div>
-    <p class="pg-report-note">{impactYear} reported results · measures vary and may overlap. <a href="/impact/#sectors-heading">View reporting context <span aria-hidden="true">→</span></a></p>
+    <p class="pg-report-note">{impactYear} {page.text("areasParagraph12")} <a href="/impact/#sectors-heading">{page.text("areasLinkLabel5")} <span aria-hidden="true">→</span></a></p>
   </section>
   </div>
   <section class="pg-approach" aria-labelledby="approach-heading"><div class="project-shell pg-approach-grid">
-    <figure><img src="/assets/about/community-dialogue.jpg" alt="Community members participating in a JDPI dialogue session" loading="lazy"/><figcaption>Community dialogue · JDPI Annual Report 2025</figcaption></figure>
-    <div><p class="pg-eyebrow">OUR APPROACH</p><h2 id="approach-heading">Working with communities.<br/><span>Not simply for them.</span></h2><p>Our work is rooted in listening, participation and local knowledge. We connect support across programme areas so communities can meet today’s needs and shape tomorrow’s possibilities.</p><div class="pg-principles"><div><ProjectIcon name="location"/><h3>Locally rooted</h3><p>Working across Borno, Adamawa and Yobe.</p></div><div><ProjectIcon name="protection"/><h3>Dignity first</h3><p>Promoting safety, inclusion and the rights of every person.</p></div></div><a class="pg-button" href="/where-we-work/">See where we work <ProjectIcon name="arrow"/></a></div>
+    <figure><img src={page.image("approachImage1").url} alt={page.image("approachImage1").alt} loading="lazy"/><figcaption>{page.text("approachCaption1")}</figcaption></figure>
+    <div><p class="pg-eyebrow">{page.text("approachParagraph1")}</p><h2 id="approach-heading">{page.text("approachHeading1")}<br/><span>{page.text("approachText1")}</span></h2><p>{page.text("approachParagraph2")}</p><div class="pg-principles"><div><ProjectIcon name="location"/><h3>{page.text("approachHeading2")}</h3><p>{page.text("approachParagraph3")}</p></div><div><ProjectIcon name="protection"/><h3>{page.text("approachHeading3")}</h3><p>{page.text("approachParagraph4")}</p></div></div><a class="pg-button" href="/where-we-work/">{page.text("approachLinkLabel1")} <ProjectIcon name="arrow"/></a></div>
   </div></section>
-  <section class="pg-cta" aria-labelledby="action-heading"><div class="project-shell"><div><p class="pg-eyebrow">FROM PROGRAMMES TO PROGRESS</p><h2 id="action-heading">See the work.<br/><span>Meet the change.</span></h2><p>Discover our projects, explore reported results, or talk to us about working together.</p></div><div class="pg-actions"><a class="pg-button pg-button-light" href="/projects/">Explore our projects <ProjectIcon name="arrow"/></a><a class="pg-button pg-button-outline" href="/impact/">View our impact <ProjectIcon name="arrow"/></a><a class="pg-contact-link" href="/contact/">Partner with JDPI <span aria-hidden="true">↗</span></a></div></div></section>
+  <section class="pg-cta" aria-labelledby="action-heading"><div class="project-shell"><div><p class="pg-eyebrow">{page.text("actionParagraph1")}</p><h2 id="action-heading">{page.text("actionHeading1")}<br/><span>{page.text("actionText1")}</span></h2><p>{page.text("actionParagraph2")}</p></div><div class="pg-actions"><a class="pg-button pg-button-light" href="/projects/">{page.text("actionLinkLabel1")} <ProjectIcon name="arrow"/></a><a class="pg-button pg-button-outline" href="/impact/">{page.text("actionLinkLabel2")} <ProjectIcon name="arrow"/></a><a class="pg-contact-link" href="/contact/">{page.text("actionLinkLabel3")} <span aria-hidden="true">↗</span></a></div></div></section>
   <script>import '../../scripts/programme-tabs';import '../../scripts/programme-dialogs';</script>
 </Layout>

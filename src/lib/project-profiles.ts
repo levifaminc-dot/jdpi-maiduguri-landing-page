@@ -186,7 +186,7 @@ const profiles:Record<string,ProjectProfile> = {
 };
 
 export function getProjectProfile(item:ContentItem):ProjectProfile {
-  return profiles[item.slug] || {
+  return item.profile || profiles[item.slug] || {
     donor:'Not provided',overview:[item.summary || 'Contact JDPI for further information about this project.'],
     context:'Further project context has not yet been supplied.',activities:[],resultsIntro:'Project results have not yet been supplied.',
     stories:[],storyNote:'Approved project stories have not yet been supplied.',gallery:[],sources:[],

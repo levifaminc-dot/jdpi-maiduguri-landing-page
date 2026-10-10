@@ -1,4 +1,5 @@
 ---
+import {pageEditor} from "../../lib/page-editor";
 import {getContent,itemUrl} from '../../lib/content';
 import {directoryDetails,tagTone} from '../../lib/project-directory';
 import Layout from '../../layouts/SiteLayout.astro';
@@ -6,17 +7,18 @@ import ContentImage from '../../components/ContentImage.astro';
 import Icon from '../../components/ProjectIcon.astro';
 import '../../styles/project-directory.css';
 const content=await getContent();
+const page=pageEditor(content,"projects");
 const projects=content.projects.map(project=>({project,details:directoryDetails(project)}));
 const heroImage=content.projects.find(p=>p.slug==='bmz-multisectoral-resilience-project')?.image || content.home.impactImage;
 ---
-<Layout content={content} title={`Our Projects | ${content.settings.shortName}`} description="Explore JDPI Maiduguri’s humanitarian and development projects supporting communities across Northeast Nigeria." pageClass="projects-page">
+<Layout content={content} title={`${page.text("seoTitle")} | ${content.settings.shortName}`} description={page.text("seoDescription")} pageClass="projects-page">
   <section class="project-hero" aria-labelledby="projects-heading">
     <ContentImage image={heroImage} class="project-hero-image" eager/>
     <div class="project-shell project-hero-content">
       <nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Projects</span></nav>
-      <p class="project-eyebrow">OUR PROJECTS</p>
-      <h1 id="projects-heading">From response<br/>to <span>resilience.</span></h1>
-      <p class="project-hero-intro">Our projects support vulnerable people and communities across Northeast Nigeria through integrated, community-centred and sustainable interventions.</p>
+      <p class="project-eyebrow">{page.text("projectsParagraph1")}</p>
+      <h1 id="projects-heading">{page.text("projectsHeading1")}<br/>{page.text("projectsHeading2")} <span>{page.text("projectsText1")}</span></h1>
+      <p class="project-hero-intro">{page.text("projectsParagraph2")}</p>
     </div>
   </section>
   <section class="project-directory project-shell" aria-label="Explore our projects" data-project-directory>
@@ -47,15 +49,15 @@ const heroImage=content.projects.find(p=>p.slug==='bmz-multisectoral-resilience-
         </div>
         <div class="directory-bottom">
           {details.facts.length>0 && <dl class="project-facts">{details.facts.map(fact=><div><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl>}
-          <a class="project-view" href={itemUrl('projects',project.slug)} aria-label={`View ${project.title}`}>VIEW PROJECT <Icon name="arrow"/></a>
+          <a class="project-view" href={itemUrl('projects',project.slug)} aria-label={`View ${project.title}`}>{page.text("introLinkLabel1")} <Icon name="arrow"/></a>
         </div>
       </article>)}
     </div>
-    <div class="project-empty" hidden data-project-empty><Icon name="search"/><h2>No projects found</h2><p>Try a different search or view all projects.</p><button type="button" data-project-reset>View all projects</button></div>
+    <div class="project-empty" hidden data-project-empty><Icon name="search"/><h2>{page.text("introHeading1")}</h2><p>{page.text("introParagraph1")}</p><button type="button" data-project-reset>View all projects</button></div>
   </section>
   <section class="project-impact-banner" aria-labelledby="project-impact-heading">
     <ContentImage image={content.home.supportImage} class="project-impact-image"/>
-    <div class="project-shell"><div class="project-impact-copy"><h2 id="project-impact-heading">Real people. <span>Lasting change.</span></h2><p>Discover how our projects are supporting communities across Northeast Nigeria.</p><a class="project-impact-link" href="/impact/">VIEW OUR IMPACT <Icon name="arrow"/></a></div></div>
+    <div class="project-shell"><div class="project-impact-copy"><h2 id="project-impact-heading">{page.text("projectImpactHeading1")} <span>{page.text("projectImpactText1")}</span></h2><p>{page.text("projectImpactParagraph1")}</p><a class="project-impact-link" href="/impact/">{page.text("projectImpactLinkLabel1")} <Icon name="arrow"/></a></div></div>
   </section>
 </Layout>
 <script>

@@ -1,4 +1,5 @@
 ---
+import {pageEditor} from "../../lib/page-editor";
 import {getContent,safeExternalUrl} from '../../lib/content';
 import contactConfig from '../../../config/contact.json';
 import Layout from '../../layouts/SiteLayout.astro';
@@ -7,28 +8,29 @@ import '../../styles/project-directory.css';
 import '../../styles/contact-impact.css';
 import '../../styles/contact-form.css';
 const content=await getContent();
+const page=pageEditor(content,"contact");
 const {settings}=content;
 const socials=settings.socialLinks.filter(link=>safeExternalUrl(link.url));
 const formEndpoint=`https://formsubmit.co/${contactConfig.recipient}`;
 const confirmationUrl=new URL('/contact/thanks/',Astro.url.origin).href;
 const emailFor=(subject:string)=>`mailto:${settings.email}?subject=${encodeURIComponent(subject)}`;
 ---
-<Layout content={content} title={`Contact Us | ${settings.shortName}`} description="Send JDPI Maiduguri a message, get a response within 24 hours, and find directions to our Maiduguri office." pageClass="projects-page contact-page">
+<Layout content={content} title={`${page.text("seoTitle")} | ${content.settings.shortName}`} description={page.text("seoDescription")} pageClass="projects-page contact-page">
   <div class="project-shell contact-content modern-contact">
     <nav class="ci-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Contact</span></nav>
-    <header class="contact-page-heading"><p class="ci-eyebrow">CONTACT JDPI</p><h1 id="contact-heading">Get in <span>touch.</span></h1><p>Have a question, a partnership idea or something to share? We’d like to hear from you.</p></header>
+    <header class="contact-page-heading"><p class="ci-eyebrow">{page.text("introParagraph1")}</p><h1 id="contact-heading">{page.text("introHeading1")} <span>{page.text("introText1")}</span></h1><p>{page.text("introParagraph2")}</p></header>
     <div class="contact-workspace">
       <aside class="contact-details" aria-labelledby="contact-details-heading">
-        <div><p class="contact-panel-kicker">LET’S CONNECT</p><h2 id="contact-details-heading">Here to listen.<br/>Ready to collaborate.</h2><p>Connect with our team about our work with communities across Northeast Nigeria.</p></div>
+        <div><p class="contact-panel-kicker">{page.text("contactDetailsParagraph1")}</p><h2 id="contact-details-heading">{page.text("contactDetailsHeading1")}<br/>{page.text("contactDetailsHeading2")}</h2><p>{page.text("contactDetailsParagraph2")}</p></div>
         <div class="contact-details-list">
-          <article><span class="contact-detail-icon" aria-hidden="true">@</span><div><h3>Email us</h3><a href={`mailto:${settings.email}`}>{settings.email}</a></div></article>
-          <article><svg class="contact-detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 3 3 5-2 2c1.5 3 3.5 5 6.5 6.5l2-2 5 3c0 2-1.5 3.5-3.5 3.5C10 21 3 14 3 6.5 3 4.5 4.5 3 6 3Z"/></svg><div><h3>Call our team</h3><a href={`tel:${settings.phone.replace(/[^+\d]/g,'')}`}>{settings.phone}</a></div></article>
-          <article><span class="contact-detail-icon"><Icon name="location"/></span><div><h3>Visit our office</h3><address>{settings.address}<br/>{settings.country}</address><a class="contact-visit-link" href="#office-heading">Map &amp; directions</a></div></article>
+          <article><span class="contact-detail-icon" aria-hidden="true">@</span><div><h3>{page.text("contactDetailsHeading3")}</h3><a href={`mailto:${settings.email}`}>{settings.email}</a></div></article>
+          <article><svg class="contact-detail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 3 3 5-2 2c1.5 3 3.5 5 6.5 6.5l2-2 5 3c0 2-1.5 3.5-3.5 3.5C10 21 3 14 3 6.5 3 4.5 4.5 3 6 3Z"/></svg><div><h3>{page.text("contactDetailsHeading4")}</h3><a href={`tel:${settings.phone.replace(/[^+\d]/g,'')}`}>{settings.phone}</a></div></article>
+          <article><span class="contact-detail-icon"><Icon name="location"/></span><div><h3>{page.text("contactDetailsHeading5")}</h3><address>{settings.address}<br/>{settings.country}</address><a class="contact-visit-link" href="#office-heading">{page.text("contactDetailsLinkLabel1")}</a></div></article>
         </div>
         <div class="contact-panel-bottom"><p>{settings.diocese}</p><p>{settings.tagline}</p>{socials.length>0 && <div class="contact-panel-socials">{socials.map(link=><a href={link.url} target="_blank" rel="noopener noreferrer">{link.label}</a>)}</div>}</div>
       </aside>
       <section class="contact-form-panel" aria-labelledby="enquiry-heading">
-        <div class="contact-form-heading"><h2 id="enquiry-heading">Send us a message</h2><p class="contact-response-time">We respond to general enquiries within 24 hours.</p><p>Fields marked <span aria-hidden="true">*</span> are required.</p></div>
+        <div class="contact-form-heading"><h2 id="enquiry-heading">{page.text("enquiryHeading1")}</h2><p class="contact-response-time">{page.text("enquiryParagraph1")}</p><p>{page.text("enquiryParagraph2")} <span aria-hidden="true">*</span> {page.text("enquiryParagraph3")}</p></div>
         <form id="contact-form" action={formEndpoint} method="POST" aria-describedby="contact-data-note">
           <input type="hidden" name="_subject" value="JDPI website — new contact enquiry"/>
           <input type="hidden" name="_template" value="table"/>
@@ -50,7 +52,7 @@ const emailFor=(subject:string)=>`mailto:${settings.email}?subject=${encodeURICo
     </div>
     <aside class="contact-safe-route" aria-labelledby="safe-route-heading"><div><p class="ci-eyebrow">THE RIGHT CHANNEL</p><h2 id="safe-route-heading">Safeguarding or confidential complaints?</h2><p>This form is for general enquiries—not confidential case reporting or emergencies. Please do not send names of affected people, case details or sensitive documents here.</p><p>A dedicated safeguarding reporting channel will be added when confirmed by JDPI. For now, call our team to ask which channel to use, without sharing case details.</p></div><a class="ci-text-link" href={`tel:${settings.phone.replace(/[^+\d]/g,'')}`}>Ask for the appropriate channel →</a></aside>
     <section class="contact-map-section" aria-labelledby="office-heading">
-      <div class="contact-map-copy"><p class="ci-eyebrow">FIND US IN MAIDUGURI</p><h2 id="office-heading">Plan your visit.</h2><p>{settings.address}</p><p class="contact-map-note">JDPI has confirmed this map location for our Maiduguri office at St. Patrick’s Catholic Church. Contact us to arrange your visit.</p><div class="contact-map-actions"><a class="ci-primary" href={contactConfig.directionsUrl} target="_blank" rel="noopener noreferrer">Get directions <span class="sr-only">to the JDPI office at St. Patrick’s (opens Google Maps)</span></a><a class="ci-text-link" href={emailFor('Arrange a visit to JDPI Maiduguri')}>Arrange a visit</a></div></div>
+      <div class="contact-map-copy"><p class="ci-eyebrow">{page.text("officeParagraph1")}</p><h2 id="office-heading">{page.text("officeHeading1")}</h2><p>{settings.address}</p><p class="contact-map-note">{page.text("officeParagraph2")}</p><div class="contact-map-actions"><a class="ci-primary" href={contactConfig.directionsUrl} target="_blank" rel="noopener noreferrer">{page.text("officeLinkLabel1")} <span class="sr-only">to the JDPI office at St. Patrick’s (opens Google Maps)</span></a><a class="ci-text-link" href={emailFor('Arrange a visit to JDPI Maiduguri')}>{page.text("officeLinkLabel2")}</a></div></div>
       <div class="contact-map-frame"><iframe src={contactConfig.mapEmbedUrl} title="Google Maps: JDPI Maiduguri office at St. Patrick’s Catholic Church" width="700" height="380" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
     </section>
   </div>
