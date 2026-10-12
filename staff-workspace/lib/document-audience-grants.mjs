@@ -1,0 +1,8 @@
+import {runtimeRole} from './runtime-role-policy.mjs';
+export const documentAudienceGrantsSql=`GRANT SELECT ON workspace_staff_profile TO ${runtimeRole};
+  GRANT INSERT(tenant_id,object_id,department,profile_editor),UPDATE(department,profile_editor,version,updated_at) ON workspace_staff_profile TO ${runtimeRole};
+  GRANT INSERT(sharing_mode,sharing_departments),UPDATE(sharing_mode,sharing_departments) ON workspace_document TO ${runtimeRole};`;
+export async function verifyDocumentAudienceGrants(db){
+  for(const [table,privilege,expected] of [['workspace_staff_profile','SELECT',true],['workspace_staff_profile','DELETE',false],['workspace_staff_profile','TRUNCATE',false],['workspace_staff_profile','TRIGGER',false],['workspace_staff_profile','REFERENCES',false]])if((await db.query('SELECT has_table_privilege($1,$2,$3) AS allowed',[runtimeRole,table,privilege])).rows[0].allowed!==expected)throw new Error('Unsafe department privileges.');
+  for(const [table,column,privilege,expected] of [...['sharing_mode','sharing_departments'].flatMap(column=>[['workspace_document',column,'INSERT',true],['workspace_document',column,'UPDATE',true]]),...['tenant_id','object_id','department','profile_editor','version','updated_at'].flatMap(column=>[['workspace_staff_profile',column,'INSERT',['tenant_id','object_id','department','profile_editor'].includes(column)],['workspace_staff_profile',column,'UPDATE',['department','profile_editor','version','updated_at'].includes(column)]])])if((await db.query('SELECT has_column_privilege($1,$2,$3,$4) AS allowed',[runtimeRole,table,column,privilege])).rows[0].allowed!==expected)throw new Error('Unsafe audience column privileges.');
+}

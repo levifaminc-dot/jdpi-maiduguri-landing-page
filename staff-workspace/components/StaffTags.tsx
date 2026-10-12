@@ -1,0 +1,17 @@
+'use client';
+import {useState} from 'react';
+import {useRouter} from 'next/navigation';
+import StaffTagPicker,{type TagPerson} from './StaffTagPicker';
+import DocumentAudiencePicker from './DocumentAudiencePicker';
+type Tags={tags:TagPerson[];version:number;canManage:boolean;sharingMode?:string;departments?:string[]};
+async function read(url:string){const response=await fetch(url,{cache:'no-store'}),data=await response.json();if(!response.ok)throw new Error(data.error||'Tags could not be loaded.');return data;}
+export default function StaffTags({kind,id}:{kind:'announcement'|'document';id:string}){
+  const router=useRouter(),[data,setData]=useState<Tags|null>(null),[people,setPeople]=useState<TagPerson[]>([]),[selected,setSelected]=useState<TagPerson[]>([]),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
+  const [mode,setMode]=useState('SELECTED'),[departments,setDepartments]=useState<string[]>([]);
+  async function load(){if(busy)return;setBusy(true);setError('');setNotice('');try{const tags=await read(`/api/staff-tags?${new URLSearchParams({kind,id})}`) as Tags;setData(tags);setSelected(tags.tags);setMode(tags.sharingMode||'SELECTED');setDepartments(tags.departments||[]);if(tags.canManage)setPeople((await read('/api/staff-tags')).people);}catch(error){setData(null);setError((error as Error).message);}finally{setBusy(false);}}
+  return <details className="ws-staff-tags" onToggle={event=>{if(event.currentTarget.open&&!data&&!busy&&!error)void load();}}><summary>{kind==='document'?'PDF audience & access':'Tagged colleagues'}</summary>
+    {busy&&!data&&<p role="status">Loading colleague tags…</p>}{data&&<><p className="ws-field-note">{kind==='document'?'PDF access follows the chosen colleagues/department audience; uploader/admin access is retained.':'Announcement tags highlight relevance. Drafts stay private.'} No automatic email is sent.</p>{data.tags.length?<ul aria-label="Tagged colleagues">{data.tags.map(person=><li key={person.id}>{person.name}</li>)}</ul>:<p className="ws-muted">No colleagues tagged yet.</p>}
+      {data.canManage&&<form onSubmit={async event=>{event.preventDefault();if(busy)return;setBusy(true);setError('');setNotice('');try{const response=await fetch('/api/staff-tags',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind,id,version:data.version,staffIds:selected.map(person=>person.id),...(kind==='document'?{sharingMode:mode,departments}:{})})}),result=await response.json();if(!response.ok)throw new Error(result.error||'Tags could not be saved.');setData(result);setSelected(result.tags);setMode(result.sharingMode||'SELECTED');setDepartments(result.departments||[]);setNotice(kind==='document'?'PDF audience saved.':'Colleague tags saved.');router.refresh();}catch(error){setError((error as Error).message);}finally{setBusy(false);}}}>{kind==='document'?<DocumentAudiencePicker people={people} selected={selected} onChange={setSelected} mode={mode} onModeChange={setMode} departments={departments} onDepartmentsChange={setDepartments} disabled={busy}/>:<StaffTagPicker people={people} selected={selected} onChange={setSelected} disabled={busy}/>}<button className="ws-button" disabled={busy}>{busy?'Saving…':'Save colleague tags'}</button></form>}
+    </>}{error&&<p className="ws-notice ws-notice-error" role="alert">{error}</p>}{notice&&<p role="status">{notice}</p>}<button className="ws-button ws-button-quiet" type="button" disabled={busy} onClick={()=>void load()}>Reload tags</button>
+  </details>;
+}

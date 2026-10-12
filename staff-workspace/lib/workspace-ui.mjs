@@ -41,5 +41,6 @@ export function accessEventLabel(action) {
     'announcement-restore':'Announcement restored to drafts','announcement-pin':'Pinned update changed',
     'announcement-comments':'Discussion settings changed','announcement-commented':'Staff comment added',
     'announcement-comment-removed':'Comment removed','document-shared':'PDF shared with staff',
-    'document-archive':'Document archived','document-restore':'Document restored'})[action] || 'Access record updated';
+    'document-archive':'Document archived','document-restore':'Document restored',
+    'staff-tags-updated':'Colleague tags or PDF audience updated','staff-department-updated':'Department or profile-editor access updated'})[action] || 'Access record updated';
 }

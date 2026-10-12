@@ -7,6 +7,7 @@ import {privateStorage} from '../../../lib/private-storage.mjs';
 import {boundedJson} from '../../../lib/private-json.mjs';
 import {boundedBytes} from '../../../lib/private-bytes.mjs';
 import {PDF_MAX_BYTES} from '../../../lib/document-policy.mjs';
+import {staffSharingEnabled} from '../../../lib/document-audiences.mjs';
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
 const reply=(body:unknown,status=200)=>Response.json(body,{status,headers:{'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff'}});
@@ -27,11 +28,12 @@ async function handle(request:Request) {
     if(Number(request.headers.get('content-length'))>PDF_MAX_BYTES+32768)return reply({error:'The maximum PDF size is 3 MB.'},413);
     const bytes=await boundedBytes(request.body,PDF_MAX_BYTES+32768);
     let form:FormData;try{form=await new Request('http://localhost',{method:'POST',headers:{'Content-Type':type},body:bytes}).formData();}catch{return reply({error:'The upload could not be read. Choose the file again.'},400);}
-    const allowed=['id','title','description','folder','file'];
+    const allowed=['id','title','description','folder','file',...(staffSharingEnabled()?['sharingMode','departments','staffIds']:[])];
     if([...form.keys()].some(key=>!allowed.includes(key)) || allowed.some(key=>form.getAll(key).length!==1))return reply({error:'Invalid upload fields.'},400);
     const file=form.get('file');
     if(!(file instanceof File) || !['','application/pdf','application/octet-stream'].includes(file.type) || file.size>PDF_MAX_BYTES)return reply({error:'Choose a PDF no larger than 3 MB.'},400);
-    return reply(await uploadDocument(pool,identity,{id:form.get('id'),title:form.get('title'),description:form.get('description'),folder:form.get('folder'),filename:file.name},new Uint8Array(await file.arrayBuffer()),storage));
+    let audience={};if(staffSharingEnabled()){try{audience={sharingMode:form.get('sharingMode'),departments:JSON.parse(String(form.get('departments'))),staffIds:JSON.parse(String(form.get('staffIds')))};}catch{return reply({error:'Invalid document audience.'},400);}}
+    return reply(await uploadDocument(pool,identity,{id:form.get('id'),title:form.get('title'),description:form.get('description'),folder:form.get('folder'),filename:file.name,...audience},new Uint8Array(await file.arrayBuffer()),storage));
   } catch(error) {
     if(error instanceof AccessError)return reply({error:error.message},error.status);
     return reply({error:'Documents are temporarily unavailable. Please try again.'},503);

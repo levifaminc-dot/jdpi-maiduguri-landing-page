@@ -4,6 +4,7 @@ import {verifiedIdentity} from './microsoft-policy.mjs';
 import {AccessError,readMember,transaction} from './membership.mjs';
 import {validatePdf} from './pdf-validation.mjs';
 import {documentFolders,documentId,documentPath,validDocumentUpload,validDocumentAction,PDF_MAX_BYTES,DOCUMENT_BUDGET_BYTES} from './document-policy.mjs';
+import {staffSharingEnabled,uploadAudience,validateRecipients,documentAudienceSql,canReadDocument} from './document-audiences.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 async function active(db,identity) {
   if(!verifiedIdentity(identity))throw new AccessError(401,'Please sign in with your JDPI account.');
@@ -12,7 +13,7 @@ async function active(db,identity) {
 }
 const manageable=(row,actor,identity)=>actor.role==='ADMIN' || (row.uploader_object_id===identity.objectId && !row.moderated);
 function dto(row,actor,identity) {
-  return {id:row.id,title:row.title,description:row.description,folder:row.folder,filename:row.filename,bytes:row.byte_size,pages:row.page_count,status:row.status,version:row.version,uploader:row.uploader_name,createdAt:new Date(row.created_at).toISOString(),canManage:manageable(row,actor,identity)};
+  return {id:row.id,title:row.title,description:row.description,folder:row.folder,filename:row.filename,bytes:row.byte_size,pages:row.page_count,status:row.status,version:row.version,uploader:row.uploader_name,createdAt:new Date(row.created_at).toISOString(),canManage:manageable(row,actor,identity),...(staffSharingEnabled()?{sharingMode:row.sharing_mode,departments:row.sharing_departments}: {})};
 }
 const join='workspace_document d JOIN workspace_member m ON m.tenant_id=d.tenant_id AND m.object_id=d.uploader_object_id';
 async function audit(db,identity,action,id) {await db.query('INSERT INTO workspace_audit(actor_object_id,target_object_id,action,details) VALUES ($1,$1,$2,$3)',[identity.objectId,`document-${action}`,JSON.stringify({documentId:id})]);}
@@ -22,6 +23,7 @@ export async function documentFeed(pool,identity,{view='library',folder='',query
     const actor=await active(db,identity);
     const rows=(await db.query(`SELECT d.*,m.name AS uploader_name FROM ${join} WHERE d.tenant_id=$1
       AND (($2='library' AND d.status='READY') OR ($2='mine' AND d.uploader_object_id=$3) OR ($2='archive' AND d.status='ARCHIVED' AND ($4 OR d.uploader_object_id=$3)))
+      ${staffSharingEnabled()?`AND ${documentAudienceSql()}`:''}
       AND ($5='' OR d.folder=$5) AND (d.title ILIKE $6 OR d.description ILIKE $6)
       ORDER BY d.created_at DESC,d.id DESC LIMIT 21 OFFSET $7`,[identity.tenantId,view,identity.objectId,actor.role==='ADMIN',folder,`%${query.trim().replace(/[\\%_]/g,'\\$&')}%`,offset])).rows;
     return {documents:rows.slice(0,20).map(row=>dto(row,actor,identity)),hasMore:rows.length>20};
@@ -37,6 +39,8 @@ async function throttle(db,identity) {
 }
 export async function uploadDocument(pool,identity,metadata,bytes,storage,validator=validatePdf) {
   if(!validDocumentUpload(metadata) || !(bytes instanceof Uint8Array) || bytes.length>PDF_MAX_BYTES)throw new AccessError(400,'Check the title, folder and PDF file. The maximum size is 3 MB.');
+  const audience=staffSharingEnabled()?uploadAudience(metadata):null;
+  if(!audience&&['sharingMode','departments','staffIds'].some(key=>key in metadata))throw new AccessError(503,'Document audiences have not been activated yet.');
   // Authorize before spending CPU on untrusted parsing, then recheck after it.
   if(!storage)throw new AccessError(503,'Private document storage is not connected yet. Nothing has been uploaded.');
   await transaction(pool,async db=>{await active(db,identity);await throttle(db,identity);});
@@ -44,9 +48,11 @@ export async function uploadDocument(pool,identity,metadata,bytes,storage,valida
   const reference=storage.reference?.() || {provider:'blob',siteId:null,driveId:null};
   const ready=await transaction(pool,async db=>{
     const actor=await active(db,identity);
+    if(audience)await validateRecipients(db,identity,audience.staffIds);
     await db.query('SELECT id FROM workspace_document_control WHERE id=1 FOR UPDATE');
     const existing=(await db.query(`SELECT d.*,m.name AS uploader_name FROM ${join} WHERE d.id=$1`,[metadata.id])).rows[0];
     if(existing) {
+      if(audience){const oldTags=(await db.query('SELECT staff_object_id AS id FROM workspace_document_tag WHERE tenant_id=$1 AND resource_id=$2 ORDER BY staff_object_id',[identity.tenantId,metadata.id])).rows.map(row=>row.id);if(existing.sharing_mode!==audience.sharingMode||JSON.stringify([...existing.sharing_departments].sort())!==JSON.stringify([...audience.departments].sort())||JSON.stringify(oldTags)!==JSON.stringify([...audience.staffIds].sort()))throw new AccessError(409,'This upload ID has a different audience. Choose the file again.');}
       if(existing.uploader_object_id!==identity.objectId || existing.sha256!==sha256 || existing.title!==metadata.title.trim() || existing.description!==metadata.description.trim() || existing.folder!==metadata.folder || existing.filename!==metadata.filename)throw new AccessError(409,'This upload ID has already been used. Choose the file again.');
       if(existing.status==='READY')return dto(existing,actor,identity);
       throw new AccessError(409,'This upload did not complete or is still running. Check My uploads before choosing the file again.');
@@ -56,6 +62,10 @@ export async function uploadDocument(pool,identity,metadata,bytes,storage,valida
     await db.query('UPDATE workspace_document_control SET reserved_bytes=reserved_bytes+$1 WHERE id=1',[bytes.length]);
     await db.query(`INSERT INTO workspace_document(id,tenant_id,uploader_object_id,title,description,folder,filename,byte_size,page_count,sha256,blob_path,storage_provider,storage_site_id,storage_drive_id)
       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`,[metadata.id,identity.tenantId,identity.objectId,metadata.title.trim(),metadata.description.trim(),metadata.folder,metadata.filename,bytes.length,pages,sha256,pathname,reference.provider,reference.siteId,reference.driveId]);
+    if(audience){
+      await db.query('UPDATE workspace_document SET sharing_mode=$3,sharing_departments=$4 WHERE tenant_id=$1 AND id=$2',[identity.tenantId,metadata.id,audience.sharingMode,audience.departments]);
+      for(const staffId of audience.staffIds)await db.query('INSERT INTO workspace_document_tag(tenant_id,resource_id,staff_object_id,tagged_by_object_id) VALUES ($1,$2,$3,$4)',[identity.tenantId,metadata.id,staffId,identity.objectId]);
+    }
     return null;
   });
   if(ready)return ready;
@@ -96,8 +106,8 @@ export async function readDocumentFile(pool,identity,id,storage) {
   if(!documentId(id))throw new AccessError(404,'Document not found.');
   return transaction(pool,async db=>{
     const actor=await active(db,identity);
-    const row=(await db.query('SELECT * FROM workspace_document WHERE tenant_id=$1 AND id=$2',[identity.tenantId,id])).rows[0];
-    if(!row || !['READY','ARCHIVED'].includes(row.status) || (row.status==='ARCHIVED' && actor.role!=='ADMIN' && row.uploader_object_id!==identity.objectId))throw new AccessError(404,'Document not available.');
+    const row=(await db.query('SELECT * FROM workspace_document WHERE tenant_id=$1 AND id=$2 FOR SHARE',[identity.tenantId,id])).rows[0];
+    if(!await canReadDocument(db,identity,actor,row))throw new AccessError(404,'Document not available.');
     const reader=typeof storage==='function'?storage(row):storage;
     if(!reader || row.blob_path!==documentPath(identity.tenantId,row.id))throw new AccessError(503,'The private file is temporarily unavailable.');
     const bytes=await reader.read(row.blob_path,{provider:row.storage_provider,siteId:row.storage_site_id,driveId:row.storage_drive_id});
