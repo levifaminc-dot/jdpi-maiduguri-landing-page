@@ -1,4 +1,4 @@
-# Staff tagging — staged, not activated
+# Staff tagging and restricted PDF audiences
 
 Announcement tags identify relevant colleagues; drafts remain private. PDF tags
 grant read/preview/download access to approved colleagues, together with selected
@@ -16,8 +16,8 @@ members. This section is browser-memory only and cannot run in production.
 
 `StaffTags.tsx` appears on saved announcement detail pages and document cards only
 when server-side `STAFF_TAGGING_ENABLED` is exactly `true`. Defaults remain disabled.
-The authenticated `/api/staff-tags` route also checks this flag. No environment file
-or Vercel setting has been changed for activation.
+The authenticated `/api/staff-tags` route also checks this flag. The operator must
+apply and verify migrations/grants before enabling it; builds never migrate data.
 
 - The name picker reads fresh ACTIVE membership, not the CSV, Graph or a client role.
   It returns names and stable selection IDs, not email, phone or private addresses.
@@ -67,3 +67,18 @@ or Vercel setting has been changed for activation.
 
 Automated database tests use fictional records in an in-memory database. Production
 activation is a separate approved operator step, never part of a build.
+
+## Approved release — 12 October 2026
+
+- Directory/state/email-only/profile previews are backed up in source control;
+  the Microsoft export and personal information remain local and unimported.
+- 87 automated tests and the optimized build passed. The public website main branch
+  was not changed; staff releases use `staff-workspace-backup`.
+- Approved migrations 005/006 were applied. Runtime TLS login and base/tag/audience
+  effective privileges were verified. No staff admissions or editor assignments changed.
+- The flag was enabled only on staff-workspace Production, followed by a Ready
+  deployment and a signed-in UI check of restricted upload defaults/name selection.
+- Cross-person permission checks were tested with fictional database fixtures, not
+  new live memberships. No test file or real staff export was uploaded in this release.
+- Existing PDFs retain uploader/Admin access until their audience is explicitly set.
+  Approved departments start unassigned; configure them through the department page.

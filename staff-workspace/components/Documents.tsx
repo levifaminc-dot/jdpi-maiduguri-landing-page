@@ -17,7 +17,7 @@ export default function Documents({records,connected,taggingEnabled=false}:{reco
   useEffect(()=>{let active=true;if(taggingEnabled)void fetch('/api/staff-tags',{cache:'no-store'}).then(async response=>{const data=await response.json();if(!response.ok)throw new Error(data.error||'Staff audience unavailable.');if(active){setPeople(data.people);setAudienceReady(true);}}).catch(error=>{if(active)setError(error.message);});return ()=>{active=false;};},[taggingEnabled]);
   async function archive(doc:StaffDocument) {
     const action=doc.status==='ARCHIVED'?'restore':'archive';
-    if(busy || !window.confirm(action==='archive'?'Archive this PDF? It will leave the staff library but remain available to its uploader and admins.':'Restore this PDF to the staff library? All approved staff will be able to read it.'))return;
+    if(busy || !window.confirm(action==='archive'?'Archive this PDF? It will leave the staff library but remain available to its uploader and admins.':(taggingEnabled?'Restore this PDF to its saved audience? Uploader/admin access is retained.':'Restore this PDF to the staff library? All approved staff will be able to read it.')))return;
     setBusy(true);setError('');setNotice('');
     try{const r=await fetch('/api/documents',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action,id:doc.id,version:doc.version})});const result=await r.json();if(!r.ok)throw new Error(result.error);setNotice(action==='archive'?'Document archived.':'Document restored.');router.refresh();}catch(e){setError((e as Error).message || 'The document could not be updated.');}finally{setBusy(false);}
   }
