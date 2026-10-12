@@ -98,3 +98,15 @@ test('migration/grant plan is explicit; new routes bound requests and keep previ
   for(const name of ['staff-tags','staff-departments']){const route=await readFile(new URL(`../app/api/${name}/route.ts`,import.meta.url),'utf8');for(const pattern of [/workspaceIdentity\(request.headers\)/,/STAFF_TAGGING_ENABLED!=='true'/,/boundedJson\(request,2048\)/,/private, no-store/])assert.match(route,pattern);}
   const migrate=await readFile(new URL('../scripts/migrate-database.mjs',import.meta.url),'utf8');assert(migrate.includes('006-document-audiences.sql'));assert(migrate.includes('verifyDocumentAudienceGrants'));
 });
+test('disabling the UI flag never widens migrated PDF listing or download access, and legacy-form uploads still default private',async()=>{
+  const {db,pool,storage}=await fixture();try{
+    process.env.STAFF_TAGGING_ENABLED='false';
+    assert.equal((await documentFeed(pool,other)).documents.length,0);await assert.rejects(readDocumentFile(pool,other,id(100),storage),{status:404});
+    const metadata={id:id(700),title:'Fictional legacy-form PDF',description:'',folder:'Other',filename:'fictional.pdf'};await uploadDocument(pool,owner,metadata,bytes,storage,async()=>2);
+    assert.equal((await documentFeed(pool,other)).documents.length,0);await assert.rejects(readDocumentFile(pool,other,id(700),storage),{status:404});
+    await readDocumentFile(pool,owner,id(700),storage);
+    // Simulate a fictional partial tag-only installation, never live schema changes.
+    await db.exec('RESET ROLE');await db.exec('ALTER TABLE workspace_document DROP COLUMN sharing_mode, DROP COLUMN sharing_departments');await db.exec('SET ROLE jdpi_workspace_runtime');
+    await assert.rejects(readDocumentFile(pool,other,id(100),storage),{status:404});await assert.rejects(documentFeed(pool,other));
+  }finally{process.env.STAFF_TAGGING_ENABLED='true';await db.close();}
+});

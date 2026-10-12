@@ -5,6 +5,7 @@ import {PGlite} from '@electric-sql/pglite';
 import {JDPI_TENANT_ID} from '../lib/microsoft-policy.mjs';
 import {createRuntimeRoleSql,runtimeGrantsSql,verifyRuntimeRole} from '../lib/runtime-role-policy.mjs';
 import {staffTagGrantsSql,verifyStaffTagGrants} from '../lib/staff-tag-grants.mjs';
+import {documentAudienceGrantsSql,verifyDocumentAudienceGrants} from '../lib/document-audience-grants.mjs';
 import {validTagAction,eligibleTagStaff,readStaffTags,changeStaffTags} from '../lib/staff-tags.mjs';
 import {announcementDetail} from '../lib/announcements.mjs';
 const id=n=>`00000000-0000-4000-8000-${String(n).padStart(12,'0')}`;
@@ -13,12 +14,12 @@ const admin=person(1),owner=person(2),other=person(3),pending=person(4),suspende
 const command=(extra={})=>({kind:'announcement',id:id(100),version:1,staffIds:[other.objectId],...extra});
 async function fixture(){
   const db=new PGlite();
-  for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql','004-document-storage.sql','005-staff-tags.sql'])await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
+  for(const name of ['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql','004-document-storage.sql','005-staff-tags.sql','006-document-audiences.sql'])await db.exec(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8'));
   await db.exec('CREATE TABLE workspace_migration(name text PRIMARY KEY)');
   for(const [identity,role,status] of [[admin,'ADMIN','ACTIVE'],[owner,'STAFF','ACTIVE'],[other,'STAFF','ACTIVE'],[pending,'STAFF','PENDING'],[suspended,'STAFF','SUSPENDED']])await db.query('INSERT INTO workspace_member(tenant_id,object_id,name,role,status) VALUES ($1,$2,$3,$4,$5)',[identity.tenantId,identity.objectId,identity.name,role,status]);
   await db.query("INSERT INTO workspace_announcement(id,tenant_id,author_object_id,title,body,category) VALUES ($1,$2,$3,'Fictional update','Fictional body','General')",[id(100),JDPI_TENANT_ID,owner.objectId]);
   await db.query("INSERT INTO workspace_document(id,tenant_id,uploader_object_id,title,folder,filename,byte_size,page_count,sha256,blob_path,status) VALUES ($1,$2,$3,'Fictional PDF','Other','fictional.pdf',100,2,$4,'fictional-path','READY')",[id(200),JDPI_TENANT_ID,owner.objectId,'0'.repeat(64)]);
-  await db.exec(createRuntimeRoleSql);await db.exec(runtimeGrantsSql((await db.query('SELECT current_database() AS name')).rows[0].name));await db.exec(staffTagGrantsSql);await verifyRuntimeRole(db);await verifyStaffTagGrants(db);await db.exec('SET ROLE jdpi_workspace_runtime');
+  await db.exec(createRuntimeRoleSql);await db.exec(runtimeGrantsSql((await db.query('SELECT current_database() AS name')).rows[0].name));await db.exec(staffTagGrantsSql);await db.exec(documentAudienceGrantsSql);await verifyRuntimeRole(db);await verifyStaffTagGrants(db);await verifyDocumentAudienceGrants(db);await db.exec('SET ROLE jdpi_workspace_runtime');
   return {db,pool:{connect:async()=>({query:(sql,params)=>db.query(sql,params),release(){}})}};
 }
 test('tag input rejects duplicate/case variants, forged roles, unbounded recipients and resource-type SQL injection',()=>{

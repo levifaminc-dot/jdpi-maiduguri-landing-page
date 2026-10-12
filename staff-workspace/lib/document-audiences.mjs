@@ -4,6 +4,13 @@ import {documentId} from './document-policy.mjs';
 import {departmentGroups} from './directory-departments.mjs';
 export const audienceDepartments=departmentGroups.map(group=>group.name);
 export const staffSharingEnabled=()=>process.env.STAFF_TAGGING_ENABLED==='true';
+// The UI flag is not an access-control switch. Once tag tables are installed,
+// enforce audiences even if the operator disables the feature. Old installations
+// without migration 005 retain their original behaviour until explicit migration.
+export async function documentAudienceEnforced(db){
+  if(staffSharingEnabled())return true;
+  return (await db.query("SELECT to_regclass('public.workspace_document_tag') IS NOT NULL AS configured")).rows[0].configured;
+}
 export function validDocumentAudience(value){
   return value&&['SELECTED','ALL_STAFF'].includes(value.sharingMode)&&Array.isArray(value.departments)&&value.departments.length<=17&&value.departments.every(d=>audienceDepartments.includes(d))&&new Set(value.departments).size===value.departments.length&&Array.isArray(value.staffIds)&&value.staffIds.length<=10&&value.staffIds.every(documentId)&&new Set(value.staffIds.map(id=>id.toLowerCase())).size===value.staffIds.length&&(value.sharingMode!=='ALL_STAFF'||value.departments.length===0&&value.staffIds.length===0);
 }
@@ -29,7 +36,7 @@ export async function canReadDocument(db,identity,actor,row){
   if(!row||!['READY','ARCHIVED'].includes(row.status))return false;
   if(actor.role==='ADMIN'||row.uploader_object_id===identity.objectId)return true;
   if(row.status!=='READY')return false;
-  if(!staffSharingEnabled())return true; // compatibility until migration + activation
+  if(row.sharing_mode===undefined&&!staffSharingEnabled())return !await documentAudienceEnforced(db); // pre-tag schema only; partial migration fails closed
   if(row.sharing_mode==='ALL_STAFF')return true;
   return (await db.query(`SELECT EXISTS(SELECT 1 FROM workspace_document_tag WHERE tenant_id=$1 AND resource_id=$2 AND staff_object_id=$3)
     OR EXISTS(SELECT 1 FROM workspace_staff_profile WHERE tenant_id=$1 AND object_id=$3 AND department<>'' AND department=ANY($4::text[])) AS allowed`,[identity.tenantId,row.id,identity.objectId,row.sharing_departments||[]])).rows[0].allowed;

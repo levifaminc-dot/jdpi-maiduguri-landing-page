@@ -40,6 +40,9 @@ apply and verify migrations/grants before enabling it; builds never migrate data
 - Changes use a transaction, shared membership lock, resource row lock, version
   conflict protection, database throttling and a count/ID-only audit event.
 - No email addresses or full content are placed in audit details.
+- The UI feature flag cannot widen migrated PDF access: listings/downloads and new
+  uploads stay restricted even if the flag is switched off. A partial tag-only
+  migration fails closed on PDF listing/upload until the audience schema is installed.
 
 ## Before deployment
 
@@ -72,7 +75,7 @@ activation is a separate approved operator step, never part of a build.
 
 - Directory/state/email-only/profile previews are backed up in source control;
   the Microsoft export and personal information remain local and unimported.
-- 87 automated tests and the optimized build passed. The public website main branch
+- 88 automated tests and the optimized build passed. The public website main branch
   was not changed; staff releases use `staff-workspace-backup`.
 - Approved migrations 005/006 were applied. Runtime TLS login and base/tag/audience
   effective privileges were verified. No staff admissions or editor assignments changed.
