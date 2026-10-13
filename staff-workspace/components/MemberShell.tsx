@@ -4,7 +4,8 @@ import {MicrosoftSignOut} from './MicrosoftSignIn';
 import {workspaceNavigation} from '../lib/workspace-ui.mjs';
 
 export default function MemberShell({name,role,page,children}:{name:string;role:string;page:string;children:React.ReactNode}) {
-  const links=[...workspaceNavigation(role),...(process.env.STAFF_TAGGING_ENABLED==='true'?[{href:'/workspace/departments',label:'Departments',icon:'users'}]:[])];
+  const taskPilot=process.env.PLANNER_PILOT_ENABLED==='true' || (process.env.NODE_ENV==='development' && !process.env.VERCEL);
+  const links=[...workspaceNavigation(role),...(taskPilot?[{href:'/workspace/tasks',label:'Operations tasks',icon:'tasks'}]:[]),...(process.env.STAFF_TAGGING_ENABLED==='true'?[{href:'/workspace/departments',label:'Departments',icon:'users'}]:[])];
   return <div className="ws-shell">
     <a className="ws-skip" href="#workspace-content">Skip to main content</a>
     <aside className="ws-sidebar">

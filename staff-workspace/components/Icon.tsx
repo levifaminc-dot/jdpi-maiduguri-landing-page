@@ -3,6 +3,7 @@ const paths:Record<string,string> = {
   mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>',
   settings:'<circle cx="12" cy="12" r="3"/><path d="m9 3-1 3-3 1-2 4 2 2v4l4 2 3-1 3 1 4-2v-4l2-2-2-4-3-1-1-3Z"/>',
   check:'<path d="m5 12 4 4L19 6"/>',
+  tasks:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="m7 9 2 2 3-3m2 2h4M7 16h11"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   dashboard:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   megaphone:'<path d="m4 10 13-5v14L4 14Z"/><path d="M4 10H2v4h2m3 1 1 6h3l-1-5M20 8l2-1m-2 5h2m-2 4 2 1"/>',
