@@ -18,7 +18,7 @@ export async function GET(request:NextRequest) {
   const redirectUri=`${config.origin}/api/planner/callback`;
   const url=new URL(`https://login.microsoftonline.com/${config.tenantId}/oauth2/v2.0/authorize`);
   url.search=new URLSearchParams({client_id:config.clientId,response_type:'code',redirect_uri:redirectUri,
-    response_mode:'query',scope:'openid profile email Tasks.Read',state,nonce,code_challenge:challenge,code_challenge_method:'S256',prompt:'consent'}).toString();
+    response_mode:'query',scope:'openid profile email Tasks.Read',state,nonce,code_challenge:challenge,code_challenge_method:'S256',prompt:'select_account'}).toString();
   const response=NextResponse.redirect(url);
   response.cookies.set(plannerStateCookieName(config.origin),sealPlanner({state,verifier,nonce,oid:identity.objectId,issued:Date.now()},config.secret),plannerCookieOptions(config.origin,600));
   response.headers.set('Cache-Control','no-store');

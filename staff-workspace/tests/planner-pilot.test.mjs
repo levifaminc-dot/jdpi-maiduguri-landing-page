@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {plannerEnabled,plannerTasks,OPERATIONS_PLAN_ID} from '../lib/planner-policy.mjs';
-import {openPlanner,sealPlanner} from '../lib/planner-seal.mjs';
+import {joinPlannerTicket,openPlanner,sealPlanner,splitPlannerTicket} from '../lib/planner-seal.mjs';
 
 test('pilot is enabled locally but must be opted into on Vercel',()=>{
   assert.equal(plannerEnabled({NODE_ENV:'development'}),true);
@@ -29,6 +29,17 @@ test('Planner cookies are confidential and authenticated',()=>{
   assert.equal(openPlanner(`${encrypted.slice(0,-1)}${encrypted.endsWith('A')?'B':'A'}`,secret),null);
   assert.equal(openPlanner(encrypted,'y'.repeat(64)),null);
   assert.equal(openPlanner('bad',secret),null);
+});
+test('large encrypted Planner tickets fit two bounded cookies and fail closed when a part is missing',()=>{
+  const secret='x'.repeat(64), ticket={oid:'test',token:'t'.repeat(3000),expires:123};
+  const encrypted=sealPlanner(ticket,secret), parts=splitPlannerTicket(encrypted);
+  assert.ok(parts);
+  assert.ok(encrypted.length>3800);
+  assert.ok(parts.every(part=>part.length<=2500));
+  assert.deepEqual(openPlanner(joinPlannerTicket(...parts),secret),ticket);
+  assert.equal(openPlanner(joinPlannerTicket(parts[0],undefined),secret),null);
+  assert.equal(joinPlannerTicket(parts[0],parts[1]+'x'.repeat(2501)),null);
+  assert.equal(splitPlannerTicket('x'.repeat(5001)),null);
 });
 test('real workspace leaf checks current active membership and Graph remains read-only',async()=>{
   const page=await readFile(new URL('../app/workspace/tasks/page.tsx',import.meta.url),'utf8');

@@ -10,7 +10,7 @@ export function sealPlanner(value, secret) {
   return `${iv.toString('base64url')}.${ciphertext.toString('base64url')}.${cipher.getAuthTag().toString('base64url')}`;
 }
 export function openPlanner(sealed, secret) {
-  if (typeof sealed !== 'string' || sealed.length > 4000) return null;
+  if (typeof sealed !== 'string' || sealed.length > 5000) return null;
   const parts=sealed.split('.');
   if (parts.length !== 3) return null;
   try {
@@ -20,4 +20,17 @@ export function openPlanner(sealed, secret) {
     decipher.setAuthTag(tag);
     return JSON.parse(Buffer.concat([decipher.update(data),decipher.final()]).toString('utf8'));
   } catch {return null;}
+}
+
+// Browser cookies have a roughly 4 KB per-cookie limit. A Graph access token
+// becomes larger when authenticated encryption and base64url are applied.
+export function splitPlannerTicket(sealed) {
+  if (typeof sealed !== 'string' || !sealed || sealed.length > 5000) return null;
+  return [sealed.slice(0,2500),sealed.slice(2500)];
+}
+
+export function joinPlannerTicket(first,second) {
+  if (typeof first !== 'string' || !first || first.length > 2500 ||
+      (second != null && (typeof second !== 'string' || second.length > 2500))) return null;
+  return first+(second ?? '');
 }

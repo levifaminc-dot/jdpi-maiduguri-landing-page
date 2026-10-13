@@ -1,8 +1,8 @@
 import {createRemoteJWKSet,jwtVerify} from 'jose';
 import {NextRequest,NextResponse} from 'next/server';
 import {requireActiveMember} from '../../../../lib/workspace-access';
-import {plannerConfig,plannerCookieName,plannerCookieOptions,plannerStateCookieName} from '../../../../lib/planner';
-import {openPlanner,sealPlanner} from '../../../../lib/planner-seal.mjs';
+import {plannerConfig,plannerCookieOptions,plannerStateCookieName,plannerTicketCookieNames} from '../../../../lib/planner';
+import {openPlanner,sealPlanner,splitPlannerTicket} from '../../../../lib/planner-seal.mjs';
 
 export const dynamic='force-dynamic';
 export async function GET(request:NextRequest) {
@@ -38,10 +38,14 @@ export async function GET(request:NextRequest) {
     const seconds=Math.min(3600,Math.max(0,Math.floor(Number(tokens.expires_in))-60));
     if (seconds<60) return result;
     const ticket=sealPlanner({oid:identity.objectId,tenant:identity.tenantId,token:tokens.access_token,expires:Date.now()+seconds*1000},config.secret);
-    if (ticket.length>3800) return result;
+    const parts=splitPlannerTicket(ticket);
+    if (!parts) return result;
     const response=NextResponse.redirect(new URL('/workspace/tasks',config.origin));
     response.cookies.set(stateCookie,'',{...plannerCookieOptions(config.origin,0),expires:new Date(0)});
-    response.cookies.set(plannerCookieName(config.origin),ticket,plannerCookieOptions(config.origin,seconds));
+    const [firstName,secondName]=plannerTicketCookieNames(config.origin);
+    response.cookies.set(firstName,parts[0],plannerCookieOptions(config.origin,seconds));
+    if (parts[1]) response.cookies.set(secondName,parts[1],plannerCookieOptions(config.origin,seconds));
+    else response.cookies.set(secondName,'',{...plannerCookieOptions(config.origin,0),expires:new Date(0)});
     response.headers.set('Cache-Control','no-store');
     return response;
   } catch {return result;}
