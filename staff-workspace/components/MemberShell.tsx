@@ -2,17 +2,17 @@ import Link from 'next/link';
 import Icon from './Icon';
 import {MicrosoftSignOut} from './MicrosoftSignIn';
 import {workspaceNavigation} from '../lib/workspace-ui.mjs';
+import {plannerEnabled} from '../lib/planner-policy.mjs';
 
 export default function MemberShell({name,role,page,children}:{name:string;role:string;page:string;children:React.ReactNode}) {
-  const taskPilot=process.env.PLANNER_PILOT_ENABLED==='true' || (process.env.NODE_ENV==='development' && !process.env.VERCEL);
+  const taskPilot=plannerEnabled(process.env);
   const links=[...workspaceNavigation(role),...(taskPilot?[{href:'/workspace/tasks',label:'Operations tasks',icon:'tasks'}]:[]),...(process.env.STAFF_TAGGING_ENABLED==='true'?[{href:'/workspace/departments',label:'Departments',icon:'users'}]:[])];
   return <div className="ws-shell">
     <a className="ws-skip" href="#workspace-content">Skip to main content</a>
     <aside className="ws-sidebar">
-      <Link className="ws-brand" href="/workspace" aria-label="JDPI staff workspace dashboard"><img src="/brand/jdpi-logo.avif" alt="JDPI" width="130" height="51"/><span>Staff workspace</span></Link>
+      <div className="ws-sidebar-head"><Link className="ws-brand" href="/workspace" aria-label="JDPI staff workspace dashboard"><img src="/brand/jdpi-logo.avif" alt="JDPI" width="130" height="51"/><span>Staff workspace</span></Link><details className="ws-mobile-menu"><summary><Icon name="menu"/><span>Menu</span></summary><nav aria-label="Mobile workspace navigation">{links.map(link=><Link key={link.href} href={link.href} prefetch={false} aria-current={page===link.label?'page':undefined}><Icon name={link.icon}/><span>{link.label}</span></Link>)}</nav></details></div>
       <p className="ws-nav-label">YOUR WORKSPACE</p>
       <nav className="ws-nav" aria-label="Workspace navigation">{links.map(link=><Link key={link.href} href={link.href} prefetch={false} aria-current={page===link.label?'page':undefined}><Icon name={link.icon}/><span>{link.label}</span></Link>)}</nav>
-      <div className="ws-sidebar-note"><Icon name="heart"/><strong>One team. A shared purpose.</strong><p>A space for the people behind our work.</p></div>
       <div className="ws-sidebar-footer"><Icon name="shield"/><span>Private JDPI workspace<br/>Microsoft work-account sign-in</span></div>
     </aside>
     <div className="ws-main-shell">

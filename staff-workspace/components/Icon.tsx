@@ -6,6 +6,7 @@ const paths:Record<string,string> = {
   tasks:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="m7 9 2 2 3-3m2 2h4M7 16h11"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   dashboard:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',
   megaphone:'<path d="m4 10 13-5v14L4 14Z"/><path d="M4 10H2v4h2m3 1 1 6h3l-1-5M20 8l2-1m-2 5h2m-2 4 2 1"/>',
   folder:'<path d="M3 6a2 2 0 0 1 2-2h5l2 3h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>',
   users:'<circle cx="9" cy="7" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m2-17a3 3 0 0 1 0 6m2 4a6 6 0 0 1 3 5v2"/>',
