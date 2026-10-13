@@ -1,0 +1,21 @@
+/* Match the public JDPI site's DM Sans body and Montserrat display typography. */
+body,
+.ws-shell,
+.ws-dialog,
+.ws-directory-dialog,
+.ws-directory-unavailable,
+.ws-directory-edit input,
+.ws-directory-edit textarea,
+.ws-directory-edit select,
+kbd {
+  font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-montserrat), Arial, Helvetica, sans-serif;
+}
