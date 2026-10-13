@@ -2,9 +2,8 @@ import {normaliseDepartment} from './directory-departments.mjs';
 import {directoryEmail} from './directory-import.mjs';
 import {workStates} from './directory-states.mjs';
 
-// Policy primitives, not an authentication layer. A future server endpoint must
-// resolve actor/status/profileEditor from its own database, never request input.
-// The current caller is only the loopback preview's fictional role simulation.
+// Shared validation, not authentication. Production resolves actor/capabilities
+// from fresh locked membership records, never request input.
 export class ProfilePolicyError extends Error {
   constructor(status,message){super(message);this.status=status;}
 }

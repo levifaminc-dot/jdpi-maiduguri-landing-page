@@ -1,0 +1,32 @@
+'use client';
+import {useState} from 'react';
+import Icon from './Icon';
+import StaffProfileDialog,{type SavedProfile} from './StaffProfileDialog';
+import type {PreviewActor} from './ProfilePreviewDialog';
+import {directoryInitials,filterDirectory} from '../lib/directory-import.mjs';
+import {departmentOptions} from '../lib/directory-departments.mjs';
+import {workStates} from '../lib/directory-states.mjs';
+export default function StaffDirectory({initialPeople,actor}:{initialPeople:SavedProfile[];actor:PreviewActor}){
+  const [people,setPeople]=useState(initialPeople),[selected,setSelected]=useState<SavedProfile|null>(null),[error,setError]=useState(''),[loading,setLoading]=useState(false);
+  const [query,setQuery]=useState(''),[department,setDepartment]=useState(''),[office,setOffice]=useState(''),[state,setState]=useState(''),[view,setView]=useState('cards'),[page,setPage]=useState(1);
+  const matched=filterDirectory(people,{query,department,office,state,scope:'all'}) as SavedProfile[],pages=Math.max(1,Math.ceil(matched.length/12)),currentPage=Math.min(page,pages),shown=matched.slice((currentPage-1)*12,currentPage*12);
+  const departments=departmentOptions(people),offices=[...new Set(people.map(p=>p.office).filter(Boolean))].sort();
+  async function open(id:string){if(loading)return;setLoading(true);setError('');try{const response=await fetch(`/api/staff-directory?id=${encodeURIComponent(id)}`,{cache:'no-store'}),data=await response.json();if(!response.ok)throw new Error(data.error||'Unable to open this profile.');setSelected(data);}catch(error){setError(error instanceof Error?error.message:'Unable to open this profile.');}finally{setLoading(false);}}
+  async function saved(profile:SavedProfile){
+    setSelected(profile);
+    // The shared list retains public fields only, even when My Profile was saved.
+    const {phone,homeAddress,privateVersion,...publicProfile}=profile;void phone;void homeAddress;void privateVersion;
+    setPeople(previous=>previous.map(person=>person.id===profile.id?publicProfile:person).sort((a,b)=>a.name.localeCompare(b.name,'en')));
+  }
+  function clear(){setQuery('');setDepartment('');setOffice('');setState('');setPage(1);}
+  return <>
+    <div className="ws-page-heading"><div><p className="ws-eyebrow">OUR PEOPLE</p><h1>Find your people.</h1><p>Connect with approved colleagues across our teams and offices.</p></div><button className="ws-button" disabled={loading} onClick={()=>open(actor.objectId)}><Icon name="users"/>My profile</button></div>
+    <p className="ws-directory-footnote"><Icon name="shield"/>Only approved, active members appear. Contact is by work email; personal phone numbers and home addresses are never included in the shared directory.</p>
+    {error&&<p className="ws-notice ws-notice-error" role="alert">{error}</p>}{loading&&<p role="status">Opening profile…</p>}
+    <section className="ws-directory-tools" aria-label="Find a colleague"><label className="ws-search"><Icon name="search"/><span className="ws-sr-only">Search colleagues</span><input value={query} onChange={e=>{setQuery(e.target.value);setPage(1);}} type="search" placeholder="Search name, role or work email" maxLength={100}/></label><label className="ws-directory-select"><span>Department</span><select value={department} onChange={e=>{setDepartment(e.target.value);setPage(1);}}><option value="">All departments</option>{departments.map(value=><option key={value}>{value}</option>)}</select></label><label className="ws-directory-select"><span>Office</span><select value={office} onChange={e=>{setOffice(e.target.value);setPage(1);}}><option value="">All offices</option>{offices.map(value=><option key={value}>{value}</option>)}</select></label><label className="ws-directory-select"><span>Work state</span><select value={state} onChange={e=>{setState(e.target.value);setPage(1);}}><option value="">All states</option>{workStates.map(value=><option key={value}>{value}</option>)}<option value="unset">State not confirmed</option></select></label></section>
+    <div className="ws-directory-results"><p aria-live="polite">{matched.length} {matched.length===1?'colleague':'colleagues'}{query||department||office||state?' matching your search':''}</p><div className="ws-directory-views" role="group" aria-label="Directory view"><button aria-pressed={view==='cards'} onClick={()=>setView('cards')}><Icon name="dashboard"/>Cards</button><button aria-pressed={view==='list'} onClick={()=>setView('list')}><Icon name="users"/>List</button></div></div>
+    {!shown.length?<div className="ws-card ws-empty"><Icon name="search"/><h2>No matching colleagues</h2><p>Try another name or clear your filters.</p><button className="ws-button ws-button-quiet" onClick={clear}>Clear filters</button></div>:<div className={`ws-directory-people ws-directory-${view}`}>{shown.map((person,index)=><article className="ws-directory-person" key={person.id}><span className={`ws-directory-avatar ws-directory-tone-${index%4}`} aria-hidden="true">{directoryInitials(person.name)}</span><div className="ws-directory-person-main"><h2><button disabled={loading} onClick={()=>open(person.id)}>{person.name}</button></h2><p className={person.title?'ws-directory-title':'ws-directory-missing'}>{person.title||'Job title to be added'}</p><div className="ws-directory-person-meta"><span><Icon name="users"/>{person.department||'Department to be added'}</span><span><Icon name="location"/>{person.office||'Office to be added'}{person.state?' · '+person.state:''}</span></div></div><div className="ws-directory-person-actions"><button className="ws-button ws-button-quiet" disabled={loading} onClick={()=>open(person.id)}>View profile<Icon name="arrow"/></button>{person.email&&<a href={`mailto:${encodeURIComponent(person.email)}`} className="ws-directory-email" aria-label={`Email ${person.name}`}><Icon name="mail"/><span>Email</span></a>}</div></article>)}</div>}
+    <div className="ws-directory-pagination"><span>{matched.length?`${(currentPage-1)*12+1}–${Math.min(currentPage*12,matched.length)} of ${matched.length}`:'0 results'}</span><div><button className="ws-button ws-button-quiet" disabled={currentPage<=1} onClick={()=>setPage(currentPage-1)}>Previous</button><span>Page {currentPage} of {pages}</span><button className="ws-button ws-button-quiet" disabled={currentPage>=pages} onClick={()=>setPage(currentPage+1)}>Next</button></div></div>
+    <StaffProfileDialog profile={selected} actor={actor} onSave={saved} onClose={()=>setSelected(null)}/>
+  </>;
+}

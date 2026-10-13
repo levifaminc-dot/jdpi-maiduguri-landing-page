@@ -5,10 +5,11 @@ import {databaseConfig} from '../lib/database-config.mjs';
 import {runtimeRole,announcementGrantsSql,documentGrantsSql,documentStorageGrantsSql,verifyRuntimeRole} from '../lib/runtime-role-policy.mjs';
 import {staffTagGrantsSql,verifyStaffTagGrants} from '../lib/staff-tag-grants.mjs';
 import {documentAudienceGrantsSql,verifyDocumentAudienceGrants} from '../lib/document-audience-grants.mjs';
-const files=['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql','004-document-storage.sql','005-staff-tags.sql','006-document-audiences.sql'];
+import {staffDirectoryGrantsSql,verifyStaffDirectoryGrants} from '../lib/staff-directory-grants.mjs';
+const files=['000-auth.sql','001-membership.sql','002-announcements.sql','003-documents.sql','004-document-storage.sql','005-staff-tags.sql','006-document-audiences.sql','007-staff-directory.sql'];
 const migrations=await Promise.all(files.map(async name=>{const sql=(await readFile(new URL(`../database/${name}`,import.meta.url),'utf8')).replace(/\r\n/g,'\n');return {name,sql,hash:createHash('sha256').update(sql).digest('hex')};}));
 if(!process.argv.includes('--apply')) {
-  console.log('Plan only: tags, PDF audiences and approved department assignments.');
+  console.log('Plan only: tags, PDF audiences and approved-member directory profiles.');
   console.log('Existing PDFs default to uploader/admin-only until an audience is chosen. No memberships or editor assignments change.');
   console.log('No database connection or writes. Prepared migration files:', files.join(', '));
   process.exit(0);
@@ -35,9 +36,10 @@ try {
       if(migration.name==='004-document-storage.sql' && (await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length)await db.query(documentStorageGrantsSql);
       if(migration.name==='005-staff-tags.sql' && (await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length)await db.query(staffTagGrantsSql);
       if(migration.name==='006-document-audiences.sql' && (await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length)await db.query(documentAudienceGrantsSql);
+      if(migration.name==='007-staff-directory.sql' && (await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length)await db.query(staffDirectoryGrantsSql);
       await db.query('INSERT INTO workspace_migration(name,hash) VALUES ($1,$2)',[migration.name,migration.hash]);
     }
-    if((await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length){await verifyRuntimeRole(db);await verifyStaffTagGrants(db);await verifyDocumentAudienceGrants(db);}
+    if((await db.query('SELECT 1 FROM pg_roles WHERE rolname=$1',[runtimeRole])).rows.length){await verifyRuntimeRole(db);await verifyStaffTagGrants(db);await verifyDocumentAudienceGrants(db);await verifyStaffDirectoryGrants(db);}
     await db.query('COMMIT'); console.log('Database migrations applied. No memberships, editor assignments or admin roles created. Existing PDFs default to restricted audiences on activation.');
   } catch(error) {await db.query('ROLLBACK');throw error;} finally {db.release();}
 } catch {console.error('Migration failed. Check private connection settings and database permissions. No credentials are printed.');process.exitCode=1;}
