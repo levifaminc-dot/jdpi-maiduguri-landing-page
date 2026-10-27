@@ -1,0 +1,45 @@
+---
+import {PortableText} from 'astro-portabletext';
+import {getContent,formatDate} from '../../lib/content';
+import {isVacancyOpen,vacancyApplicationUrl} from '../../lib/careers';
+import type {Vacancy,SiteContent} from '../../lib/content';
+import Layout from '../../layouts/SiteLayout.astro';
+import EditorialLink from '../../components/EditorialLink.astro';
+import '../../styles/careers.css';
+
+export async function getStaticPaths(){
+  const content=await getContent();
+  return (content.vacancies||[]).map(job=>({params:{slug:job.slug},props:{job,content}}));
+}
+const {job,content}=Astro.props as {job:Vacancy;content:SiteContent};
+const open=isVacancyOpen(job);
+const applicationUrl=vacancyApplicationUrl(job);
+---
+<Layout content={content} title={`${job.title} | Careers | ${content.settings.shortName}`} description={job.summary} noindex={!open} pageClass="careers-page career-detail-page">
+  <section class="career-detail-hero" aria-labelledby="job-heading"><div class="career-shell">
+    <nav class="career-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/careers/">Careers</a><span aria-hidden="true">/</span><span aria-current="page">{job.title}</span></nav>
+    <p class="career-kicker">{job.department}</p><h1 id="job-heading">{job.title}</h1><p class="career-detail-summary">{job.summary}</p>
+    <div class="career-detail-tags"><span>{job.location}</span><span>{job.engagement}</span>{job.referenceCode&&<span>Ref: {job.referenceCode}</span>}</div>
+  </div></section>
+  <div class="career-detail-layout career-shell" data-vacancy-detail data-deadline={job.closingDate} data-status={job.status}>
+    <article class="career-detail-main"><a class="career-back" href="/careers/#open-roles">← All opportunities</a><h2>About this opportunity</h2><div class="career-detail-prose"><PortableText value={job.body} components={{mark:{link:EditorialLink}}}/></div><section class="career-detail-instructions" aria-labelledby="job-apply-heading"><h2 id="job-apply-heading">How to apply</h2><p>{job.applicationInstructions}</p>{job.applicationMethod==='email'&&job.applicationEmail&&<p>Send your application to <a href={`mailto:${job.applicationEmail}`}>{job.applicationEmail}</a>.</p>}</section></article>
+    <aside class="career-detail-aside" aria-label="Role at a glance"><p class="career-kicker">AT A GLANCE</p><dl><div><dt>Duty station</dt><dd>{job.location}</dd></div><div><dt>Engagement</dt><dd>{job.engagement}</dd></div><div><dt>Team</dt><dd>{job.department}</dd></div><div><dt>Closing date</dt><dd><time datetime={job.closingDate}>{formatDate(job.closingDate)}</time> · WAT</dd></div>{job.referenceCode&&<div><dt>Reference</dt><dd>{job.referenceCode}</dd></div>}</dl>
+      <p class="career-detail-status" data-vacancy-status>{open?'Applications open':'Applications closed'}</p>
+      {open&&applicationUrl&&<a class="career-button" data-vacancy-apply href={applicationUrl} target={job.applicationMethod==='link'?'_blank':undefined} rel={job.applicationMethod==='link'?'noopener noreferrer':undefined}>Apply for this role <span aria-hidden="true">↗</span></a>}
+      <p class="career-detail-note">Use only the application method in this JDPI listing. JDPI does not collect applications through this website.</p>
+    </aside>
+  </div>
+  <section class="career-detail-bottom"><div class="career-shell"><div><p class="career-kicker">MORE OPPORTUNITIES</p><h2>Keep exploring JDPI.</h2></div><a href="/careers/#open-roles">View all open roles <span aria-hidden="true">↗</span></a></div></section>
+  <script>
+    const detail=document.querySelector<HTMLElement>('[data-vacancy-detail]');
+    if(detail){
+      const parts=Object.fromEntries(new Intl.DateTimeFormat('en-GB',{timeZone:'Africa/Lagos',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).map(part=>[part.type,part.value]));
+      const today=`${parts.year}-${parts.month}-${parts.day}`;
+      if(detail.dataset.status!=='open'||(detail.dataset.deadline||'')<today){
+        const status=detail.querySelector<HTMLElement>('[data-vacancy-status]');
+        if(status)status.textContent='Applications closed';
+        detail.querySelector('[data-vacancy-apply]')?.remove();
+      }
+    }
+  </script>
+</Layout>

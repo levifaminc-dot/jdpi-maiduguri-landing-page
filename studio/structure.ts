@@ -1,5 +1,5 @@
 import type {StructureResolver,DefaultDocumentNodeResolver} from 'sanity/structure';
-import {CogIcon,HomeIcon} from '@sanity/icons';
+import {CogIcon,HomeIcon,UsersIcon} from '@sanity/icons';
 import {DraftPreview} from './preview';
 import catalogue from '../content/page-fields.json';
 export const singletonTypes=new Set(['siteSettings','homePage',...catalogue.map(page=>page.type)]);
@@ -10,5 +10,6 @@ export const structure:StructureResolver=S=>S.list().title('JDPI website').items
   S.divider(),
   S.documentTypeListItem('programme').title('Programmes'),S.documentTypeListItem('project').title('Projects'),
   S.documentTypeListItem('story').title('Stories & updates'),S.documentTypeListItem('report').title('Reports & publications'),S.documentTypeListItem('partner').title('Partners & donors'),
+  S.documentTypeListItem('vacancy').title('Job vacancies').icon(UsersIcon),
 ]);
 export const defaultDocumentNode:DefaultDocumentNodeResolver=S=>S.document().views([S.view.form().title('Edit'),S.view.component(DraftPreview).title('Draft preview')]);

@@ -15,6 +15,57 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: schema.json
+export type Vacancy = {
+  _id: string;
+  _type: "vacancy";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title: string;
+  slug: Slug;
+  referenceCode?: string;
+  summary: string;
+  department: string;
+  location: string;
+  engagement:
+    | "Full-time"
+    | "Part-time"
+    | "Fixed-term"
+    | "Consultancy"
+    | "Internship"
+    | "Volunteer";
+  body: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h2" | "h3" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  status: "open" | "closed";
+  closingDate: string;
+  applicationMethod: "link" | "email";
+  applicationUrl?: string;
+  applicationEmail?: string;
+  applicationInstructions: string;
+};
+
+export type Slug = {
+  _type: "slug";
+  current: string;
+  source?: string;
+};
+
 export type Partner = {
   _id: string;
   _type: "partner";
@@ -67,12 +118,6 @@ export type Report = {
     _type: "file";
   };
   sourceKey?: string;
-};
-
-export type Slug = {
-  _type: "slug";
-  current: string;
-  source?: string;
 };
 
 export type Story = {
@@ -266,6 +311,47 @@ export type Programme = {
       project: string;
     };
   };
+};
+
+export type CareersPage = {
+  _id: string;
+  _type: "careersPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  heroImage?: EditorialImage;
+  heroKicker?: string;
+  heroTitle?: string;
+  heroAccent?: string;
+  heroIntro?: string;
+  cultureKicker?: string;
+  cultureTitle?: string;
+  cultureIntro?: string;
+  cultureOneTitle?: string;
+  cultureOneText?: string;
+  cultureTwoTitle?: string;
+  cultureTwoText?: string;
+  cultureThreeTitle?: string;
+  cultureThreeText?: string;
+  openingsKicker?: string;
+  openingsTitle?: string;
+  openingsIntro?: string;
+  emptyTitle?: string;
+  emptyText?: string;
+  processKicker?: string;
+  processTitle?: string;
+  processOneTitle?: string;
+  processOneText?: string;
+  processTwoTitle?: string;
+  processTwoText?: string;
+  processThreeTitle?: string;
+  processThreeText?: string;
+  safetyTitle?: string;
+  safetyText?: string;
+  accessTitle?: string;
+  accessText?: string;
 };
 
 export type ContactPage = {
@@ -1074,16 +1160,18 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Vacancy
+  | Slug
   | Partner
   | SanityImageAssetReference
   | EditorialImage
   | SanityFileAssetReference
   | Report
-  | Slug
   | Story
   | ProgrammeReference
   | Project
   | Programme
+  | CareersPage
   | ContactPage
   | DonatePage
   | ResourcesPage
@@ -1109,7 +1197,7 @@ export type AllSanitySchemaTypes =
 
 // Source: ../src/lib/queries.ts
 // Variable: CONTENT_QUERY
-// Query: {  "schemaVersion": 1,  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}
+// Query: {  "schemaVersion": 1,  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data},*[_id=="careersPage"][0]{_id,"fields":{seoTitle,seoDescription,heroImage{"url":asset->url,"assetId":asset._ref,alt},heroKicker,heroTitle,heroAccent,heroIntro,cultureKicker,cultureTitle,cultureIntro,cultureOneTitle,cultureOneText,cultureTwoTitle,cultureTwoText,cultureThreeTitle,cultureThreeText,openingsKicker,openingsTitle,openingsIntro,emptyTitle,emptyText,processKicker,processTitle,processOneTitle,processOneText,processTwoTitle,processTwoText,processThreeTitle,processThreeText,safetyTitle,safetyText,accessTitle,accessText},data}][defined(_id)],  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "vacancies": *[_type == "vacancy" && defined(slug.current)] | order(closingDate asc, title asc){_id,title,"slug":slug.current,referenceCode,summary,department,location,engagement,body,status,closingDate,applicationMethod,applicationUrl,applicationEmail,applicationInstructions},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}
 export type CONTENT_QUERY_RESULT = {
   schemaVersion: 1;
   projectsManaged: boolean | false;
@@ -1767,6 +1855,547 @@ export type CONTENT_QUERY_RESULT = {
               text: string;
             };
           };
+        } | null;
+      }
+    | null
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: null;
+          seoDescription: null;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string;
+          seoDescription: string;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string | null;
+          seoDescription: string | null;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: null;
+          seoDescription: null;
+          heroImage: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          };
+          heroKicker: string | null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: string;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string | null;
+          seoDescription: string | null;
+          heroImage: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
+          heroKicker: string | null;
+          heroTitle: string | null;
+          heroAccent: string | null;
+          heroIntro: string | null;
+          cultureKicker: string | null;
+          cultureTitle: string | null;
+          cultureIntro: string | null;
+          cultureOneTitle: string | null;
+          cultureOneText: string | null;
+          cultureTwoTitle: string | null;
+          cultureTwoText: string | null;
+          cultureThreeTitle: string | null;
+          cultureThreeText: string | null;
+          openingsKicker: string | null;
+          openingsTitle: string | null;
+          openingsIntro: string | null;
+          emptyTitle: string | null;
+          emptyText: string | null;
+          processKicker: string | null;
+          processTitle: string | null;
+          processOneTitle: string | null;
+          processOneText: string | null;
+          processTwoTitle: string | null;
+          processTwoText: string | null;
+          processThreeTitle: string | null;
+          processThreeText: string | null;
+          safetyTitle: string | null;
+          safetyText: string | null;
+          accessTitle: string | null;
+          accessText: string | null;
+        };
+        data: null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string | null;
+          seoDescription: string | null;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: {
+          timeline: Array<{
+            year: string;
+            title: string;
+            text: string;
+            _type: "timelineItem";
+            _key: string;
+          }>;
+          values: Array<{
+            title: string;
+            text: string;
+            _type: "valuesItem";
+            _key: string;
+          }>;
+          approach: Array<{
+            title: string;
+            text: string;
+            _type: "approachItem";
+            _key: string;
+          }>;
+          leadership: Array<{
+            name: string;
+            role: string;
+            detail: string;
+            image: EditorialImage;
+            _type: "leadershipItem";
+            _key: string;
+          }>;
+          accountability: {
+            safeguarding: {
+              title: string;
+              text: string;
+            };
+            community: {
+              title: string;
+              text: string;
+            };
+            feedback: {
+              title: string;
+              text: string;
+            };
+            transparency: {
+              title: string;
+              text: string;
+            };
+          };
+        } | null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string | null;
+          seoDescription: string | null;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: {
+          board: Array<{
+            name: string;
+            role: string;
+            detail?: string;
+            image: EditorialImage;
+            _type: "boardItem";
+            _key: string;
+          }>;
+          management: Array<{
+            name: string;
+            role: string;
+            image: EditorialImage;
+            _type: "managementItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string | null;
+          seoDescription: string | null;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: {
+          impactYear: number;
+          impactOverview: Array<{
+            value: string;
+            label: string;
+            source: string;
+            _type: "impactOverviewItem";
+            _key: string;
+          }>;
+          sectorImpact: Array<{
+            title: string;
+            slug: string;
+            value: string;
+            label: string;
+            description: string;
+            source: string;
+            estimated?: boolean;
+            _type: "sectorImpactItem";
+            _key: string;
+          }>;
+          photos: Array<{
+            name: string;
+            image: EditorialImage;
+            _type: "photosItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string | null;
+          seoDescription: string | null;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: {
+          legacyReports: Array<{
+            title: string;
+            category: "Annual reports" | "Financial reports" | "Publications";
+            year: number;
+            summary: string;
+            fileUrl: string;
+            onlineUrl?: string;
+            _type: "legacyReportsItem";
+            _key: string;
+          }>;
+        } | null;
+      }
+    | {
+        _id: "careersPage";
+        fields: {
+          seoTitle: string | null;
+          seoDescription: string | null;
+          heroImage: null;
+          heroKicker: null;
+          heroTitle: null;
+          heroAccent: null;
+          heroIntro: null;
+          cultureKicker: null;
+          cultureTitle: null;
+          cultureIntro: null;
+          cultureOneTitle: null;
+          cultureOneText: null;
+          cultureTwoTitle: null;
+          cultureTwoText: null;
+          cultureThreeTitle: null;
+          cultureThreeText: null;
+          openingsKicker: null;
+          openingsTitle: null;
+          openingsIntro: null;
+          emptyTitle: null;
+          emptyText: null;
+          processKicker: null;
+          processTitle: null;
+          processOneTitle: null;
+          processOneText: null;
+          processTwoTitle: null;
+          processTwoText: null;
+          processThreeTitle: null;
+          processThreeText: null;
+          safetyTitle: null;
+          safetyText: null;
+          accessTitle: null;
+          accessText: null;
+        };
+        data: {
+          lgaActivities: Array<{
+            state: "Adamawa" | "Borno" | "Yobe";
+            lga:
+              | "Bade"
+              | "Biu"
+              | "Chibok"
+              | "Fika"
+              | "Fune"
+              | "Geidam"
+              | "Gwoza"
+              | "Hong"
+              | "Jakusko"
+              | "Jere"
+              | "Kaga"
+              | "Madagali"
+              | "Magumeri"
+              | "Michika"
+              | "MMC"
+              | "Mubi North"
+              | "Mubi South"
+              | "Nangere"
+              | "Nguru"
+              | "Potiskum";
+            activities: Array<{
+              title: string;
+              text: string;
+              source: string;
+              project?: string;
+              page?: number;
+              _type: "activitiesItem";
+              _key: string;
+            }>;
+            _type: "lgaActivitiesItem";
+            _key: string;
+          }>;
+          offices: Array<{
+            town: string;
+            state: string;
+            type: string;
+            _type: "officesItem";
+            _key: string;
+          }>;
         } | null;
       }
     | null
@@ -6353,6 +6982,25 @@ export type CONTENT_QUERY_RESULT = {
         heroStatement: null;
         heroHighlight: null;
         heroIntro: null;
+        location: string;
+        aboutIntro: null;
+        programmeHeading: null;
+        projectsHeading: null;
+        storiesHeading: null;
+        partnersHeading: null;
+        partnersIntro: null;
+        supportIntro: null;
+        impactFacts: null;
+        heroImage: null;
+        aboutImage: null;
+        impactImage: null;
+        supportImage: null;
+      }
+    | {
+        heroKicker: null;
+        heroStatement: null;
+        heroHighlight: null;
+        heroIntro: null;
         location: string | null;
         aboutIntro: null;
         programmeHeading: null;
@@ -6367,6 +7015,29 @@ export type CONTENT_QUERY_RESULT = {
           label: string;
         }> | null;
         heroImage: null;
+        aboutImage: null;
+        impactImage: null;
+        supportImage: null;
+      }
+    | {
+        heroKicker: string | null;
+        heroStatement: null;
+        heroHighlight: null;
+        heroIntro: string | null;
+        location: null;
+        aboutIntro: null;
+        programmeHeading: null;
+        projectsHeading: null;
+        storiesHeading: null;
+        partnersHeading: null;
+        partnersIntro: null;
+        supportIntro: null;
+        impactFacts: null;
+        heroImage: {
+          url: string | null;
+          assetId: string | null;
+          alt: string;
+        } | null;
         aboutImage: null;
         impactImage: null;
         supportImage: null;
@@ -6585,6 +7256,46 @@ export type CONTENT_QUERY_RESULT = {
       alt: string;
     } | null;
   }>;
+  vacancies: Array<{
+    _id: string;
+    title: string;
+    slug: string;
+    referenceCode: string | null;
+    summary: string;
+    department: string;
+    location: string;
+    engagement:
+      | "Consultancy"
+      | "Fixed-term"
+      | "Full-time"
+      | "Internship"
+      | "Part-time"
+      | "Volunteer";
+    body: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h2" | "h3" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    status: "closed" | "open";
+    closingDate: string;
+    applicationMethod: "email" | "link";
+    applicationUrl: string | null;
+    applicationEmail: string | null;
+    applicationInstructions: string;
+  }>;
   reports: Array<{
     _id: string;
     title: string;
@@ -6608,7 +7319,7 @@ export type CONTENT_QUERY_RESULT = {
 
 // Source: ../src/lib/queries.ts
 // Variable: EXPORT_QUERY
-// Query: *[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)
+// Query: *[_type in ["siteSettings","homePage","programme","project","story","report","partner","vacancy","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage","careersPage"]] | order(_id asc)
 export type EXPORT_QUERY_RESULT = Array<
   | {
       _id: string;
@@ -6740,6 +7451,46 @@ export type EXPORT_QUERY_RESULT = Array<
           };
         };
       };
+    }
+  | {
+      _id: string;
+      _type: "careersPage";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      seoTitle?: string;
+      seoDescription?: string;
+      heroImage?: EditorialImage;
+      heroKicker?: string;
+      heroTitle?: string;
+      heroAccent?: string;
+      heroIntro?: string;
+      cultureKicker?: string;
+      cultureTitle?: string;
+      cultureIntro?: string;
+      cultureOneTitle?: string;
+      cultureOneText?: string;
+      cultureTwoTitle?: string;
+      cultureTwoText?: string;
+      cultureThreeTitle?: string;
+      cultureThreeText?: string;
+      openingsKicker?: string;
+      openingsTitle?: string;
+      openingsIntro?: string;
+      emptyTitle?: string;
+      emptyText?: string;
+      processKicker?: string;
+      processTitle?: string;
+      processOneTitle?: string;
+      processOneText?: string;
+      processTwoTitle?: string;
+      processTwoText?: string;
+      processThreeTitle?: string;
+      processThreeText?: string;
+      safetyTitle?: string;
+      safetyText?: string;
+      accessTitle?: string;
+      accessText?: string;
     }
   | {
       _id: string;
@@ -7423,6 +8174,50 @@ export type EXPORT_QUERY_RESULT = Array<
     }
   | {
       _id: string;
+      _type: "vacancy";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      title: string;
+      slug: Slug;
+      referenceCode?: string;
+      summary: string;
+      department: string;
+      location: string;
+      engagement:
+        | "Consultancy"
+        | "Fixed-term"
+        | "Full-time"
+        | "Internship"
+        | "Part-time"
+        | "Volunteer";
+      body: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+      status: "closed" | "open";
+      closingDate: string;
+      applicationMethod: "email" | "link";
+      applicationUrl?: string;
+      applicationEmail?: string;
+      applicationInstructions: string;
+    }
+  | {
+      _id: string;
       _type: "whereWeWorkPage";
       _createdAt: string;
       _updatedAt: string;
@@ -7506,7 +8301,7 @@ export type EXPORT_QUERY_RESULT = Array<
 
 // Source: ../src/lib/queries.ts
 // Variable: RELEASE_QUERY
-// Query: {"content": {  "schemaVersion": 1,  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)}
+// Query: {"content": {  "schemaVersion": 1,  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data},*[_id=="careersPage"][0]{_id,"fields":{seoTitle,seoDescription,heroImage{"url":asset->url,"assetId":asset._ref,alt},heroKicker,heroTitle,heroAccent,heroIntro,cultureKicker,cultureTitle,cultureIntro,cultureOneTitle,cultureOneText,cultureTwoTitle,cultureTwoText,cultureThreeTitle,cultureThreeText,openingsKicker,openingsTitle,openingsIntro,emptyTitle,emptyText,processKicker,processTitle,processOneTitle,processOneText,processTwoTitle,processTwoText,processThreeTitle,processThreeText,safetyTitle,safetyText,accessTitle,accessText},data}][defined(_id)],  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,    impactFacts[]{_key,value,label},    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},  "vacancies": *[_type == "vacancy" && defined(slug.current)] | order(closingDate asc, title asc){_id,title,"slug":slug.current,referenceCode,summary,department,location,engagement,body,status,closingDate,applicationMethod,applicationUrl,applicationEmail,applicationInstructions},  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner","vacancy","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage","careersPage"]] | order(_id asc)}
 export type RELEASE_QUERY_RESULT = {
   content: {
     schemaVersion: 1;
@@ -8165,6 +8960,547 @@ export type RELEASE_QUERY_RESULT = {
                 text: string;
               };
             };
+          } | null;
+        }
+      | null
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: null;
+            seoDescription: null;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string;
+            seoDescription: string;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string | null;
+            seoDescription: string | null;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: null;
+            seoDescription: null;
+            heroImage: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            };
+            heroKicker: string | null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: string;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string | null;
+            seoDescription: string | null;
+            heroImage: {
+              url: string | null;
+              assetId: string | null;
+              alt: string;
+            } | null;
+            heroKicker: string | null;
+            heroTitle: string | null;
+            heroAccent: string | null;
+            heroIntro: string | null;
+            cultureKicker: string | null;
+            cultureTitle: string | null;
+            cultureIntro: string | null;
+            cultureOneTitle: string | null;
+            cultureOneText: string | null;
+            cultureTwoTitle: string | null;
+            cultureTwoText: string | null;
+            cultureThreeTitle: string | null;
+            cultureThreeText: string | null;
+            openingsKicker: string | null;
+            openingsTitle: string | null;
+            openingsIntro: string | null;
+            emptyTitle: string | null;
+            emptyText: string | null;
+            processKicker: string | null;
+            processTitle: string | null;
+            processOneTitle: string | null;
+            processOneText: string | null;
+            processTwoTitle: string | null;
+            processTwoText: string | null;
+            processThreeTitle: string | null;
+            processThreeText: string | null;
+            safetyTitle: string | null;
+            safetyText: string | null;
+            accessTitle: string | null;
+            accessText: string | null;
+          };
+          data: null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string | null;
+            seoDescription: string | null;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: {
+            timeline: Array<{
+              year: string;
+              title: string;
+              text: string;
+              _type: "timelineItem";
+              _key: string;
+            }>;
+            values: Array<{
+              title: string;
+              text: string;
+              _type: "valuesItem";
+              _key: string;
+            }>;
+            approach: Array<{
+              title: string;
+              text: string;
+              _type: "approachItem";
+              _key: string;
+            }>;
+            leadership: Array<{
+              name: string;
+              role: string;
+              detail: string;
+              image: EditorialImage;
+              _type: "leadershipItem";
+              _key: string;
+            }>;
+            accountability: {
+              safeguarding: {
+                title: string;
+                text: string;
+              };
+              community: {
+                title: string;
+                text: string;
+              };
+              feedback: {
+                title: string;
+                text: string;
+              };
+              transparency: {
+                title: string;
+                text: string;
+              };
+            };
+          } | null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string | null;
+            seoDescription: string | null;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: {
+            board: Array<{
+              name: string;
+              role: string;
+              detail?: string;
+              image: EditorialImage;
+              _type: "boardItem";
+              _key: string;
+            }>;
+            management: Array<{
+              name: string;
+              role: string;
+              image: EditorialImage;
+              _type: "managementItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string | null;
+            seoDescription: string | null;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: {
+            impactYear: number;
+            impactOverview: Array<{
+              value: string;
+              label: string;
+              source: string;
+              _type: "impactOverviewItem";
+              _key: string;
+            }>;
+            sectorImpact: Array<{
+              title: string;
+              slug: string;
+              value: string;
+              label: string;
+              description: string;
+              source: string;
+              estimated?: boolean;
+              _type: "sectorImpactItem";
+              _key: string;
+            }>;
+            photos: Array<{
+              name: string;
+              image: EditorialImage;
+              _type: "photosItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string | null;
+            seoDescription: string | null;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: {
+            legacyReports: Array<{
+              title: string;
+              category: "Annual reports" | "Financial reports" | "Publications";
+              year: number;
+              summary: string;
+              fileUrl: string;
+              onlineUrl?: string;
+              _type: "legacyReportsItem";
+              _key: string;
+            }>;
+          } | null;
+        }
+      | {
+          _id: "careersPage";
+          fields: {
+            seoTitle: string | null;
+            seoDescription: string | null;
+            heroImage: null;
+            heroKicker: null;
+            heroTitle: null;
+            heroAccent: null;
+            heroIntro: null;
+            cultureKicker: null;
+            cultureTitle: null;
+            cultureIntro: null;
+            cultureOneTitle: null;
+            cultureOneText: null;
+            cultureTwoTitle: null;
+            cultureTwoText: null;
+            cultureThreeTitle: null;
+            cultureThreeText: null;
+            openingsKicker: null;
+            openingsTitle: null;
+            openingsIntro: null;
+            emptyTitle: null;
+            emptyText: null;
+            processKicker: null;
+            processTitle: null;
+            processOneTitle: null;
+            processOneText: null;
+            processTwoTitle: null;
+            processTwoText: null;
+            processThreeTitle: null;
+            processThreeText: null;
+            safetyTitle: null;
+            safetyText: null;
+            accessTitle: null;
+            accessText: null;
+          };
+          data: {
+            lgaActivities: Array<{
+              state: "Adamawa" | "Borno" | "Yobe";
+              lga:
+                | "Bade"
+                | "Biu"
+                | "Chibok"
+                | "Fika"
+                | "Fune"
+                | "Geidam"
+                | "Gwoza"
+                | "Hong"
+                | "Jakusko"
+                | "Jere"
+                | "Kaga"
+                | "Madagali"
+                | "Magumeri"
+                | "Michika"
+                | "MMC"
+                | "Mubi North"
+                | "Mubi South"
+                | "Nangere"
+                | "Nguru"
+                | "Potiskum";
+              activities: Array<{
+                title: string;
+                text: string;
+                source: string;
+                project?: string;
+                page?: number;
+                _type: "activitiesItem";
+                _key: string;
+              }>;
+              _type: "lgaActivitiesItem";
+              _key: string;
+            }>;
+            offices: Array<{
+              town: string;
+              state: string;
+              type: string;
+              _type: "officesItem";
+              _key: string;
+            }>;
           } | null;
         }
       | null
@@ -12751,6 +14087,25 @@ export type RELEASE_QUERY_RESULT = {
           heroStatement: null;
           heroHighlight: null;
           heroIntro: null;
+          location: string;
+          aboutIntro: null;
+          programmeHeading: null;
+          projectsHeading: null;
+          storiesHeading: null;
+          partnersHeading: null;
+          partnersIntro: null;
+          supportIntro: null;
+          impactFacts: null;
+          heroImage: null;
+          aboutImage: null;
+          impactImage: null;
+          supportImage: null;
+        }
+      | {
+          heroKicker: null;
+          heroStatement: null;
+          heroHighlight: null;
+          heroIntro: null;
           location: string | null;
           aboutIntro: null;
           programmeHeading: null;
@@ -12765,6 +14120,29 @@ export type RELEASE_QUERY_RESULT = {
             label: string;
           }> | null;
           heroImage: null;
+          aboutImage: null;
+          impactImage: null;
+          supportImage: null;
+        }
+      | {
+          heroKicker: string | null;
+          heroStatement: null;
+          heroHighlight: null;
+          heroIntro: string | null;
+          location: null;
+          aboutIntro: null;
+          programmeHeading: null;
+          projectsHeading: null;
+          storiesHeading: null;
+          partnersHeading: null;
+          partnersIntro: null;
+          supportIntro: null;
+          impactFacts: null;
+          heroImage: {
+            url: string | null;
+            assetId: string | null;
+            alt: string;
+          } | null;
           aboutImage: null;
           impactImage: null;
           supportImage: null;
@@ -12983,6 +14361,46 @@ export type RELEASE_QUERY_RESULT = {
         alt: string;
       } | null;
     }>;
+    vacancies: Array<{
+      _id: string;
+      title: string;
+      slug: string;
+      referenceCode: string | null;
+      summary: string;
+      department: string;
+      location: string;
+      engagement:
+        | "Consultancy"
+        | "Fixed-term"
+        | "Full-time"
+        | "Internship"
+        | "Part-time"
+        | "Volunteer";
+      body: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "blockquote" | "h2" | "h3" | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+      status: "closed" | "open";
+      closingDate: string;
+      applicationMethod: "email" | "link";
+      applicationUrl: string | null;
+      applicationEmail: string | null;
+      applicationInstructions: string;
+    }>;
     reports: Array<{
       _id: string;
       title: string;
@@ -13134,6 +14552,46 @@ export type RELEASE_QUERY_RESULT = {
             };
           };
         };
+      }
+    | {
+        _id: string;
+        _type: "careersPage";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        seoTitle?: string;
+        seoDescription?: string;
+        heroImage?: EditorialImage;
+        heroKicker?: string;
+        heroTitle?: string;
+        heroAccent?: string;
+        heroIntro?: string;
+        cultureKicker?: string;
+        cultureTitle?: string;
+        cultureIntro?: string;
+        cultureOneTitle?: string;
+        cultureOneText?: string;
+        cultureTwoTitle?: string;
+        cultureTwoText?: string;
+        cultureThreeTitle?: string;
+        cultureThreeText?: string;
+        openingsKicker?: string;
+        openingsTitle?: string;
+        openingsIntro?: string;
+        emptyTitle?: string;
+        emptyText?: string;
+        processKicker?: string;
+        processTitle?: string;
+        processOneTitle?: string;
+        processOneText?: string;
+        processTwoTitle?: string;
+        processTwoText?: string;
+        processThreeTitle?: string;
+        processThreeText?: string;
+        safetyTitle?: string;
+        safetyText?: string;
+        accessTitle?: string;
+        accessText?: string;
       }
     | {
         _id: string;
@@ -13817,6 +15275,50 @@ export type RELEASE_QUERY_RESULT = {
       }
     | {
         _id: string;
+        _type: "vacancy";
+        _createdAt: string;
+        _updatedAt: string;
+        _rev: string;
+        title: string;
+        slug: Slug;
+        referenceCode?: string;
+        summary: string;
+        department: string;
+        location: string;
+        engagement:
+          | "Consultancy"
+          | "Fixed-term"
+          | "Full-time"
+          | "Internship"
+          | "Part-time"
+          | "Volunteer";
+        body: Array<{
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "blockquote" | "h2" | "h3" | "normal";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }>;
+        status: "closed" | "open";
+        closingDate: string;
+        applicationMethod: "email" | "link";
+        applicationUrl?: string;
+        applicationEmail?: string;
+        applicationInstructions: string;
+      }
+    | {
+        _id: string;
         _type: "whereWeWorkPage";
         _createdAt: string;
         _updatedAt: string;
@@ -13902,9 +15404,9 @@ export type RELEASE_QUERY_RESULT = {
 // Query TypeMap
 declare global {
   interface SanityQueries {
-    '{\n  "schemaVersion": 1,\n  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,\n  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}': CONTENT_QUERY_RESULT;
-    '*[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)': EXPORT_QUERY_RESULT;
-    '{"content": {\n  "schemaVersion": 1,\n  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,\n  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data}][defined(_id)],\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage"]] | order(_id asc)}': RELEASE_QUERY_RESULT;
+    '{\n  "schemaVersion": 1,\n  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,\n  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data},*[_id=="careersPage"][0]{_id,"fields":{seoTitle,seoDescription,heroImage{"url":asset->url,"assetId":asset._ref,alt},heroKicker,heroTitle,heroAccent,heroIntro,cultureKicker,cultureTitle,cultureIntro,cultureOneTitle,cultureOneText,cultureTwoTitle,cultureTwoText,cultureThreeTitle,cultureThreeText,openingsKicker,openingsTitle,openingsIntro,emptyTitle,emptyText,processKicker,processTitle,processOneTitle,processOneText,processTwoTitle,processTwoText,processThreeTitle,processThreeText,safetyTitle,safetyText,accessTitle,accessText},data}][defined(_id)],\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "vacancies": *[_type == "vacancy" && defined(slug.current)] | order(closingDate asc, title asc){_id,title,"slug":slug.current,referenceCode,summary,department,location,engagement,body,status,closingDate,applicationMethod,applicationUrl,applicationEmail,applicationInstructions},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}': CONTENT_QUERY_RESULT;
+    '*[_type in ["siteSettings","homePage","programme","project","story","report","partner","vacancy","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage","careersPage"]] | order(_id asc)': EXPORT_QUERY_RESULT;
+    '{"content": {\n  "schemaVersion": 1,\n  "projectsManaged": *[_id=="projectsPage"][0].cmsManagedProjects == true,\n  "pages": [*[_id=="aboutPage"][0]{_id,"fields":{seoDescription,seoTitle,aboutImage1{"url":asset->url,"assetId":asset._ref,alt},aboutParagraph1,aboutHeading1,aboutText1,aboutText2,aboutParagraph2,whoParagraph1,whoHeading1,whoHeading2,whoParagraph2,whoParagraph3,whoParagraph4,whoText1,whoImage1{"url":asset->url,"assetId":asset._ref,alt},whoCaption1,whoText2,whoText3,storyParagraph1,storyHeading1,storyHeading2,storyParagraph2,guidesParagraph1,guidesHeading1,guidesHeading2,guidesHeading3,guidesParagraph2,guidesHeading4,guidesParagraph3,guidesHeading5,identityParagraph1,identityHeading1,identityHeading2,identityParagraph2,identityParagraph3,identityText1,identityImage1{"url":asset->url,"assetId":asset._ref,alt},identityCaption1,whereParagraph1,whereHeading1,whereParagraph2,whereCaption1,whereLinkLabel1,whereHeading2,whereLinkLabel2,whereParagraph3,whereParagraph4,whereLinkLabel3,approachParagraph1,approachHeading1,approachHeading2,leadershipParagraph1,leadershipHeading1,leadershipParagraph2,leadershipText1,leadershipText2,leadershipImage1{"url":asset->url,"assetId":asset._ref,alt},leadershipHeading2,leadershipHeading3,leadershipParagraph3,leadershipLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityParagraph2,accountabilityParagraph3,partnershipParagraph1,partnershipHeading1,partnershipParagraph2,partnershipLinkLabel1,ctaImage1{"url":asset->url,"assetId":asset._ref,alt},ctaParagraph1,ctaHeading1,ctaHeading2,ctaParagraph2,ctaLinkLabel1,ctaLinkLabel2},data{timeline[]{year,title,text},values[]{title,text},approach[]{title,text},leadership[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},accountability{safeguarding{title,text},community{title,text},feedback{title,text},transparency{title,text}}}},*[_id=="teamPage"][0]{_id,"fields":{seoDescription,seoTitle,teamParagraph1,teamHeading1,teamText1,teamParagraph2,teamLinkLabel1,teamImage1{"url":asset->url,"assetId":asset._ref,alt},teamCaption1,introText1,introParagraph1,introLinkLabel1,boardParagraph1,boardHeading1,boardParagraph2,boardParagraph3,managementParagraph1,managementHeading1,managementParagraph2,managementParagraph3,peopleImage1{"url":asset->url,"assetId":asset._ref,alt},peopleCaption1,peopleParagraph1,peopleHeading1,peopleParagraph2,peopleText1,peopleText2,peopleText3,peopleText4,peopleParagraph3,peopleLinkLabel1,introParagraph2,introHeading1,introHeading2,introLinkLabel2},data{board[]{name,role,detail,image{"url":asset->url,"assetId":asset._ref,alt}},management[]{name,role,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="impactPage"][0]{_id,"fields":{seoDescription,seoTitle,impactParagraph1,impactParagraph2,impactHeading1,impactText1,impactText2,impactParagraph3,impactParagraph4,impactLinkLabel1,impactText3,impactCaption1,overviewHeading1,overviewHeading2,overviewParagraph1,overviewParagraph2,storiesParagraph1,storiesHeading1,storiesParagraph2,storiesParagraph3,storiesParagraph4,growingCaption1,growingCaption2,growingParagraph1,growingHeading1,growingText1,growingParagraph2,growingParagraph3,growingText2,growingText3,growingText4,growingText5,growingParagraph4,growingParagraph5,growingLinkLabel1,womenCaption1,womenParagraph1,womenHeading1,womenText1,womenText2,womenParagraph2,womenText3,womenText4,womenText5,womenParagraph3,womenParagraph4,womenLinkLabel1,enterpriseParagraph1,enterpriseHeading1,enterpriseHeading2,enterpriseText1,enterpriseText2,enterpriseText3,enterpriseText4,enterpriseParagraph2,storiesParagraph5,storiesLinkLabel1,sectorsParagraph1,sectorsParagraph2,sectorsHeading1,sectorsHeading2,sectorsParagraph3,sectorsParagraph4,sectorsText1,sectorsParagraph5,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageLinkLabel1,accountabilityParagraph1,accountabilityHeading1,accountabilityText1,accountabilityParagraph2,accountabilityParagraph3,accountabilityLinkLabel1,accountabilityLinkLabel2,accountabilityParagraph4,accountabilityParagraph5,accountabilityHeading2,accountabilityParagraph6,accountabilityLinkLabel3},data{impactYear,impactOverview[]{value,label,source},sectorImpact[]{title,slug,value,label,description,source,estimated},photos[]{name,image{"url":asset->url,"assetId":asset._ref,alt}}}},*[_id=="whereWeWorkPage"][0]{_id,"fields":{seoDescription,seoTitle,whereWorkParagraph1,whereWorkHeading1,whereWorkText1,whereWorkParagraph2,whereWorkLinkLabel1,whereWorkImage1{"url":asset->url,"assetId":asset._ref,alt},whereWorkCaption1,introText1,introText2,introText3,introText4,introText5,introText6,introText7,coverageParagraph1,coverageHeading1,coverageParagraph2,coverageParagraph3,coverageText1,coverageParagraph4,basesParagraph1,basesHeading1,basesLinkLabel1,basesParagraph2,introParagraph1,introHeading1,introParagraph2,introLinkLabel1},data{lgaActivities[]{state,lga,activities[]{title,text,source,project,page}},offices[]{town,state,type}}},*[_id=="programmesPage"][0]{_id,"fields":{seoDescription,seoTitle,programmesImage1{"url":asset->url,"assetId":asset._ref,alt},programmesParagraph1,programmesHeading1,programmesText1,programmesParagraph2,programmesLinkLabel1,programmesParagraph3,areasParagraph1,areasHeading1,areasHeading2,areasParagraph2,areasParagraph3,areasText1,areasParagraph4,areasParagraph5,areasParagraph6,areasText2,areasLinkLabel1,areasHeading3,areasParagraph7,areasLinkLabel2,areasHeading4,areasLinkLabel3,areasParagraph8,areasParagraph9,areasLinkLabel4,areasParagraph10,areasParagraph11,areasParagraph12,areasLinkLabel5,approachImage1{"url":asset->url,"assetId":asset._ref,alt},approachCaption1,approachParagraph1,approachHeading1,approachText1,approachParagraph2,approachHeading2,approachParagraph3,approachHeading3,approachParagraph4,approachLinkLabel1,actionParagraph1,actionHeading1,actionText1,actionParagraph2,actionLinkLabel1,actionLinkLabel2,actionLinkLabel3},data},*[_id=="projectsPage"][0]{_id,"fields":{seoDescription,seoTitle,projectsParagraph1,projectsHeading1,projectsHeading2,projectsText1,projectsParagraph2,introLinkLabel1,introHeading1,introParagraph1,projectImpactHeading1,projectImpactText1,projectImpactParagraph1,projectImpactLinkLabel1},data},*[_id=="storiesPage"][0]{_id,"fields":{seoDescription,seoTitle,updatesImage1{"url":asset->url,"assetId":asset._ref,alt},updatesParagraph1,updatesHeading1,updatesText1,updatesParagraph2,updatesParagraph3,updatesLibraryParagraph1,updatesLibraryHeading1,updatesLibraryLinkLabel1,updatesLibraryParagraph2,updatesLibraryParagraph3,updatesLibraryText1,updatesLibraryText2,updatesLibraryText3,updatesLibraryText4,updatesLibraryText5,updatesLibraryText6,updatesLibraryHeading2,updatesLibraryParagraph4,introParagraph1,introHeading1,introHeading2,introParagraph2,introLinkLabel1},data},*[_id=="resourcesPage"][0]{_id,"fields":{seoDescription,seoTitle,resourcesParagraph1,resourcesHeading1,resourcesText1,resourcesParagraph2,featuredReportParagraph1,featuredReportLinkLabel1,featuredReportLinkLabel2,featuredReportText1,featuredReportText2,libraryHeading1,libraryParagraph1,libraryText1,libraryText2,libraryParagraph2,libraryHeading2,libraryParagraph3,libraryParagraph4,libraryParagraph5,libraryLinkLabel1,mediaParagraph1,mediaHeading1,mediaParagraph2,mediaLinkLabel1},data{legacyReports[]{title,category,year,summary,fileUrl,onlineUrl}}},*[_id=="donatePage"][0]{_id,"fields":{seoDescription,seoTitle,donateImage1{"url":asset->url,"assetId":asset._ref,alt},donateParagraph1,donateHeading1,donateText1,donateParagraph2,donateText2,donateParagraph3,givingParagraph1,givingHeading1,givingParagraph2,givingLinkLabel1,givingLinkLabel2,introText1,introText2,introLinkLabel1,purposeParagraph1,purposeHeading1,purposeParagraph2,purposeLinkLabel1,purposeParagraph3,evidenceImage1{"url":asset->url,"assetId":asset._ref,alt},evidenceText1,evidenceParagraph1,evidenceHeading1,evidenceText2,evidenceParagraph2,evidenceLinkLabel1,evidenceLinkLabel2,evidenceParagraph3,otherParagraph1,otherHeading1,otherLinkLabel1,otherHeading2,otherParagraph2,otherLinkLabel2,otherHeading3,otherParagraph3,otherLinkLabel3,otherHeading4,otherParagraph4,otherLinkLabel4,faqParagraph1,faqHeading1,faqParagraph2,faqLinkLabel1},data},*[_id=="contactPage"][0]{_id,"fields":{seoDescription,seoTitle,introParagraph1,introHeading1,introText1,introParagraph2,contactDetailsParagraph1,contactDetailsHeading1,contactDetailsHeading2,contactDetailsParagraph2,contactDetailsHeading3,contactDetailsHeading4,contactDetailsHeading5,contactDetailsLinkLabel1,enquiryHeading1,enquiryParagraph1,enquiryParagraph2,enquiryParagraph3,officeParagraph1,officeHeading1,officeParagraph2,officeLinkLabel1,officeLinkLabel2},data},*[_id=="careersPage"][0]{_id,"fields":{seoTitle,seoDescription,heroImage{"url":asset->url,"assetId":asset._ref,alt},heroKicker,heroTitle,heroAccent,heroIntro,cultureKicker,cultureTitle,cultureIntro,cultureOneTitle,cultureOneText,cultureTwoTitle,cultureTwoText,cultureThreeTitle,cultureThreeText,openingsKicker,openingsTitle,openingsIntro,emptyTitle,emptyText,processKicker,processTitle,processOneTitle,processOneText,processTwoTitle,processTwoText,processThreeTitle,processThreeText,safetyTitle,safetyText,accessTitle,accessText},data}][defined(_id)],\n  "settings": *[_id == "siteSettings"][0]{organisationName,shortName,diocese,tagline,email,phone,address,country,donationUrl,socialLinks[]{_key,label,url},seoTitle,seoDescription},\n  "home": *[_id == "homePage"][0]{heroKicker,heroStatement,heroHighlight,heroIntro,location,aboutIntro,programmeHeading,projectsHeading,storiesHeading,partnersHeading,partnersIntro,supportIntro,\n    impactFacts[]{_key,value,label},\n    "heroImage": heroImage{"url":asset->url,"assetId":asset._ref,alt},\n    "aboutImage": aboutImage{"url":asset->url,"assetId":asset._ref,alt},\n    "impactImage": impactImage{"url":asset->url,"assetId":asset._ref,alt},\n    "supportImage": supportImage{"url":asset->url,"assetId":asset._ref,alt}},\n  "programmes": *[_type == "programme" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,details{projectSlugs[],interventions[],source,locations[]{label,detail,source},locationNote,projectReach{value,label,description,source,project}},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "projects": *[_type == "project" && defined(slug.current)] | order(sortOrder asc, title asc){_id,title,"slug":slug.current,summary,body,profile{donor,partners,overview[],context,activities[]{title,text},facts[]{value,label},resultsIntro,stories[]{title,text,source},overviewImage{"url":asset->url,"assetId":asset._ref,alt},overviewCaption,gallery[]{image{"url":asset->url,"assetId":asset._ref,alt},caption},sources[]{title,detail,url},storyNote,photoNote,reviewNote,outcomes[]},reportingYear,imageCaption,location,status,startDate,endDate,"projectProgrammes":projectProgrammes[]->{title,"slug":slug.current},impactFacts[]{_key,value,label},sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "stories": *[_type == "story" && defined(slug.current)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,body,category,publishedAt,sortOrder,seoTitle,seoDescription,"image":image{"url":asset->url,"assetId":asset._ref,alt}},\n  "vacancies": *[_type == "vacancy" && defined(slug.current)] | order(closingDate asc, title asc){_id,title,"slug":slug.current,referenceCode,summary,department,location,engagement,body,status,closingDate,applicationMethod,applicationUrl,applicationEmail,applicationInstructions},\n  "reports": *[_type == "report" && defined(file.asset)] | order(publishedAt desc, title asc){_id,title,"slug":slug.current,summary,publishedAt,"fileUrl":file.asset->url,"body":[]},\n  "partners": *[_type == "partner"] | order(sortOrder asc, name asc){name,website,sortOrder,"logo":logo{"url":asset->url,"assetId":asset._ref,alt}}\n}, "documents": *[_type in ["siteSettings","homePage","programme","project","story","report","partner","vacancy","aboutPage","teamPage","impactPage","whereWeWorkPage","programmesPage","projectsPage","storiesPage","resourcesPage","donatePage","contactPage","careersPage"]] | order(_id asc)}': RELEASE_QUERY_RESULT;
   }
 }
 // Lets @sanity/client releases that predate the global registry read it too

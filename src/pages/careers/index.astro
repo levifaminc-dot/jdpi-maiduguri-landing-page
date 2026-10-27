@@ -1,0 +1,65 @@
+---
+import {pageEditor} from '../../lib/page-editor';
+import {getContent,formatDate} from '../../lib/content';
+import {openVacancies} from '../../lib/careers';
+import Layout from '../../layouts/SiteLayout.astro';
+import '../../styles/careers.css';
+
+const content=await getContent();
+const page=pageEditor(content,'careers');
+const jobs=openVacancies(content.vacancies);
+const locations=[...new Set(jobs.map(job=>job.location))].sort();
+const engagements=[...new Set(jobs.map(job=>job.engagement))].sort();
+const focus=[
+  {number:'01',title:page.text('cultureOneTitle'),description:page.text('cultureOneText')},
+  {number:'02',title:page.text('cultureTwoTitle'),description:page.text('cultureTwoText')},
+  {number:'03',title:page.text('cultureThreeTitle'),description:page.text('cultureThreeText')},
+];
+const steps=[
+  {number:'01',title:page.text('processOneTitle'),description:page.text('processOneText')},
+  {number:'02',title:page.text('processTwoTitle'),description:page.text('processTwoText')},
+  {number:'03',title:page.text('processThreeTitle'),description:page.text('processThreeText')},
+];
+---
+<Layout content={content} title={`${page.text('seoTitle')} | ${content.settings.shortName}`} description={page.text('seoDescription')} pageClass="careers-page">
+  <section class="career-hero" aria-labelledby="career-heading">
+    <div class="career-hero-copy">
+      <nav class="career-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Careers</span></nav>
+      <p class="career-kicker">{page.text('heroKicker')}</p>
+      <h1 id="career-heading">{page.text('heroTitle')}<br/><span>{page.text('heroAccent')}</span></h1>
+      <p>{page.text('heroIntro')}</p>
+      <div class="career-hero-actions"><a class="career-button career-button-light" href="#open-roles">Explore open roles <span aria-hidden="true">↗</span></a><a class="career-underlink" href="#how-to-apply">How to apply <span aria-hidden="true">↓</span></a></div>
+    </div>
+    <figure class="career-hero-photo"><img src={page.image('heroImage').url} alt={page.image('heroImage').alt} width="1200" height="574" fetchpriority="high" decoding="async"/><figcaption>Our people. Our shared purpose.</figcaption></figure>
+  </section>
+
+  <nav class="career-section-nav" aria-label="Careers sections"><div class="career-shell"><a href="#working-with-jdpi">Working with JDPI</a><a href="#open-roles">Open opportunities</a><a href="#how-to-apply">How to apply</a><a href="#applicant-support">Applicant support</a></div></nav>
+
+  <section class="career-culture career-shell" id="working-with-jdpi" aria-labelledby="career-culture-heading">
+    <div class="career-section-head"><div><p class="career-kicker">{page.text('cultureKicker')}</p><h2 id="career-culture-heading">{page.text('cultureTitle')}</h2></div><p>{page.text('cultureIntro')}</p></div>
+    <div class="career-focus-grid">{focus.map(item=><article><span class="career-focus-number" aria-hidden="true">{item.number}</span><h3>{item.title}</h3><p>{item.description}</p></article>)}</div>
+  </section>
+
+  <section class="career-openings" id="open-roles" aria-labelledby="career-openings-heading"><div class="career-shell">
+    <div class="career-section-head"><div><p class="career-kicker">{page.text('openingsKicker')}</p><h2 id="career-openings-heading">{page.text('openingsTitle')}</h2></div><p>{page.text('openingsIntro')}</p></div>
+    {jobs.length>0 ? <div data-career-listing>
+      <div class="career-controls" data-career-controls hidden>
+        <label class="career-search">Search openings<input type="search" data-career-search placeholder="Job title, team or location" aria-controls="career-results"/></label>
+        <label>Duty station<select data-career-location aria-controls="career-results"><option value="">All locations</option>{locations.map(location=><option value={location}>{location}</option>)}</select></label>
+        <label>Engagement<select data-career-engagement aria-controls="career-results"><option value="">All types</option>{engagements.map(type=><option value={type}>{type}</option>)}</select></label>
+      </div>
+      <p class="career-results-count" data-career-count role="status" aria-live="polite">{jobs.length} open {jobs.length===1?'opportunity':'opportunities'}</p>
+      <div class="career-job-list" id="career-results">{jobs.map(job=><article class="career-job" data-career-job data-title={job.title} data-location={job.location} data-engagement={job.engagement} data-deadline={job.closingDate} data-search={`${job.title} ${job.department} ${job.location} ${job.referenceCode||''}`.toLowerCase()}>
+        <div><p class="career-job-team">{job.department}</p><h3><a href={`/careers/${encodeURIComponent(job.slug)}/`}>{job.title}</a></h3><p class="career-job-summary">{job.summary}</p><div class="career-job-meta"><span>{job.location}</span><span>{job.engagement}</span><span>Closes <time datetime={job.closingDate}>{formatDate(job.closingDate)}</time></span></div></div>
+        <a class="career-job-link" href={`/careers/${encodeURIComponent(job.slug)}/`} aria-label={`View ${job.title}`}>View role <span aria-hidden="true">↗</span></a>
+      </article>)}</div>
+      <div class="career-filter-empty" data-career-filter-empty hidden><h3>No roles match those filters.</h3><p>Try a different search or show all open roles.</p><button type="button" data-career-reset>Clear filters</button></div>
+      <noscript><p>All current opportunities are shown. Search and filters require JavaScript.</p></noscript>
+    </div> : <div class="career-no-openings"><span class="career-no-openings-symbol" aria-hidden="true">↗</span><div><p class="career-kicker">CURRENT STATUS</p><h3>{page.text('emptyTitle')}</h3><p>{page.text('emptyText')}</p></div><a href="#how-to-apply">See how recruitment works <span aria-hidden="true">↓</span></a></div>}
+  </div></section>
+
+  <section class="career-process career-shell" id="how-to-apply" aria-labelledby="career-process-heading"><div class="career-section-head"><div><p class="career-kicker">{page.text('processKicker')}</p><h2 id="career-process-heading">{page.text('processTitle')}</h2></div></div><ol>{steps.map(step=><li><span aria-hidden="true">{step.number}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol></section>
+
+  <section class="career-support" id="applicant-support" aria-label="Applicant guidance"><div class="career-shell career-support-grid"><article><p class="career-kicker">APPLICATION SAFETY</p><h2>{page.text('safetyTitle')}</h2><p>{page.text('safetyText')}</p><a href="/contact/">Verify with JDPI <span aria-hidden="true">↗</span></a></article><article><p class="career-kicker">ACCESS TO OPPORTUNITY</p><h2>{page.text('accessTitle')}</h2><p>{page.text('accessText')}</p><a href="/contact/">Contact our team <span aria-hidden="true">↗</span></a></article></div></section>
+  <script>import '../../scripts/careers-filter';</script>
+</Layout>

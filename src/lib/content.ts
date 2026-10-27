@@ -19,6 +19,12 @@ export interface ContentItem {
   reportingYear?: number; imageCaption?: string;
   profile?: ProjectProfile; details?: ProgrammeDetails;
 }
+export interface Vacancy {
+  _id?: string; title: string; slug: string; referenceCode?: string; summary: string;
+  department: string; location: string; engagement: string; body: PortableTextBlock[];
+  status: 'open'|'closed'; closingDate: string; applicationMethod: 'link'|'email';
+  applicationUrl?: string; applicationEmail?: string; applicationInstructions: string;
+}
 export interface SiteContent {
   schemaVersion: number;
   pages?: EditorialPage[];
@@ -32,6 +38,7 @@ export interface SiteContent {
     programmeHeading: string; projectsHeading: string; storiesHeading: string;
     partnersHeading: string; partnersIntro: string; supportIntro: string; supportImage: ContentImage};
   programmes: ContentItem[]; projects: ContentItem[]; stories: ContentItem[]; reports: ContentItem[];
+  vacancies?: Vacancy[];
   partners: {name: string; sortOrder?: number; logo?: ContentImage; website?: string}[];
 }
 

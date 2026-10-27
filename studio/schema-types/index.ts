@@ -1,6 +1,6 @@
 import {defineType,defineField,defineArrayMember,type ConditionalPropertyCallbackContext} from 'sanity';
 import {CogIcon,HomeIcon,DocumentTextIcon,DocumentsIcon,UsersIcon,EarthGlobeIcon,ProjectsIcon} from '@sanity/icons';
-import {contentFields,editorialImage} from './shared';
+import {contentFields,editorialImage,bodyField} from './shared';
 import {pageTypes,projectProfileField,programmeDetailsField} from './page-content';
 
 const siteSettings=defineType({name:'siteSettings',title:'Site settings',type:'document',icon:CogIcon,fields:[
@@ -48,4 +48,26 @@ const project=defineType({name:'project',title:'Project',type:'document',icon:Pr
 const story=defineType({name:'story',title:'Story or update',type:'document',icon:DocumentTextIcon,fields:[...contentFields(),defineField({name:'category',title:'Update type',type:'string',initialValue:'Stories',description:'Field stories, blog posts and other updates appear on Stories & Updates. Upload PDF reports under Reports instead.',options:{list:[{title:'Field story',value:'Stories'},{title:'Blog post',value:'Blogs'},{title:'News',value:'News'},{title:'Event',value:'Events'},{title:'Publication',value:'Publications'}]},validation:r=>r.required()}),defineField({name:'publishedAt',title:'Publication date',type:'datetime',validation:r=>r.required()})],preview:{select:{title:'title',subtitle:'category',media:'image'}}});
 const report=defineType({name:'report',title:'Report or publication',type:'document',icon:DocumentsIcon,fields:[defineField({name:'title',type:'string',validation:r=>r.required()}),defineField({name:'slug',title:'Reference name',type:'slug',options:{source:'title'}}),defineField({name:'summary',title:'Description',type:'text',rows:3}),defineField({name:'publishedAt',title:'Publication date',type:'date',validation:r=>r.required()}),defineField({name:'file',title:'PDF report',type:'file',options:{accept:'application/pdf'},validation:r=>r.required()}),defineField({name:'sourceKey',type:'string',hidden:true,readOnly:true})]});
 const partner=defineType({name:'partner',title:'Partner or donor',type:'document',icon:UsersIcon,fields:[defineField({name:'name',type:'string',validation:r=>r.required()}),defineField({name:'logo',type:'editorialImage'}),defineField({name:'website',type:'url',validation:r=>r.uri({scheme:['https']})}),defineField({name:'sortOrder',title:'Display order',type:'number',initialValue:0}),defineField({name:'sourceKey',type:'string',hidden:true,readOnly:true})],preview:{select:{title:'name',media:'logo'}}});
-export const schemaTypes=[editorialImage,siteSettings,homePage,...pageTypes,programme,project,story,report,partner];
+const validApplicationUrl=(value:string|undefined)=>{try{const url=new URL(value||'');return url.protocol==='https:'&&!url.username&&!url.password;}catch{return false;}};
+const validApplicationEmail=(value:string|undefined)=>/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(value||'');
+const vacancy=defineType({name:'vacancy',title:'Job vacancy',type:'document',icon:UsersIcon,
+  description:'Publish a verified opening. Only published vacancies marked Open and within their closing date appear on the Careers listing.',
+  groups:[{name:'role',title:'Role & location',default:true},{name:'description',title:'Job description'},{name:'application',title:'Application & deadline'}],
+  fields:[
+    defineField({name:'title',title:'Job title',type:'string',group:'role',validation:r=>r.required().max(140)}),
+    defineField({name:'slug',title:'Page address',type:'slug',group:'role',options:{source:'title',maxLength:100},validation:r=>r.required().custom(value=>!value?.current||/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.current)||'Use lowercase letters, numbers and hyphens.')}),
+    defineField({name:'referenceCode',title:'Reference number',type:'string',group:'role',description:'Optional JDPI recruitment reference.'}),
+    defineField({name:'summary',title:'Short role summary',type:'text',rows:3,group:'role',validation:r=>r.required().max(500)}),
+    defineField({name:'department',title:'Team or department',type:'string',group:'role',validation:r=>r.required()}),
+    defineField({name:'location',title:'Duty station',type:'string',group:'role',description:'For example, Maiduguri, Borno State. Include field travel in the description.',validation:r=>r.required()}),
+    defineField({name:'engagement',title:'Engagement type',type:'string',group:'role',options:{list:['Full-time','Part-time','Fixed-term','Consultancy','Internship','Volunteer']},validation:r=>r.required()}),
+    {...bodyField(),title:'Role description and requirements',group:'description',validation:r=>r.required().min(1)},
+    defineField({name:'status',title:'Listing status',type:'string',group:'application',initialValue:'open',options:{list:[{title:'Open',value:'open'},{title:'Closed',value:'closed'}],layout:'radio'},validation:r=>r.required()}),
+    defineField({name:'closingDate',title:'Application deadline',type:'date',group:'application',description:'Applications close at the end of this date in Nigeria (WAT).',validation:r=>r.required()}),
+    defineField({name:'applicationMethod',title:'How candidates apply',type:'string',group:'application',options:{list:[{title:'Secure application link',value:'link'},{title:'Email',value:'email'}],layout:'radio'},validation:r=>r.required()}),
+    defineField({name:'applicationUrl',title:'Application link',type:'url',group:'application',hidden:({document})=>document?.applicationMethod!=='link',validation:r=>r.custom((value,context)=>context.document?.applicationMethod!=='link'||validApplicationUrl(value)||'Add a full HTTPS application link without embedded credentials.')}),
+    defineField({name:'applicationEmail',title:'Application email',type:'string',group:'application',hidden:({document})=>document?.applicationMethod!=='email',validation:r=>r.custom((value,context)=>context.document?.applicationMethod!=='email'||validApplicationEmail(value)||'Add the JDPI application inbox.')}),
+    defineField({name:'applicationInstructions',title:'How to apply',type:'text',rows:4,group:'application',description:'List required documents and any subject line or reference code. Do not ask for bank details.',validation:r=>r.required()}),
+  ],preview:{select:{title:'title',subtitle:'location'}}
+});
+export const schemaTypes=[editorialImage,siteSettings,homePage,...pageTypes,programme,project,story,report,partner,vacancy];

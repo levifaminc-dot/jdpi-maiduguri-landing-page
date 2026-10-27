@@ -32,6 +32,26 @@ export function validateContent(data){
       }
     }
   }
+  if(data.vacancies!==undefined){
+    if(!Array.isArray(data.vacancies))errors.push('vacancies must be an array.');
+    else {
+      const slugs=new Set();
+      for(const job of data.vacancies){
+        for(const key of ['title','summary','department','location','engagement','closingDate','applicationInstructions'])requireText(job[key],`vacancy ${job.slug||'(no slug)'} ${key}`);
+        if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(job.slug||''))errors.push(`Invalid vacancy slug: ${job.slug}`);
+        if(slugs.has(job.slug))errors.push(`Duplicate vacancy slug: ${job.slug}`);
+        slugs.add(job.slug);
+        if(!Array.isArray(job.body)||!job.body.length)errors.push(`Vacancy needs a job description: ${job.title}`);
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(job.closingDate||'')||Number.isNaN(Date.parse(job.closingDate)))errors.push(`Invalid vacancy deadline: ${job.title}`);
+        if(!['open','closed'].includes(job.status))errors.push(`Invalid vacancy status: ${job.title}`);
+        if(!['Full-time','Part-time','Fixed-term','Consultancy','Internship','Volunteer'].includes(job.engagement))errors.push(`Invalid engagement type: ${job.title}`);
+        if(job.applicationMethod==='link')https(job.applicationUrl,`Application link: ${job.title}`);
+        if(job.applicationMethod==='link'&&!job.applicationUrl)errors.push(`Vacancy needs an application link: ${job.title}`);
+        if(job.applicationMethod==='email'&&!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(job.applicationEmail||''))errors.push(`Vacancy needs a valid application email: ${job.title}`);
+        if(!['link','email'].includes(job.applicationMethod))errors.push(`Invalid application method: ${job.title}`);
+      }
+    }
+  }
   validatePageContent(data,asset);
   if(errors.length)throw new Error(errors.join('\n'));
   return data;

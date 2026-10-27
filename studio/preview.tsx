@@ -14,6 +14,7 @@ export function DraftPreview({document}:Props){
   useEffect(()=>{let current=true;setImageUrl('');if(ref)client.fetch<string>('*[_id==$id][0].url',{id:ref}).then(url=>{if(current)setImageUrl(url);}).catch(()=>{});return()=>{current=false;};},[client,ref]);
   const body=(doc.body||[]) as {children?:{text?:string}[]}[];
   const title=String(doc.title||doc.name||doc.heroStatement||page?.title||'Website settings');
+  const slug=(doc.slug as {current?:string}|undefined)?.current;
   return <div style={{padding:32,maxWidth:800,margin:'auto',fontFamily:'system-ui',color:'#202020',lineHeight:1.6}}>
     <p style={{fontSize:13,color:'#08783e',textTransform:'uppercase',letterSpacing:2}}>Draft content preview</p>
     <h1 style={{fontSize:36,lineHeight:1.2}}>{title} {String(doc.heroHighlight||'')}</h1>
@@ -26,7 +27,7 @@ export function DraftPreview({document}:Props){
     {doc.profile?<><h2>Project details</h2><StructuredPreview value={doc.profile}/></>:null}
     {doc.details?<><h2>Programme details</h2><StructuredPreview value={doc.details}/></>:null}
     <hr/><p style={{fontSize:14}}>This preview shows the current draft text and image. Publish only after checking accuracy and image permissions. The website updates after its release workflow completes.</p>
-    <a href={`${(process.env.SANITY_STUDIO_SITE_URL||'https://www.jdpimaiduguri.org').replace(/\/$/,'')}/${page?`${page.route}/`:''}`} target="_blank" rel="noreferrer" style={{color:'#08783e'}}>Open the published website</a>
+    <a href={`${(process.env.SANITY_STUDIO_SITE_URL||'https://www.jdpimaiduguri.org').replace(/\/$/,'')}/${page?`${page.route}/`:doc._type==='vacancy'&&slug?`careers/${slug}/`:''}`} target="_blank" rel="noreferrer" style={{color:'#08783e'}}>Open the published website</a>
   </div>;
 }
 function StructuredPreview({value}: {value:unknown}):import('react').ReactNode{

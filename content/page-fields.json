@@ -3222,5 +3222,53 @@
         "initialValue": "Arrange a visit"
       }
     ]
+  },
+  {
+    "route": "careers",
+    "title": "Careers",
+    "type": "careersPage",
+    "groups": [
+      {"name": "intro", "title": "Search & general text"},
+      {"name": "hero", "title": "Opening section"},
+      {"name": "culture", "title": "Working with JDPI"},
+      {"name": "openings", "title": "Open opportunities"},
+      {"name": "process", "title": "Application process"},
+      {"name": "support", "title": "Applicant guidance"}
+    ],
+    "fields": [
+      {"name":"seoTitle","group":"intro","kind":"string","title":"Search title","initialValue":"Careers at JDPI"},
+      {"name":"seoDescription","group":"intro","kind":"text","title":"Search description","initialValue":"Explore verified job openings at JDPI Maiduguri and learn how to apply to work alongside communities across Northeast Nigeria."},
+      {"name":"heroImage","group":"hero","kind":"image","title":"JDPI team photograph","initialValue":{"url":"/assets/about/maiduguri-team.jpg","alt":"JDPI Maiduguri team members standing together at an organisation gathering"}},
+      {"name":"heroKicker","group":"hero","kind":"string","title":"Opening label","initialValue":"CAREERS AT JDPI"},
+      {"name":"heroTitle","group":"hero","kind":"heading","title":"Opening heading","initialValue":"Work with purpose."},
+      {"name":"heroAccent","group":"hero","kind":"heading","title":"Highlighted heading","initialValue":"Serve with people."},
+      {"name":"heroIntro","group":"hero","kind":"text","title":"Opening introduction","initialValue":"Bring your skills to a locally rooted team working with communities across Northeast Nigeria to advance dignity, resilience and peace."},
+      {"name":"cultureKicker","group":"culture","kind":"string","title":"Section label","initialValue":"THE WORK BEHIND THE MISSION"},
+      {"name":"cultureTitle","group":"culture","kind":"heading","title":"Section heading","initialValue":"Your work can meet a real need."},
+      {"name":"cultureIntro","group":"culture","kind":"text","title":"Section introduction","initialValue":"JDPI works across humanitarian response, recovery and development. Roles may support programmes in communities or the teams that make that work possible."},
+      {"name":"cultureOneTitle","group":"culture","kind":"string","title":"First focus title","initialValue":"Community first"},
+      {"name":"cultureOneText","group":"culture","kind":"text","title":"First focus description","initialValue":"Work alongside people and local structures, listening before acting and keeping dignity at the centre."},
+      {"name":"cultureTwoTitle","group":"culture","kind":"string","title":"Second focus title","initialValue":"Many skills, one mission"},
+      {"name":"cultureTwoText","group":"culture","kind":"text","title":"Second focus description","initialValue":"Programmes, operations, finance, communications and support roles all contribute to responsible delivery."},
+      {"name":"cultureThreeTitle","group":"culture","kind":"string","title":"Third focus title","initialValue":"Rooted in the Northeast"},
+      {"name":"cultureThreeText","group":"culture","kind":"text","title":"Third focus description","initialValue":"Our work is grounded in the communities and realities of Borno, Adamawa and Yobe States."},
+      {"name":"openingsKicker","group":"openings","kind":"string","title":"Vacancies label","initialValue":"OPEN OPPORTUNITIES"},
+      {"name":"openingsTitle","group":"openings","kind":"heading","title":"Vacancies heading","initialValue":"Find your place in the work."},
+      {"name":"openingsIntro","group":"openings","kind":"text","title":"Vacancies introduction","initialValue":"Explore current JDPI opportunities. Each listing gives the duty station, engagement type, deadline and official application instructions."},
+      {"name":"emptyTitle","group":"openings","kind":"heading","title":"No vacancies heading","initialValue":"No open roles right now."},
+      {"name":"emptyText","group":"openings","kind":"text","title":"No vacancies message","initialValue":"New opportunities will appear here when JDPI publishes them. Please check back for an opening that matches your skills."},
+      {"name":"processKicker","group":"process","kind":"string","title":"Process label","initialValue":"HOW TO APPLY"},
+      {"name":"processTitle","group":"process","kind":"heading","title":"Process heading","initialValue":"A clear path from interest to application."},
+      {"name":"processOneTitle","group":"process","kind":"string","title":"First step title","initialValue":"Explore the role"},
+      {"name":"processOneText","group":"process","kind":"text","title":"First step description","initialValue":"Read the full description, duty station, requirements and closing date."},
+      {"name":"processTwoTitle","group":"process","kind":"string","title":"Second step title","initialValue":"Apply as directed"},
+      {"name":"processTwoText","group":"process","kind":"text","title":"Second step description","initialValue":"Use the application link or JDPI email shown on that vacancy. Include the requested information."},
+      {"name":"processThreeTitle","group":"process","kind":"string","title":"Third step title","initialValue":"Watch for a response"},
+      {"name":"processThreeText","group":"process","kind":"text","title":"Third step description","initialValue":"If shortlisted, JDPI will contact you about the next stage using the details in your application."},
+      {"name":"safetyTitle","group":"support","kind":"heading","title":"Application safety heading","initialValue":"Protect your application."},
+      {"name":"safetyText","group":"support","kind":"text","title":"Application safety message","initialValue":"Apply only through the instructions on an official JDPI vacancy. If someone requests payment or bank details during recruitment, pause and verify the request through JDPI’s contact page."},
+      {"name":"accessTitle","group":"support","kind":"heading","title":"Accessibility heading","initialValue":"Need support to apply?"},
+      {"name":"accessText","group":"support","kind":"text","title":"Accessibility message","initialValue":"If an application format is difficult for you to use, contact JDPI and mention the vacancy title so the team can discuss an accessible way to apply."}
+    ]
   }
 ]

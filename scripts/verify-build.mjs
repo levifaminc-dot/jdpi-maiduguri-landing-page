@@ -174,6 +174,6 @@ for(const file of htmlFiles){
   }
   if(/SANITY_API_(?:READ|WRITE)_TOKEN|ghp_[A-Za-z0-9]+/.test(html))errors.push(`${file}: possible credential in build output.`);
 }
-for(const file of ['dist/index.html','dist/about/index.html','dist/team/index.html','dist/where-we-work/index.html','dist/programmes/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/contact/thanks/index.html','dist/contact/privacy/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
+for(const file of ['dist/index.html','dist/about/index.html','dist/team/index.html','dist/careers/index.html','dist/where-we-work/index.html','dist/programmes/index.html','dist/projects/index.html','dist/stories/index.html','dist/resources/index.html','dist/contact/index.html','dist/contact/thanks/index.html','dist/contact/privacy/index.html','dist/impact/index.html','dist/donate/index.html','dist/sitemap-index.xml','dist/robots.txt'])try{await access(file);}catch{errors.push(`Missing required build output: ${file}`);}
 if(errors.length)throw new Error(errors.join('\n'));
 console.log(`Verified ${htmlFiles.length} HTML pages: local links and assets resolve; required routes and metadata files exist.`);

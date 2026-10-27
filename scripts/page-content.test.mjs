@@ -11,8 +11,9 @@ import {CONTENT_QUERY,EXPORT_QUERY,RELEASE_QUERY} from '../src/lib/queries.ts';
 import {validatePageContent} from './validate-page-content.mjs';
 import {getPublishedResources} from '../src/lib/resources.ts';
 import {getWebsiteUpdates} from '../src/lib/stories.ts';
-test('all ten public pages have named fields, fallback content and release-query coverage',()=>{
-  assert.equal(catalogue.length,10);
+import {nigeriaDate,openVacancies,vacancyApplicationUrl} from '../src/lib/careers.ts';
+test('all eleven public pages have named fields, fallback content and release-query coverage',()=>{
+  assert.equal(catalogue.length,11);
   for(const definition of catalogue){
     assert(EXPORT_QUERY.includes(`"${definition.type}"`));
     assert.equal(new Set(definition.fields.map(field=>field.name)).size,definition.fields.length);
@@ -62,4 +63,14 @@ test('structured page data validates approved defaults and rejects malformed lis
   assert.doesNotThrow(()=>validatePageContent(content,checkImage));
   const broken=structuredClone(content);broken.pages.find(page=>page._id==='impactPage').data.impactOverview[0].value=42;
   assert.throws(()=>validatePageContent(broken,checkImage));
+});
+test('vacancies close on the Nigeria deadline and reject unsafe application destinations',()=>{
+  assert.equal(nigeriaDate(new Date('2026-10-27T23:30:00Z')),'2026-10-28');
+  const role={title:'Example role',slug:'example-role',status:'open',closingDate:'2026-10-27',applicationMethod:'link',applicationUrl:'https://jdpimaiduguri.org/apply'};
+  assert.equal(openVacancies([role,{...role,slug:'closed',status:'closed'},{...role,slug:'expired',closingDate:'2026-10-26'}],'2026-10-27').length,1);
+  assert.equal(openVacancies([role],'2026-10-28').length,0);
+  assert.equal(vacancyApplicationUrl(role),'https://jdpimaiduguri.org/apply');
+  for(const url of ['javascript:alert(1)','https://user:pass@example.org/apply'])assert.equal(vacancyApplicationUrl({...role,applicationUrl:url}),undefined);
+  assert.equal(vacancyApplicationUrl({...role,applicationMethod:'email',applicationEmail:'hr@example.org'}),'mailto:hr@example.org?subject=Example%20role');
+  assert.equal(vacancyApplicationUrl({...role,applicationMethod:'email',applicationEmail:'hr@example.org?cc=attacker@example.org'}),undefined);
 });
