@@ -80,8 +80,6 @@ jobs:
           fi
       - name: Package the verified release
         run: |
-          mkdir -p dist/.openai
-          cp .openai/hosting.json dist/.openai/hosting.json
           tar -czf jdpi-site.tar.gz dist
           git rev-parse HEAD > release-commit.txt
       - uses: actions/upload-artifact@v4
