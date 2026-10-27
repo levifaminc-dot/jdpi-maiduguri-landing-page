@@ -9,9 +9,9 @@ const anchor=(id:string)=>home ? `#${id}` : `/#${id}`;
 const routes:Record<string,string>={'who-we-are':'/about/','what-we-do':'/programmes/',projects:'/projects/',stories:'/stories/',resources:'/resources/',impact:'/impact/',contact:'/contact/'};
 const navigation=[['Home','hero'],['About Us','who-we-are'],['Programmes','what-we-do'],['Projects','projects'],['Our Impact','impact'],['Stories & Updates','stories'],['Contact','contact']];
 const submenus:Record<string,{label:string;url:string}[]>={
-  'who-we-are':[{label:'Our Team',url:'/team/'},{label:'Careers',url:'/careers/'}],
+  'who-we-are':[{label:'Our Team',url:'/team/'}],
   impact:[{label:'Where We Work',url:'/where-we-work/'}],
-  stories:[{label:'Resources',url:'/resources/'}],
+  stories:[{label:'Resources',url:'/resources/'},{label:'Careers',url:'/careers/'}],
 };
 ---
 <header class="site-nav" id="main-nav"><div class="nav-inner">
